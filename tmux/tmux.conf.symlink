@@ -1,0 +1,121 @@
+#-------~---~----------~----------~----
+##       .---..-.-.-..-..-..-..-.
+##       `| |'| | | || || | >  <
+##        `-' `-'-'-'`----''-''-'
+##-------~---~----------~----------~----
+## file: $HOME/.tmux.conf
+##-------~---~----------~----------~----
+##
+## @user:       peteyy
+## @updated:    2015
+##
+##-------~---~----------~----------~----
+##
+## + Software used ATOC:
+## `-> tmux      => *
+##
+##-------~---~----------~----------~----
+#
+##-------~---~----------~----------~----
+## KEYBINDS
+##-------~---~----------~----------~----
+#
+set -g status-keys vi
+setw -g mode-keys vi
+setw -g mode-mouse on
+
+## Unbinds
+## `-> these are part of the default mappings 
+##     and will get new functionality
+unbind c
+unbind i
+unbind l
+unbind s
+unbind w
+
+bind r source-file ~/.tmux.conf
+bind w neww
+bind m choose-window
+bind a choose-session
+bind c kill-pane
+bind t set status
+
+bind h select-pane -L
+bind j select-pane -D
+bind k select-pane -U
+bind l select-pane -R
+
+bind ^h resize-pane -L
+bind ^j resize-pane -D
+bind ^k resize-pane -U
+bind ^l resize-pane -R
+
+bind v split-window -h
+bind s split-window
+
+bind t attach -d -t tmux
+
+##-------~---~----------~----------~----
+## WINDOWS & PANES
+##-------~---~----------~----------~----
+
+## Start counting at 1
+set -g base-index 1
+##
+set -g pane-border-fg black
+set -g pane-active-border-fg red
+set -g display-panes-colour white
+set -g display-panes-active-colour red
+set -g display-panes-time 1000
+#
+setw -g automatic-rename on
+setw -g monitor-activity on
+setw -g utf8 on
+
+##-------~---~----------~----------~----
+## MISC SETTINGS
+##-------~---~----------~----------~----
+
+set -g default-shell /bin/zsh
+set -g default-command /bin/zsh
+set -g set-titles on
+set -g set-titles-string 'tmux: #T'
+set -g repeat-time 100
+set -g default-terminal "xterm-256color"
+setw -g clock-mode-colour red
+setw -g clock-mode-style 12
+setw -g alternate-screen on
+
+## Don't close windows
+set -g set-remain-on-exit on
+
+##-------~---~----------~----------~----
+## STATUS & MESSAGE
+##-------~---~----------~----------~----
+
+set -g message-attr bold
+set -g message-fg black
+set -g message-bg yellow
+
+set -g status-justify right
+set -g status-bg black
+set -g status-fg white
+set -g status-interval 5
+set -g status-utf8 on
+
+setw -g window-status-current-fg red
+setw -g window-status-current-attr none
+setw -g window-status-format '#[fg=white]#I-#W#F'
+setw -g window-status-current-format '#[fg=red] #I-#W#F '
+
+set -g status-left '#[fg=magenta] #S#[fg=white]:#P #[fg=yellow] #H #[fg=black,bold] > #T'
+set -g status-left-length 40
+set -g status-left-fg black
+
+set -g status-right '#(cat /proc/loadavg | cut -d\\  -f-3) #[fg=black,bold]| %H:%M '
+
+##############################
+### Color & Style Settings ###
+##############################
+
+source ~/.dotfiles/tmux/theme.sh
