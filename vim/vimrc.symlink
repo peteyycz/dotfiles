@@ -1,0 +1,199 @@
+" Disable VI compatibility
+set nocompatible
+
+" Enable syntax highlighting
+filetype on
+filetype plugin indent on
+syntax on
+
+" Set default encoding to UTF-8
+set encoding=utf-8
+
+" Automatic reloading of .vimrc
+au BufWritePost ~/.vim/vimrc so ~/.vim/vimrc
+
+" Better copy & paste
+set pastetoggle=<F2>
+set clipboard=unnamed
+
+" Mouse and backspace
+set mouse=a  " on OSX press ALT and click
+set bs=2     " make backspace behave like normal again
+
+" Rebind <Leader> key
+let mapleader = ","
+
+" Easier moving of code blocks
+vnoremap < <gv
+vnoremap > >gv
+
+" Set 256 color mode
+set t_Co=256
+
+" Show trailing whitespace
+autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+au InsertLeave * match ExtraWhitespace /\s\+$/
+
+" Gui options
+set guioptions-=L
+set guioptions-=r
+
+" Show line numbers
+set nu
+
+" Coloumn for line wrapping
+set colorcolumn=80
+set wrap
+set linebreak
+
+" Useful settings
+set history=700
+set undolevels=700
+
+" Real programmers don't use TABs but spaces
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+set expandtab
+
+" Make search case insensitive
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+
+" Disable stupid backup and swap files
+set nobackup
+set nowritebackup
+set noswapfile
+
+" Easy split navigation
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+" Set end of the line character
+set list
+set listchars=eol:¬
+
+" HTML specific stuff
+autocmd FileType html setlocal shiftwidth=1 tabstop=1
+
+" Instead of an annoying sound display errors visually
+set visualbell
+
+" Typo protector lvl: 99999
+if has("user_commands")
+    command! -bang -nargs=? -complete=file E e<bang> <args>
+    command! -bang -nargs=? -complete=file W w<bang> <args>
+    command! -bang -nargs=? -complete=file Wq wq<bang> <args>
+    command! -bang -nargs=? -complete=file WQ wq<bang> <args>
+    command! -bang Wa wa<bang>
+    command! -bang WA wa<bang>
+    command! -bang Q q<bang>
+    command! -bang QA qa<bang>
+    command! -bang Qa qa<bang>
+endif
+
+" I can type :help on my own, thanks.
+" Protect my fat fingers from the evils of F1. :)
+noremap <F1> <Esc>
+
+" Map ; to : in normal mode
+nnoremap ; :
+
+" Maximize window on open
+set lines=99 columns=999
+
+" Better navigation
+nnoremap <silent> n nzz
+nnoremap <silent> N Nzz
+nnoremap <silent> * *zz
+nnoremap <silent> # #zz
+nnoremap <silent> g* g*zz
+nnoremap <silent> g# g#zz
+
+" Q for repeat macro
+map Q @@
+
+" Resize vim on window resize
+au VimResized * exe "normal! \<c-w>="
+
+" Jump to begining of the line and end
+noremap H ^
+noremap L $
+
+" Improved up/down movement in wrapped files
+nnoremap j gj
+nnoremap k gk
+
+" ============================================================================
+" Plugins Setup
+" ============================================================================
+" Required Vundle setup
+filetype off
+set rtp+=~/.vim/bundle/vundle
+call vundle#begin()
+
+" Let Vundle manage itself
+Plugin 'gmarik/vundle'
+
+" Common plugins
+Plugin 'bling/vim-airline'
+Plugin 'scrooloose/syntastic'
+Plugin 'kien/ctrlp.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'scrooloose/nerdtree'
+Plugin 'mileszs/ack.vim'
+Plugin 'tpope/vim-repeat'
+Plugin 'Lokaltog/vim-easymotion'
+
+" Markdown
+Plugin 'plasticboy/vim-markdown'
+
+" Javascript
+Plugin 'pangloss/vim-javascript'
+Plugin 'jelera/vim-javascript-syntax'
+Plugin 'Raimondi/delimitMate'
+
+" JSX
+Plugin 'mxw/vim-jsx'
+
+" Color schemes
+Plugin 'morhetz/gruvbox'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'sickill/vim-monokai'
+Plugin 'romainl/flattened'
+Plugin 'sandeepsinghmails/Dev_Delight'
+
+call vundle#end()
+
+" Set filetype back on
+filetype on
+
+" Color schemes
+let g:solarized_visibility = "high"
+let g:solarized_contrast = "high"
+let g:solarized_termcolors = 256
+set background=dark
+colorscheme gruvbox
+
+" Settings for airline
+set laststatus=2
+set noshowmode
+
+" Settings for NERDTree
+noremap <Leader>m :NERDTreeToggle<CR>
+
+" Settings for Ack.vim
+let g:ackprg = 'ag --vimgrep'
+
+" Syntastic settings
+let g:syntastic_check_on_open=1
+let g:syntastic_javascript_checkers = ['jshint', 'jscs']
+let g:syntastic_warning_symbol = '⚠'
+let g:syntastic_error_symbol = '⚠'
+let g:syntastic_style_error_symbol = '⚠'
+let g:syntastic_style_warning_symbol = '⚠'
+
