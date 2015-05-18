@@ -28,6 +28,7 @@ Plugin 'plasticboy/vim-markdown'
 Plugin 'pangloss/vim-javascript'
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'Raimondi/delimitMate'
+Plugin 'moll/vim-node'
 
 " JSX
 Plugin 'mxw/vim-jsx'
