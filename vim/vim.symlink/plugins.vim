@@ -5,7 +5,7 @@
 " Required Vundle setup
 filetype off
 
-set rtp+=~/.vim/bundle/vundle
+set rtp+=~/.vim/bundle/vundle/
 call vundle#begin()
 
 " Let Vundle manage itself
@@ -42,4 +42,4 @@ Plugin 'sandeepsinghmails/Dev_Delight'
 
 call vundle#end()
 
-filetype on
+filetype plugin indent on

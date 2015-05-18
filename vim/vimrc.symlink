@@ -1,8 +1,8 @@
 " Disable VI compatibility
 set nocompatible
 
-" load plugins from vundle
-so ~/.vim/plugins.vim
+" Load plugins
+source ~/.vim/plugins.vim
 
 " Enable syntax highlighting
 filetype on
