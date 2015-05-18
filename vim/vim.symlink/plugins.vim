@@ -1,8 +1,10 @@
 " ============================================================================
 " Plugins Setup
 " ============================================================================
+
 " Required Vundle setup
 filetype off
+
 set rtp+=~/.vim/bundle/vundle
 call vundle#begin()
 
@@ -31,6 +33,7 @@ Plugin 'Raimondi/delimitMate'
 Plugin 'mxw/vim-jsx'
 
 " Color schemes
+Plugin 'chriskempson/base16-vim'
 Plugin 'morhetz/gruvbox'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'sickill/vim-monokai'
@@ -38,3 +41,5 @@ Plugin 'romainl/flattened'
 Plugin 'sandeepsinghmails/Dev_Delight'
 
 call vundle#end()
+
+filetype on

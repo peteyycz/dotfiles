@@ -1,6 +1,9 @@
 " Disable VI compatibility
 set nocompatible
 
+" load plugins from vundle
+so ~/.vim/plugins.vim
+
 " Enable syntax highlighting
 filetype on
 filetype plugin indent on
@@ -177,7 +180,10 @@ let g:solarized_visibility = "high"
 let g:solarized_contrast = "high"
 let g:solarized_termcolors = 256
 set background=dark
-colorscheme gruvbox
+let base16colorspace=256  " Access colors present in 256 colorspace"
+set t_Co=256 " Explicitly tell vim that the terminal supports 256 colors"
+execute "set background=".$BACKGROUND
+execute "colorscheme ".$THEME
 
 " Settings for airline
 set laststatus=2
