@@ -156,3 +156,6 @@ let g:syntastic_error_symbol = '⚠'
 let g:syntastic_style_error_symbol = '⚠'
 let g:syntastic_style_warning_symbol = '⚠'
 
+" Ctrl+P settings
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+
