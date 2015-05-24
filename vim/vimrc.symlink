@@ -12,9 +12,6 @@ syntax on
 " Set default encoding to UTF-8
 set encoding=utf-8
 
-" Automatic reloading of .vimrc
-au BufWritePost ~/.vim/vimrc so ~/.vim/vimrc
-
 " Better copy & paste
 set pastetoggle=<F2>
 set clipboard=unnamed
@@ -39,7 +36,8 @@ set guioptions-=L
 set guioptions-=r
 
 " Show line numbers
-set nu
+set number
+set relativenumber
 
 " Coloumn for line wrapping
 set colorcolumn=80
@@ -100,6 +98,9 @@ endif
 " Protect my fat fingers from the evils of F1. :)
 noremap <F1> <Esc>
 
+" Use jk in insert mode to quickly switch to normal mode
+inoremap jk <esc>
+
 " Map ; to : in normal mode
 nnoremap ; :
 
@@ -139,6 +140,7 @@ execute "set background=".$BACKGROUND
 execute "colorscheme ".$THEME
 
 " Settings for airline
+let g:airline_powerline_fonts = 1
 set laststatus=2
 set noshowmode
 

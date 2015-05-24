@@ -41,6 +41,9 @@ Plugin 'sickill/vim-monokai'
 Plugin 'romainl/flattened'
 Plugin 'sandeepsinghmails/Dev_Delight'
 
+" Be more productive
+Plugin '0x0dea/vim-molasses'
+
 call vundle#end()
 
 filetype plugin indent on

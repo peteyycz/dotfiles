@@ -1,3 +1,4 @@
-.netwhist
+*.netrwhist
+vim/vim.symlink/.netrwhist
 vim/vim.symlink/bundle/
 npm-debug.log
