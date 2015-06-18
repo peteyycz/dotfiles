@@ -12,14 +12,19 @@ call vundle#begin()
 Plugin 'gmarik/vundle'
 
 " Common plugins
-Plugin 'bling/vim-airline'
+Plugin 'airblade/vim-gitgutter'
 Plugin 'scrooloose/syntastic'
 Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
 Plugin 'mileszs/ack.vim'
-Plugin 'tpope/vim-repeat'
 Plugin 'Lokaltog/vim-easymotion'
+Plugin 'mattn/emmet-vim'
+Plugin 'tpope/vim-surround'
+Plugin 'scrooloose/nerdcommenter'
+
+" For dem looks
+Plugin 'itchyny/lightline.vim'
 
 " Markdown
 Plugin 'plasticboy/vim-markdown'
@@ -35,14 +40,7 @@ Plugin 'mxw/vim-jsx'
 
 " Color schemes
 Plugin 'chriskempson/base16-vim'
-Plugin 'morhetz/gruvbox'
-Plugin 'altercation/vim-colors-solarized'
 Plugin 'sickill/vim-monokai'
-Plugin 'romainl/flattened'
-Plugin 'sandeepsinghmails/Dev_Delight'
-
-" Be more productive
-Plugin '0x0dea/vim-molasses'
 
 call vundle#end()
 

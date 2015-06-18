@@ -9,6 +9,30 @@ filetype on
 filetype plugin indent on
 syntax on
 
+" Some kind of buffer tweak
+set hidden
+
+" Make longer history
+set history=1000
+
+" Better command completion
+set wildmenu
+set wildmode=list:longest
+
+" Set title of the window
+set title
+
+" Better switching windows
+set scrolloff=3
+
+" Faster y e scrolling
+nnoremap <C-e> 3<C-e>
+nnoremap <C-y> 3<C-y>
+
+" Jump to marks easily
+nnoremap ' `
+nnoremap ` '
+
 " Set default encoding to UTF-8
 set encoding=utf-8
 
@@ -18,7 +42,13 @@ set clipboard=unnamed
 
 " Mouse and backspace
 set mouse=a  " on OSX press ALT and click
-set bs=2     " make backspace behave like normal again
+set backspace=indent,eol,start
+
+" Turn highlight off
+nmap <silent> <leader>n :silent :nohlsearch<CR>
+
+" Shorter messages
+set shortmess=atI
 
 " Rebind <Leader> key
 let mapleader = ","
@@ -30,6 +60,9 @@ vnoremap > >gv
 " Show trailing whitespace
 autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 au InsertLeave * match ExtraWhitespace /\s\+$/
+
+" Highlight the column of the cursor
+set cursorcolumn
 
 " Gui options
 set guioptions-=L
@@ -43,6 +76,12 @@ set relativenumber
 set colorcolumn=80
 set wrap
 set linebreak
+
+" Unnessesary rendering
+set lazyredraw
+
+" Highlight matching pair
+set showmatch
 
 " Useful settings
 set history=700
@@ -129,15 +168,11 @@ noremap L $
 nnoremap j gj
 nnoremap k gk
 
-" Color schemes
-let g:solarized_visibility = "high"
-let g:solarized_contrast = "high"
-let g:solarized_termcolors = 256
-set background=dark
-let base16colorspace=256  " Access colors present in 256 colorspace"
-set t_Co=256 " Explicitly tell vim that the terminal supports 256 colors"
-execute "set background=".$BACKGROUND
+" Colorscheme setttings
+let base16colorspace=256
+set t_Co=256
 execute "colorscheme ".$THEME
+execute "set background=".$BACKGROUND
 
 " Settings for airline
 let g:airline_powerline_fonts = 1
@@ -152,13 +187,41 @@ noremap <Leader>m :NERDTreeToggle<CR>
 let g:ackprg = 'ag --vimgrep'
 
 " Syntastic settings
-let g:syntastic_check_on_open=1
 let g:syntastic_javascript_checkers = ['jshint', 'jscs']
+let g:syntastic_check_on_open=1
 let g:syntastic_warning_symbol = '⚠'
 let g:syntastic_error_symbol = '⚠'
 let g:syntastic_style_error_symbol = '⚠'
-let g:syntastic_style_warning_symbol = '⚠'
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_wq = 0
+highlight SyntasticErrorSign ctermfg=red ctermbg=237
+highlight SyntasticWarningSign ctermfg=yellow ctermbg=237
+highlight SyntasticStyleErrorSign ctermfg=red ctermbg=237
+highlight SyntasticStyleWarningSign ctermfg=yellow ctermbg=237
 
 " Ctrl+P settings
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+
+" Gitgutter
+let g:gitgutter_realtime = 1
+let g:gitgutter_eager = 1
+let g:gitgutter_diff_args = '-w'
+let g:gitgutter_sign_added = '+'
+let g:gitgutter_sign_modified = '~'
+let g:gitgutter_sign_removed = '-'
+let g:gitgutter_sign_removed_first_line = '^'
+let g:gitgutter_sign_modified_removed = ':'
+let g:gitgutter_max_signs = 1500
+highlight clear SignColumn
+highlight GitGutterAdd ctermfg=green ctermbg=237
+highlight GitGutterChange ctermfg=yellow ctermbg=237
+highlight GitGutterDelete ctermfg=red ctermbg=237
+highlight GitGutterChangeDelete ctermfg=red ctermbg=237
+
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ 'separator': { 'left': '▓▒░', 'right': '░▒▓' },
+      \ 'subseparator': { 'left': '▒', 'right': '░' }
+      \ }
 
