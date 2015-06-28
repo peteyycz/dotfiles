@@ -3,7 +3,7 @@ export ZSH=/Users/peteyy/.dotfiles/zsh/oh-my-zsh
 
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="random"
+ZSH_THEME="duellj"
 
 # Uncomment the following line to enable command auto-correction.
 ENABLE_CORRECTION="true"
