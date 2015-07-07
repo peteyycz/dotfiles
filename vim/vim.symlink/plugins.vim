@@ -12,19 +12,14 @@ call vundle#begin()
 Plugin 'gmarik/vundle'
 
 " Common plugins
-Plugin 'airblade/vim-gitgutter'
 Plugin 'scrooloose/syntastic'
 Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
-Plugin 'mileszs/ack.vim'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'mattn/emmet-vim'
 Plugin 'tpope/vim-surround'
 Plugin 'scrooloose/nerdcommenter'
-
-" For dem looks
-Plugin 'itchyny/lightline.vim'
 
 " Markdown
 Plugin 'plasticboy/vim-markdown'

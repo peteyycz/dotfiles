@@ -3,7 +3,7 @@ export ZSH=/Users/peteyy/.dotfiles/zsh/oh-my-zsh
 
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="duellj"
+ZSH_THEME="avit"
 
 # Uncomment the following line to enable command auto-correction.
 ENABLE_CORRECTION="true"
@@ -48,9 +48,13 @@ export PATH=/usr/local/bin:$PATH
 export NVM_DIR=~/.nvm
 source $NVM_DIR/nvm.sh
 
-export THEME="base16-ocean"
+export THEME="base16-monokai"
 export BACKGROUND="dark"
 
 BASE16_SHELL="$DOTFILES/config.symlink/base16-shell/$THEME.$BACKGROUND.sh"
 
 source $BASE16_SHELL
+
+export DOCKER_HOST='tcp://192.168.59.103:2376'
+export DOCKER_CERT_PATH='/Users/peteyy/.boot2docker/certs/boot2docker-vm'
+export DOCKER_TLS_VERIFY=1

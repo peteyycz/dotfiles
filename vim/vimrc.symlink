@@ -25,10 +25,6 @@ set title
 " Better switching windows
 set scrolloff=3
 
-" Faster y e scrolling
-nnoremap <C-e> 3<C-e>
-nnoremap <C-y> 3<C-y>
-
 " Jump to marks easily
 nnoremap ' `
 nnoremap ` '
@@ -64,9 +60,13 @@ au InsertLeave * match ExtraWhitespace /\s\+$/
 " Highlight the column of the cursor
 set cursorcolumn
 
+" TODO MOVE TO GVIMRC
 " Gui options
-set guioptions-=L
-set guioptions-=r
+if has('gui_running')
+  set guioptions-=L
+  set guioptions-=r
+  set guifont=Sauce\ Code\ Powerline:h18
+end
 
 " Show line numbers
 set number
@@ -193,6 +193,7 @@ let g:syntastic_warning_symbol = '⚠'
 let g:syntastic_error_symbol = '⚠'
 let g:syntastic_style_error_symbol = '⚠'
 let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_loc_list_height = 5
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_wq = 0
 highlight SyntasticErrorSign ctermfg=red ctermbg=237
@@ -218,10 +219,4 @@ highlight GitGutterAdd ctermfg=green ctermbg=237
 highlight GitGutterChange ctermfg=yellow ctermbg=237
 highlight GitGutterDelete ctermfg=red ctermbg=237
 highlight GitGutterChangeDelete ctermfg=red ctermbg=237
-
-let g:lightline = {
-      \ 'colorscheme': 'wombat',
-      \ 'separator': { 'left': '▓▒░', 'right': '░▒▓' },
-      \ 'subseparator': { 'left': '▒', 'right': '░' }
-      \ }
 
