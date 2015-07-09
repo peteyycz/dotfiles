@@ -1,9 +1,6 @@
 " Disable VI compatibility
 set nocompatible
 
-" Load plugins
-source ~/.vim/plugins.vim
-
 " Enable syntax highlighting
 filetype on
 filetype plugin indent on
