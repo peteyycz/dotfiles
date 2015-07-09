@@ -44,7 +44,7 @@ set backspace=indent,eol,start
 nmap <silent> <leader>n :silent :nohlsearch<CR>
 
 " Shorter messages
-set shortmess=atI
+set shortmess=a
 
 " Rebind <Leader> key
 let mapleader = ","
@@ -133,10 +133,6 @@ if has("user_commands")
     command! -bang Qa qa<bang>
 endif
 
-" I can type :help on my own, thanks.
-" Protect my fat fingers from the evils of F1. :)
-noremap <F1> <Esc>
-
 " Use jk in insert mode to quickly switch to normal mode
 inoremap jk <esc>
 
@@ -164,30 +160,64 @@ au VimResized * exe "normal! \<c-w>="
 noremap H ^
 noremap L $
 
-" Improved up/down movement in wrapped files
-nnoremap j gj
-nnoremap k gk
-
 " Colorscheme setttings
 let base16colorspace=256
 set t_Co=256
-execute "colorscheme ".$THEME
-execute "set background=".$BACKGROUND
+execute "colorscheme " . $THEME
+execute "set background=" . $BACKGROUND
 
-" Settings for airline
-let g:airline_powerline_fonts = 1
-let g:airline_theme='base16'
-set laststatus=2
-set noshowmode
+" ============================================================================
+" Plugins Setup
+" ============================================================================
+
+" Required Vundle setup
+filetype off
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#begin()
+
+" Let Vundle manage itself
+Plugin 'gmarik/vundle'
+
+" Color schemes
+Plugin 'chriskempson/base16-vim'
+
+" Common plugins
+Plugin 'scrooloose/syntastic'
+Plugin 'ervandew/supertab'
+Plugin 'kien/ctrlp.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'Raimondi/delimitMate'
+
+" Markdown
+Plugin 'plasticboy/vim-markdown'
+
+" Javascript
+Plugin 'pangloss/vim-javascript'
+Plugin 'jelera/vim-javascript-syntax'
+
+" Stylus - Jade
+Plugin 'wavded/vim-stylus'
+Plugin 'digitaltoad/vim-jade'
+
+" JSX
+Plugin 'mxw/vim-jsx'
+
+" Almost unused
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'mattn/emmet-vim'
+Plugin 'tpope/vim-surround'
+
+call vundle#end()
+
+filetype plugin indent on
 
 " Settings for NERDTree
 noremap <Leader>m :NERDTreeToggle<CR>
 
-" Settings for Ack.vim
-let g:ackprg = 'ag --vimgrep'
-
 " Syntastic settings
-let g:syntastic_javascript_checkers = ['jshint', 'jscs']
+let g:syntastic_javascript_checkers = ['jshint']
 let g:syntastic_check_on_open=1
 let g:syntastic_warning_symbol = '⚠'
 let g:syntastic_error_symbol = '⚠'
@@ -201,22 +231,31 @@ highlight SyntasticWarningSign ctermfg=yellow ctermbg=237
 highlight SyntasticStyleErrorSign ctermfg=red ctermbg=237
 highlight SyntasticStyleWarningSign ctermfg=yellow ctermbg=237
 
+" Use JSHintrc defined in the project
+function s:find_jshintrc(dir)
+    let l:found = globpath(a:dir, '.jshintrc')
+    if filereadable(l:found)
+        return l:found
+    endif
+
+    let l:parent = fnamemodify(a:dir, ':h')
+    if l:parent != a:dir
+        return s:find_jshintrc(l:parent)
+    endif
+
+    return "~/.jshintrc"
+endfunction
+
+function UpdateJsHintConf()
+    let l:dir = expand('%:p:h')
+    let l:jshintrc = s:find_jshintrc(l:dir)
+    let g:syntastic_javascript_jshint_args = ("--config " . l:jshintrc)
+endfunction
+
+au BufEnter * call UpdateJsHintConf()
+
 " Ctrl+P settings
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 
-" Gitgutter
-let g:gitgutter_realtime = 1
-let g:gitgutter_eager = 1
-let g:gitgutter_diff_args = '-w'
-let g:gitgutter_sign_added = '+'
-let g:gitgutter_sign_modified = '~'
-let g:gitgutter_sign_removed = '-'
-let g:gitgutter_sign_removed_first_line = '^'
-let g:gitgutter_sign_modified_removed = ':'
-let g:gitgutter_max_signs = 1500
-highlight clear SignColumn
-highlight GitGutterAdd ctermfg=green ctermbg=237
-highlight GitGutterChange ctermfg=yellow ctermbg=237
-highlight GitGutterDelete ctermfg=red ctermbg=237
-highlight GitGutterChangeDelete ctermfg=red ctermbg=237
-
+" Strip trailing whitespaces
+autocmd BufWritePre * :silent :%s/\s\+$//e

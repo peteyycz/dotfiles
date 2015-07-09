@@ -1,16 +1,7 @@
-set -g default-command "reattach-to-user-namespace -l zsh"
 # tmux display things in 256 colors
 set -g default-terminal "xterm-256color"
-set -g status-utf8 on
 
 set -g history-limit 20000
-
-# automatically renumber tmux windows
-set -g renumber-windows on
-
-# Activity Monitoring
-setw -g monitor-activity off
-set -g visual-activity off
 
 # Rather than constraining window size to the maximum size of any client
 # connected to the *session*, constrain window size to the maximum size of any
@@ -19,10 +10,6 @@ setw -g aggressive-resize on
 
 # make delay shorter
 set -sg escape-time 0
-
-# tile all windows
-unbind =
-bind = select-layout tiled
 
 # make window/pane index start with 1
 set -g base-index 1
@@ -36,9 +23,6 @@ set -g mouse-select-pane on
 set -g mouse-resize-pane on
 set -g mouse-select-window on
 
-# set vi mode for copy mode
-setw -g mode-keys vi
-
 # more settings to make copy-mode more vim-like
 unbind [
 bind Escape copy-mode
@@ -51,16 +35,13 @@ bind -t vi-copy 'y' copy-selection
 bind C-c run "tmux save-buffer - | reattach-to-user-namespace pbcopy"
 bind C-v run "tmux set-buffer $(reattach-to-user-namespace pbpaste); tmux paste-buffer")
 
-##############################
-### Color & Style Settings ###
-##############################
 
+# Vi mode
 set -g status-keys vi
 setw -g mode-keys vi
-setw -g mode-mouse on
 
 ## Unbinds
-## `-> these are part of the default mappings 
+## `-> these are part of the default mappings
 ##     and will get new functionality
 unbind c
 unbind i
@@ -93,23 +74,10 @@ bind ^l resize-pane -R
 bind v split-window -h
 bind s split-window
 
-bind t attach -d -t tmux
-
-##-------~---~----------~----------~----
-## WINDOWS & PANES
-##-------~---~----------~----------~----
-
-## Start counting at 1
-set -g base-index 1
 ##
-set -g pane-border-fg black
-set -g pane-active-border-fg red
-set -g display-panes-colour white
-set -g display-panes-active-colour red
 set -g display-panes-time 1000
 #
 setw -g automatic-rename on
-setw -g status-utf8 on
 
 ##-------~---~----------~----------~----
 ## MISC SETTINGS
@@ -120,39 +88,18 @@ set -g default-command /bin/zsh
 set -g set-titles on
 set -g set-titles-string 'tmux: #T'
 set -g repeat-time 100
-set -g default-terminal "xterm-256color"
-setw -g clock-mode-colour red
 setw -g clock-mode-style 12
 setw -g alternate-screen on
 
 ## Don't close windows
 set -g set-remain-on-exit on
 
-# with mouse (click on pretty little boxes)
-set -g mouse-select-window on
-
 # colon :
 bind : command-prompt
 
-# panes
-set -g mouse-select-pane on
-set -g pane-border-fg magenta
-set -g pane-active-border-fg green
-set -g pane-active-border-bg default
-
-# resize panes with mouse (drag borders)
-set -g mouse-select-pane on
-set -g mouse-resize-pane on
-
 # status line
 set -g status-utf8 on
-set -g status-justify left
-set -g status-bg colour0
-set -g status-fg colour66
 set -g status-interval 2
-
-#resizing
-setw -g aggressive-resize on
 
 # loud or quiet?
 set-option -g visual-activity on
@@ -161,8 +108,7 @@ set-option -g visual-silence off
 set-window-option -g monitor-activity off
 set-option -g bell-action none
 
-##############################
-### Color & Style Settings ###
-##############################
+# Colors
+set -g pane-border-fg green
+set -g pane-active-border-fg green
 
-source ~/.dotfiles/tmux/theme.sh
