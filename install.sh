@@ -5,7 +5,7 @@ echo "installing dotfiles"
 echo "initializing submodule(s)"
 git submodule update --init --recursive
 
-DOTFILES=$HOME/.dotfiles
+DOTFILES=$HOME/dotfiles
 
 echo "creating symlinks"
 linkables=$( ls -1 -d *.symlink )
@@ -17,3 +17,5 @@ done
 
 echo "configuring zsh as default shell"
 chsh -s $(which zsh)
+
+git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim

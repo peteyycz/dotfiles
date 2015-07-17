@@ -157,12 +157,6 @@ au VimResized * exe "normal! \<c-w>="
 noremap H ^
 noremap L $
 
-" Colorscheme setttings
-let base16colorspace=256
-set t_Co=256
-execute "colorscheme " . $THEME
-execute "set background=" . $BACKGROUND
-
 " ============================================================================
 " Plugins Setup
 " ============================================================================
@@ -170,7 +164,7 @@ execute "set background=" . $BACKGROUND
 " Required Vundle setup
 filetype off
 
-set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#begin()
 
 " Let Vundle manage itself
@@ -204,7 +198,6 @@ Plugin 'mxw/vim-jsx'
 " Almost unused
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'mattn/emmet-vim'
-Plugin 'tpope/vim-surround'
 
 call vundle#end()
 
@@ -256,3 +249,10 @@ let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 
 " Strip trailing whitespaces
 autocmd BufWritePre * :silent :%s/\s\+$//e
+
+" Colorscheme setttings
+let base16colorspace=256
+set t_Co=256
+execute "colorscheme " . $THEME
+execute "set background=" . $BACKGROUND
+

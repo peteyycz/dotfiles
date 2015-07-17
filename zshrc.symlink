@@ -1,9 +1,12 @@
+export DOTFILES=$HOME/dotfiles
+
+export PATH=/usr/local/bin:$PATH
+export ZSH=$DOTFILES/oh-my-zsh
+# Path to your oh-my-zsh installation.
 source $ZSH/oh-my-zsh.sh
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
-export DOTFILES=$HOME/dotfiles
-# Path to your oh-my-zsh installation.
-export ZSH=$DOTFILES/oh-my-zsh
+alias szsh="source ~/.zshrc && cd ~"
 
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
@@ -37,7 +40,6 @@ plugins=(git)
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-export PATH=/usr/local/bin:$PATH
 
 export EDITOR='vim'
 
