@@ -60,7 +60,7 @@ alias cpssh="cat ~/.ssh/id_rsa.pub | pbcopy"
 # Tmuxinator
 # ====================
 
-source ~/.bin/tmuxinator.bash
+source ~/.tmuxinator.zsh
 
 # ====================
 # NVM
