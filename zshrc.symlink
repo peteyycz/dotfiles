@@ -1,8 +1,14 @@
-# DOTFILES folder
+# ====================
+# General settings
+# ====================
+export EDITOR='vim'
+
+[ -z "$TMUX" ] && export TERM=xterm-256color
+
 export DOTFILES=$HOME/dotfiles
 
-# Add to path
 export PATH=/usr/local/bin:$PATH
+
 
 # ====================
 # OH MY ZSH
@@ -27,36 +33,34 @@ COMPLETION_WAITING_DOTS="true"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-alias czsh="vim ~/.zshrc"
-alias cvim="vim ~/.vimrc"
-alias ctmux="vim ~/.tmux.conf"
-alias rzsh="source ~/.zshrc"
-
-alias tls="tmux ls"
-
-alias toproj="cd ~/Projects/"
-
-alias cpssh="cat ~/.ssh/id_rsa.pub | pbcopy"
-
 # Source OH MY ZSH at the end of config
 source $ZSH/oh-my-zsh.sh
 
 # ====================
-# General settings
+# Aliases
 # ====================
 
-export EDITOR='vim'
+# For configs
+alias czsh="vim ~/.zshrc"
+alias cvim="vim ~/.vimrc"
+alias ctmux="vim ~/.tmux.conf"
+alias szsh="source ~/.zshrc"
 
-[ -z "$TMUX" ] && export TERM=xterm-256color
+# Tmux related
+alias tls="tmux ls"
+alias tls="tmux attach"
+
+# Faster navigation
+alias toproj="cd ~/Projects/"
+
+# Copy public ssh key
+alias cpssh="cat ~/.ssh/id_rsa.pub | pbcopy"
+
+# ====================
+# Tmuxinator
+# ====================
+
+source ~/.bin/tmuxinator.bash
 
 # ====================
 # NVM
