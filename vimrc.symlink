@@ -180,6 +180,7 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'Raimondi/delimitMate'
+Plugin 'rizzatti/dash.vim'
 
 " Markdown
 Plugin 'plasticboy/vim-markdown'

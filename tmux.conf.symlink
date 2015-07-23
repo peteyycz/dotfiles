@@ -84,7 +84,6 @@ setw -g automatic-rename on
 ##-------~---~----------~----------~----
 
 set -g default-shell /bin/zsh
-set -g default-command /bin/zsh
 set -g set-titles on
 set -g set-titles-string 'tmux: #T'
 set -g repeat-time 100

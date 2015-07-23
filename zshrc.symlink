@@ -1,19 +1,22 @@
+# DOTFILES folder
 export DOTFILES=$HOME/dotfiles
 
+# Add to path
 export PATH=/usr/local/bin:$PATH
-export ZSH=$DOTFILES/oh-my-zsh
-# Path to your oh-my-zsh installation.
-source $ZSH/oh-my-zsh.sh
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
-alias szsh="source ~/.zshrc && cd ~"
+# ====================
+# OH MY ZSH
+# ====================
+
+# Path to your oh-my-zsh installation.
+export ZSH=$DOTFILES/oh-my-zsh
 
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 ZSH_THEME="avit"
 
 # Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
+# ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
@@ -24,13 +27,6 @@ COMPLETION_WAITING_DOTS="true"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
 
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
@@ -40,21 +36,45 @@ plugins=(git)
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+alias czsh="vim ~/.zshrc"
+alias cvim="vim ~/.vimrc"
+alias ctmux="vim ~/.tmux.conf"
+alias rzsh="source ~/.zshrc"
+
+alias tls="tmux ls"
+
+alias toproj="cd ~/Projects/"
+
+alias cpssh="cat ~/.ssh/id_rsa.pub | pbcopy"
+
+# Source OH MY ZSH at the end of config
+source $ZSH/oh-my-zsh.sh
+
+# ====================
+# General settings
+# ====================
 
 export EDITOR='vim'
 
 [ -z "$TMUX" ] && export TERM=xterm-256color
 
-# source nvm
+# ====================
+# NVM
+# ====================
 export NVM_DIR=~/.nvm
 source $NVM_DIR/nvm.sh
 
+# ====================
+# Shell theme
+# ====================
 export THEME="base16-monokai"
 export BACKGROUND="dark"
-
 BASE16_SHELL="$DOTFILES/base16-shell/$THEME.$BACKGROUND.sh"
 source $BASE16_SHELL
 
+# ====================
+# Boot2Docker config
+# ====================
 export DOCKER_HOST='tcp://192.168.59.103:2376'
 export DOCKER_CERT_PATH='/Users/peteyy/.boot2docker/certs/boot2docker-vm'
 export DOCKER_TLS_VERIFY=1
