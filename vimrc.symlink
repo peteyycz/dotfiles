@@ -57,14 +57,6 @@ au InsertLeave * match ExtraWhitespace /\s\+$/
 " Highlight the column of the cursor
 set cursorcolumn
 
-" TODO MOVE TO GVIMRC
-" Gui options
-if has('gui_running')
-  set guioptions-=L
-  set guioptions-=r
-  set guifont=Sauce\ Code\ Powerline:h18
-end
-
 " Show line numbers
 set number
 set relativenumber
@@ -136,9 +128,6 @@ inoremap jk <esc>
 " Map ; to : in normal mode
 nnoremap ; :
 
-" Maximize window on open
-set lines=99 columns=999
-
 " Better navigation
 nnoremap <silent> n nzz
 nnoremap <silent> N Nzz
@@ -196,9 +185,9 @@ Plugin 'digitaltoad/vim-jade'
 " JSX
 Plugin 'mxw/vim-jsx'
 
-" Almost unused
-Plugin 'Lokaltog/vim-easymotion'
-Plugin 'mattn/emmet-vim'
+" Unused
+" Plugin 'Lokaltog/vim-easymotion'
+" Plugin 'mattn/emmet-vim'
 
 call vundle#end()
 
