@@ -121,18 +121,18 @@ set -g pane-active-border-fg green
 
 set -g status-justify centre
 # set color for status bar
-set-option -g status-bg colour235 #base02
 set-option -g status-fg yellow #yellow
 set-option -g status-attr dim
+set-option -g status-bg colour236 #base02
 
 # set window list colors - red for active and cyan for inactive
 set-window-option -g window-status-fg green #base0
-set-window-option -g window-status-bg colour236
 set-window-option -g window-status-attr dim
+set-window-option -g window-status-bg colour236 #base02
 
 set-window-option -g window-status-current-fg brightred #orange
-set-window-option -g window-status-current-bg colour236
 set-window-option -g window-status-current-attr bright
+set-window-option -g window-status-current-bg colour236 #base02
 
 ## show host name and IP address on left side of status bar
 set -g status-left-length 20

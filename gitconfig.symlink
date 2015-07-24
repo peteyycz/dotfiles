@@ -1,0 +1,16 @@
+[user]
+  email = p.czibik@gmail.com
+  name = Peter Czibik
+[diff]
+  tool = vimdiff
+[difftool]
+  prompt = false
+[alias]
+  d = difftool
+  dt = difftool
+[core]
+  excludesfile = /Users/peteyy/.gitignore_global
+[merge]
+  tool = vimdiff
+[push]
+  default = simple
