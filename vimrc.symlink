@@ -240,6 +240,10 @@ let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 " Strip trailing whitespaces
 autocmd BufWritePre * :silent :%s/\s\+$//e
 
+" Dash settings
+nnoremap <leader>d :Dash<CR>
+vnoremap <leader>d :Dash<CR>
+
 " Colorscheme setttings
 let base16colorspace=256
 set t_Co=256

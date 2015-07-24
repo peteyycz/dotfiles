@@ -52,7 +52,10 @@ unbind w
 # automatically renumber tmux windows
 set -g renumber-windows on
 
-# reload config file
+##-------~---~----------~----------~----
+## Keybindings
+##-------~---~----------~----------~----
+
 bind r source-file ~/.tmux.conf \; display "Config Reloaded!"
 
 bind w neww
@@ -74,13 +77,13 @@ bind ^l resize-pane -R
 bind v split-window -h
 bind s split-window
 
-##
-set -g display-panes-time 1000
-#
-setw -g automatic-rename on
+# colon :
+bind : command-prompt
+
+
 
 ##-------~---~----------~----------~----
-## MISC SETTINGS
+## General settings
 ##-------~---~----------~----------~----
 
 set -g default-shell /bin/zsh
@@ -93,12 +96,6 @@ setw -g alternate-screen on
 ## Don't close windows
 set -g set-remain-on-exit on
 
-# colon :
-bind : command-prompt
-
-# status line
-set -g status-utf8 on
-set -g status-interval 2
 
 # loud or quiet?
 set-option -g visual-activity on
@@ -107,7 +104,42 @@ set-option -g visual-silence off
 set-window-option -g monitor-activity off
 set-option -g bell-action none
 
+##-------~---~----------~----------~----
+## Status bar
+##-------~---~----------~----------~----
+
+set -g display-panes-time 1000
+
+setw -g automatic-rename on
+
+set -g status-utf8 on
+set -g status-interval 5
+
 # Colors
 set -g pane-border-fg green
 set -g pane-active-border-fg green
+
+set -g status-justify centre
+# set color for status bar
+set-option -g status-bg colour235 #base02
+set-option -g status-fg yellow #yellow
+set-option -g status-attr dim
+
+# set window list colors - red for active and cyan for inactive
+set-window-option -g window-status-fg green #base0
+set-window-option -g window-status-bg colour236
+set-window-option -g window-status-attr dim
+
+set-window-option -g window-status-current-fg brightred #orange
+set-window-option -g window-status-current-bg colour236
+set-window-option -g window-status-current-attr bright
+
+## show host name and IP address on left side of status bar
+set -g status-left-length 20
+#set -g status-left "#[fg=green]: #h : #[fg=brightblue]#(curl icanhazip.com) #[fg=yellow]#(ifconfig en0 | grep 'inet ' | awk '{print \"en0 \" $2}') #(ifconfig en1 | grep 'inet ' | awk '{print \"en1 \" $2}') #[fg=red]#(ifconfig tun0 | grep 'inet ' | awk '{print \"vpn \" $2}') "
+
+## show session name, window & pane number, date and time on right side of
+## status bar
+set -g status-right-length 20
+#set -g status-right "#[fg=blue]#S #I:#P #[fg=yellow]:: %d %b %Y #[fg=green]:: %l:%M %p :: #(date -u | awk '{print $4}')::"
 
