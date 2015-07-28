@@ -56,6 +56,8 @@ alias toproj="cd ~/Projects/"
 # Copy public ssh key
 alias cpssh="cat ~/.ssh/id_rsa.pub | pbcopy"
 
+alias ta="tmux attach"
+
 # ====================
 # Tmuxinator
 # ====================

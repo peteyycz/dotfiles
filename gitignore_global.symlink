@@ -2,3 +2,5 @@
 .DS_Store
 .idea
 nodemon.json
+jsconfig.json
+
