@@ -38,7 +38,7 @@ set mouse=a  " on OSX press ALT and click
 set backspace=indent,eol,start
 
 " Turn highlight off
-nmap <silent> <leader>n :silent :nohlsearch<CR>
+nmap <leader>n :silent :nohlsearch<CR>
 
 " Shorter messages
 set shortmess=a
@@ -157,7 +157,7 @@ set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#begin()
 
 " Let Vundle manage itself
-Plugin 'gmarik/vundle'
+Plugin 'gmarik/Vundle.vim'
 
 " Color schemes
 Plugin 'chriskempson/base16-vim'
@@ -166,9 +166,11 @@ Plugin 'chriskempson/base16-vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'ervandew/supertab'
 Plugin 'kien/ctrlp.vim'
+Plugin 'Raimondi/delimitMate'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'Raimondi/delimitMate'
+
+" Awesome dash usage from vim
 Plugin 'rizzatti/dash.vim'
 
 " Markdown
@@ -184,6 +186,9 @@ Plugin 'digitaltoad/vim-jade'
 
 " JSX
 Plugin 'mxw/vim-jsx'
+
+" EXPERIMENTAL
+Plugin 'airblade/vim-gitgutter'
 
 " Unused
 " Plugin 'Lokaltog/vim-easymotion'
