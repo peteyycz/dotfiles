@@ -1,6 +1,3 @@
-" Disable VI compatibility
-set nocompatible
-
 " Enable syntax highlighting
 filetype on
 filetype plugin indent on
@@ -93,12 +90,6 @@ set nobackup
 set nowritebackup
 set noswapfile
 
-" Easy split navigation
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
-
 " Set end of the line character
 set list
 set listchars=eol:¬
@@ -146,60 +137,52 @@ au VimResized * exe "normal! \<c-w>="
 noremap H ^
 noremap L $
 
+" Save with command s
+map <M-s> :w<kEnter>  "Works in normal mode, must press Esc first"
+imap <M-s> <Esc>:w<kEnter>i "Works in insert mode, saves and puts back in insert mode"
+
+" File explorer
+let g:netrw_liststyle=3
+
+" File explorer
+map <leader>m :e<kEnter>
+
 " ============================================================================
 " Plugins Setup
 " ============================================================================
 
-" Required Vundle setup
-filetype off
-
-set rtp+=~/.vim/bundle/Vundle.vim/
-call vundle#begin()
-
-" Let Vundle manage itself
-Plugin 'gmarik/Vundle.vim'
+call plug#begin('~/.nvim/plugged')
 
 " Color schemes
-Plugin 'chriskempson/base16-vim'
+Plug 'chriskempson/base16-vim'
 
 " Common plugins
-Plugin 'scrooloose/syntastic'
-Plugin 'ervandew/supertab'
-Plugin 'kien/ctrlp.vim'
-Plugin 'Raimondi/delimitMate'
-Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/nerdcommenter'
+Plug 'scrooloose/syntastic'
+Plug 'ervandew/supertab'
+Plug 'Raimondi/delimitMate'
+Plug 'scrooloose/nerdcommenter'
+Plug 'airblade/vim-gitgutter'
+Plug 'rizzatti/dash.vim'
+Plug 'kien/ctrlp.vim'
 
-" Awesome dash usage from vim
-Plugin 'rizzatti/dash.vim'
+" Syntax files
+Plug 'pangloss/vim-javascript'
+Plug 'jelera/vim-javascript-syntax'
+Plug 'mxw/vim-jsx'
 
-" Markdown
-Plugin 'plasticboy/vim-markdown'
+Plug 'plasticboy/vim-markdown'
 
-" Javascript
-Plugin 'pangloss/vim-javascript'
-Plugin 'jelera/vim-javascript-syntax'
+Plug 'wavded/vim-stylus'
+Plug 'digitaltoad/vim-jade'
 
-" Stylus - Jade
-Plugin 'wavded/vim-stylus'
-Plugin 'digitaltoad/vim-jade'
-
-" JSX
-Plugin 'mxw/vim-jsx'
-
-" EXPERIMENTAL
-Plugin 'airblade/vim-gitgutter'
+" Experimental
+Plug 'mileszs/ack.vim'
 
 " Unused
-" Plugin 'Lokaltog/vim-easymotion'
-" Plugin 'mattn/emmet-vim'
+" Plug 'Lokaltog/vim-easymotion'
+" Plug 'mattn/emmet-vim'
 
-call vundle#end()
-
-filetype plugin indent on
-
-" Settings for NERDTree
-noremap <Leader>m :NERDTreeToggle<CR>
+call plug#end()
 
 " Syntastic settings
 let g:syntastic_javascript_checkers = ['jshint']
@@ -241,6 +224,8 @@ au BufEnter * call UpdateJsHintConf()
 
 " Ctrl+P settings
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+let g:ctrlp_match_window_bottom = 0
+let g:ctrlp_match_window_reversed = 0
 
 " Strip trailing whitespaces
 autocmd BufWritePre * :silent :%s/\s\+$//e
@@ -248,6 +233,11 @@ autocmd BufWritePre * :silent :%s/\s\+$//e
 " Dash settings
 nnoremap <leader>d :Dash<CR>
 vnoremap <leader>d :Dash<CR>
+
+" The silver searcher
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
 
 " Colorscheme setttings
 let base16colorspace=256

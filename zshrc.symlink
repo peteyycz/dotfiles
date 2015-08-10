@@ -9,7 +9,6 @@ export DOTFILES=$HOME/dotfiles
 
 export PATH=/usr/local/bin:$PATH
 
-
 # ====================
 # OH MY ZSH
 # ====================
@@ -36,6 +35,9 @@ plugins=(git)
 # Source OH MY ZSH at the end of config
 source $ZSH/oh-my-zsh.sh
 
+# Source zsh-syntax-hightlighting
+source $DOTFILES/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
 # ====================
 # Aliases
 # ====================
@@ -58,6 +60,12 @@ alias cpssh="cat ~/.ssh/id_rsa.pub | pbcopy"
 
 alias ta="tmux attach"
 
+alias gs="git stash"
+alias gsp="git stash pop"
+
+alias vi="nvim"
+alias a='atom'
+
 # ====================
 # Tmuxinator
 # ====================
@@ -73,10 +81,10 @@ source $NVM_DIR/nvm.sh
 # ====================
 # Shell theme
 # ====================
-export THEME="base16-monokai"
-export BACKGROUND="dark"
-BASE16_SHELL="$DOTFILES/base16-shell/$THEME.$BACKGROUND.sh"
-source $BASE16_SHELL
+#export THEME="base16-ocean"
+#export BACKGROUND="dark"
+#BASE16_SHELL="$DOTFILES/base16-shell/$THEME.$BACKGROUND.sh"
+#source $BASE16_SHELL
 
 # ====================
 # Boot2Docker config
@@ -84,4 +92,9 @@ source $BASE16_SHELL
 export DOCKER_HOST='tcp://192.168.59.103:2376'
 export DOCKER_CERT_PATH='/Users/peteyy/.boot2docker/certs/boot2docker-vm'
 export DOCKER_TLS_VERIFY=1
+
+# ====================
+# Sometimes I have to chill too!
+# ====================
+code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
 

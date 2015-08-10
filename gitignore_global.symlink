@@ -3,4 +3,6 @@
 .idea
 nodemon.json
 jsconfig.json
+typings
+npm-debug.log
 
