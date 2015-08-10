@@ -2,9 +2,15 @@ root = true
 
 [*]
 indent_style = space
-indent_size = 2
-end_of_line = lf # doesn't work yet
 charset = utf-8
+end_of_line = lf # doesn't work yet
 trim_trailing_whitespace = true # doesn't work yet
 insert_final_newline = true # doesn't work yet
+
+
+[*.{js}]
+indent_size = 2
+
+[*.{html}]
+indent_size = 1
 
