@@ -154,7 +154,7 @@ map <leader>m :e<kEnter>
 call plug#begin('~/.nvim/plugged')
 
 " Color schemes
-Plug 'chriskempson/base16-vim'
+Plug 'altercation/vim-colors-solarized'
 
 " Common plugins
 Plug 'scrooloose/syntastic'
@@ -162,25 +162,15 @@ Plug 'ervandew/supertab'
 Plug 'Raimondi/delimitMate'
 Plug 'scrooloose/nerdcommenter'
 Plug 'airblade/vim-gitgutter'
-Plug 'rizzatti/dash.vim'
 Plug 'kien/ctrlp.vim'
 
 " Syntax files
 Plug 'pangloss/vim-javascript'
 Plug 'jelera/vim-javascript-syntax'
 Plug 'mxw/vim-jsx'
-
 Plug 'plasticboy/vim-markdown'
-
 Plug 'wavded/vim-stylus'
 Plug 'digitaltoad/vim-jade'
-
-" Experimental
-Plug 'mileszs/ack.vim'
-
-" Unused
-" Plug 'Lokaltog/vim-easymotion'
-" Plug 'mattn/emmet-vim'
 
 call plug#end()
 
@@ -230,18 +220,8 @@ let g:ctrlp_match_window_reversed = 0
 " Strip trailing whitespaces
 autocmd BufWritePre * :silent :%s/\s\+$//e
 
-" Dash settings
-nnoremap <leader>d :Dash<CR>
-vnoremap <leader>d :Dash<CR>
-
-" The silver searcher
-if executable('ag')
-  let g:ackprg = 'ag --vimgrep'
-endif
-
 " Colorscheme setttings
-let base16colorspace=256
-set t_Co=256
-execute "colorscheme " . $THEME
-execute "set background=" . $BACKGROUND
+let g:solarized_termcolors=256
+set background=dark
+colorscheme solarized
 
