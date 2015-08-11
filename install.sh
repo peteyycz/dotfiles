@@ -18,4 +18,5 @@ done
 echo "configuring zsh as default shell"
 chsh -s $(which zsh)
 
-git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim

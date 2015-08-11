@@ -81,10 +81,10 @@ source $NVM_DIR/nvm.sh
 # ====================
 # Shell theme
 # ====================
-#export THEME="base16-ocean"
-#export BACKGROUND="dark"
-#BASE16_SHELL="$DOTFILES/base16-shell/$THEME.$BACKGROUND.sh"
-#source $BASE16_SHELL
+export THEME="base16-ocean"
+export BACKGROUND="dark"
+BASE16_SHELL="$DOTFILES/base16-shell/$THEME.$BACKGROUND.sh"
+source $BASE16_SHELL
 
 # ====================
 # Boot2Docker config

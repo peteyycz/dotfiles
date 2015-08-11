@@ -1,3 +1,6 @@
+" Disable vi compatibility
+set nocompatible
+
 " Enable syntax highlighting
 filetype on
 filetype plugin indent on
@@ -154,7 +157,7 @@ map <leader>m :e<kEnter>
 call plug#begin('~/.nvim/plugged')
 
 " Color schemes
-Plug 'altercation/vim-colors-solarized'
+Plug 'chriskempson/base16-vim'
 
 " Common plugins
 Plug 'scrooloose/syntastic'
@@ -163,10 +166,14 @@ Plug 'Raimondi/delimitMate'
 Plug 'scrooloose/nerdcommenter'
 Plug 'airblade/vim-gitgutter'
 Plug 'kien/ctrlp.vim'
+Plug 'rizzatti/dash.vim'
+Plug 'mileszs/ack.vim'
+Plug 'scrooloose/nerdtree'
 
 " Syntax files
 Plug 'pangloss/vim-javascript'
 Plug 'jelera/vim-javascript-syntax'
+Plug 'moll/vim-node'
 Plug 'mxw/vim-jsx'
 Plug 'plasticboy/vim-markdown'
 Plug 'wavded/vim-stylus'
@@ -188,6 +195,9 @@ highlight SyntasticErrorSign ctermfg=red ctermbg=237
 highlight SyntasticWarningSign ctermfg=yellow ctermbg=237
 highlight SyntasticStyleErrorSign ctermfg=red ctermbg=237
 highlight SyntasticStyleWarningSign ctermfg=yellow ctermbg=237
+
+" NERDTree
+map <leader>m :NERDTreeToggle<CR>
 
 " Use JSHintrc defined in the project
 function s:find_jshintrc(dir)
@@ -213,15 +223,25 @@ endfunction
 au BufEnter * call UpdateJsHintConf()
 
 " Ctrl+P settings
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|coverage'
 let g:ctrlp_match_window_bottom = 0
 let g:ctrlp_match_window_reversed = 0
+
+" The silver searcher
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+
+" Dash settings
+nnoremap <leader>d :Dash<CR>
+vnoremap <leader>d :Dash<CR>
 
 " Strip trailing whitespaces
 autocmd BufWritePre * :silent :%s/\s\+$//e
 
 " Colorscheme setttings
-let g:solarized_termcolors=256
-set background=dark
-colorscheme solarized
+let base16colorspace=256
+set t_Co=256
+execute "colorscheme " . $THEME
+execute "set background=" . $BACKGROUND
 
