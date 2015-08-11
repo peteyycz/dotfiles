@@ -169,6 +169,7 @@ Plug 'kien/ctrlp.vim'
 Plug 'rizzatti/dash.vim'
 Plug 'mileszs/ack.vim'
 Plug 'scrooloose/nerdtree'
+Plug 'editorconfig/editorconfig-vim'
 
 " Syntax files
 Plug 'pangloss/vim-javascript'
@@ -224,8 +225,8 @@ au BufEnter * call UpdateJsHintConf()
 
 " Ctrl+P settings
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|coverage'
-let g:ctrlp_match_window_bottom = 0
-let g:ctrlp_match_window_reversed = 0
+"let g:ctrlp_match_window_bottom = 0
+"let g:ctrlp_match_window_reversed = 0
 
 " The silver searcher
 if executable('ag')

@@ -37,6 +37,7 @@ source $ZSH/oh-my-zsh.sh
 
 # Source zsh-syntax-hightlighting
 source $DOTFILES/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $DOTFILES/zsh-autosuggestions/autosuggestions.zsh
 
 # ====================
 # Aliases
@@ -97,4 +98,12 @@ export DOCKER_TLS_VERIFY=1
 # Sometimes I have to chill too!
 # ====================
 code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
+
+# ====================
+# Auto suggestions automatically.
+# ====================
+zle-line-init() {
+  zle autosuggest-start
+}
+zle -N zle-line-init
 
