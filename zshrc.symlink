@@ -64,7 +64,7 @@ alias ta="tmux attach"
 alias gs="git stash"
 alias gsp="git stash pop"
 
-alias vi="nvim"
+alias vi="vim"
 alias a='atom'
 
 # ====================
@@ -78,14 +78,6 @@ source ~/.tmuxinator.zsh
 # ====================
 export NVM_DIR=~/.nvm
 source $NVM_DIR/nvm.sh
-
-# ====================
-# Shell theme
-# ====================
-export THEME="base16-ocean"
-export BACKGROUND="dark"
-BASE16_SHELL="$DOTFILES/base16-shell/$THEME.$BACKGROUND.sh"
-source $BASE16_SHELL
 
 # ====================
 # Boot2Docker config
