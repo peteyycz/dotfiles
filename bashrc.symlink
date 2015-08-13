@@ -9,45 +9,18 @@ export DOTFILES=$HOME/dotfiles
 
 export PATH=/usr/local/bin:$PATH
 
-# ====================
-# OH MY ZSH
-# ====================
-
-# Path to your oh-my-zsh installation.
-export ZSH=$DOTFILES/oh-my-zsh
-
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-ZSH_THEME="avit"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-COMPLETION_WAITING_DOTS="true"
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
-
-# Source OH MY ZSH at the end of config
-source $ZSH/oh-my-zsh.sh
-
-# Source zsh-syntax-hightlighting
-source $DOTFILES/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source $DOTFILES/zsh-autosuggestions/autosuggestions.zsh
 
 # ====================
 # Aliases
 # ====================
 
 # For configs
-alias czsh="vim ~/.zshrc"
+alias czsh="vim ~/.bashrc"
 alias cvim="vim ~/.vimrc"
 alias ctmux="vim ~/.tmux.conf"
-alias szsh="source ~/.zshrc"
+
+# General
+alias l="ls -la"
 
 # Tmux related
 alias tls="tmux ls"
@@ -71,7 +44,7 @@ alias a='atom'
 # Tmuxinator
 # ====================
 
-source ~/.tmuxinator.zsh
+source ~/.tmuxinator.sh
 
 # ====================
 # NVM

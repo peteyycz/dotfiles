@@ -157,7 +157,8 @@ map <leader>m :e<kEnter>
 call plug#begin('~/.nvim/plugged')
 
 " Color schemes
-Plug 'chriskempson/base16-vim'
+Plug 'crusoexia/vim-monokai'
+Plug 'altercation/vim-colors-solarized'
 
 " Common plugins
 Plug 'scrooloose/syntastic'
@@ -243,6 +244,5 @@ autocmd BufWritePre * :silent :%s/\s\+$//e
 " Colorscheme setttings
 let base16colorspace=256
 set t_Co=256
-execute "colorscheme " . $THEME
-execute "set background=" . $BACKGROUND
+colorscheme monokai
 

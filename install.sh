@@ -15,8 +15,6 @@ for file in $linkables ; do
     ln -s $DOTFILES/$file $target
 done
 
-echo "configuring zsh as default shell"
-chsh -s $(which zsh)
-
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
