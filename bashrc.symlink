@@ -40,6 +40,7 @@ alias gst="git status"
 alias gaa="git add --all"
 alias gc="git commit"
 alias grh="git reset head"
+alias g='git'
 
 alias vi="vim"
 alias a='atom'
