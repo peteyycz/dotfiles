@@ -45,7 +45,7 @@ function parse_git_dirty {
   fi
 }
 
-export PS1="\[\e[36m\]\u\[\e[m\] in \[\e[36m\]\w\[\e[m\] on \[\e[35m\]\`parse_git_branch\`\[\e[m\]\\$ "
+export PS1="\[\e[36m\]\u\[\e[m\] in \[\e[36m\]\w\[\e[m\] on \[\e[33m\]\`parse_git_branch\`\[\e[m\]\\$ "
 
 # ====================
 # General settings
@@ -83,13 +83,15 @@ alias cpssh="cat ~/.ssh/id_rsa.pub | pbcopy"
 
 alias ta="tmux attach"
 
+# Git aliases
+alias g='git'
+alias gst="git status"
 alias gs="git stash"
 alias gsp="git stash pop"
-alias gst="git status"
 alias gaa="git add --all"
 alias gc="git commit"
 alias grh="git reset head"
-alias g='git'
+alias gd='git diff'
 
 alias vi="vim"
 alias a='atom'
