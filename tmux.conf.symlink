@@ -86,7 +86,7 @@ bind : command-prompt
 ## General settings
 ##-------~---~----------~----------~----
 
-set -g default-shell /bin/zsh
+set -g default-shell /bin/bash
 set -g set-titles on
 set -g set-titles-string 'tmux: #T'
 set -g repeat-time 100
