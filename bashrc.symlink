@@ -36,6 +36,10 @@ alias ta="tmux attach"
 
 alias gs="git stash"
 alias gsp="git stash pop"
+alias gst="git status"
+alias gaa="git add --all"
+alias gc="git commit"
+alias grh="git reset head"
 
 alias vi="vim"
 alias a='atom'
@@ -63,12 +67,4 @@ export DOCKER_TLS_VERIFY=1
 # Sometimes I have to chill too!
 # ====================
 code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
-
-# ====================
-# Auto suggestions automatically.
-# ====================
-zle-line-init() {
-  zle autosuggest-start
-}
-zle -N zle-line-init
 
