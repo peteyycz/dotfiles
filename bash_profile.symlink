@@ -95,6 +95,8 @@ alias gaa="git add --all"
 alias gc="git commit"
 alias grh="git reset head"
 alias gd='git diff'
+alias gpr='git pull --rebase'
+alias gco='git checkout'
 
 alias vi="vim"
 alias a='atom'
