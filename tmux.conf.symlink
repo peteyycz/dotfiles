@@ -35,7 +35,6 @@ bind -t vi-copy 'y' copy-selection
 bind C-c run "tmux save-buffer - | reattach-to-user-namespace pbcopy"
 bind C-v run "tmux set-buffer $(reattach-to-user-namespace pbpaste); tmux paste-buffer")
 
-
 # Vi mode
 set -g status-keys vi
 setw -g mode-keys vi
@@ -99,7 +98,7 @@ set -g set-remain-on-exit on
 
 # loud or quiet?
 set-option -g visual-activity on
-set-option -g visual-bell off
+set-option -g visual-bell on
 set-option -g visual-silence off
 set-window-option -g monitor-activity off
 set-option -g bell-action none
