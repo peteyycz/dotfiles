@@ -64,7 +64,7 @@ export PATH=/usr/local/bin:$PATH
 # ====================
 
 # For configs
-alias czsh="vim ~/.bashrc"
+alias csh="vim ~/.bash_profile"
 alias cvim="vim ~/.vimrc"
 alias ctmux="vim ~/.tmux.conf"
 
@@ -73,15 +73,10 @@ alias l="ls -la"
 
 # Tmux related
 alias tls="tmux ls"
-alias tls="tmux attach"
-
-# Faster navigation
-alias toproj="cd ~/Projects/"
+alias ta="tmux attach"
 
 # Copy public ssh key
 alias cpssh="cat ~/.ssh/id_rsa.pub | pbcopy"
-
-alias ta="tmux attach"
 
 # Git aliases
 alias g='git'
