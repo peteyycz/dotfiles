@@ -56,10 +56,6 @@ let mapleader = ","
 vnoremap < <gv
 vnoremap > >gv
 
-" Show trailing whitespace
-autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
-au InsertLeave * match ExtraWhitespace /\s\+$/
-
 " Highlight the column of the cursor
 set cursorcolumn
 
@@ -150,9 +146,73 @@ noremap L $
 map <M-s> :w<kEnter>  "Works in normal mode, must press Esc first"
 imap <M-s> <Esc>:w<kEnter>i "Works in insert mode, saves and puts back in insert mode"
 
-" File explorer
-let g:netrw_liststyle=3
+" Syntastic settings
+let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_check_on_open=1
+let g:syntastic_warning_symbol = '⚠'
+let g:syntastic_error_symbol = '⚠'
+let g:syntastic_style_error_symbol = '⚠'
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_loc_list_height = 5
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_wq = 0
+highlight SyntasticErrorSign ctermfg=red ctermbg=237
+highlight SyntasticWarningSign ctermfg=yellow ctermbg=237
+highlight SyntasticStyleErrorSign ctermfg=red ctermbg=237
+highlight SyntasticStyleWarningSign ctermfg=yellow ctermbg=237
 
-" File explorer
-map <leader>m :e<kEnter>
+" NERDTree
+map <leader>m :NERDTreeToggle<CR>
+
+" Use JSHintrc defined in the project
+function s:find_jshintrc(dir)
+    let l:found = globpath(a:dir, '.jshintrc')
+    if filereadable(l:found)
+        return l:found
+    endif
+
+    let l:parent = fnamemodify(a:dir, ':h')
+    if l:parent != a:dir
+        return s:find_jshintrc(l:parent)
+    endif
+
+    return "~/.jshintrc"
+endfunction
+
+function UpdateJsHintConf()
+    let l:dir = expand('%:p:h')
+    let l:jshintrc = s:find_jshintrc(l:dir)
+    let g:syntastic_javascript_jshint_args = ("--config " . l:jshintrc)
+endfunction
+
+au BufEnter * call UpdateJsHintConf()
+
+" Ctrl+P settings
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|coverage'
+"let g:ctrlp_match_window_bottom = 0
+"let g:ctrlp_match_window_reversed = 0
+
+" The silver searcher
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+
+" Dash settings
+nnoremap <leader>d :Dash<CR>
+vnoremap <leader>d :Dash<CR>
+
+" Strip trailing whitespaces
+autocmd BufWritePre * :silent :%s/\s\+$//e
+
+" Limelight
+nmap <leader>f :Limelight!!<cr>
+
+" don't hide quotes in json files
+let g:vim_json_syntax_conceal = 0
+
+" Colorscheme setttings
+let base16colorspace=256
+set t_Co=256
+execute "set background=". $BACKGROUND
+execute "colorscheme ". $THEME
 

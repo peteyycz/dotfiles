@@ -1,0 +1,9 @@
+" Gui options
+set guioptions-=L
+set guioptions-=r
+
+" Font
+set guifont=Courier\ Prime\ Code:h15
+
+" Maximize window on open
+set lines=99 columns=999
