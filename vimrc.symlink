@@ -164,7 +164,7 @@ highlight SyntasticStyleWarningSign ctermfg=yellow ctermbg=237
 " NERDTree
 map <leader>m :NERDTreeToggle<CR>
 
-" Use JSHintrc defined in the project
+" Use linter defined in the project
 function s:find_jshintrc(dir)
     let l:found = globpath(a:dir, '.jshintrc')
     if filereadable(l:found)
@@ -210,9 +210,21 @@ nmap <leader>f :Limelight!!<cr>
 " don't hide quotes in json files
 let g:vim_json_syntax_conceal = 0
 
+" Devicons
+let g:NERDTreeRespectWildIgnore=1
+let g:NERDTreeDirArrows=0
+
+let g:webdevicons_enable = 1
+let g:webdevicons_enable_nerdtree = 1
+let g:webdevicons_conceal_nerdtree_brackets = 1
+let g:WebDevIconsNerdTreeAfterGlyphPadding = ''
+let g:WebDevIconsNerdTreeGitPluginForceVAlign=1
+
+" Base16-shell settings
+let g:base16colorspace=256
+
 " Colorscheme setttings
-let base16colorspace=256
 set t_Co=256
-execute "set background=". $BACKGROUND
-execute "colorscheme ". $THEME
+set background=dark
+colorscheme hybrid
 

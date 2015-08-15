@@ -6,6 +6,7 @@ call plug#begin('~/.nvim/plugged')
 
 " Can't live without colors
 Plug 'chriskempson/base16-vim'
+Plug 'w0ng/vim-hybrid'
 
 " Common plugins
 Plug 'scrooloose/syntastic'
@@ -13,7 +14,7 @@ Plug 'ervandew/supertab'
 Plug 'Raimondi/delimitMate'
 Plug 'scrooloose/nerdcommenter'
 Plug 'airblade/vim-gitgutter'
-Plug 'kien/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'rizzatti/dash.vim'
 Plug 'mileszs/ack.vim'
 Plug 'scrooloose/nerdtree'

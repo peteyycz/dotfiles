@@ -127,7 +127,7 @@ export DOCKER_TLS_VERIFY=1
 code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
 
 # Base16 Shell
-export THEME="base16-chalk"
+export THEME="base16-atelierheath"
 export BACKGROUND="dark"
 
 BASE16_SHELL="$DOTFILES/base16-shell/$THEME.$BACKGROUND.sh"
