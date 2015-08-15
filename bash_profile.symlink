@@ -14,7 +14,7 @@ function parse_git_branch() {
 }
 
 # get current status of git repo
-function parse_git_dirty {
+function parse_git_dirty() {
   status=`git status 2>&1 | tee`
   dirty=`echo -n "${status}" 2> /dev/null | grep "modified:" &> /dev/null; echo "$?"`
   untracked=`echo -n "${status}" 2> /dev/null | grep "Untracked files" &> /dev/null; echo "$?"`
@@ -127,14 +127,10 @@ export DOCKER_TLS_VERIFY=1
 code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
 
 # Base16 Shell
-# if [ -z "$THEME" ]; then
-    export THEME="base16-chalk"
-# fi
-if [ -z "$BACKGROUND" ]; then
-    export BACKGROUND="dark"
-fi
+export THEME="base16-chalk"
+export BACKGROUND="dark"
 
 BASE16_SHELL="$DOTFILES/base16-shell/$THEME.$BACKGROUND.sh"
-# [[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
+
 source $BASE16_SHELL
 
