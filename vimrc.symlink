@@ -1,6 +1,12 @@
 " Disable vi compatibility
 set nocompatible
 
+" Detect when file is changed
+set autoread
+
+" load plugins from vundle
+source ~/.vim/plugins.vim
+
 " Enable syntax highlighting
 filetype on
 filetype plugin indent on
@@ -150,98 +156,4 @@ let g:netrw_liststyle=3
 " File explorer
 map <leader>m :e<kEnter>
 
-" ============================================================================
-" Plugins Setup
-" ============================================================================
-
-call plug#begin('~/.nvim/plugged')
-
-" Can't live without colors
-Plug 'chriskempson/base16-vim'
-
-" Common plugins
-Plug 'scrooloose/syntastic'
-Plug 'ervandew/supertab'
-Plug 'Raimondi/delimitMate'
-Plug 'scrooloose/nerdcommenter'
-Plug 'airblade/vim-gitgutter'
-Plug 'kien/ctrlp.vim'
-Plug 'rizzatti/dash.vim'
-Plug 'mileszs/ack.vim'
-Plug 'scrooloose/nerdtree'
-Plug 'editorconfig/editorconfig-vim'
-
-" Syntax files
-Plug 'pangloss/vim-javascript'
-Plug 'jelera/vim-javascript-syntax'
-Plug 'moll/vim-node'
-Plug 'mxw/vim-jsx'
-Plug 'plasticboy/vim-markdown'
-Plug 'wavded/vim-stylus'
-Plug 'digitaltoad/vim-jade'
-
-call plug#end()
-
-" Syntastic settings
-let g:syntastic_javascript_checkers = ['jshint']
-let g:syntastic_check_on_open=1
-let g:syntastic_warning_symbol = '⚠'
-let g:syntastic_error_symbol = '⚠'
-let g:syntastic_style_error_symbol = '⚠'
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_loc_list_height = 5
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_wq = 0
-highlight SyntasticErrorSign ctermfg=red ctermbg=237
-highlight SyntasticWarningSign ctermfg=yellow ctermbg=237
-highlight SyntasticStyleErrorSign ctermfg=red ctermbg=237
-highlight SyntasticStyleWarningSign ctermfg=yellow ctermbg=237
-
-" NERDTree
-map <leader>m :NERDTreeToggle<CR>
-
-" Use JSHintrc defined in the project
-function s:find_jshintrc(dir)
-    let l:found = globpath(a:dir, '.jshintrc')
-    if filereadable(l:found)
-        return l:found
-    endif
-
-    let l:parent = fnamemodify(a:dir, ':h')
-    if l:parent != a:dir
-        return s:find_jshintrc(l:parent)
-    endif
-
-    return "~/.jshintrc"
-endfunction
-
-function UpdateJsHintConf()
-    let l:dir = expand('%:p:h')
-    let l:jshintrc = s:find_jshintrc(l:dir)
-    let g:syntastic_javascript_jshint_args = ("--config " . l:jshintrc)
-endfunction
-
-au BufEnter * call UpdateJsHintConf()
-
-" Ctrl+P settings
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|coverage'
-"let g:ctrlp_match_window_bottom = 0
-"let g:ctrlp_match_window_reversed = 0
-
-" The silver searcher
-if executable('ag')
-  let g:ackprg = 'ag --vimgrep'
-endif
-
-" Dash settings
-nnoremap <leader>d :Dash<CR>
-vnoremap <leader>d :Dash<CR>
-
-" Strip trailing whitespaces
-autocmd BufWritePre * :silent :%s/\s\+$//e
-
-" Colorscheme setttings
-let base16colorspace=256
-set t_Co=256
-colorscheme ''
 
