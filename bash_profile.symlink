@@ -90,6 +90,7 @@ alias gd='git diff'
 alias gpr='git pull --rebase'
 alias gco='git checkout'
 alias gp='git push'
+alias ga='git add'
 
 alias vi="vim"
 alias a='atom'

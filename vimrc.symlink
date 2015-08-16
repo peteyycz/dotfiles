@@ -187,11 +187,6 @@ endfunction
 
 au BufEnter * call UpdateJsHintConf()
 
-" Ctrl+P settings
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|coverage'
-"let g:ctrlp_match_window_bottom = 0
-"let g:ctrlp_match_window_reversed = 0
-
 " The silver searcher
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
@@ -227,4 +222,14 @@ let g:base16colorspace=256
 set t_Co=256
 set background=dark
 colorscheme hybrid
+
+" Unite.vim
+nnoremap <C-p> :Unite file_rec/async<cr>
+nnoremap <space>/ :Unite grep:.<cr>
+let g:unite_source_history_yank_enable = 1
+nnoremap <space>y :Unite history/yank<cr>
+nnoremap <space>s :Unite -quick-match buffer<cr>
+let g:unite_data_directory='~/.vim/.cache/unite'
+let g:unite_prompt='» '
+let g:unite_enable_start_insert=1
 

@@ -5,23 +5,40 @@
 call plug#begin('~/.nvim/plugged')
 
 " Can't live without colors
-Plug 'chriskempson/base16-vim'
+" Plug 'chriskempson/base16-vim'
 Plug 'w0ng/vim-hybrid'
+" Plug  'altercation/vim-colors-solarized'
+" Plug 'tomasr/molokai'
+" Plug 'Lokaltog/vim-distinguished'
+" Plug 'tpope/vim-vividchalk'
+" Plug 'chriskempson/tomorrow-theme', {'rtp': 'vim'}
+" Plug 'rainux/vim-desert-warm-256'
+" Plug 'nanotech/jellybeans.vim'
+" Plug 'junegunn/seoul256.vim'
+" Plug 'vim-scripts/wombat256.vim'
+
+" File explorer
+Plug 'Shougo/unite.vim'
+Plug 'Shougo/vimproc'
+
+" Code checker
+Plug 'scrooloose/syntastic'
 
 " Common plugins
-Plug 'scrooloose/syntastic'
 Plug 'ervandew/supertab'
 Plug 'Raimondi/delimitMate'
 Plug 'scrooloose/nerdcommenter'
 Plug 'airblade/vim-gitgutter'
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'rizzatti/dash.vim'
 Plug 'mileszs/ack.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'ryanoasis/vim-devicons'
 Plug 'sickill/vim-pasta'
 Plug 'junegunn/limelight.vim', { 'on': 'Limelight' } " focus tool. Good for presentating with vim
+
+" Text objects
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
 
 " Language specific
 Plug 'mattn/emmet-vim', { 'for': 'html' }
