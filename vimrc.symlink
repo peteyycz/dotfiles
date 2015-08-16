@@ -228,7 +228,7 @@ set background=dark
 colorscheme hybrid
 
 " Unite.vim
-nnoremap <C-p> :Unite file_rec/async<cr>
+nnoremap <C-p> :Unite -start-insert file_rec/async<cr>
 let g:unite_source_rec_async_command='ag --nocolor --nogroup -g ""'
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 nnoremap <leader>/ :Unite grep:.<cr>
