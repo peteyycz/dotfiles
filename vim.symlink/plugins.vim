@@ -19,10 +19,12 @@ Plug 'w0ng/vim-hybrid'
 
 " File explorer
 Plug 'Shougo/unite.vim'
-Plug 'Shougo/vimproc'
+Plug 'Shougo/vimproc', { 'do': 'make' }
 
 " Code checker
 Plug 'scrooloose/syntastic'
+
+Plug 'kien/rainbow_parentheses.vim'
 
 " Common plugins
 Plug 'ervandew/supertab'

@@ -44,7 +44,7 @@ set mouse=a  " on OSX press ALT and click
 set backspace=indent,eol,start
 
 " Turn highlight off
-nmap <leader>n :silent :nohlsearch<CR>
+noremap <leader>n :silent :nohlsearch<CR>
 
 " Shorter messages
 set shortmess=a
@@ -132,6 +132,9 @@ nnoremap <silent> # #zz
 nnoremap <silent> g* g*zz
 nnoremap <silent> g# g#zz
 
+" Visually select all
+nnoremap <C-a> ggVG
+
 " Q for repeat macro
 map Q @@
 
@@ -143,8 +146,9 @@ noremap H ^
 noremap L $
 
 " Save with command s
-map <M-s> :w<kEnter>  "Works in normal mode, must press Esc first"
-imap <M-s> <Esc>:w<kEnter>i "Works in insert mode, saves and puts back in insert mode"
+noremap <C-S> :update<CR>
+vnoremap <C-S> <C-C>:update<CR>
+inoremap <C-S> <C-O>:update<CR>
 
 " Syntastic settings
 let g:syntastic_javascript_checkers = ['jshint']
@@ -225,11 +229,12 @@ colorscheme hybrid
 
 " Unite.vim
 nnoremap <C-p> :Unite file_rec/async<cr>
-nnoremap <space>/ :Unite grep:.<cr>
+let g:unite_source_rec_async_command='ag --nocolor --nogroup -g ""'
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+nnoremap <leader>/ :Unite grep:.<cr>
 let g:unite_source_history_yank_enable = 1
-nnoremap <space>y :Unite history/yank<cr>
-nnoremap <space>s :Unite -quick-match buffer<cr>
+nnoremap <leader>y :Unite history/yank<cr>
+nnoremap <leader>s :Unite -quick-match buffer<cr>
 let g:unite_data_directory='~/.vim/.cache/unite'
 let g:unite_prompt='» '
-let g:unite_enable_start_insert=1
 
