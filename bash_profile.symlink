@@ -91,12 +91,16 @@ alias gpr='git pull --rebase'
 alias gco='git checkout'
 alias gp='git push'
 alias ga='git add'
+alias gl='git log'
 
 alias vi="vim"
 alias a='atom'
 
 alias so='source'
 
+alias tks='tmux kill-session'
+alias tls='tmux ls'
+alias ta='tmux attach'
 # ====================
 # Tmuxinator
 # ====================

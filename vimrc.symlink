@@ -132,9 +132,6 @@ nnoremap <silent> # #zz
 nnoremap <silent> g* g*zz
 nnoremap <silent> g# g#zz
 
-" Visually select all
-nnoremap <C-a> ggVG
-
 " Q for repeat macro
 map Q @@
 
@@ -204,6 +201,7 @@ vnoremap <leader>d :Dash<CR>
 autocmd BufWritePre * :silent :%s/\s\+$//e
 
 " Limelight
+let g:limelight_default_coefficient = 0.9
 nmap <leader>f :Limelight!!<cr>
 
 " don't hide quotes in json files
@@ -211,13 +209,12 @@ let g:vim_json_syntax_conceal = 0
 
 " Devicons
 let g:NERDTreeRespectWildIgnore=1
-let g:NERDTreeDirArrows=0
 
 let g:webdevicons_enable = 1
 let g:webdevicons_enable_nerdtree = 1
 let g:webdevicons_conceal_nerdtree_brackets = 1
 let g:WebDevIconsNerdTreeAfterGlyphPadding = ''
-let g:WebDevIconsNerdTreeGitPluginForceVAlign=1
+let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
 
 " Base16-shell settings
 let g:base16colorspace=256
@@ -227,14 +224,6 @@ set t_Co=256
 set background=dark
 colorscheme hybrid
 
-" Unite.vim
-nnoremap <C-p> :Unite -start-insert file_rec/async<cr>
-let g:unite_source_rec_async_command='ag --nocolor --nogroup -g ""'
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-nnoremap <leader>/ :Unite grep:.<cr>
-let g:unite_source_history_yank_enable = 1
-nnoremap <leader>y :Unite history/yank<cr>
-nnoremap <leader>s :Unite -quick-match buffer<cr>
-let g:unite_data_directory='~/.vim/.cache/unite'
-let g:unite_prompt='» '
+" Rainbow
+let g:rainbow_active = 1
 

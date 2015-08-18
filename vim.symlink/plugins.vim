@@ -17,26 +17,47 @@ Plug 'w0ng/vim-hybrid'
 " Plug 'junegunn/seoul256.vim'
 " Plug 'vim-scripts/wombat256.vim'
 
-" File explorer
-Plug 'Shougo/unite.vim'
-Plug 'Shougo/vimproc', { 'do': 'make' }
+" Shiny sword that breaks sometimes
+" Plug 'Shougo/unite.vim'
+" Plug 'Shougo/vimproc', { 'do': 'make' }
+
+" Snippets
+" Plug 'SirVer/ultisnips'
+" Plug 'honza/vim-snippets'
 
 " Code checker
 Plug 'scrooloose/syntastic'
 
-Plug 'kien/rainbow_parentheses.vim'
+" Rainbox parentheses
+Plug 'oblitum/rainbow'
 
-" Common plugins
-Plug 'ervandew/supertab'
-Plug 'Raimondi/delimitMate'
-Plug 'scrooloose/nerdcommenter'
-Plug 'airblade/vim-gitgutter'
-Plug 'rizzatti/dash.vim'
-Plug 'mileszs/ack.vim'
+" File explorer
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+
+" The silver searcher AKA grep
+Plug 'mileszs/ack.vim'
+
+" Better commenting
+Plug 'scrooloose/nerdcommenter'
+
+" Focusing tool
+Plug 'junegunn/limelight.vim', { 'on': 'Limelight' }
+
+" Git lines
+Plug 'airblade/vim-gitgutter'
+
+" Pair parentheses
+Plug 'Raimondi/delimitMate'
+
+" Better tab completion
+Plug 'ervandew/supertab'
+
+" Dash documentation tool
+Plug 'rizzatti/dash.vim'
+
+" ??
 Plug 'sickill/vim-pasta'
-Plug 'junegunn/limelight.vim', { 'on': 'Limelight' } " focus tool. Good for presentating with vim
 
 " Text objects
 Plug 'tpope/vim-surround'
@@ -46,7 +67,6 @@ Plug 'tpope/vim-repeat'
 Plug 'mattn/emmet-vim', { 'for': 'html' }
 Plug 'othree/html5.vim', { 'for': 'html' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
-Plug 'moll/vim-node', { 'for': 'javascript' }
 Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
 Plug 'mxw/vim-jsx', { 'for': 'jsx' }
 Plug 'elzr/vim-json', { 'for': 'json' }
