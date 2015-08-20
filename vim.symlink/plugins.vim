@@ -5,8 +5,8 @@
 call plug#begin('~/.nvim/plugged')
 
 " Can't live without colors
-" Plug 'chriskempson/base16-vim'
-Plug 'w0ng/vim-hybrid'
+Plug 'chriskempson/base16-vim'
+" Plug 'w0ng/vim-hybrid'
 " Plug  'altercation/vim-colors-solarized'
 " Plug 'tomasr/molokai'
 " Plug 'Lokaltog/vim-distinguished'
@@ -34,6 +34,10 @@ Plug 'oblitum/rainbow'
 " File explorer
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'ctrlpvim/ctrlp.vim'
+
+" Statusline
+Plug 'edkolev/tmuxline.vim'
 
 " The silver searcher AKA grep
 Plug 'mileszs/ack.vim'

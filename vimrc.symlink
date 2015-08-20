@@ -149,7 +149,6 @@ inoremap <C-S> <C-O>:update<CR>
 
 " Syntastic settings
 let g:syntastic_javascript_checkers = ['jshint']
-let g:syntastic_check_on_open=1
 let g:syntastic_warning_symbol = '⚠'
 let g:syntastic_error_symbol = '⚠'
 let g:syntastic_style_error_symbol = '⚠'
@@ -165,30 +164,8 @@ highlight SyntasticStyleWarningSign ctermfg=yellow ctermbg=237
 " NERDTree
 map <leader>m :NERDTreeToggle<CR>
 
-" Use linter defined in the project
-function s:find_jshintrc(dir)
-    let l:found = globpath(a:dir, '.jshintrc')
-    if filereadable(l:found)
-        return l:found
-    endif
-
-    let l:parent = fnamemodify(a:dir, ':h')
-    if l:parent != a:dir
-        return s:find_jshintrc(l:parent)
-    endif
-
-    return "~/.jshintrc"
-endfunction
-
-function UpdateJsHintConf()
-    let l:dir = expand('%:p:h')
-    let l:jshintrc = s:find_jshintrc(l:dir)
-    let g:syntastic_javascript_jshint_args = ("--config " . l:jshintrc)
-endfunction
-
-au BufEnter * call UpdateJsHintConf()
-
 " The silver searcher
+nmap <leader>/ :Ack<space>
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
@@ -216,13 +193,18 @@ let g:webdevicons_conceal_nerdtree_brackets = 1
 let g:WebDevIconsNerdTreeAfterGlyphPadding = ''
 let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
 
+" Ctrl+P
+let g:ctrlp_custom_ignore = 'coverage\|node_modules\|DS_Store\|git'
+
 " Base16-shell settings
 let g:base16colorspace=256
 
 " Colorscheme setttings
 set t_Co=256
 set background=dark
-colorscheme hybrid
+colorscheme base16-monokai
+
+nmap <leader>c :SyntasticCheck<CR>
 
 " Rainbow
 let g:rainbow_active = 1
