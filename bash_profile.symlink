@@ -101,6 +101,9 @@ alias so='source'
 alias tks='tmux kill-session'
 alias tls='tmux ls'
 alias ta='tmux attach'
+
+alias n='npm'
+
 # ====================
 # Tmuxinator
 # ====================
