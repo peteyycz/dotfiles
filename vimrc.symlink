@@ -30,11 +30,9 @@ Plug  'altercation/vim-colors-solarized'
 
 " Code checker
 Plug 'scrooloose/syntastic'
-Plug 'junegunn/rainbow_parentheses.vim' " Makes parentheses colorful
 Plug 'Raimondi/delimitMate' " Auto insert paired characters
 Plug 'scrooloose/nerdtree' " File explorer
 Plug 'Xuyuanp/nerdtree-git-plugin'
-" Plug 'ctrlpvim/ctrlp.vim'
 " Plug 'bling/vim-airline' " Status line
 Plug 'edkolev/tmuxline.vim' " Prettify tmux status line
 Plug 'mileszs/ack.vim' " The silver searcher for VIM
@@ -125,11 +123,6 @@ set statusline+=\                               " Set ending space
 au VimResized * exe "normal! \<c-w>="
 autocmd BufWritePre * :silent :%s/\s\+$//e " Strip trailing whitespaces
 
-" Save with command s
-noremap <C-S> :update<CR>
-vnoremap <C-S> <C-C>:update<CR>
-inoremap <C-S> <C-O>:update<CR>
-
 " Visual tweaks
 " =============
 set cursorcolumn " Highlight the coloumn of the cursor
@@ -200,10 +193,13 @@ if has("user_commands")
     command! -bang Qa qa<bang>
 endif
 
+" Base16
+" ======
+let g:base16colorspace=256
+
 " Colorscheme
 " ===========
-let g:base16colorspace=256
-set background=light
+set background=dark
 colorscheme solarized
 
 " Syntastic
@@ -262,6 +258,8 @@ let g:rainbow_active=1
 " ========
 nnoremap <C-g>d :Gdiff<CR>
 nnoremap <C-g>b :Gblame<CR>
+nnoremap <C-g>s :Gstatus<CR>
+nnoremap <C-g>c :Gcommit -a<CR>
 
 " Gitgutter
 " =========
