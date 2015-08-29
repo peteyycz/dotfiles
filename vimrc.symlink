@@ -25,12 +25,11 @@ Plug  'altercation/vim-colors-solarized'
 " Plug 'Shougo/vimproc', { 'do': 'make' }
 
 " Snippets
-" Plug 'SirVer/ultisnips'
-" Plug 'honza/vim-snippets'
+Plug 'SirVer/ultisnips'
 
 " Code checker
 Plug 'scrooloose/syntastic'
-Plug 'Raimondi/delimitMate' " Auto insert paired characters
+" Plug 'Raimondi/delimitMate' " Auto insert paired characters
 Plug 'scrooloose/nerdtree' " File explorer
 Plug 'Xuyuanp/nerdtree-git-plugin'
 " Plug 'bling/vim-airline' " Status line
@@ -41,9 +40,10 @@ Plug 'junegunn/limelight.vim', { 'on': 'Limelight' } " Focusing tool
 Plug 'junegunn/goyo.vim', { 'on': 'Limelight' } " Focusing tool
 Plug 'tpope/vim-fugitive' " Git interactions within VIM (blame and diff)
 Plug 'airblade/vim-gitgutter' " Nice lines at the bottom
-Plug 'ervandew/supertab' " Ctrl+P, Ctrl+N with tab
+" Plug 'ervandew/supertab' " Ctrl+P, Ctrl+N with tab
+Plug '0x0dea/vim-molasses' " Punish myself for not being productive
 Plug 'rizzatti/dash.vim' " Dash integration
-Plug 'tpope/vim-surround' " Surround but how??
+Plug 'tpope/vim-surround' " Surround
 Plug 'tpope/vim-repeat' " Repeat last command with .
 Plug 'ctrlpvim/ctrlp.vim' " Fast file opening
 Plug 'mattn/emmet-vim', { 'for': 'html' } " Zen coding at it's best
@@ -91,9 +91,9 @@ set visualbell " No noise just flash
 filetype on
 filetype plugin on
 filetype indent on
-set t_Co=256
 syntax enable
 syntax on
+set t_Co=256
 
 " Command completion
 " ==================
@@ -110,12 +110,6 @@ set sidescroll=1
 " Status Line
 " ===========
 set laststatus=2
-set statusline=                                 " Override default
-set statusline+=%{fugitive#statusline()[4:-2]}  " Show fugitive git info
-set statusline+=\ %f\ %m\ %r                    " Show filename/path
-set statusline+=%=                              " Set right-side status info after this line
-set statusline+=%l/%L:%v                        " Set <line number>/<total lines>:<column>
-set statusline+=\                               " Set ending space
 
 " Autocommands
 " ============
@@ -259,7 +253,6 @@ let g:rainbow_active=1
 nnoremap <C-g>d :Gdiff<CR>
 nnoremap <C-g>b :Gblame<CR>
 nnoremap <C-g>s :Gstatus<CR>
-nnoremap <C-g>c :Gcommit -a<CR>
 
 " Gitgutter
 " =========
@@ -268,4 +261,10 @@ let g:gitgutter_eager = 0
 " JSX
 " ===
 let g:jsx_ext_required = 0 " Allow JSX in normal JS files
+
+" UltiSnips
+" ========
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
