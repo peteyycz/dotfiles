@@ -1,3 +1,45 @@
+# console.log a variable
 snippet cl
 console.log('$1 is: ', $1)$0
 endsnippet
+
+# anonymus function
+snippet fn
+function ($1) {
+  ${0}
+}
+endsnippet
+
+# named function
+snippet fnn
+function ${1:function_name}($2) {
+  $0
+}
+endsnippet
+
+# if
+snippet if
+if (${1:true}) {
+  $0
+}
+endsnippet
+
+# if ... else
+snippet ife
+if (${1:true}) {
+  $2
+} else {
+  $0
+}
+endsnippet
+
+# require
+snippet req
+const ${1:module} = require('$1')$0
+endsnippet
+
+# require with different name
+snippet reqd
+const $1 = require('$2')$0
+endsnippet
+

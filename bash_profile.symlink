@@ -92,6 +92,7 @@ alias gco='git checkout'
 alias gp='git push'
 alias ga='git add'
 alias gl='git log'
+alias glol="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 
 alias vi="vim"
 alias a='atom'
