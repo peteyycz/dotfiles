@@ -80,19 +80,21 @@ alias cpssh="cat ~/.ssh/id_rsa.pub | pbcopy"
 
 # Git aliases
 alias g='git'
-alias gst="git status"
-alias gs="git stash"
-alias gsp="git stash pop"
+alias ga='git add'
 alias gaa="git add --all"
 alias gc="git commit"
-alias grh="git reset head"
-alias gd='git diff'
-alias gpr='git pull --rebase'
+alias gca='git commit -am'
+alias gcl='git clone'
 alias gco='git checkout'
-alias gp='git push'
-alias ga='git add'
+alias gd='git diff'
 alias gl='git log'
 alias glol="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias gp='git push'
+alias gpr='git pull --rebase'
+alias grh="git reset head"
+alias gs="git stash"
+alias gsp="git stash pop"
+alias gst="git status"
 
 alias vi="vim"
 alias a='atom'
@@ -104,6 +106,7 @@ alias tls='tmux ls'
 alias ta='tmux attach'
 
 alias n='npm'
+alias nr='npm run'
 
 # ====================
 # Tmuxinator

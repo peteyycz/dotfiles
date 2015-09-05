@@ -29,22 +29,22 @@ Plug 'SirVer/ultisnips'
 
 " Code checker
 Plug 'scrooloose/syntastic'
-" Plug 'Raimondi/delimitMate' " Auto insert paired characters
-Plug 'scrooloose/nerdtree' " File explorer
-Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'Raimondi/delimitMate' " Auto insert paired characters
 Plug 'itchyny/lightline.vim' " Status line
 Plug 'edkolev/tmuxline.vim' " Prettify tmux status line
 Plug 'mileszs/ack.vim' " The silver searcher for VIM
 Plug 'scrooloose/nerdcommenter' " Commenting lines or blocks
 Plug 'junegunn/limelight.vim', { 'on': 'Limelight' } " Focusing tool
 Plug 'junegunn/goyo.vim', { 'on': 'Limelight' } " Focusing tool
-Plug 'tpope/vim-fugitive' " Git interactions within VIM (blame and diff)
 Plug 'airblade/vim-gitgutter' " Nice lines at the bottom
 " Plug 'ervandew/supertab' " Ctrl+P, Ctrl+N with tab
 Plug '0x0dea/vim-molasses' " Punish myself for not being productive
 Plug 'rizzatti/dash.vim' " Dash integration
+Plug 'tpope/vim-fugitive' " Git interactions within VIM (blame and diff)
 Plug 'tpope/vim-surround' " Surround
 Plug 'tpope/vim-repeat' " Repeat last command with .
+Plug 'tpope/vim-unimpaired' " Additional paired mappings
+Plug 'tpope/vim-abolish' " Better abbrev
 Plug 'ctrlpvim/ctrlp.vim' " Fast file opening
 Plug 'mattn/emmet-vim', { 'for': 'html' } " Zen coding at it's best
 Plug 'othree/html5.vim', { 'for': 'html' }
@@ -99,7 +99,7 @@ set t_Co=256
 " ==================
 set wildmenu
 set wildmode=list:longest
-set wildignore+=build,cache,dist,*.min.*,node_modules,coverage
+set wildignore+=build,cache,dist,*.min.*,coverage
 
 " Autoscroll
 " ==========
@@ -152,17 +152,12 @@ set smartcase
 " Mappings
 " ========
 " Hide search highlights
-noremap <leader>n :silent :nohlsearch<CR>
+noremap <silent> <leader>n :nohlsearch<CR>
 " Easier moving of code blocks
 vnoremap < <gv
 vnoremap > >gv
-" Jump to marks easily
-nnoremap ' `
-nnoremap ` '
 " Use jk in insert mode to quickly switch to normal mode
 inoremap jk <esc>
-" Map ; to : in normal mode
-nnoremap ; :
 " Better navigation
 nnoremap <silent> n nzz
 nnoremap <silent> N Nzz
@@ -198,7 +193,7 @@ colorscheme solarized
 
 " Syntastic
 " =========
-let g:syntastic_javascript_checkers=['standard']
+let g:syntastic_javascript_checkers=['jshint']
 let g:syntastic_warning_symbol='⚠'
 let g:syntastic_error_symbol='⚠'
 let g:syntastic_style_error_symbol='⚠'
@@ -211,21 +206,6 @@ highlight SyntasticWarningSign ctermfg=yellow ctermbg=237
 highlight SyntasticStyleErrorSign ctermfg=red ctermbg=237
 highlight SyntasticStyleWarningSign ctermfg=yellow ctermbg=237
 nmap <leader>c :SyntasticCheck<CR>
-
-" NERDTree
-" ========
-function! ShowFileInNERDTree()
-  if exists("t:NERDTreeBufName")
-    NERDTreeFind
-  else
-    NERDTree
-    wincmd l
-    NERDTreeFind
-  endif
-endfunction
-map <leader>mf :call ShowFileInNERDTree()<cr>
-map <leader>m :NERDTreeToggle<CR>
-let g:NERDTreeRespectWildIgnore=1
 
 " The silver searcher (ACK)
 " =========================
@@ -244,10 +224,6 @@ vnoremap <leader>d :Dash<CR>
 let g:limelight_default_coefficient=0.7
 nmap <leader>f :Limelight!!<cr>
 
-" Rainbow
-" =======
-let g:rainbow_active=1
-
 " Fugitive
 " ========
 nnoremap <C-g>d :Gdiff<CR>
@@ -256,7 +232,7 @@ nnoremap <C-g>s :Gstatus<CR>
 
 " Gitgutter
 " =========
-let g:gitgutter_eager = 0
+let g:gitgutter_eager = 1
 
 " JSX
 " ===
@@ -289,4 +265,8 @@ let g:lightline = {
       \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
       \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
       \ }
+
+" Ctrl+P
+" ======
+let g:ctrlp_custom_ignore = 'node_modules'
 
