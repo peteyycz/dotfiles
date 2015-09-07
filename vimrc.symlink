@@ -1,11 +1,11 @@
-" VIMrc
+ VIMrc
 " =====
 set nocompatible " No VI compatibility
 set autoread " Detect file changes outside vim
 
 " Plug all the Plugins
 " ====================
-call plug#begin('~/.nvim/plugged')
+call plug#begin('~/.vim/bundle')
 
 " Can't live without colors
 " Plug 'chriskempson/base16-vim'
@@ -25,7 +25,7 @@ Plug  'altercation/vim-colors-solarized'
 " Plug 'Shougo/vimproc', { 'do': 'make' }
 
 " Snippets
-Plug 'SirVer/ultisnips'
+" Plug 'SirVer/ultisnips'
 
 " Code checker
 Plug 'scrooloose/syntastic'
@@ -107,7 +107,7 @@ set sidescroll=1
 
 " Status Line
 " ===========
-set laststatus=2
+set laststatus=1
 
 " Autocommands
 " ============
@@ -235,12 +235,6 @@ let g:gitgutter_eager = 1
 " JSX
 " ===
 let g:jsx_ext_required = 0 " Allow JSX in normal JS files
-
-" UltiSnips
-" ========
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 " Ctrl+P
 " ======
