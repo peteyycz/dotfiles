@@ -1,4 +1,4 @@
- VIMrc
+" VIMrc
 " =====
 set nocompatible " No VI compatibility
 set autoread " Detect file changes outside vim

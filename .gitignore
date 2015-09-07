@@ -1,3 +1,4 @@
+bundle
 *.netrwhist
 npm-debug.log
 *.DS-STORE
