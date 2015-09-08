@@ -8,9 +8,8 @@ set autoread " Detect file changes outside vim
 call plug#begin('~/.vim/bundle')
 
 " Can't live without colors
-" Plug 'chriskempson/base16-vim'
+ Plug 'chriskempson/base16-vim'
 " Plug 'w0ng/vim-hybrid'
-Plug  'altercation/vim-colors-solarized'
 " Plug 'tomasr/molokai'
 " Plug 'Lokaltog/vim-distinguished'
 " Plug 'tpope/vim-vividchalk'
@@ -27,15 +26,17 @@ Plug  'altercation/vim-colors-solarized'
 " Snippets
 " Plug 'SirVer/ultisnips'
 
-" Code checker
-Plug 'scrooloose/syntastic'
+" Light line
+Plug 'itchyny/lightline.vim' " Pretty status bar
+
+Plug 'scrooloose/syntastic' " Static file checker
+Plug 'majutsushi/tagbar' " Buffer line
 Plug 'Raimondi/delimitMate' " Auto insert paired characters
 Plug 'mileszs/ack.vim' " The silver searcher for VIM
 Plug 'scrooloose/nerdcommenter' " Commenting lines or blocks
 Plug 'junegunn/limelight.vim', { 'on': 'Limelight' } " Focusing tool
 Plug 'junegunn/goyo.vim', { 'on': 'Limelight' } " Focusing tool
 Plug 'airblade/vim-gitgutter' " Nice lines at the bottom
-" Plug 'ervandew/supertab' " Ctrl+P, Ctrl+N with tab
 Plug '0x0dea/vim-molasses' " Punish myself for not being productive
 Plug 'rizzatti/dash.vim' " Dash integration
 Plug 'tpope/vim-fugitive' " Git interactions within VIM (blame and diff)
@@ -107,7 +108,7 @@ set sidescroll=1
 
 " Status Line
 " ===========
-set laststatus=1
+set laststatus=2
 
 " Autocommands
 " ============
@@ -187,7 +188,7 @@ let g:base16colorspace=256
 " Colorscheme
 " ===========
 set background=dark
-colorscheme solarized
+colorscheme base16-monokai
 
 " Syntastic
 " =========
