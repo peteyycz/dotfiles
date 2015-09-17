@@ -26,9 +26,7 @@ call plug#begin('~/.vim/bundle')
 " Snippets
 " Plug 'SirVer/ultisnips'
 
-" Light line
 Plug 'itchyny/lightline.vim' " Pretty status bar
-
 Plug 'scrooloose/syntastic' " Static file checker
 Plug 'majutsushi/tagbar' " Buffer line
 Plug 'Raimondi/delimitMate' " Auto insert paired characters
