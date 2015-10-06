@@ -89,29 +89,9 @@ alias ta="tmux attach"
 # -------------------
 alias cpssh="cat ~/.ssh/id_rsa.pub | pbcopy"
 
-# Git aliases
-# -----------
-alias g='git'
-alias ga='git add'
-alias gaa="git add --all"
-alias gc="git commit"
-alias gca='git commit -am'
-alias gcl='git clone'
-alias gco='git checkout'
-alias gd='git diff'
-alias gl='git log'
-alias glol="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
-alias gp='git push'
-alias gpr='git pull --rebase'
-alias grh="git reset head"
-alias gs="git stash"
-alias gsp="git stash pop"
-alias gst="git status"
-
 # Editors
 # -------
-alias vi="vim"
-alias a='atom'
+alias subl="/Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl"
 code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
 
 alias so='source'
@@ -122,13 +102,6 @@ alias tks='tmux kill-session'
 alias tls='tmux ls'
 alias ta='tmux attach'
 source ~/.tmuxinator.bash
-
-# NPM
-# ---
-alias n='npm'
-alias nr='npm run'
-alias nrtc='npm run test-client'
-alias nrts='npm run test-server'
 
 # ====================
 # NVM
@@ -146,8 +119,10 @@ export DOCKER_TLS_VERIFY=1
 # ====================
 # Base16 Shell
 # ====================
-export THEME="base16-monokai"
+export THEME="base16-ocean"
 export BACKGROUND="dark"
 BASE16_SHELL="$DOTFILES/base16-shell/$THEME.$BACKGROUND.sh"
 source $BASE16_SHELL
+
+bind "TAB:menu-complete"
 

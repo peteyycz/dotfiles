@@ -4,7 +4,7 @@ set guioptions-=r
 set guioptions-=T
 
 " Font
-set guifont=Menlo:h12
+set guifont=Menlo:h14
 
 " Maximize window on open
 set lines=99 columns=999

@@ -28,21 +28,26 @@ call plug#begin('~/.vim/bundle')
 
 Plug 'itchyny/lightline.vim' " Pretty status bar
 Plug 'scrooloose/syntastic' " Static file checker
-Plug 'majutsushi/tagbar' " Buffer line
 Plug 'Raimondi/delimitMate' " Auto insert paired characters
 Plug 'mileszs/ack.vim' " The silver searcher for VIM
 Plug 'scrooloose/nerdcommenter' " Commenting lines or blocks
-Plug 'junegunn/limelight.vim', { 'on': 'Limelight' } " Focusing tool
-Plug 'junegunn/goyo.vim', { 'on': 'Limelight' } " Focusing tool
-Plug 'airblade/vim-gitgutter' " Nice lines at the bottom
-Plug '0x0dea/vim-molasses' " Punish myself for not being productive
+Plug 'airblade/vim-gitgutter' " Nice lines at the side
 Plug 'rizzatti/dash.vim' " Dash integration
+
 Plug 'tpope/vim-fugitive' " Git interactions within VIM (blame and diff)
 Plug 'tpope/vim-surround' " Surround
 Plug 'tpope/vim-repeat' " Repeat last command with .
 Plug 'tpope/vim-unimpaired' " Additional paired mappings
 Plug 'tpope/vim-abolish' " Better abbrev
+
 Plug 'ctrlpvim/ctrlp.vim' " Fast file opening
+Plug 'editorconfig/editorconfig-vim' " Cross-editor configurations
+
+Plug 'junegunn/limelight.vim', { 'on': 'Limelight' } " Focusing tool
+Plug 'junegunn/goyo.vim', { 'on': 'Limelight' } " Focusing tool
+
+Plug '0x0dea/vim-molasses' " Punish myself for not being productive
+
 Plug 'mattn/emmet-vim', { 'for': 'html' } " Zen coding at it's best
 Plug 'othree/html5.vim', { 'for': 'html' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }

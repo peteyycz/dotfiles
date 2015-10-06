@@ -2,15 +2,34 @@
   email = p.czibik@gmail.com
   name = Peter Czibik
 [diff]
-  tool = vimdiff
+  tool = mvimdiff
+[difftool "mvimdiff"]
+  cmd = mvim -f -d \"$LOCAL\" \"$REMOTE\"
 [difftool]
   prompt = false
 [alias]
-  d = difftool
   dt = difftool
+  a="add"
+  aa="add --all"
+  c="commit"
+  ca="commit -am"
+  cl="clone"
+  co="checkout"
+  d="diff"
+  l="log"
+  lol="log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+  p="push"
+  pr="pull --rebase"
+  rh="reset head"
+  s="stash"
+  sp="stash pop"
+  st="status"
 [core]
   excludesfile = /Users/peteyy/.gitignore_global
 [merge]
-  tool = vimdiff
+  tool = splice
+[mergetool "splice"]
+  cmd = "mvim -f $BASE $LOCAL $REMOTE $MERGED -c 'SpliceInit'"
+  trustExitCode = true
 [push]
   default = simple
