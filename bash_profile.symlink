@@ -50,6 +50,32 @@ function parse_git_dirty() {
 }
 
 # ====================
+# Extract file with the specific program
+# ====================
+extract() {
+  if [ -f "$1" ]; then
+    case "$1" in
+      *.tar.bz2)  tar -jxvf "$1"                        ;;
+      *.tar.gz)   tar -zxvf "$1"                        ;;
+      *.bz2)      bunzip2 "$1"                          ;;
+      *.dmg)      hdiutil mount "$1"                    ;;
+      *.gz)       gunzip "$1"                           ;;
+      *.tar)      tar -xvf "$1"                         ;;
+      *.tbz2)     tar -jxvf "$1"                        ;;
+      *.tgz)      tar -zxvf "$1"                        ;;
+      *.zip)      unzip "$1"                            ;;
+      *.ZIP)      unzip "$1"                            ;;
+      *.pax)      cat "$1" | pax -r                     ;;
+      *.pax.Z)    uncompress "$1" --stdout | pax -r     ;;
+      *.Z)        uncompress "$1"                       ;;
+      *) echo "'$1' cannot be extracted/mounted via extract()" ;;
+    esac
+  else
+     echo "'$1' is not a valid file to extract"
+  fi
+}
+
+# ====================
 # Prompt PS1
 # ====================
 export PS1="\[\e[36m\]\u\[\e[m\] in \[\e[36m\]\w\[\e[m\] on \[\e[33m\]\`parse_git_branch\`\[\e[m\]\\$\n "
@@ -103,6 +129,10 @@ alias tls='tmux ls'
 alias ta='tmux attach'
 source ~/.tmuxinator.bash
 
+# Typo-protector
+alias got='git'
+alias vom='vim'
+
 # ====================
 # NVM
 # ====================
@@ -119,7 +149,7 @@ export DOCKER_TLS_VERIFY=1
 # ====================
 # Base16 Shell
 # ====================
-export THEME="base16-ocean"
+export THEME="base16-tomorrow"
 export BACKGROUND="dark"
 BASE16_SHELL="$DOTFILES/base16-shell/$THEME.$BACKGROUND.sh"
 source $BASE16_SHELL

@@ -2,9 +2,9 @@
   email = p.czibik@gmail.com
   name = Peter Czibik
 [diff]
-  tool = mvimdiff
+  tool = vimdiff
 [difftool "mvimdiff"]
-  cmd = mvim -f -d \"$LOCAL\" \"$REMOTE\"
+  cmd = vim -f -d \"$LOCAL\" \"$REMOTE\"
 [difftool]
   prompt = false
 [alias]
