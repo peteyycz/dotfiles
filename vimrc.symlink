@@ -190,7 +190,7 @@ let g:base16colorspace=256
 " Colorscheme
 " ===========
 set background=dark
-colorscheme base16-monokai
+colorscheme base16-tomorrow
 
 " Syntastic
 " =========

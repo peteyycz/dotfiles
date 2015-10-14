@@ -50,3 +50,14 @@ if [ $(uname -s) = 'Darwin' ]; then
   brew install macvim
 fi
 
+if [ $(uname -s) = 'Linux' ]; then
+  apt-get update && apt-get upgrade
+  apt-get install \
+    vim \
+    tmux \
+    postgresql \
+    git
+  xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
+fi
+
+

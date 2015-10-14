@@ -162,13 +162,5 @@ export DOCKER_HOST='tcp://192.168.59.103:2376'
 export DOCKER_CERT_PATH='/Users/peteyy/.boot2docker/certs/boot2docker-vm'
 export DOCKER_TLS_VERIFY=1
 
-# ====================
-# Base16 Shell
-# ====================
-export THEME="base16-tomorrow"
-export BACKGROUND="dark"
-BASE16_SHELL="$DOTFILES/base16-shell/$THEME.$BACKGROUND.sh"
-source $BASE16_SHELL
-
 bind "TAB:menu-complete"
 
