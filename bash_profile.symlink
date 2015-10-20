@@ -133,6 +133,7 @@ alias cpssh="cat ~/.ssh/id_rsa.pub | pbcopy"
 
 # Editors
 # -------
+alias emacs="emacs -nw"
 alias subl="/Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl"
 code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
 
@@ -163,4 +164,7 @@ export DOCKER_CERT_PATH='/Users/peteyy/.boot2docker/certs/boot2docker-vm'
 export DOCKER_TLS_VERIFY=1
 
 bind "TAB:menu-complete"
+
+export PATH="$HOME/.linuxbrew/bin:$PATH"
+export MANPATH="$HOME/.linuxbrew/bin:$PATH"
 
