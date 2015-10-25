@@ -1,3 +1,12 @@
+# Linux specific settings
+if [ $(uname -s) = 'Linux' ]; then
+  setxkbmap -option ctrl:nocaps
+  xcape -e 'Control_L=Escape'
+
+  alias pbcopy='xsel --clipboard --input'
+  alias pbpaste='xsel --clipboard --output'
+fi
+
 # ====================
 # Get current branch in git repo
 # ====================

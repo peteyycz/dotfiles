@@ -9,7 +9,7 @@ call plug#begin('~/.vim/bundle')
 
 " Can't live without colors
  Plug 'chriskempson/base16-vim'
-" Plug 'w0ng/vim-hybrid'
+ Plug 'w0ng/vim-hybrid'
 " Plug 'tomasr/molokai'
 " Plug 'Lokaltog/vim-distinguished'
 " Plug 'tpope/vim-vividchalk'
@@ -44,8 +44,6 @@ Plug 'editorconfig/editorconfig-vim' " Cross-editor configurations
 
 Plug 'junegunn/limelight.vim', { 'on': 'Limelight' } " Focusing tool
 Plug 'junegunn/goyo.vim', { 'on': 'Limelight' } " Focusing tool
-
-Plug '0x0dea/vim-molasses' " Punish myself for not being productive
 
 Plug 'mattn/emmet-vim', { 'for': 'html' } " Zen coding at it's best
 Plug 'othree/html5.vim', { 'for': 'html' }
@@ -190,7 +188,7 @@ let g:base16colorspace=256
 " Colorscheme
 " ===========
 set background=dark
-colorscheme base16-tomorrow
+colorscheme hybrid
 
 " Syntastic
 " =========
