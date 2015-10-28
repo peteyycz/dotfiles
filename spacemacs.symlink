@@ -24,17 +24,18 @@ values."
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      auto-completion
-     ;; better-defaults
+     better-defaults
      emacs-lisp
      git
+     github
      markdown
-     ;; org
-     ;; (shell :variables
-     ;;        shell-default-height 30
-     ;;        shell-default-position 'bottom)
-     ;; spell-checking
+     org
+     (shell :variables
+            shell-default-height 30
+            shell-default-position 'bottom)
      syntax-checking
-     ;; version-control
+     version-control
+     ;; spell-checking
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -70,7 +71,7 @@ values."
    ;; directory. A string value must be a path to an image format supported
    ;; by your Emacs build.
    ;; If the value is nil then no banner is displayed. (default 'official)
-   dotspacemacs-startup-banner 'official
+   dotspacemacs-startup-banner 'nil
    ;; List of items to show in the startup buffer. If nil it is disabled.
    ;; Possible values are: `recents' `bookmarks' `projects'.
    ;; (default '(recents projects))
@@ -198,6 +199,46 @@ user code."
   "Configuration function for user code.
  This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
+  (add-hook 'prog-mode-hook #'linum-relative-mode)
+  (add-hook 'prog-mode-hook #'flycheck-mode)
+
+  ;; Save all buffers and the session
+  (desktop-save-mode 1)
+
+  ;; Some fixes for comint-style buffers
+  (let ((comint-hooks '(eshell-mode-hook
+                        term-mode-hook
+                        erc-mode-hook
+                        messages-buffer-mode-hook
+                        comint-mode-hook)))
+    (spacemacs/add-to-hooks (defun bb/no-hl-line-mode ()
+                              (setq-local global-hl-line-mode nil))
+                            comint-hooks)
+    (spacemacs/add-to-hooks (defun bb/no-scroll-margin ()
+                              (setq-local scroll-margin 0))
+                            comint-hooks))
+
+
+  ;; Set default variables
+  (setq-default
+
+   vc-follow-symlinks 1
+
+   ;; OSX color fix
+   ns-use-srgb-colorspace 'nil
+
+   ;; Bottom line separator
+   powerline-default-separator 'alternate
+
+   js2-basic-offset 2
+
+   tab-width 2
+
+   evil-shift-round 'nil
+   evil-shift-width 2)
+
+  ;; Enable relative line numbers
+  ;; (linum-relative-on)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
