@@ -20,7 +20,7 @@ done
 echo "installing vim plug"
 if [ ! -e ~/.vim/autoload/plug.vim ]; then
   curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-      https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 fi
 
 # Install node version manager
@@ -40,3 +40,8 @@ echo "installing linux utilities"
 if [ $(uname -s) = 'Linux' ]; then
   sh $DOTFILES/install/osx.sh
 fi
+
+# Change default shell to ZSH
+echo "changing default shell to zsh"
+chsh $(which zsh)
+

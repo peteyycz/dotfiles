@@ -114,13 +114,13 @@ setw -g automatic-rename on
 set -g status-utf8 on
 set -g status-interval 5
 
-set-window-option -g status-left " | #S | "
+set-window-option -g status-left " #S "
 
-set-window-option -g status-right " < %H:%M, %d. %B > "
+set-window-option -g status-right " %H:%M, %d. %B "
 
-set-window-option -g window-status-format " < #I: #W > "
+set-window-option -g window-status-format " #I: #W "
 
-set-window-option -g window-status-current-format " > #I: #W < "
+set-window-option -g window-status-current-format " #I: #W "
 
 #### COLOUR (Solarized dark)
 

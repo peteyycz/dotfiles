@@ -1,10 +1,16 @@
 # Linux specific settings
 if [ $(uname -s) = 'Linux' ]; then
+  # Swap control and escape
   setxkbmap -option ctrl:nocaps
   xcape -e 'Control_L=Escape'
 
+  # BSD like copy
   alias pbcopy='xsel --clipboard --input'
   alias pbpaste='xsel --clipboard --output'
+
+  # Linuxbrew config
+  export PATH="$HOME/.linuxbrew/bin:$PATH"
+  export MANPATH="$HOME/.linuxbrew/bin:$PATH"
 fi
 
 # ====================
@@ -50,11 +56,6 @@ extract() {
 }
 
 # ====================
-# Prompt PS1
-# ====================
-export PS1="\[\e[36m\]\u\[\e[m\]:\[\e[36m\]\w\[\e[m\] λ "
-
-# ====================
 # General settings
 # ====================
 export EDITOR='vim'
@@ -62,9 +63,7 @@ export EDITOR='vim'
 [ -z "$TMUX" ] && export TERM=xterm-256color
 
 export DOTFILES=$HOME/dotfiles
-
 export PATH=/usr/local/bin:$PATH
-
 
 # ====================
 # Aliases
@@ -79,6 +78,7 @@ alias ctmux="vim ~/.tmux.conf"
 # General
 # -------
 alias l="ls -la"
+alias so='source'
 
 # Tmux related
 # ------------
@@ -91,11 +91,8 @@ alias cpssh="cat ~/.ssh/id_rsa.pub | pbcopy"
 
 # Editors
 # -------
-alias emacs="emacs -nw"
 alias subl="/Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl"
 code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
-
-alias so='source'
 
 # Tmux
 # ----
@@ -115,16 +112,15 @@ export NVM_DIR=~/.nvm
 source $NVM_DIR/nvm.sh
 
 # ====================
-# Boot2Docker config
+# Boot2Docker config on OSX
 # ====================
-export DOCKER_HOST='tcp://192.168.59.103:2376'
-export DOCKER_CERT_PATH='/Users/peteyy/.boot2docker/certs/boot2docker-vm'
-export DOCKER_TLS_VERIFY=1
+if [ $(uname -s) = 'Darwin' ]; then
+  export DOCKER_HOST='tcp://192.168.59.103:2376'
+  export DOCKER_CERT_PATH='/Users/peteyy/.boot2docker/certs/boot2docker-vm'
+  export DOCKER_TLS_VERIFY=1
+fi
 
 bind "TAB:menu-complete"
-
-export PATH="$HOME/.linuxbrew/bin:$PATH"
-export MANPATH="$HOME/.linuxbrew/bin:$PATH"
 
 # ====================
 # Theme

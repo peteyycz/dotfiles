@@ -2,8 +2,10 @@
 [ -z "$(which brew)" ] &&
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
-echo "Updating homebrew"
+echo "updating homebrew"
 brew update
+
+echo "installing"
 brew install \
   vim neovim \
   tmux reattach-to-user-namespace \

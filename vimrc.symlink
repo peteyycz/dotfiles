@@ -222,9 +222,9 @@ nmap <leader>f :Limelight!!<cr>
 
 " Fugitive
 " ========
-nnoremap <C-g>d :Gdiff<CR>
-nnoremap <C-g>b :Gblame<CR>
-nnoremap <C-g>s :Gstatus<CR>
+nnoremap <leader>gd :Gdiff<CR>
+nnoremap <leader>gb :Gblame<CR>
+nnoremap <leader>gs :Gstatus<CR>
 
 " Gitgutter
 " =========
@@ -232,9 +232,13 @@ let g:gitgutter_eager = 1
 
 " JSX
 " ===
-let g:jsx_ext_required = 0 " Allow JSX in normal JS files
+" let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 
 " Ctrl+P
 " ======
 let g:ctrlp_custom_ignore = 'node_modules'
+
+" NERDCommenter
+" =============
+let NERDSpaceDelims=1
 
