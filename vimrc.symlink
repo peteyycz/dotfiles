@@ -92,7 +92,6 @@ filetype plugin on
 filetype indent on
 syntax enable
 syntax on
-set t_Co=256
 
 " Command completion
 " ==================
@@ -181,18 +180,16 @@ if has("user_commands")
     command! -bang Qa qa<bang>
 endif
 
-" Base16
-" ======
-let g:base16colorspace=256
-
 " Colorscheme
 " ===========
-set background=dark
-colorscheme hybrid
+let g:base16colorspace=256
+set t_Co=256
+execute "colorscheme ".$THEME
+execute "set background=".$BACKGROUND
 
 " Syntastic
 " =========
-let g:syntastic_javascript_checkers=['jshint']
+let g:syntastic_javascript_checkers=['eslint']
 let g:syntastic_warning_symbol='⚠'
 let g:syntastic_error_symbol='⚠'
 let g:syntastic_style_error_symbol='⚠'

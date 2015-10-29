@@ -126,3 +126,13 @@ bind "TAB:menu-complete"
 export PATH="$HOME/.linuxbrew/bin:$PATH"
 export MANPATH="$HOME/.linuxbrew/bin:$PATH"
 
+# ====================
+# Theme
+# ====================
+export THEME="base16-monokai"
+export BACKGROUND="dark"
+
+BASE16_SHELL="$DOTFILES/base16-shell/$THEME.$BACKGROUND.sh"
+
+source $BASE16_SHELL
+
