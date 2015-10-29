@@ -1,0 +1,50 @@
+export EDITOR='vim'
+export DOTFILES=$HOME/dotfiles
+[ -z "$TMUX" ] && export TERM=xterm-256color
+
+# Linux specific settings
+if [ $(uname -s) = 'Linux' ]; then
+  source $DOTFILES/bash/linux
+fi
+
+# Linux specific settings
+if [ $(uname -s) = 'Darwin' ]; then
+  source $DOTFILES/bash/osx
+fi
+
+# Path to your oh-my-zsh installation.
+export ZSH=/home/peteyy/.oh-my-zsh
+
+ZSH_THEME="avit"
+
+# Uncomment the following line to change how often to auto-update (in days).
+export UPDATE_ZSH_DAYS=7
+
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
+
+COMPLETION_WAITING_DOTS="true"
+DISABLE_UNTRACKED_FILES_DIRTY="true"
+# History timestamps
+HIST_STAMPS="mm/dd/yyyy"
+# ZSH plugins
+plugins=( git zsh-syntax-highlighting )
+
+# User configuration
+# FIXME is this safe?
+export PATH="/home/peteyy/.nvm/versions/node/v4.2.1/bin:/usr/local/bin:/home/peteyy/.linuxbrew/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl"
+# export PATH=/usr/local/bin:$PATH
+export MANPATH="/usr/local/man:$MANPATH"
+
+source $ZSH/oh-my-zsh.sh
+
+# External dotfiles
+source $DOTFILES/bash/alias
+source $DOTFILES/bash/functions
+source $DOTFILES/bash/theme
+
+# ====================
+# NVM
+# ====================
+export NVM_DIR=~/.nvm
+source $NVM_DIR/nvm.sh
