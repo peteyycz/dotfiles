@@ -66,7 +66,7 @@ call plug#end()
 
 " General settings
 " ================
-let mapleader="\<Space>"
+let mapleader=','
 set hidden " Some kind of buffer tweak
 set history=1000
 set undolevels=1000

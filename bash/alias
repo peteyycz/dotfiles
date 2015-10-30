@@ -27,7 +27,6 @@ code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
 alias tks='tmux kill-session'
 alias tls='tmux ls'
 alias ta='tmux attach'
-source ~/.tmuxinator.bash
 
 # Typo-protector
 alias got='git'
