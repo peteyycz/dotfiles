@@ -1,17 +1,29 @@
-export EDITOR='vim'
 export DOTFILES=$HOME/dotfiles
+
+# VIM mode
+export EDITOR='vim'
+bindkey -v
+bindkey -a u undo
+bindkey -a '^R' redo
+bindkey -a '^?' backward-delete-char
+bindkey -M viins '^s' history-incremental-search-backward
+bindkey -M vicmd '^s' history-incremental-search-backward
+
+
 [ -z "$TMUX" ] && export TERM=xterm-256color
 
 # Linux specific settings
 if [ $(uname -s) = 'Linux' ]; then
-  source $DOTFILES/bash/linux
+  source $DOTFILES/zsh/linux.zsh
 fi
 
 # Linux specific settings
 if [ $(uname -s) = 'Darwin' ]; then
-  source $DOTFILES/bash/osx
+  source $DOTFILES/zsh/osx.zsh
 fi
 
+# ===================================================
+# OH MY ZSH specific
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="avit"
@@ -23,21 +35,23 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # History timestamps
 HIST_STAMPS="mm/dd/yyyy"
 # ZSH plugins
-plugins=( git zsh-syntax-highlighting )
+plugins=( git )
 source $ZSH/oh-my-zsh.sh
+# ===================================================
 
-# User configuration
-# FIXME is this safe?
-# export PATH="$HOME/peteyy/.nvm/versions/node/v4.2.1/bin:/usr/local/bin:$HOME/peteyy/.linuxbrew/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl"
-# export PATH=/usr/local/bin:$PATH
+# Add locals to path
+export PATH=/usr/local/bin:$PATH
 export MANPATH="/usr/local/man:$MANPATH"
 
 # External dotfiles
-source $DOTFILES/bash/alias
-source $DOTFILES/bash/functions
-source $DOTFILES/bash/theme
+source $DOTFILES/zsh/alias.zsh
+source $DOTFILES/zsh/functions.zsh
+source $DOTFILES/zsh/theme.zsh
+#
 # This is a ZSH config
-source $DOTFILES/bash/tmuxinator
+source $DOTFILES/zsh/tmuxinator.zsh
+
+source $DOTFILES/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # ====================
 # NVM

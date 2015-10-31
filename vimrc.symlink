@@ -28,7 +28,7 @@ call plug#begin('~/.vim/bundle')
 
 Plug 'scrooloose/syntastic' " Static file checker
 Plug 'Raimondi/delimitMate' " Auto insert paired characters
-Plug 'mileszs/ack.vim' " The silver searcher for VIM
+Plug 'rking/ag.vim' " The silver searcher for VIM
 Plug 'scrooloose/nerdcommenter' " Commenting lines or blocks
 Plug 'airblade/vim-gitgutter' " Nice lines at the side
 Plug 'rizzatti/dash.vim' " Dash integration
@@ -69,6 +69,8 @@ call plug#end()
 let mapleader=','
 set hidden " Some kind of buffer tweak
 set history=1000
+set undofile
+set undodir=~/.vim/undo
 set undolevels=1000
 set title " Set title of the window
 set clipboard=unnamed " Use OS clipboard
@@ -96,7 +98,7 @@ syntax on
 " Command completion
 " ==================
 set wildmenu
-set wildmode=list:longest
+set wildmode=longest,list,full
 set wildignore+=build,cache,dist,*.min.*,coverage
 
 " Autoscroll
@@ -146,6 +148,7 @@ set hlsearch
 set incsearch
 set ignorecase
 set smartcase
+set gdefault " Set /g flag regex search
 
 " Mappings
 " ========
@@ -165,6 +168,11 @@ nnoremap <silent> g* g*zz
 nnoremap <silent> g# g#zz
 " Q for repeat macro
 map Q @@
+
+" Commands
+" ========
+command JSON :%!python -mjson.tool
+command XML :%!xmllint --format -
 
 " Typo protector lvl: 99999
 " =========================
