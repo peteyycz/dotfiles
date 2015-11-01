@@ -4,4 +4,3 @@ npm-debug.log
 *.DS-STORE
 .cache
 autoload
-antigen
