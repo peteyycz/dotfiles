@@ -29,17 +29,8 @@ if [ ! -e ~/.nvm ]; then
   wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.26.1/install.sh | bash
 fi
 
-# Run OSX installer
-echo "installing OSX utilities"
-if [ $(uname -s) = 'Darwin' ]; then
-  sh $DOTFILES/install/osx.sh
-fi
-
-# Run Linux installer
-echo "installing linux utilities"
-if [ $(uname -s) = 'Linux' ]; then
-  sh $DOTFILES/install/osx.sh
-fi
+# Run installer
+sh $DOTFILES/install/`uname -s`.sh
 
 # Change default shell to ZSH
 echo "changing default shell to zsh"

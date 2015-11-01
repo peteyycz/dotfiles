@@ -20,13 +20,7 @@ export PATH=/usr/local/bin:$PATH
 export MANPATH="/usr/local/man:$MANPATH"
 
 # External dotfiles
-for zshConfig in ($DOTFILES/zsh/*.zsh) source zshConfig
-
-# ====================
-# NVM
-# ====================
-export NVM_DIR=~/.nvm
-source $NVM_DIR/nvm.sh
+for config ($DOTFILES/zsh/*.zsh) source $config
 
 # ====================
 # ZSH PLUGINS
@@ -36,10 +30,9 @@ source $DOTFILES/antigen/antigen.zsh
 # Load oh-my-zsh with antigen
 antigen use oh-my-zsh
 antigen bundle git
+antigen bundle tmuxinator
 # antigen bundle heroku
 antigen bundle zsh-users/zsh-syntax-highlighting
-
-# Prompt
 antigen theme avit
 
 # Tell antigen that you're done.
