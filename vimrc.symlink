@@ -26,6 +26,9 @@ call plug#begin('~/.vim/bundle')
 " Snippets
 " Plug 'SirVer/ultisnips'
 
+" Status line
+Plug 'itchyny/lightline.vim'
+
 Plug 'scrooloose/syntastic' " Static file checker
 Plug 'Raimondi/delimitMate' " Auto insert paired characters
 Plug 'rking/ag.vim' " The silver searcher for VIM
@@ -213,10 +216,8 @@ nmap <leader>c :SyntasticCheck<CR>
 
 " The silver searcher (ACK)
 " =========================
-nmap <leader>/ :Ack<space>
-if executable('ag')
-  let g:ackprg='ag --vimgrep'
-endif
+nmap <leader>/ :Ag<space>
+let g:ag_working_path_mode="r"
 
 " Dash
 " ====
@@ -249,4 +250,10 @@ let g:ctrlp_custom_ignore = 'node_modules'
 " NERDCommenter
 " =============
 let NERDSpaceDelims=1
+
+" Lightline
+" =========
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ }
 
