@@ -11,7 +11,7 @@ bindkey -M vicmd '^s' history-incremental-search-backward
 
 [ -z "$TMUX" ] && export TERM=xterm-256color
 
-# Source OS specific things
+# Source OS specific configuration
 source $DOTFILES/zsh/OS/`uname -s`.zsh
 
 # Add locals to path
@@ -21,6 +21,9 @@ export MANPATH="/usr/local/man:$MANPATH"
 
 # External dotfiles
 for config ($DOTFILES/zsh/*.zsh) source $config
+
+# What a fucker, got hold of me for a while
+KEYTIMEOUT=1
 
 # ====================
 # ZSH PLUGINS
