@@ -1,3 +1,5 @@
+TERMINAL=rxvt-unicode-256color
+
 # Swap control and escape
 setxkbmap -option ctrl:nocaps
 xcape -e 'Control_L=Escape'

@@ -190,7 +190,7 @@ endif
 
 " Colorscheme
 " ===========
-let g:base16colorspace=256
+let base16colorspace=256
 set t_Co=256
 execute "colorscheme ".$THEME
 execute "set background=".$BACKGROUND
