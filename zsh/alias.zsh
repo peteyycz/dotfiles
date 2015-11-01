@@ -1,3 +1,5 @@
+alias l="ls -la"
+
 # For configs
 # -----------
 alias csh="vim ~/.bash_profile"
