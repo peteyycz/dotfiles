@@ -1,7 +1,7 @@
 # ====================
 # Theme
 # ====================
-export THEME="base16-monokai"
+export THEME="base16-eighties"
 export BACKGROUND="dark"
 
 BASE16_SHELL="$DOTFILES/base16-shell/$THEME.$BACKGROUND.sh"

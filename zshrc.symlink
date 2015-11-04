@@ -34,7 +34,8 @@ source $DOTFILES/antigen/antigen.zsh
 antigen use oh-my-zsh
 antigen bundle git
 antigen bundle tmuxinator
-# antigen bundle heroku
+antigen bundle heroku
+antigen bundle npm
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen theme avit
 
