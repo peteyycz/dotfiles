@@ -3,6 +3,11 @@ set -g default-terminal "screen-256color"
 
 set -g history-limit 20000
 
+# Prefix
+set prefix C-a
+unbind-key C-b
+bind-key C-a send-prefix
+
 # Rather than constraining window size to the maximum size of any client
 # connected to the *session*, constrain window size to the maximum size of any
 # client connected to *that window*. Much more reasonable.
