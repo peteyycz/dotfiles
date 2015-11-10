@@ -4,10 +4,8 @@ set guioptions-=r
 set guioptions-=T
 
 " Font
-set guifont=Menlo:h14
-
-" Maximize window on open
-set lines=99 columns=999
+set guifont=Hack:h15
+colorscheme hybrid
 
 set undodir=~/.vim/backups
 set undofile

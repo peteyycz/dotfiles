@@ -1,13 +1,5 @@
-export DOTFILES=$HOME/dotfiles
-
-# VIM mode
 export EDITOR='vim'
-bindkey -v
-bindkey -a u undo
-bindkey -a '^R' redo
-bindkey -a '^?' backward-delete-char
-bindkey -M viins '^s' history-incremental-search-backward
-bindkey -M vicmd '^s' history-incremental-search-backward
+export DOTFILES=$HOME/dotfiles
 
 [ -z "$TMUX" ] && export TERM=xterm-256color
 
@@ -41,3 +33,13 @@ antigen theme avit
 
 # Tell antigen that you're done.
 antigen apply
+
+# ====================
+# Docker
+# ====================
+export DOCKER_TLS_VERIFY="1"
+export DOCKER_HOST="tcp://192.168.99.100:2376"
+export DOCKER_CERT_PATH="/Users/peteyy/.docker/machine/machines/dev"
+export DOCKER_MACHINE_NAME="dev"
+
+chpwd() l

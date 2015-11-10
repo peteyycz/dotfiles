@@ -8,8 +8,11 @@ set autoread " Detect file changes outside vim
 call plug#begin('~/.vim/bundle')
 
 " Can't live without colors
- Plug 'chriskempson/base16-vim'
- Plug 'w0ng/vim-hybrid'
+Plug 'chriskempson/base16-vim'
+Plug 'w0ng/vim-hybrid'
+Plug 'jdkanani/vim-material-theme'
+Plug 'vim-scripts/xoria256.vim'
+Plug 'nanotech/jellybeans.vim'
 " Plug 'tomasr/molokai'
 " Plug 'Lokaltog/vim-distinguished'
 " Plug 'tpope/vim-vividchalk'
@@ -26,12 +29,13 @@ call plug#begin('~/.vim/bundle')
 " Snippets
 " Plug 'SirVer/ultisnips'
 
-" Status line
-Plug 'itchyny/lightline.vim'
-
+" Plug '0x0dea/vim-molasses' " for not being efficient...
+Plug 'ap/vim-buftabline' " Display open buffers
+Plug 'itchyny/lightline.vim' " Prettier status line
+Plug 'ervandew/supertab' " tab completion instead of ctrl p and n
 Plug 'scrooloose/syntastic' " Static file checker
 Plug 'Raimondi/delimitMate' " Auto insert paired characters
-Plug 'rking/ag.vim' " The silver searcher for VIM
+Plug 'rking/ag.vim'
 Plug 'scrooloose/nerdcommenter' " Commenting lines or blocks
 Plug 'airblade/vim-gitgutter' " Nice lines at the side
 Plug 'rizzatti/dash.vim' " Dash integration
@@ -50,9 +54,12 @@ Plug 'junegunn/goyo.vim', { 'on': 'Limelight' } " Focusing tool
 
 Plug 'mattn/emmet-vim', { 'for': 'html' } " Zen coding at it's best
 Plug 'othree/html5.vim', { 'for': 'html' }
+
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
 Plug 'mxw/vim-jsx', { 'for': 'javascript' } " React specific
+Plug 'moll/vim-node' " Node js
+
 Plug 'leafgarland/typescript-vim', { 'for': 'typescript' } " Might come handy
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'digitaltoad/vim-jade', { 'for': 'jade' }
@@ -125,7 +132,8 @@ autocmd BufWritePre * :silent :%s/\s\+$//e " Strip trailing whitespaces
 set cursorcolumn " Highlight the coloumn of the cursor
 set number " Display number on the sidebar
 set relativenumber
-set colorcolumn=80
+set textwidth=80
+set colorcolumn=+1
 set nowrap
 set linebreak
 
@@ -171,11 +179,15 @@ nnoremap <silent> g* g*zz
 nnoremap <silent> g# g#zz
 " Q for repeat macro
 map Q @@
+" Make y behave like other capitals
+map Y y$
+" Select all text in current buffer
+map <Leader>a ggVG
 
 " Commands
 " ========
-command JSON :%!python -mjson.tool
-command XML :%!xmllint --format -
+command! JSON :%!python -mjson.tool
+command! XML :%!xmllint --format -
 
 " Typo protector lvl: 99999
 " =========================
@@ -217,7 +229,6 @@ nmap <leader>c :SyntasticCheck<CR>
 " The silver searcher (ACK)
 " =========================
 nmap <leader>/ :Ag<space>
-let g:ag_working_path_mode="r"
 
 " Dash
 " ====
