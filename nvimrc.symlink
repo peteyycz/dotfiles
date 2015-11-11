@@ -229,6 +229,7 @@ nmap <leader>f :Limelight!!<cr>
 
 " Fugitive
 " ========
+set diffopt+=vertical
 nnoremap <leader>gd :Gdiff<CR>
 nnoremap <leader>gb :Gblame<CR>
 nnoremap <leader>gs :Gstatus<CR>
@@ -254,6 +255,12 @@ let g:lightline = {
 " Neomake
 " =======
 let g:neomake_javascript_enabled_makers = ['eslint']
+let g:neomake_error_sign = {
+            \ 'texthl': 'ErrorMsg',
+            \ }
+let g:neomake_warning_sign = {
+            \ 'texthl': 'ErrorMsg',
+            \ }
 autocmd! BufWritePost * Neomake
 
 " Test runner

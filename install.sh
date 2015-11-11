@@ -18,8 +18,8 @@ done
 
 # Install vim package manager
 echo "installing vim plug"
-if [ ! -e ~/.vim/autoload/plug.vim ]; then
-  curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+if [ ! -e ~/.nvim/autoload/plug.vim ]; then
+  curl -fLo ~/.nvim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 fi
 
