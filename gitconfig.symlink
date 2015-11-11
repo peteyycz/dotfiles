@@ -2,9 +2,7 @@
   email = p.czibik@gmail.com
   name = Peter Czibik
 [diff]
-  tool = vimdiff
-[difftool "mvimdiff"]
-  cmd = vim -f -d \"$LOCAL\" \"$REMOTE\"
+  tool = nvimdiff
 [difftool]
   prompt = false
 [alias]
@@ -28,8 +26,5 @@
   excludesfile = /Users/peteyy/.gitignore_global
 [merge]
   tool = splice
-[mergetool "splice"]
-  cmd = "mvim -f $BASE $LOCAL $REMOTE $MERGED -c 'SpliceInit'"
-  trustExitCode = true
 [push]
   default = simple

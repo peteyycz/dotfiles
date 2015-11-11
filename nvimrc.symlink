@@ -5,7 +5,7 @@ set autoread " Detect file changes outside vim
 
 " Plug all the Plugins
 " ====================
-call plug#begin('~/.vim/bundle')
+call plug#begin('~/.nvim/bundle')
 
 " Can't live without colors
 Plug 'chriskempson/base16-vim'
@@ -13,43 +13,36 @@ Plug 'w0ng/vim-hybrid'
 Plug 'jdkanani/vim-material-theme'
 Plug 'vim-scripts/xoria256.vim'
 Plug 'nanotech/jellybeans.vim'
-" Plug 'tomasr/molokai'
+Plug 'tomasr/molokai'
 " Plug 'Lokaltog/vim-distinguished'
 " Plug 'tpope/vim-vividchalk'
 " Plug 'chriskempson/tomorrow-theme', {'rtp': 'vim'}
 " Plug 'rainux/vim-desert-warm-256'
-" Plug 'nanotech/jellybeans.vim'
 " Plug 'junegunn/seoul256.vim'
 " Plug 'vim-scripts/wombat256.vim'
-
-" Shiny sword that breaks sometimes
-Plug 'Shougo/unite.vim'
-Plug 'Shougo/vimproc', { 'do': 'make' }
 
 " Snippets
 " Plug 'SirVer/ultisnips'
 
-Plug 'benekastah/neomake' " Async execution
-Plug 'janko-m/vim-test', { 'on': ['TestFile', 'TestLast', 'TestNearest', 'TestSuite', 'TestVisit'] } " Test runner
-
+Plug 'benekastah/neomake' " Async execution engine for syntax checking
 " Plug '0x0dea/vim-molasses' " for not being efficient...
 Plug 'ap/vim-buftabline' " Display open buffers
 Plug 'itchyny/lightline.vim' " Prettier status line
 Plug 'ervandew/supertab' " tab completion instead of ctrl p and n
 Plug 'Raimondi/delimitMate' " Auto insert paired characters
 Plug 'rking/ag.vim'
-Plug 'scrooloose/nerdcommenter' " Commenting lines or blocks
 Plug 'airblade/vim-gitgutter' " Nice lines at the side
 Plug 'rizzatti/dash.vim' " Dash integration
 
+Plug 'tpope/vim-commentary' " Commentary
 Plug 'tpope/vim-fugitive' " Git interactions within VIM (blame and diff)
 Plug 'tpope/vim-surround' " Surround
 Plug 'tpope/vim-repeat' " Repeat last command with .
 Plug 'tpope/vim-unimpaired' " Additional paired mappings
 Plug 'tpope/vim-abolish' " Better abbrev
 
-" Plug 'ctrlpvim/ctrlp.vim' " Fast file opening
-Plug 'editorconfig/editorconfig-vim' " Cross-editor configurations
+Plug 'ctrlpvim/ctrlp.vim' " Fast file opening
+" Plug 'editorconfig/editorconfig-vim' " Cross-editor configurations
 
 Plug 'junegunn/limelight.vim', { 'on': 'Limelight' } " Focusing tool
 Plug 'junegunn/goyo.vim', { 'on': 'Limelight' } " Focusing tool
@@ -83,7 +76,7 @@ let mapleader=','
 set hidden " Some kind of buffer tweak
 set history=1000
 set undofile
-set undodir=~/.vim/undo
+set undodir=~/.nvim/undo
 set undolevels=1000
 set title " Set title of the window
 set clipboard=unnamed " Use OS clipboard
@@ -112,7 +105,7 @@ syntax on
 " ==================
 set wildmenu
 set wildmode=longest,list,full
-set wildignore+=build,cache,dist,*.min.*,coverage
+set wildignore+=build,cache,dist,*.min.*,coverage,node_modules
 
 " Autoscroll
 " ==========
@@ -211,8 +204,8 @@ command! -bang Qa qa<bang>
 " ===========
 " set t_Co=256
 let base16colorspace=256
-execute "colorscheme ".$THEME
-execute "set background=".$BACKGROUND
+set background=dark
+colorscheme jellybeans
 
 " The silver searcher (ACK)
 " =========================
@@ -236,20 +229,12 @@ nnoremap <leader>gs :Gstatus<CR>
 
 " Gitgutter
 " =========
-let g:gitgutter_eager = 1
-
-" Ctrl+P
-" ======
-let g:ctrlp_custom_ignore = 'node_modules'
-
-" NERDCommenter
-" =============
-let NERDSpaceDelims=1
+let g:gitgutter_eager=1
 
 " Lightline
 " =========
 let g:lightline = {
-      \ 'colorscheme': 'wombat',
+      \ 'colorscheme': 'jellybeans',
       \ }
 
 " Neomake
@@ -262,14 +247,4 @@ let g:neomake_warning_sign = {
             \ 'texthl': 'ErrorMsg',
             \ }
 autocmd! BufWritePost * Neomake
-
-" Test runner
-" ===========
-let test#strategy = "neovim"
-let test#javascript#runner = 'mocha'
-
-" Unite
-" =====
-noremap <leader>b :Unite buffer<CR>
-nnoremap <C-p> :Unite file_rec/async<cr>
-
+autocmd! BufEnter * Neomake
