@@ -23,8 +23,8 @@ Plug 'nanotech/jellybeans.vim'
 " Plug 'vim-scripts/wombat256.vim'
 
 " Shiny sword that breaks sometimes
-" Plug 'Shougo/unite.vim'
-" Plug 'Shougo/vimproc', { 'do': 'make' }
+Plug 'Shougo/unite.vim'
+Plug 'Shougo/vimproc', { 'do': 'make' }
 
 " Snippets
 " Plug 'SirVer/ultisnips'
@@ -48,7 +48,7 @@ Plug 'tpope/vim-repeat' " Repeat last command with .
 Plug 'tpope/vim-unimpaired' " Additional paired mappings
 Plug 'tpope/vim-abolish' " Better abbrev
 
-Plug 'ctrlpvim/ctrlp.vim' " Fast file opening
+" Plug 'ctrlpvim/ctrlp.vim' " Fast file opening
 Plug 'editorconfig/editorconfig-vim' " Cross-editor configurations
 
 Plug 'junegunn/limelight.vim', { 'on': 'Limelight' } " Focusing tool
@@ -267,3 +267,9 @@ autocmd! BufWritePost * Neomake
 " ===========
 let test#strategy = "neovim"
 let test#javascript#runner = 'mocha'
+
+" Unite
+" =====
+noremap <leader>b :Unite buffer<CR>
+nnoremap <C-p> :Unite file_rec/async<cr>
+
