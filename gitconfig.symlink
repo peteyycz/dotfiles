@@ -2,9 +2,13 @@
   email = p.czibik@gmail.com
   name = Peter Czibik
 [diff]
-  tool = nvimdiff
-[difftool]
-  prompt = false
+  tool = vimdiff
+[merge]
+  tool = vimdiff
+[mergetool]
+  prompt = true
+[mergetool "vimdiff"]
+  cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
 [alias]
   dt = difftool
   a="add"

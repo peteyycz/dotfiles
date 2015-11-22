@@ -1,6 +1,6 @@
 " VIMrc
 " =====
-" set nocompatible " No VI compatibility
+set nocompatible " No VI compatibility
 set autoread " Detect file changes outside vim
 
 " Plug all the Plugins
@@ -52,7 +52,6 @@ Plug 'othree/html5.vim', { 'for': 'html' }
 
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'othree/yajs.vim', { 'for': 'javascript' }
-Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
 Plug 'mxw/vim-jsx', { 'for': 'javascript' } " React specific
 Plug 'moll/vim-node', { 'for': 'javascript' } " Node js
 
@@ -84,7 +83,7 @@ set clipboard=unnamed " Use OS clipboard
 set mouse=a
 set backspace=indent,eol,start
 set lazyredraw
-" set ttyfast
+set ttyfast
 set showmatch " Highlight matching pair
 set nobackup " Disable swapfiles
 set nowritebackup
@@ -121,7 +120,7 @@ set laststatus=2
 " ============
 " Resize vim on window resize
 au VimResized * exe "normal! \<c-w>="
-autocmd BufWritePre * :silent :%s/\s\+$//e " Strip trailing whitespaces
+au BufWritePre * :silent :%s/\s\+$//e " Strip trailing whitespaces
 
 " Visual tweaks
 " =============
@@ -182,6 +181,7 @@ map Q @@
 map Y y$
 " Select all text in current buffer
 map <Leader>a ggVG
+nnoremap <leader>t :!npm t<CR>
 
 " Commands
 " ========
@@ -202,10 +202,10 @@ command! -bang Qa qa<bang>
 
 " Colorscheme
 " ===========
-" set t_Co=256
+set t_Co=256
 let base16colorspace=256
 set background=dark
-colorscheme jellybeans
+colorscheme base16-solarized
 
 " The silver searcher (ACK)
 " =========================
@@ -234,7 +234,7 @@ let g:gitgutter_eager=1
 " Lightline
 " =========
 let g:lightline = {
-      \ 'colorscheme': 'jellybeans',
+      \ 'colorscheme': 'solarized',
       \ }
 
 " Neomake

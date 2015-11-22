@@ -103,6 +103,7 @@ setw -g automatic-rename on
 
 set -g status-utf8 on
 set -g status-interval 5
+set -g status-justify centre
 
 set-window-option -g status-left " #S "
 
