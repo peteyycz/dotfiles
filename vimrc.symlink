@@ -5,15 +5,13 @@ set autoread " Detect file changes outside vim
 
 " Plug all the Plugins
 " ====================
-call plug#begin('~/.nvim/bundle')
+call plug#begin('~/.vim/bundle')
 
 " Can't live without colors
 Plug 'chriskempson/base16-vim'
 Plug 'w0ng/vim-hybrid'
-Plug 'jdkanani/vim-material-theme'
-Plug 'vim-scripts/xoria256.vim'
+" Plug 'vim-scripts/xoria256.vim'
 Plug 'nanotech/jellybeans.vim'
-Plug 'tomasr/molokai'
 " Plug 'Lokaltog/vim-distinguished'
 " Plug 'tpope/vim-vividchalk'
 " Plug 'chriskempson/tomorrow-theme', {'rtp': 'vim'}
@@ -25,13 +23,13 @@ Plug 'tomasr/molokai'
 " Plug 'SirVer/ultisnips'
 
 Plug 'benekastah/neomake' " Async execution engine for syntax checking
-" Plug '0x0dea/vim-molasses' " for not being efficient...
+" Plug '0x0dea/vim-molasses' " For not being efficient...
 Plug 'ap/vim-buftabline' " Display open buffers
 Plug 'itchyny/lightline.vim' " Prettier status line
-Plug 'ervandew/supertab' " tab completion instead of ctrl p and n
+" Plug 'ervandew/supertab' " Tab completion instead of ctrl p and n
 Plug 'Raimondi/delimitMate' " Auto insert paired characters
 Plug 'rking/ag.vim'
-Plug 'airblade/vim-gitgutter' " Nice lines at the side
+Plug 'airblade/vim-gitgutter' " Nice git lines at the side
 Plug 'rizzatti/dash.vim' " Dash integration
 
 Plug 'tpope/vim-commentary' " Commentary
@@ -75,12 +73,12 @@ let mapleader=','
 set hidden " Some kind of buffer tweak
 set history=1000
 set undofile
-set undodir=~/.nvim/undo
+set undodir=~/.vim/undo
 set undolevels=1000
 set title " Set title of the window
 set clipboard=unnamed " Use OS clipboard
 " set encoding=utf-8
-set mouse=a
+set mouse=""
 set backspace=indent,eol,start
 set lazyredraw
 set ttyfast
@@ -158,9 +156,6 @@ set gdefault " Set /g flag regex search
 
 " Mappings
 " ========
-" Don't yank to default register when changing something
-nnoremap c "xc
-xnoremap c "xc
 " Hide search highlights
 noremap <silent> <leader>n :nohlsearch<CR>
 " Easier moving of code blocks
@@ -175,8 +170,6 @@ nnoremap <silent> * *zz
 nnoremap <silent> # #zz
 nnoremap <silent> g* g*zz
 nnoremap <silent> g# g#zz
-" Q for repeat macro
-map Q @@
 " Make y behave like other capitals
 map Y y$
 " Select all text in current buffer
@@ -187,6 +180,7 @@ nnoremap <leader>t :!npm t<CR>
 " ========
 command! JSON :%!python -mjson.tool
 command! XML :%!xmllint --format -
+command! STANDARD :%!standard --format -
 
 " Typo protector lvl: 99999
 " =========================
@@ -233,9 +227,10 @@ let g:gitgutter_eager=1
 
 " Lightline
 " =========
-let g:lightline = {
-      \ 'colorscheme': 'solarized',
-      \ }
+" let g:lightline = {
+"       \ 'separator': { 'left': "\u2b80", 'right': "\u2b82" },
+"       \ 'subseparator': { 'left': "\u2b81", 'right': "\u2b83" }
+"       \ }
 
 " Neomake
 " =======

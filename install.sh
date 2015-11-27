@@ -18,10 +18,14 @@ done
 
 # Install vim package manager
 echo "installing vim plug"
-if [ ! -e ~/.nvim/autoload/plug.vim ]; then
-  curl -fLo ~/.nvim/autoload/plug.vim --create-dirs \
+if [ ! -e ~/.vim/autoload/plug.vim ]; then
+  curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 fi
+
+# Taking care of Neovim
+ln -s ~/.vim ~/.nvim
+ln -s $DOTFILES/vimrc.symlink ~/.nvimrc
 
 # Install node version manager
 echo "installing nvm"

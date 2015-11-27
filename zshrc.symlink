@@ -45,6 +45,4 @@ export DOCKER_MACHINE_NAME="dev"
 # ====================
 # Theme
 # ====================
-source $DOTFILES/base16-shell/base16-solarized.dark.sh
-
-chpwd() l
+source $DOTFILES/base16-shell/base16-monokai.dark.sh

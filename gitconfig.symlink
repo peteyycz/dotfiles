@@ -23,8 +23,6 @@
   p="push"
   pr="pull --rebase"
   rh="reset head"
-  s="stash"
-  sp="stash pop"
   st="status"
 [core]
   excludesfile = /Users/peteyy/.gitignore_global

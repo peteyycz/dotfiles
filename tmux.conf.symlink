@@ -107,7 +107,7 @@ set -g status-justify centre
 
 set-window-option -g status-left " #S "
 
-set-window-option -g status-right " %H:%M, %d. %B "
+set-window-option -g status-right "⌚️  %H:%M, %d. %B "
 
 set-window-option -g window-status-format " #I: #W "
 
