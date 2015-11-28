@@ -9,15 +9,12 @@ call plug#begin('~/.vim/bundle')
 
 " Can't live without colors
 Plug 'chriskempson/base16-vim'
-Plug 'w0ng/vim-hybrid'
-" Plug 'vim-scripts/xoria256.vim'
 Plug 'nanotech/jellybeans.vim'
-" Plug 'Lokaltog/vim-distinguished'
+Plug 'w0ng/vim-hybrid'
 " Plug 'tpope/vim-vividchalk'
-" Plug 'chriskempson/tomorrow-theme', {'rtp': 'vim'}
-" Plug 'rainux/vim-desert-warm-256'
 " Plug 'junegunn/seoul256.vim'
 " Plug 'vim-scripts/wombat256.vim'
+" Plug 'vim-scripts/xoria256.vim'
 
 " Snippets
 " Plug 'SirVer/ultisnips'
@@ -40,7 +37,6 @@ Plug 'tpope/vim-unimpaired' " Additional paired mappings
 Plug 'tpope/vim-abolish' " Better abbrev
 
 Plug 'ctrlpvim/ctrlp.vim' " Fast file opening
-" Plug 'editorconfig/editorconfig-vim' " Cross-editor configurations
 
 Plug 'junegunn/limelight.vim', { 'on': 'Limelight' } " Focusing tool
 Plug 'junegunn/goyo.vim', { 'on': 'Limelight' } " Focusing tool
@@ -180,7 +176,7 @@ nnoremap <leader>t :!npm t<CR>
 " ========
 command! JSON :%!python -mjson.tool
 command! XML :%!xmllint --format -
-command! STANDARD :%!standard --format -
+command! STANDARD :!standard % --format
 
 " Typo protector lvl: 99999
 " =========================
@@ -199,7 +195,7 @@ command! -bang Qa qa<bang>
 set t_Co=256
 let base16colorspace=256
 set background=dark
-colorscheme base16-solarized
+colorscheme base16-monokai
 
 " The silver searcher (ACK)
 " =========================
@@ -234,7 +230,7 @@ let g:gitgutter_eager=1
 
 " Neomake
 " =======
-let g:neomake_javascript_enabled_makers = ['eslint']
+let g:neomake_javascript_enabled_makers = ['jshint']
 let g:neomake_error_sign = {
             \ 'texthl': 'ErrorMsg',
             \ }
