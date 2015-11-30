@@ -6,4 +6,4 @@ jsconfig.json
 typings
 npm-debug.log
 .flowconfig
-
+.tern-port
