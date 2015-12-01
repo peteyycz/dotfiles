@@ -230,7 +230,7 @@ let g:gitgutter_eager=1
 
 " Neomake
 " =======
-let g:neomake_javascript_enabled_makers = ['standard']
+let g:neomake_javascript_enabled_makers = ['eslint']
 let g:neomake_error_sign = {
             \ 'texthl': 'ErrorMsg',
             \ }
