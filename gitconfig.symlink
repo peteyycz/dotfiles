@@ -30,3 +30,5 @@
   tool = splice
 [push]
   default = simple
+[pull]
+	rebase = true

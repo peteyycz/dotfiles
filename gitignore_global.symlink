@@ -7,3 +7,5 @@ typings
 npm-debug.log
 .flowconfig
 .tern-port
+TAGS
+projectile*

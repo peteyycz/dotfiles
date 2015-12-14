@@ -1,17 +1,15 @@
 export EDITOR='vim'
 export DOTFILES=$HOME/dotfiles
 
-[ -z "$TMUX" ] && export TERM=xterm-256color
+export TERM=term-256color
 
 # Source OS specific configuration
 source $DOTFILES/zsh/OS/`uname -s`.zsh
 
 # Add locals to path
-export PATH=$HOME/.gem/ruby/2.2.0/bin:$PATH
-export PATH=/usr/local/bin:$PATH
+export PATH=$HOME/.gem/ruby/2.2.0/bin:/usr/local/bin:$PATH
 export MANPATH="/usr/local/man:$MANPATH"
 
-# External dotfiles
 for config ($DOTFILES/zsh/*.zsh) source $config
 
 # What a fucker, got hold of me for a while
@@ -34,15 +32,4 @@ antigen theme avit
 # Tell antigen that you're done.
 antigen apply
 
-# ====================
-# Docker
-# ====================
-export DOCKER_TLS_VERIFY="1"
-export DOCKER_HOST="tcp://192.168.99.100:2376"
-export DOCKER_CERT_PATH="/Users/peteyy/.docker/machine/machines/dev"
-export DOCKER_MACHINE_NAME="dev"
-
-# ====================
-# Theme
-# ====================
-source $DOTFILES/base16-shell/base16-monokai.dark.sh
+export PATH="/usr/local/sbin:$PATH"

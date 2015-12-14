@@ -16,25 +16,11 @@ for file in $linkables ; do
     ln -s $DOTFILES/$file $target
 done
 
-# Install vim package manager
-echo "installing vim plug"
-if [ ! -e ~/.vim/autoload/plug.vim ]; then
-  curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-fi
-
-# Taking care of Neovim
-ln -s ~/.vim ~/.nvim
-ln -s $DOTFILES/vimrc.symlink ~/.nvimrc
-
 # Install node version manager
 echo "installing nvm"
 if [ ! -e ~/.nvm ]; then
   wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.26.1/install.sh | bash
 fi
-
-# Run installer
-sh $DOTFILES/install/`uname -s`.sh
 
 # Change default shell to ZSH
 echo "changing default shell to zsh"
