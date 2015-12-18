@@ -1,14 +1,6 @@
 [user]
   email = p.czibik@gmail.com
   name = Peter Czibik
-[diff]
-  tool = vimdiff
-[merge]
-  tool = vimdiff
-[mergetool]
-  prompt = true
-[mergetool "vimdiff"]
-  cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
 [alias]
   dt = difftool
   a="add"
@@ -24,11 +16,13 @@
   pr="pull --rebase"
   rh="reset head"
   st="status"
+[diff]
+  tool = vimdiff
+[merge]
+  tool = vimdiff
 [core]
   excludesfile = /Users/peteyy/.gitignore_global
-[merge]
-  tool = splice
 [push]
   default = simple
 [pull]
-	rebase = true
+  rebase = true

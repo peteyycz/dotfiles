@@ -1,0 +1,13 @@
+export EDITOR='emacs'
+export DOTFILES=$HOME/dotfiles
+
+export TERM=xterm-256color
+
+export THEME="base16-monokai"
+export BACKGROUND="dark"
+
+# Add locals to path
+export PATH=$HOME/.gem/ruby/2.2.0/bin:/usr/local/bin:/usr/local/sbin:$PATH
+export MANPATH="/usr/local/man:$MANPATH"
+
+export NVM_DIR=~/.nvm
