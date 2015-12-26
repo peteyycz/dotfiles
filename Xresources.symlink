@@ -6,11 +6,22 @@ Xft.autohint: false
 Xft.hintstyle: hintslight
 Xft.lcdfilter: lcddefault
 
-URxvt*scrollWithBuffer:  false
-URxvt*skipScroll:  true
-URxvt*scrollBar:  false
-URxvt*loginShell:  true
-URxvt*scrollTtyKeypress:  true
-URxvt*visualBell:  true
-URxvt*font:  xft:Source Code Pro:pixelsize:14
-URxvt.internalBorder:  0
+URxvt*scrollWithBuffer: false
+URxvt*skipScroll: true
+URxvt*scrollBar: false
+URxvt*loginShell: true
+URxvt*scrollTtyKeypress: true
+URxvt*visualBell: true
+URxvt*internalBorder: 0
+URxvt*font: xft:Source Code Pro:pixelsize:14
+URxvt*background: #212121
+
+URxvt.perl-ext-common: tabbedex,fullscreen
+URxvt.tabbed.new-button: false
+URxvt.tabbed.autohide: true
+URxvt.tabbed.reopen-on-close: yes
+
+URxvt.keysym.F11: perl:fullscreen:switch
+URxvt.keysym.Control-t: perl:tabbedex:new_tab
+URxvt.keysym.Control-Tab: perl:tabbedex:next_tab
+URxvt.keysym.Control-Shift-Tab: perl:tabbedex:prev_tab
