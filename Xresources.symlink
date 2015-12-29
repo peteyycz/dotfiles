@@ -12,7 +12,7 @@ URxvt*scrollBar: false
 URxvt*loginShell: true
 URxvt*scrollTtyKeypress: true
 URxvt*visualBell: true
-URxvt*internalBorder: 0
+URxvt*internalBorder: 5
 URxvt*font: xft:Source Code Pro:pixelsize:14
 URxvt*background: #212121
 
