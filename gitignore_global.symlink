@@ -1,26 +1,20 @@
-# Mac random index file
+# OS related files
 .DS_Store
 
-# IDEA IDE files
+# IDE
 .idea
+irony
 
-# Javascript related files
-nodemon.json
+# Javascript
 jsconfig.json
 typings
 npm-debug.log
 .flowconfig
-.tern-port
 
-# Emacs
-projectile*
-ido*
-places
-irony/ # emacs irony (http://www.emacswiki.org/emacs/irony-mode)
-
-# Tag files for GNU global (https://www.gnu.org/software/global/)
-GTAGS
-GRTAGS
-GPATH
-
+# Tag files
 TAGS
+GTAGS
+GPATH
+GRTAGS
+.tern-port
+.tern-project

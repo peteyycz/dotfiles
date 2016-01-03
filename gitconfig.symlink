@@ -1,27 +1,8 @@
 [user]
   email = p.czibik@gmail.com
   name = Peter Czibik
-[alias]
-  dt = difftool
-  a="add"
-  aa="add --all"
-  c="commit"
-  ca="commit -am"
-  cl="clone"
-  co="checkout"
-  d="diff"
-  l="log"
-  lol="log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
-  p="push"
-  pr="pull --rebase"
-  rh="reset head"
-  st="status"
-[diff]
-  tool = vimdiff
-[merge]
-  tool = vimdiff
 [core]
-  excludesfile = /Users/peteyy/.gitignore_global
+  excludesfile = ~/.gitignore_global
 [push]
   default = simple
 [pull]
