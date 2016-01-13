@@ -11,3 +11,8 @@ export PATH=$HOME/.gem/ruby/2.2.0/bin:/usr/local/bin:/usr/local/sbin:$PATH
 export MANPATH="/usr/local/man:$MANPATH"
 
 export NVM_DIR=~/.nvm
+
+# If private config available use it
+if [ -f ~/.zshenv_private ]; then
+    source ~/.zshenv_private
+fi
