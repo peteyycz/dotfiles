@@ -10,6 +10,7 @@ jsconfig.json
 typings
 npm-debug.log
 .flowconfig
+nodemon.json
 
 # Tag files
 TAGS
