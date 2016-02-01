@@ -1,0 +1,148 @@
+# tmux display things in 256 colors
+set -g default-terminal "screen-256color"
+
+set -g history-limit 20000
+
+# Rather than constraining window size to the maximum size of any client
+# connected to the *session*, constrain window size to the maximum size of any
+# client connected to *that window*. Much more reasonable.
+setw -g aggressive-resize on
+
+# make delay shorter
+set -sg escape-time 0
+
+# make window/pane index start with 1
+set -g base-index 1
+setw -g pane-base-index 1
+
+# more settings to make copy-mode more vim-like
+unbind [
+bind Escape copy-mode
+unbind p
+bind p paste-buffer
+bind -t vi-copy 'v' begin-selection
+bind -t vi-copy 'y' copy-selection
+
+# Buffers to/from Mac clipboard, yay tmux book from pragprog
+bind C-c run "tmux save-buffer - | reattach-to-user-namespace pbcopy"
+bind C-v run "tmux set-buffer $(reattach-to-user-namespace pbpaste); tmux paste-buffer")
+
+# Vi mode
+set -g status-keys vi
+setw -g mode-keys vi
+
+## Unbinds
+## `-> these are part of the default mappings
+##     and will get new functionality
+unbind c
+unbind i
+unbind l
+unbind s
+unbind w
+
+# automatically renumber tmux windows
+set -g renumber-windows on
+
+##-------~---~----------~----------~----
+## Keybindings
+##-------~---~----------~----------~----
+
+bind r source-file ~/.tmux.conf \; display "Config Reloaded!"
+
+bind w neww
+bind m choose-window
+bind a choose-session
+bind c kill-pane
+bind t set status
+
+bind h select-pane -L
+bind j select-pane -D
+bind k select-pane -U
+bind l select-pane -R
+
+bind ^h resize-pane -L
+bind ^j resize-pane -D
+bind ^k resize-pane -U
+bind ^l resize-pane -R
+
+bind v split-window -h
+bind s split-window
+
+# colon :
+bind : command-prompt
+
+##-------~---~----------~----------~----
+## General settings
+##-------~---~----------~----------~----
+
+# set -g default-shell /bin/zsh
+set -g set-titles on
+set -g set-titles-string 'tmux: #T'
+set -g repeat-time 100
+setw -g clock-mode-style 12
+setw -g alternate-screen on
+
+## Don't close windows
+set -g set-remain-on-exit on
+
+
+# loud or quiet?
+set-option -g visual-activity on
+set-option -g visual-bell on
+set-option -g visual-silence off
+set-window-option -g monitor-activity off
+set-option -g bell-action none
+
+##-------~---~----------~----------~----
+## Status bar
+##-------~---~----------~----------~----
+
+set -g display-panes-time 1000
+
+setw -g automatic-rename on
+
+set -g status-utf8 on
+set -g status-interval 5
+set -g status-justify centre
+
+set-window-option -g status-left " #S "
+
+set-window-option -g status-right "⌚️  %H:%M, %d. %B "
+
+set-window-option -g window-status-format " #I: #W "
+
+set-window-option -g window-status-current-format " #I: #W "
+
+#### COLOUR (Solarized dark)
+
+# default statusbar colors
+set-option -g status-bg black #base02
+set-option -g status-fg yellow #yellow
+set-option -g status-attr default
+
+# default window title colors
+set-window-option -g window-status-fg brightblue #base0
+set-window-option -g window-status-bg default
+#set-window-option -g window-status-attr dim
+
+# active window title colors
+set-window-option -g window-status-current-fg brightred #orange
+set-window-option -g window-status-current-bg blue
+set-window-option -g window-status-current-attr dim
+
+# pane border
+set-option -g pane-border-fg black #base02
+set-option -g pane-active-border-fg brightgreen #base01
+
+# message text
+set-option -g message-bg black #base02
+set-option -g message-fg brightred #orange
+
+# pane number display
+set-option -g display-panes-active-colour blue #blue
+set-option -g display-panes-colour brightred #orange
+
+set -g status-interval 1
+
+set -g status-left-length 20
+set -g status-right-length 150

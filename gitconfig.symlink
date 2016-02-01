@@ -7,3 +7,11 @@
   default = simple
 [pull]
   rebase = true
+[github]
+  user = peteyy
+[diff]
+	tool = vimdiff
+[merge]
+	tool = vimdiff
+[difftool]
+	prompt = false
