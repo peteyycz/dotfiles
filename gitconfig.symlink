@@ -15,3 +15,9 @@
 	tool = vimdiff
 [difftool]
 	prompt = false
+[alias]
+  co = checkout
+  p = push
+  c = commit
+  st = status
+  aa = add --all
