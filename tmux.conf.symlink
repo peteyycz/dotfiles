@@ -15,6 +15,9 @@ set -sg escape-time 0
 set -g base-index 1
 setw -g pane-base-index 1
 
+# enable mouse support for switching and resizing panes/windows
+setw -g mouse on
+
 # more settings to make copy-mode more vim-like
 unbind [
 bind Escape copy-mode

@@ -19,6 +19,9 @@ Plug 'w0ng/vim-hybrid'
 " Snippets
 " Plug 'SirVer/ultisnips'
 
+" Experimental
+Plug 'Olical/vim-enmasse'
+
 Plug 'benekastah/neomake' " Async execution engine for syntax checking
 " Plug '0x0dea/vim-molasses' " For not being efficient...
 Plug 'ap/vim-buftabline' " Display open buffers
@@ -26,7 +29,7 @@ Plug 'itchyny/lightline.vim' " Prettier status line
 " Plug 'ervandew/supertab' " Tab completion instead of ctrl p and n
 Plug 'Raimondi/delimitMate' " Auto insert paired characters
 Plug 'rking/ag.vim'
-Plug 'airblade/vim-gitgutter' " Nice git lines at the side
+Plug 'mhinz/vim-signify' " 'airblade/vim-gitgutter' Nice git lines at the side
 Plug 'rizzatti/dash.vim' " Dash integration
 
 Plug 'tpope/vim-commentary' " Commentary
@@ -83,7 +86,8 @@ set nobackup " Disable swapfiles
 set nowritebackup
 set noswapfile
 set list " Display invisibles
-set listchars=eol:¬
+set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
+set showbreak=↪
 set visualbell " No noise just flash
 
 " Syntax highlighting
@@ -113,8 +117,18 @@ set laststatus=2
 " Autocommands
 " ============
 " Resize vim on window resize
-au VimResized * exe "normal! \<c-w>="
-au BufWritePre * :silent :%s/\s\+$//e " Strip trailing whitespaces
+au VimResized * :wincmd =
+" Save when losing focus
+au FocusLost * :silent! :wall
+" Strip trailing whitespaces
+au BufWritePre * :silent :%s/\s\+$//e
+
+" Only show cursorcolumn in the current window and in normal mode.
+augroup cline
+    au!
+    au WinLeave * set nocursorcolumn
+    au WinEnter * set cursorcolumn
+augroup END
 
 " Visual tweaks
 " =============
@@ -154,6 +168,9 @@ set gdefault " Set /g flag regex search
 " ========
 " Hide search highlights
 noremap <silent> <leader>n :nohlsearch<CR>
+" Sort lines
+nnoremap <leader>s vip:!sort<cr>
+vnoremap <leader>s :!sort<cr>
 " Easier moving of code blocks
 vnoremap < <gv
 vnoremap > >gv

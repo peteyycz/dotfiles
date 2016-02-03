@@ -21,3 +21,7 @@
   c = commit
   st = status
   aa = add --all
+  d = diff
+  dt = difftool
+[mergetool]
+	path = nvim
