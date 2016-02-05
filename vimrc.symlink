@@ -11,6 +11,7 @@ call plug#begin('~/.vim/bundle')
 Plug 'chriskempson/base16-vim'
 Plug 'nanotech/jellybeans.vim'
 Plug 'w0ng/vim-hybrid'
+Plug 'AlessandroYorba/Alduin'
 " Plug 'tpope/vim-vividchalk'
 " Plug 'junegunn/seoul256.vim'
 " Plug 'vim-scripts/wombat256.vim'
@@ -25,7 +26,7 @@ Plug 'Olical/vim-enmasse'
 Plug 'benekastah/neomake' " Async execution engine for syntax checking
 " Plug '0x0dea/vim-molasses' " For not being efficient...
 Plug 'ap/vim-buftabline' " Display open buffers
-Plug 'itchyny/lightline.vim' " Prettier status line
+" Plug 'itchyny/lightline.vim' " Prettier status line
 " Plug 'ervandew/supertab' " Tab completion instead of ctrl p and n
 Plug 'Raimondi/delimitMate' " Auto insert paired characters
 Plug 'rking/ag.vim'
@@ -51,6 +52,7 @@ Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
 Plug 'othree/yajs.vim', { 'for': 'javascript' }
 Plug 'mxw/vim-jsx', { 'for': 'javascript' } " React specific
 Plug 'moll/vim-node', { 'for': 'javascript' } " Node js
+Plug 'helino/vim-json', { 'for': 'json' } " Node js
 
 Plug 'leafgarland/typescript-vim', { 'for': 'typescript' } " Might come handy
 Plug 'mustache/vim-mustache-handlebars'
@@ -72,7 +74,6 @@ let mapleader=','
 set hidden " Some kind of buffer tweak
 set history=1000
 set undofile
-set undodir=~/.vim/undo
 set undolevels=1000
 set title " Set title of the window
 set clipboard=unnamed " Use OS clipboard
@@ -82,13 +83,28 @@ set backspace=indent,eol,start
 set lazyredraw
 set ttyfast
 set showmatch " Highlight matching pair
-set nobackup " Disable swapfiles
-set nowritebackup
-set noswapfile
 set list " Display invisibles
 set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
 set showbreak=↪
 set visualbell " No noise just flash
+
+" Backup
+set backup
+set noswapfile
+set undodir=~/.vim/tmp/undo//     " undo files
+set backupdir=~/.vim/tmp/backup// " backups
+set directory=~/.vim/tmp/swap//   " swap files
+
+" Make those folders automatically if they don't already exist.
+if !isdirectory(expand(&undodir))
+    call mkdir(expand(&undodir), "p")
+endif
+if !isdirectory(expand(&backupdir))
+    call mkdir(expand(&backupdir), "p")
+endif
+if !isdirectory(expand(&directory))
+    call mkdir(expand(&directory), "p")
+endif
 
 " Syntax highlighting
 " ===================
@@ -211,8 +227,9 @@ command! -bang Qa qa<bang>
 " ===========
 set t_Co=256
 let base16colorspace=256
+let g:alduin_Shout_Windhelm = 1
 set background=dark
-colorscheme hybrid
+colorscheme alduin
 
 " The silver searcher (ACK)
 " =========================
