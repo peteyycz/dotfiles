@@ -1,7 +1,8 @@
+# Source general configurations
+for config ($DOTFILES/zsh/*.zsh) source $config
+
 # Source OS specific configuration
 source $DOTFILES/zsh/OS/`uname -s`.zsh
-
-for config ($DOTFILES/zsh/*.zsh) source $config
 
 # What a fucker, got hold of me for a while
 KEYTIMEOUT=1
@@ -26,8 +27,8 @@ antigen apply
 # ====================
 # Base16 Shell
 # ====================
-# BASE16_SHELL="$DOTFILES/base16-shell/$THEME.$BACKGROUND.sh"
-# source $BASE16_SHELL
+BASE16_SHELL="$DOTFILES/base16-shell/$THEME.$BACKGROUND.sh"
+source $BASE16_SHELL
 
 # ====================
 # Base16 Shell
