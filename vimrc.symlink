@@ -5,7 +5,7 @@ set autoread " Detect file changes outside vim
 
 " Plug all the Plugins
 " ====================
-call plug#begin('~/.vim/bundle')
+call plug#begin('~/.config/nvim/bundle')
 
 " Can't live without colors
 Plug 'chriskempson/base16-vim'
@@ -25,7 +25,7 @@ Plug 'Olical/vim-enmasse'
 
 Plug 'benekastah/neomake' " Async execution engine for syntax checking
 " Plug '0x0dea/vim-molasses' " For not being efficient...
-Plug 'ap/vim-buftabline' " Display open buffers
+" Plug 'ap/vim-buftabline' " Display open buffers
 " Plug 'itchyny/lightline.vim' " Prettier status line
 " Plug 'ervandew/supertab' " Tab completion instead of ctrl p and n
 Plug 'Raimondi/delimitMate' " Auto insert paired characters
@@ -91,9 +91,9 @@ set visualbell " No noise just flash
 " Backup
 set backup
 set noswapfile
-set undodir=~/.vim/tmp/undo//     " undo files
-set backupdir=~/.vim/tmp/backup// " backups
-set directory=~/.vim/tmp/swap//   " swap files
+set undodir=~/.config/nvim/tmp/undo//     " undo files
+set backupdir=~/.config/nvim/tmp/backup// " backups
+set directory=~/.config/nvim/tmp/swap//   " swap files
 
 " Make those folders automatically if they don't already exist.
 if !isdirectory(expand(&undodir))
