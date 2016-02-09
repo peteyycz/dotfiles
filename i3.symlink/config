@@ -352,3 +352,7 @@ exec urxvt
 exec chromium
 exec slack
 exec spotify
+
+# Swap control and escape
+exec setxkbmap -option ctrl:nocaps
+exec xcape
