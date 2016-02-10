@@ -9,12 +9,14 @@
   rebase = true
 [github]
   user = peteyy
-[diff]
-	tool = vimdiff
 [merge]
-	tool = vimdiff
+  tool = nvimdiff
+[diff]
+  tool = nvimdiff
+[difftool "nvimdiff"]
+  cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
 [difftool]
-	prompt = false
+  prompt = false
 [alias]
   co = checkout
   p = push
@@ -23,5 +25,4 @@
   aa = add --all
   d = diff
   dt = difftool
-[mergetool]
-	path = nvim
+  lol= log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit

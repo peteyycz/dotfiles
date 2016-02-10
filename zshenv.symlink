@@ -7,10 +7,16 @@ export THEME="base16-monokai"
 export BACKGROUND="dark"
 
 # Add locals to path
-export PATH="$HOME/.gem/ruby/2.2.0/bin:/usr/local/bin:/usr/local/sbin:$PATH"
+export PATH=$HOME/.gem/bin:/usr/local/bin:/usr/local/sbin:$PATH
 export MANPATH="/usr/local/man:$MANPATH"
 
 export NVM_DIR=~/.nvm
+
+export GEM_HOME=~/.gem
+export GEM_PATH=~/.gem
+
+# Setting ag as the default source for fzf
+export FZF_DEFAULT_COMMAND='ag -g ""'
 
 # If private config available use it
 if [ -f ~/.zshenv_private ]; then
