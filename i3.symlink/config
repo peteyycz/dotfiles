@@ -331,8 +331,8 @@ mode "$mode_gaps_outer" {
 }
 
 # Swap control and escape
-setxkbmap -option ctrl:nocaps
-exec xcape
+exec "setxkbmap -option ctrl:nocaps"
+exec "xcape"
 
 # Change background
 exec urxvt
