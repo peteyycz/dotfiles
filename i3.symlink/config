@@ -4,9 +4,6 @@
 # Set mod key (Mod1=<Alt>, Mod4=<Super>)
 set $mod Mod4
 
-# set default desktop layout (default is tiling)
-# workspace_layout tabbed <stacking|tabbed>
-
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
 new_window pixel 2
 new_float normal
@@ -37,14 +34,11 @@ bindsym $mod+Shift+q kill
 bindsym $mod+d exec rofi -show run -lines 3 -eh 2
 
 ################################################################################################
-## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
-################################################################################################
-
-exec --no-startup-id volumeicon
-bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
+# sound-section
+#
 exec --no-startup-id pulseaudio
-#exec --no-startup-id pa-applet
-#bindsym $mod+Ctrl+m exec pavucontrol
+exec --no-startup-id pa-applet
+bindsym $mod+Ctrl+m exec pavucontrol
 
 ################################################################################################
 
@@ -61,8 +55,6 @@ bindsym $mod+Print --release exec "scrot -ue 'mv $f ~/Screenshots'; sleep 1; exe
 bindsym $mod+Shift+Print --release exec "notify-send 'selection will be saved to ~/Screenshots'; scrot -se 'mv $f ~/Screenshots'"
 bindsym $mod+Shift+h exec qpdfview i3_help.pdf
 bindsym $mod+Ctrl+x exec xkill
-
-# focus_follows_mouse no
 
 # change focus
 bindsym $mod+h focus left
@@ -165,7 +157,6 @@ for_window [class="Spotify"] move to workspace $ws10
 
 # Open specific applications in floating mode
 for_window [title="alsamixer"] floating enable border pixel 2
-for_window [class="Calamares"] floating enable border normal
 for_window [class="Clipgrab"] floating enable
 for_window [title="File Transfer*"] floating enable
 for_window [class="Galculator"] floating enable border pixel 2
@@ -178,9 +169,6 @@ for_window [class="Manjaro Welcome"] floating enable
 for_window [title="MuseScore: Play Panel"] floating enable
 for_window [class="Nitrogen"] floating enable sticky enable border normal
 for_window [class="Oblogout"] fullscreen enable
-for_window [class="octopi"] floating enable
-for_window [class="Pamac-manager"] floating enable
-for_window [class="Pamac-updater"] floating enable
 for_window [class="Pavucontrol"] floating enable
 for_window [class="Qtconfig-qt4"] floating enable sticky enable border normal
 for_window [class="Simple-scan"] floating enable border normal
@@ -199,11 +187,8 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
-
 # Set shut down, restart and locking features
-bindsym $mod+Alt+l mode "$mode_system"
+bindsym $mod+Shift+e mode "$mode_system"
 set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
 mode "$mode_system" {
     bindsym l exec --no-startup-id i3exit lock, mode "default"
@@ -256,8 +241,6 @@ exec --no-startup-id clipit
 # exec --no-startup-id blueman
 # exec_always --no-startup-id sbxkb
 exec --no-startup-id compton -b
-# exec --no-startup-id start_conky_grey
-# exec --no-startup-id start_conky_green
 exec --no-startup-id xautolock -time 10 -locker blurlock
 
 set $bg-color            #2f343f
@@ -295,8 +278,8 @@ bar {
 for_window [class="^.*"] border pixel 2
 
 # Set inner/outer gaps
-gaps inner 10
-gaps outer 0
+gaps inner 25
+gaps outer 5
 
 # Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
 # gaps inner|outer current|all set|plus|minus <px>
@@ -347,12 +330,12 @@ mode "$mode_gaps_outer" {
         bindsym Escape mode "default"
 }
 
+# Swap control and escape
+setxkbmap -option ctrl:nocaps
+exec xcape
+
 # Change background
 exec urxvt
 exec chromium
 exec slack
 exec spotify
-
-# Swap control and escape
-exec setxkbmap -option ctrl:nocaps
-exec xcape
