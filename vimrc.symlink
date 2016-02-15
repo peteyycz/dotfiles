@@ -50,7 +50,7 @@ Plug 'tpope/vim-abolish' " Better abbrev
 Plug 'junegunn/limelight.vim', { 'on': 'Limelight' } " Focusing tool
 Plug 'junegunn/goyo.vim', { 'on': 'Limelight' } " Focusing tool
 
-Plug 'mattn/emmet-vim', { 'for': 'html' } " Zen coding at it's best
+Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript']} " Zen coding at it's best
 Plug 'othree/html5.vim', { 'for': 'html' }
 
 Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
