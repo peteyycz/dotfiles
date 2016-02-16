@@ -117,7 +117,7 @@ set $ws2 2: 
 set $ws3 3: 
 set $ws8 8: 
 set $ws9 9: 
-set $ws10 10: 
+set $ws10 10: 
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -150,10 +150,7 @@ bindsym $mod+Ctrl+Left workspace prev
 assign [class="chromium"] $ws2
 assign [class="Slack"] $ws3
 assign [class="Steam"] $ws8
-
-# Until this class issue is resolved https://community.spotify.com/t5/Help-Desktop-Linux-Windows-Web/WM-CLASS-window-property-on-Linux/m-p/1260567/highlight/true
-# assign [class="Spotify"] $ws10
-for_window [class="Spotify"] move to workspace $ws10
+assign [class="Soundnode App"] $ws10
 
 # Open specific applications in floating mode
 for_window [title="alsamixer"] floating enable border pixel 2
@@ -339,4 +336,4 @@ exec "xinput set-prop \"ETPS/2 Elantech Touchpad\" 280 -125 -125"
 exec urxvt
 exec chromium
 exec slack
-exec spotify
+exec soundnode
