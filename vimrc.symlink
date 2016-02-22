@@ -9,9 +9,10 @@ call plug#begin('~/.config/nvim/bundle')
 
 " Can't live without colors
 Plug 'chriskempson/base16-vim'
-Plug 'nanotech/jellybeans.vim'
-Plug 'w0ng/vim-hybrid'
+" Plug 'nanotech/jellybeans.vim'
+" Plug 'w0ng/vim-hybrid'
 Plug 'AlessandroYorba/Alduin'
+" Plug 'AlessandroYorba/Sierra'
 " Plug 'tpope/vim-vividchalk'
 " Plug 'junegunn/seoul256.vim'
 " Plug 'vim-scripts/wombat256.vim'
@@ -41,11 +42,6 @@ Plug 'tpope/vim-surround' " Surround
 Plug 'tpope/vim-repeat' " Repeat last command with .
 Plug 'tpope/vim-unimpaired' " Additional paired mappings
 Plug 'tpope/vim-abolish' " Better abbrev
-
-" Plug 'ctrlpvim/ctrlp.vim' " Fast file opening
-" Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-" let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-" let g:ctrlp_use_caching = 0
 
 Plug 'junegunn/limelight.vim', { 'on': 'Limelight' } " Focusing tool
 Plug 'junegunn/goyo.vim', { 'on': 'Limelight' } " Focusing tool
@@ -93,23 +89,20 @@ set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
 set showbreak=↪
 set visualbell " No noise just flash
 
-" Backup
-set backup
-set noswapfile
-set undodir=~/.config/nvim/tmp/undo//     " undo files
-set backupdir=~/.config/nvim/tmp/backup// " backups
-set directory=~/.config/nvim/tmp/swap//   " swap files
+" Environment variables
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
-" Make those folders automatically if they don't already exist.
-if !isdirectory(expand(&undodir))
-    call mkdir(expand(&undodir), "p")
+" Backup
+set nobackup
+set noswapfile
+set autowrite
+if has('persistent_undo')
+  set undolevels=5000
+  set undodir=$HOME/.VIM_UNDO_FILES
+  set undofile
 endif
-if !isdirectory(expand(&backupdir))
-    call mkdir(expand(&backupdir), "p")
-endif
-if !isdirectory(expand(&directory))
-    call mkdir(expand(&directory), "p")
-endif
+
 
 " Syntax highlighting
 " ===================
@@ -129,6 +122,7 @@ set wildignore+=build,cache,dist,*.min.*,coverage,node_modules
 " ====
 " http://robots.thoughtbot.com/faster-grepping-in-vim/
 set grepprg=ag\ --nogroup\ --nocolor
+let g:ag_working_path_mode="r"
 
 " Autoscroll
 " ==========
@@ -193,7 +187,7 @@ set gdefault " Set /g flag regex search
 " Mappings
 " ========
 " Hide search highlights
-noremap <silent> <leader>n :nohlsearch<CR>
+nmap <silent> <BS>  :nohlsearch<CR>
 " Sort lines
 nnoremap <leader>s vip:!sort<cr>
 vnoremap <leader>s :!sort<cr>
@@ -233,13 +227,30 @@ command! -bang Q q<bang>
 command! -bang QA qa<bang>
 command! -bang Qa qa<bang>
 
+" Custom functions
+" ================
+
+" Adds only to a describe line
+function! MochaAddOnly()
+    normal ^wi.only^
+endfunction
+
+" Removes only from a describe line
+function! MochaRemoveOnly()
+    normal ^wde^
+endfunction
+
+nnoremap <silent> <leader>mo :call MochaAddOnly()<CR>
+nnoremap <silent> <leader>md :call MochaRemoveOnly()<CR>
+
 " Colorscheme
 " ===========
 set t_Co=256
 let base16colorspace=256
+let g:sierra_Twilight = 1
 let g:alduin_Shout_Windhelm = 1
 set background=dark
-colorscheme alduin
+colorscheme base16-monokai
 
 " The silver searcher (ACK)
 " =========================
@@ -288,4 +299,3 @@ autocmd! BufWritePost * Neomake
 imap <c-x><c-l> <plug>(fzf-complete-line)
 nnoremap <C-p> :Files<CR>
 nnoremap <leader>b :Buffers<CR>
-
