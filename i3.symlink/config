@@ -8,7 +8,7 @@ set $text-color          #f3f4f5
 set $inactive-text-color #676E7D
 set $urgent-bg-color     #E53935
 
-set $my-font Roboto Medium 13
+set $my-font Roboto Medium 12
 
 # Set mod key (Mod1=<Alt>, Mod4=<Super>)
 set $mod Mod4

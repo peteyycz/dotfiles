@@ -5,13 +5,3 @@ Xft.rgba: rgb
 Xft.autohint: false
 Xft.hintstyle: hintslight
 Xft.lcdfilter: lcddefault
-
-URxvt.font: xft:Input Mono:size=12,xft:FontAwesome:size=12
-URxvt.depth: 32
-URxvt.background: [62]#000000
-URxvt*scrollBar:                      false
-URxvt*mouseWheelScrollPage:           false
-URxvt*cursorBlink:                    true
-URxvt*background:                     black
-URxvt*foreground:                     white
-URxvt*saveLines:                      5000
