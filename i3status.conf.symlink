@@ -42,7 +42,7 @@ disk "/home" {
 }
 
 wireless _first_ {
-  format_up = "  %essid %quality "
+  format_up = "  %essid %quality "
   format_down = " no wlan "
 }
 

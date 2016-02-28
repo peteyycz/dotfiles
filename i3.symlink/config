@@ -8,7 +8,7 @@ set $text-color          #f3f4f5
 set $inactive-text-color #676E7D
 set $urgent-bg-color     #E53935
 
-set $my-font Input Sans 12
+set $my-font Roboto Medium 13
 
 # Set mod key (Mod1=<Alt>, Mod4=<Super>)
 set $mod Mod4
@@ -33,7 +33,7 @@ font pango: $my-font
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec terminal
+bindsym $mod+Return exec termite
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -44,19 +44,16 @@ bindsym $mod+d exec rofi -opacity 95 -show run -lines 3 -eh 2 -bc '$bg-color' -b
 
 ################################################################################################
 # sound-section
-#
 exec --no-startup-id pulseaudio
-exec --no-startup-id pa-applet
+exec --no-startup-id volumeicon
 bindsym $mod+Ctrl+m exec pavucontrol
 
 ################################################################################################
-
 # Screen brightness controls
 bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up'"
 bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
 
 # Start Applications
-# bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
 bindsym $mod+t exec --no-startup-id pkill compton
 bindsym $mod+Ctrl+t exec --no-startup-id compton -b
 bindsym $mod+Ctrl+x exec xkill
@@ -84,10 +81,10 @@ bindsym $mod+b workspace back_and_forth
 bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
 
 # split in horizontal orientation
-bindsym $mod+s split h;exec notify-send 'tile horizontally'
+bindsym $mod+v split h;exec notify-send 'tile horizontally'
 
 # split in vertical orientation
-bindsym $mod+v split v;exec notify-send 'tile vertically'
+bindsym $mod+s split v;exec notify-send 'tile vertically'
 
 # toggle fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -111,7 +108,7 @@ bindsym $mod+a focus parent
 
 # Workspace names
 set $ws1 1: 
-set $ws2 2: 
+set $ws2 2: 
 set $ws3 3: 
 set $ws7 7: 
 set $ws8 8: 
@@ -148,22 +145,18 @@ bindsym $mod+Ctrl+Left workspace prev
 
 # Open applications on specific workspaces
 assign [class="chromium"] $ws2
+assign [class="Firefox"] $ws2
 assign [class="Slack"] $ws3
 assign [class="Steam"] $ws8
 assign [class="Vlc"] $ws7
 assign [class="Soundnode App"] $ws10
 
 # Open specific applications in floating mode
-for_window [title="alsamixer"] floating enable border pixel 2
 for_window [class="Clipgrab"] floating enable
 for_window [title="File Transfer*"] floating enable
-for_window [class="Galculator"] floating enable border pixel 2
 for_window [class="GParted"] floating enable border normal
-for_window [title="i3_help"] floating enable sticky enable border normal
 for_window [class="Lightdm-gtk-greeter-settings"] floating enable
 for_window [class="Lxappearance"] floating enable sticky enable border normal
-for_window [class="manjaro-settings-manager-gui"] floating enable border normal
-for_window [class="Manjaro Welcome"] floating enable
 for_window [title="MuseScore: Play Panel"] floating enable
 for_window [class="Nitrogen"] floating enable sticky enable border normal
 for_window [class="Oblogout"] fullscreen enable
@@ -171,7 +164,6 @@ for_window [class="Pavucontrol"] floating enable
 for_window [class="Qtconfig-qt4"] floating enable sticky enable border normal
 for_window [class="Simple-scan"] floating enable border normal
 for_window [class="(?i)System-config-printer.py"] floating enable border normal
-for_window [class="Skype"] floating enable border normal
 for_window [class="Thus"] floating enable border normal
 for_window [class="Timeset-gui"] floating enable border normal
 for_window [class="(?i)virtualbox"] floating enable border normal
@@ -230,12 +222,10 @@ mode "resize" {
 # bindsym $mod+9 exec --no-startup-id blurlock
 
 # Autostart applications
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id nitrogen --restore
 exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
-exec --no-startup-id pamac-tray
-exec --no-startup-id clipit
+exec --no-startup-id parcellite
 # exec --no-startup-id blueman
 # exec_always --no-startup-id sbxkb
 exec --no-startup-id compton -b
@@ -262,66 +252,6 @@ bar {
   }
 }
 
-#############################
-### settings for i3-gaps: ###
-#############################
-
-# Disable window titlebars entirely
-for_window [class="^.*"] border pixel 2
-
-# Set inner/outer gaps
-gaps inner 20
-gaps outer 0
-
-# Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
-# gaps inner|outer current|all set|plus|minus <px>
-# gaps inner all set 10
-# gaps outer all plus 5
-
-# Smart gaps (gaps used if only more than one container on the workspace)
-smart_gaps on
-
-# Smart borders (draw borders around container only if it is not the only container on this workspace)
-# on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
-smart_borders on
-
-# Press $mod+Shift+g to enter the gap mode. Choose o or i for modifying outer/inner gaps. Press one of + / - (in-/decrement for current workspace) or 0 (remove gaps for current workspace). If you also press Shift with these keys, the change will be global for all workspaces.
-set $mode_gaps Gaps: (o) outer, (i) inner
-set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
-set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
-bindsym $mod+Shift+g mode "$mode_gaps"
-
-mode "$mode_gaps" {
-        bindsym o      mode "$mode_gaps_outer"
-        bindsym i      mode "$mode_gaps_inner"
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}
-mode "$mode_gaps_inner" {
-        bindsym plus  gaps inner current plus 5
-        bindsym minus gaps inner current minus 5
-        bindsym 0     gaps inner current set 0
-
-        bindsym Shift+plus  gaps inner all plus 5
-        bindsym Shift+minus gaps inner all minus 5
-        bindsym Shift+0     gaps inner all set 0
-
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}
-mode "$mode_gaps_outer" {
-        bindsym plus  gaps outer current plus 5
-        bindsym minus gaps outer current minus 5
-        bindsym 0     gaps outer current set 0
-
-        bindsym Shift+plus  gaps outer all plus 5
-        bindsym Shift+minus gaps outer all minus 5
-        bindsym Shift+0     gaps outer all set 0
-
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}
-
 # Swap control and escape
 exec --no-startup-id "setxkbmap -option ctrl:nocaps"
 # CTRL one tap is escape
@@ -330,7 +260,7 @@ exec --no-startup-id "xcape"
 exec --no-startup-id "xinput set-prop \"ETPS/2 Elantech Touchpad\" \"Synaptics Scrolling Distance\" -125 -125"
 
 # Change background
-exec --no-startup-id urxvt
-exec --no-startup-id chromium
+exec --no-startup-id termite
+exec --no-startup-id firefox
 exec --no-startup-id slack
 exec --no-startup-id soundnode
