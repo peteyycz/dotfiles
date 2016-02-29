@@ -9,8 +9,3 @@ export DOCKER_TLS_VERIFY=1
 # iTerm integration
 # ====================
 test -e ${HOME}/.iterm2_shell_integration.bash && source ${HOME}/.iterm2_shell_integration.bash
-
-# ====================
-# Node Version manager
-# ====================
-export NVM_DIR=$(brew --prefix nvm)
