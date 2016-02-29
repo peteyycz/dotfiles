@@ -1,0 +1,2482 @@
+server started, pid 7754
+cmdq 0x20e5310: bind-key C-b send-prefix (client -1)
+cmdq 0x20e5310: bind-key C-o rotate-window (client -1)
+cmdq 0x20e5310: bind-key C-z suspend-client (client -1)
+cmdq 0x20e5310: bind-key Space next-layout (client -1)
+cmdq 0x20e5310: bind-key ! break-pane (client -1)
+cmdq 0x20e5310: bind-key " split-window (client -1)
+cmdq 0x20e5310: bind-key # list-buffers (client -1)
+cmdq 0x20e5310: bind-key $ command-prompt -I#S "rename-session '%%'" (client -1)
+cmdq 0x20e5310: bind-key % split-window -h (client -1)
+cmdq 0x20e5310: bind-key & confirm-before "-pkill-window #W? (y/n)" kill-window (client -1)
+cmdq 0x20e5310: bind-key ' command-prompt -pindex "select-window -t ':%%'" (client -1)
+cmdq 0x20e5310: bind-key ( switch-client -p (client -1)
+cmdq 0x20e5310: bind-key ) switch-client -n (client -1)
+cmdq 0x20e5310: bind-key , command-prompt -I#W "rename-window '%%'" (client -1)
+cmdq 0x20e5310: bind-key - delete-buffer (client -1)
+cmdq 0x20e5310: bind-key . command-prompt "move-window -t '%%'" (client -1)
+cmdq 0x20e5310: bind-key 0 select-window -t:0 (client -1)
+cmdq 0x20e5310: bind-key 1 select-window -t:1 (client -1)
+cmdq 0x20e5310: bind-key 2 select-window -t:2 (client -1)
+cmdq 0x20e5310: bind-key 3 select-window -t:3 (client -1)
+cmdq 0x20e5310: bind-key 4 select-window -t:4 (client -1)
+cmdq 0x20e5310: bind-key 5 select-window -t:5 (client -1)
+cmdq 0x20e5310: bind-key 6 select-window -t:6 (client -1)
+cmdq 0x20e5310: bind-key 7 select-window -t:7 (client -1)
+cmdq 0x20e5310: bind-key 8 select-window -t:8 (client -1)
+cmdq 0x20e5310: bind-key 9 select-window -t:9 (client -1)
+cmdq 0x20e5310: bind-key : command-prompt (client -1)
+cmdq 0x20e5310: bind-key ; last-pane (client -1)
+cmdq 0x20e5310: bind-key = choose-buffer (client -1)
+cmdq 0x20e5310: bind-key ? list-keys (client -1)
+cmdq 0x20e5310: bind-key D choose-client (client -1)
+cmdq 0x20e5310: bind-key L switch-client -l (client -1)
+cmdq 0x20e5310: bind-key [ copy-mode (client -1)
+cmdq 0x20e5310: bind-key ] paste-buffer (client -1)
+cmdq 0x20e5310: bind-key c new-window (client -1)
+cmdq 0x20e5310: bind-key d detach-client (client -1)
+cmdq 0x20e5310: bind-key f command-prompt "find-window '%%'" (client -1)
+cmdq 0x20e5310: bind-key i display-message (client -1)
+cmdq 0x20e5310: bind-key l last-window (client -1)
+cmdq 0x20e5310: bind-key n next-window (client -1)
+cmdq 0x20e5310: bind-key o select-pane -t:.+ (client -1)
+cmdq 0x20e5310: bind-key p previous-window (client -1)
+cmdq 0x20e5310: bind-key q display-panes (client -1)
+cmdq 0x20e5310: bind-key r refresh-client (client -1)
+cmdq 0x20e5310: bind-key s choose-tree (client -1)
+cmdq 0x20e5310: bind-key t clock-mode (client -1)
+cmdq 0x20e5310: bind-key w choose-window (client -1)
+cmdq 0x20e5310: bind-key x confirm-before "-pkill-pane #P? (y/n)" kill-pane (client -1)
+cmdq 0x20e5310: bind-key z resize-pane -Z (client -1)
+cmdq 0x20e5310: bind-key { swap-pane -U (client -1)
+cmdq 0x20e5310: bind-key } swap-pane -D (client -1)
+cmdq 0x20e5310: bind-key ~ show-messages (client -1)
+cmdq 0x20e5310: bind-key PPage copy-mode -u (client -1)
+cmdq 0x20e5310: bind-key -r Up select-pane -U (client -1)
+cmdq 0x20e5310: bind-key -r Down select-pane -D (client -1)
+cmdq 0x20e5310: bind-key -r Left select-pane -L (client -1)
+cmdq 0x20e5310: bind-key -r Right select-pane -R (client -1)
+cmdq 0x20e5310: bind-key M-1 select-layout even-horizontal (client -1)
+cmdq 0x20e5310: bind-key M-2 select-layout even-vertical (client -1)
+cmdq 0x20e5310: bind-key M-3 select-layout main-horizontal (client -1)
+cmdq 0x20e5310: bind-key M-4 select-layout main-vertical (client -1)
+cmdq 0x20e5310: bind-key M-5 select-layout tiled (client -1)
+cmdq 0x20e5310: bind-key M-n next-window -a (client -1)
+cmdq 0x20e5310: bind-key M-o rotate-window -D (client -1)
+cmdq 0x20e5310: bind-key M-p previous-window -a (client -1)
+cmdq 0x20e5310: bind-key -r M-Up resize-pane -U 5 (client -1)
+cmdq 0x20e5310: bind-key -r M-Down resize-pane -D 5 (client -1)
+cmdq 0x20e5310: bind-key -r M-Left resize-pane -L 5 (client -1)
+cmdq 0x20e5310: bind-key -r M-Right resize-pane -R 5 (client -1)
+cmdq 0x20e5310: bind-key -r C-Up resize-pane -U (client -1)
+cmdq 0x20e5310: bind-key -r C-Down resize-pane -D (client -1)
+cmdq 0x20e5310: bind-key -r C-Left resize-pane -L (client -1)
+cmdq 0x20e5310: bind-key -r C-Right resize-pane -R (client -1)
+socket path /tmp/tmux-1000/default
+new client 7
+loading /home/peteyy/.tmux.conf
+/home/peteyy/.tmux.conf: # tmux display things in 256 colors
+/home/peteyy/.tmux.conf: set-option -ga terminal-overrides ",xterm-256color:Tc"
+/home/peteyy/.tmux.conf: # set -g default-terminal "screen-256color"
+/home/peteyy/.tmux.conf: 
+/home/peteyy/.tmux.conf: set -g history-limit 20000
+/home/peteyy/.tmux.conf: 
+/home/peteyy/.tmux.conf: # Rather than constraining window size to the maximum size of any client
+/home/peteyy/.tmux.conf: # connected to the *session*, constrain window size to the maximum size of any
+/home/peteyy/.tmux.conf: # client connected to *that window*. Much more reasonable.
+/home/peteyy/.tmux.conf: setw -g aggressive-resize on
+/home/peteyy/.tmux.conf: 
+/home/peteyy/.tmux.conf: # make delay shorter
+/home/peteyy/.tmux.conf: set -sg escape-time 0
+/home/peteyy/.tmux.conf: 
+/home/peteyy/.tmux.conf: # make window/pane index start with 1
+/home/peteyy/.tmux.conf: set -g base-index 1
+/home/peteyy/.tmux.conf: setw -g pane-base-index 1
+/home/peteyy/.tmux.conf: 
+/home/peteyy/.tmux.conf: # enable mouse support for switching and resizing panes/windows
+/home/peteyy/.tmux.conf: set -g mouse on
+/home/peteyy/.tmux.conf: 
+/home/peteyy/.tmux.conf: # to enable mouse scroll, see https://github.com/tmux/tmux/issues/145#issuecomment-150736967
+/home/peteyy/.tmux.conf: bind -n WheelUpPane if-shell -F -t = "#{mouse_any_flag}" "send-keys -M" "if -Ft= '#{pane_in_mode}' 'send-keys -M' 'copy-mode -e'"
+/home/peteyy/.tmux.conf: # set -g terminal-overrides 'xterm*:smcup@:rmcup@'
+/home/peteyy/.tmux.conf: 
+/home/peteyy/.tmux.conf: # more settings to make copy-mode more vim-like
+/home/peteyy/.tmux.conf: unbind [
+/home/peteyy/.tmux.conf: bind Escape copy-mode
+/home/peteyy/.tmux.conf: unbind p
+/home/peteyy/.tmux.conf: bind p paste-buffer
+/home/peteyy/.tmux.conf: bind -t vi-copy 'v' begin-selection
+/home/peteyy/.tmux.conf: bind -t vi-copy 'y' copy-selection
+/home/peteyy/.tmux.conf: 
+/home/peteyy/.tmux.conf: # Vi mode
+/home/peteyy/.tmux.conf: set -g status-keys vi
+/home/peteyy/.tmux.conf: setw -g mode-keys vi
+/home/peteyy/.tmux.conf: 
+/home/peteyy/.tmux.conf: ## Unbinds
+/home/peteyy/.tmux.conf: ## `-> these are part of the default mappings
+/home/peteyy/.tmux.conf: ##     and will get new functionality
+/home/peteyy/.tmux.conf: unbind c
+/home/peteyy/.tmux.conf: unbind i
+/home/peteyy/.tmux.conf: unbind l
+/home/peteyy/.tmux.conf: unbind s
+/home/peteyy/.tmux.conf: unbind w
+/home/peteyy/.tmux.conf: 
+/home/peteyy/.tmux.conf: # automatically renumber tmux windows
+/home/peteyy/.tmux.conf: set -g renumber-windows on
+/home/peteyy/.tmux.conf: 
+/home/peteyy/.tmux.conf: ##-------~---~----------~----------~----
+/home/peteyy/.tmux.conf: ## Keybindings
+/home/peteyy/.tmux.conf: ##-------~---~----------~----------~----
+/home/peteyy/.tmux.conf: 
+/home/peteyy/.tmux.conf: bind r source-file ~/.tmux.conf \; display "Config Reloaded!"
+/home/peteyy/.tmux.conf: 
+/home/peteyy/.tmux.conf: bind w neww
+/home/peteyy/.tmux.conf: bind m choose-window
+/home/peteyy/.tmux.conf: bind a choose-session
+/home/peteyy/.tmux.conf: bind c kill-pane
+/home/peteyy/.tmux.conf: bind t set status
+/home/peteyy/.tmux.conf: 
+/home/peteyy/.tmux.conf: bind h select-pane -L
+/home/peteyy/.tmux.conf: bind j select-pane -D
+/home/peteyy/.tmux.conf: bind k select-pane -U
+/home/peteyy/.tmux.conf: bind l select-pane -R
+/home/peteyy/.tmux.conf: 
+/home/peteyy/.tmux.conf: bind ^h resize-pane -L
+/home/peteyy/.tmux.conf: bind ^j resize-pane -D
+/home/peteyy/.tmux.conf: bind ^k resize-pane -U
+/home/peteyy/.tmux.conf: bind ^l resize-pane -R
+/home/peteyy/.tmux.conf: 
+/home/peteyy/.tmux.conf: bind v split-window -h
+/home/peteyy/.tmux.conf: bind s split-window
+/home/peteyy/.tmux.conf: 
+/home/peteyy/.tmux.conf: # colon :
+/home/peteyy/.tmux.conf: bind : command-prompt
+/home/peteyy/.tmux.conf: 
+/home/peteyy/.tmux.conf: ##-------~---~----------~----------~----
+/home/peteyy/.tmux.conf: ## General settings
+/home/peteyy/.tmux.conf: ##-------~---~----------~----------~----
+/home/peteyy/.tmux.conf: 
+/home/peteyy/.tmux.conf: # set -g default-shell /bin/zsh
+/home/peteyy/.tmux.conf: set -g set-titles on
+/home/peteyy/.tmux.conf: set -g set-titles-string 'tmux: #T'
+/home/peteyy/.tmux.conf: set -g repeat-time 100
+/home/peteyy/.tmux.conf: setw -g clock-mode-style 12
+/home/peteyy/.tmux.conf: setw -g alternate-screen on
+/home/peteyy/.tmux.conf: 
+/home/peteyy/.tmux.conf: ## Don't close windows
+/home/peteyy/.tmux.conf: set -g set-remain-on-exit on
+/home/peteyy/.tmux.conf: 
+/home/peteyy/.tmux.conf: 
+/home/peteyy/.tmux.conf: # loud or quiet?
+/home/peteyy/.tmux.conf: set-option -g visual-activity on
+/home/peteyy/.tmux.conf: set-option -g visual-bell on
+/home/peteyy/.tmux.conf: set-option -g visual-silence off
+/home/peteyy/.tmux.conf: set-window-option -g monitor-activity off
+/home/peteyy/.tmux.conf: set-option -g bell-action none
+/home/peteyy/.tmux.conf: 
+/home/peteyy/.tmux.conf: ##-------~---~----------~----------~----
+/home/peteyy/.tmux.conf: ## Status bar
+/home/peteyy/.tmux.conf: ##-------~---~----------~----------~----
+/home/peteyy/.tmux.conf: 
+/home/peteyy/.tmux.conf: set -g display-panes-time 1000
+/home/peteyy/.tmux.conf: 
+/home/peteyy/.tmux.conf: setw -g automatic-rename on
+/home/peteyy/.tmux.conf: 
+/home/peteyy/.tmux.conf: set -g status-interval 5
+/home/peteyy/.tmux.conf: set -g status-justify centre
+/home/peteyy/.tmux.conf: 
+/home/peteyy/.tmux.conf: set-window-option -g status-left " #S "
+/home/peteyy/.tmux.conf: 
+/home/peteyy/.tmux.conf: set-window-option -g status-right "ï€— %H:%M, %d. %B "
+/home/peteyy/.tmux.conf: 
+/home/peteyy/.tmux.conf: set-window-option -g window-status-format " #I: #W "
+/home/peteyy/.tmux.conf: 
+/home/peteyy/.tmux.conf: set-window-option -g window-status-current-format " #I: #W "
+/home/peteyy/.tmux.conf: 
+/home/peteyy/.tmux.conf: #### COLOUR (Solarized dark)
+/home/peteyy/.tmux.conf: 
+/home/peteyy/.tmux.conf: # default statusbar colors
+/home/peteyy/.tmux.conf: set-option -g status-bg black #base02
+/home/peteyy/.tmux.conf: set-option -g status-fg yellow #yellow
+/home/peteyy/.tmux.conf: set-option -g status-attr default
+/home/peteyy/.tmux.conf: 
+/home/peteyy/.tmux.conf: # default window title colors
+/home/peteyy/.tmux.conf: set-window-option -g window-status-fg brightblue #base0
+/home/peteyy/.tmux.conf: set-window-option -g window-status-bg default
+/home/peteyy/.tmux.conf: #set-window-option -g window-status-attr dim
+/home/peteyy/.tmux.conf: 
+/home/peteyy/.tmux.conf: # active window title colors
+/home/peteyy/.tmux.conf: set-window-option -g window-status-current-fg brightred #orange
+/home/peteyy/.tmux.conf: set-window-option -g window-status-current-bg blue
+/home/peteyy/.tmux.conf: set-window-option -g window-status-current-attr dim
+/home/peteyy/.tmux.conf: 
+/home/peteyy/.tmux.conf: # pane border
+/home/peteyy/.tmux.conf: set-option -g pane-border-fg brightgreen #base02
+/home/peteyy/.tmux.conf: set-option -g pane-active-border-fg red #base01
+/home/peteyy/.tmux.conf: 
+/home/peteyy/.tmux.conf: # message text
+/home/peteyy/.tmux.conf: set-option -g message-bg black #base02
+/home/peteyy/.tmux.conf: set-option -g message-fg brightred #orange
+/home/peteyy/.tmux.conf: 
+/home/peteyy/.tmux.conf: # pane number display
+/home/peteyy/.tmux.conf: set-option -g display-panes-active-colour blue #blue
+/home/peteyy/.tmux.conf: set-option -g display-panes-colour brightred #orange
+/home/peteyy/.tmux.conf: 
+/home/peteyy/.tmux.conf: set -g status-interval 1
+/home/peteyy/.tmux.conf: 
+/home/peteyy/.tmux.conf: set -g status-left-length 20
+/home/peteyy/.tmux.conf: set -g status-right-length 150
+/home/peteyy/.tmux.conf: 
+/home/peteyy/.tmux.conf: if-shell 'test "$(uname)" = "Darwin"' 'source $DOTFILES/tmux/tmux.darwin.conf'
+cmdq 0x20eaec0: set-option -ag terminal-overrides ,xterm-256color:Tc (client -1)
+cmdq 0x20eaec0: set-option -g history-limit 20000 (client -1)
+cmdq 0x20eaec0: set-window-option -g aggressive-resize on (client -1)
+cmdq 0x20eaec0: set-option -gs escape-time 0 (client -1)
+cmdq 0x20eaec0: set-option -g base-index 1 (client -1)
+cmdq 0x20eaec0: set-window-option -g pane-base-index 1 (client -1)
+cmdq 0x20eaec0: set-option -g mouse on (client -1)
+cmdq 0x20eaec0: bind-key -n WheelUpPane if-shell -F -t = #{mouse_any_flag} "send-keys -M" "if -Ft= '#{pane_in_mode}' 'send-keys -M' 'copy-mode -e'" (client -1)
+cmdq 0x20eaec0: unbind-key [ (client -1)
+cmdq 0x20eaec0: bind-key Escape copy-mode (client -1)
+cmdq 0x20eaec0: unbind-key p (client -1)
+cmdq 0x20eaec0: bind-key p paste-buffer (client -1)
+cmdq 0x20eaec0: bind-key -t vi-copy v begin-selection (client -1)
+cmdq 0x20eaec0: bind-key -t vi-copy y copy-selection (client -1)
+cmdq 0x20eaec0: set-option -g status-keys vi (client -1)
+cmdq 0x20eaec0: set-window-option -g mode-keys vi (client -1)
+cmdq 0x20eaec0: unbind-key c (client -1)
+cmdq 0x20eaec0: unbind-key i (client -1)
+cmdq 0x20eaec0: unbind-key l (client -1)
+cmdq 0x20eaec0: unbind-key s (client -1)
+cmdq 0x20eaec0: unbind-key w (client -1)
+cmdq 0x20eaec0: set-option -g renumber-windows on (client -1)
+cmdq 0x20eaec0: bind-key r source-file /home/peteyy/.tmux.conf ; display "Config Reloaded!" (client -1)
+cmdq 0x20eaec0: bind-key w neww (client -1)
+cmdq 0x20eaec0: bind-key m choose-window (client -1)
+cmdq 0x20eaec0: bind-key a choose-session (client -1)
+cmdq 0x20eaec0: bind-key c kill-pane (client -1)
+cmdq 0x20eaec0: bind-key t set status (client -1)
+cmdq 0x20eaec0: bind-key h select-pane -L (client -1)
+cmdq 0x20eaec0: bind-key j select-pane -D (client -1)
+cmdq 0x20eaec0: bind-key k select-pane -U (client -1)
+cmdq 0x20eaec0: bind-key l select-pane -R (client -1)
+cmdq 0x20eaec0: bind-key ^h resize-pane -L (client -1)
+cmdq 0x20eaec0: bind-key ^j resize-pane -D (client -1)
+cmdq 0x20eaec0: bind-key ^k resize-pane -U (client -1)
+cmdq 0x20eaec0: bind-key ^l resize-pane -R (client -1)
+cmdq 0x20eaec0: bind-key v split-window -h (client -1)
+cmdq 0x20eaec0: bind-key s split-window (client -1)
+cmdq 0x20eaec0: bind-key : command-prompt (client -1)
+cmdq 0x20eaec0: set-option -g set-titles on (client -1)
+cmdq 0x20eaec0: set-option -g set-titles-string "tmux: #T" (client -1)
+cmdq 0x20eaec0: set-option -g repeat-time 100 (client -1)
+cmdq 0x20eaec0: set-window-option -g clock-mode-style 12 (client -1)
+cmdq 0x20eaec0: set-window-option -g alternate-screen on (client -1)
+cmdq 0x20eaec0: set-option -g set-remain-on-exit on (client -1)
+cmdq 0x20eaec0: set-option -g visual-activity on (client -1)
+cmdq 0x20eaec0: set-option -g visual-bell on (client -1)
+cmdq 0x20eaec0: set-option -g visual-silence off (client -1)
+cmdq 0x20eaec0: set-window-option -g monitor-activity off (client -1)
+cmdq 0x20eaec0: set-option -g bell-action none (client -1)
+cmdq 0x20eaec0: set-option -g display-panes-time 1000 (client -1)
+cmdq 0x20eaec0: set-window-option -g automatic-rename on (client -1)
+cmdq 0x20eaec0: set-option -g status-interval 5 (client -1)
+cmdq 0x20eaec0: set-option -g status-justify centre (client -1)
+cmdq 0x20eaec0: set-window-option -g status-left " #S " (client -1)
+cmdq 0x20eaec0: set-window-option -g status-right "ï€— %H:%M, %d. %B " (client -1)
+cmdq 0x20eaec0: set-window-option -g window-status-format " #I: #W " (client -1)
+cmdq 0x20eaec0: set-window-option -g window-status-current-format " #I: #W " (client -1)
+cmdq 0x20eaec0: set-option -g status-bg black (client -1)
+cmdq 0x20eaec0: set-option -g status-fg yellow (client -1)
+cmdq 0x20eaec0: set-option -g status-attr default (client -1)
+cmdq 0x20eaec0: set-window-option -g window-status-fg brightblue (client -1)
+cmdq 0x20eaec0: set-window-option -g window-status-bg default (client -1)
+cmdq 0x20eaec0: set-window-option -g window-status-current-fg brightred (client -1)
+cmdq 0x20eaec0: set-window-option -g window-status-current-bg blue (client -1)
+cmdq 0x20eaec0: set-window-option -g window-status-current-attr dim (client -1)
+cmdq 0x20eaec0: set-option -g pane-border-fg brightgreen (client -1)
+cmdq 0x20eaec0: set-option -g pane-active-border-fg red (client -1)
+cmdq 0x20eaec0: set-option -g message-bg black (client -1)
+cmdq 0x20eaec0: set-option -g message-fg brightred (client -1)
+cmdq 0x20eaec0: set-option -g display-panes-active-colour blue (client -1)
+cmdq 0x20eaec0: set-option -g display-panes-colour brightred (client -1)
+cmdq 0x20eaec0: set-option -g status-interval 1 (client -1)
+cmdq 0x20eaec0: set-option -g status-left-length 20 (client -1)
+cmdq 0x20eaec0: set-option -g status-right-length 150 (client -1)
+cmdq 0x20eaec0: if-shell "test "$(uname)" = "Darwin"" "source $DOTFILES/tmux/tmux.darwin.conf" (client -1)
+run job 0x21001d0: test "$(uname)" = "Darwin", pid 7755
+got 100 from client 7
+got 101 from client 7
+got 102 from client 7
+got 103 from client 7
+job write 0x21001d0: test "$(uname)" = "Darwin", pid 7755, output left 0
+got 104 from client 7
+got 105 from client 7
+got 105 from client 7
+got 105 from client 7
+got 105 from client 7
+got 105 from client 7
+got 105 from client 7
+got 105 from client 7
+got 105 from client 7
+got 105 from client 7
+got 105 from client 7
+got 105 from client 7
+got 105 from client 7
+got 105 from client 7
+got 105 from client 7
+got 105 from client 7
+got 105 from client 7
+got 105 from client 7
+got 105 from client 7
+got 105 from client 7
+got 105 from client 7
+got 105 from client 7
+got 105 from client 7
+got 105 from client 7
+got 105 from client 7
+got 105 from client 7
+got 105 from client 7
+got 105 from client 7
+got 105 from client 7
+got 105 from client 7
+got 105 from client 7
+got 105 from client 7
+got 105 from client 7
+got 105 from client 7
+got 105 from client 7
+got 105 from client 7
+got 105 from client 7
+got 105 from client 7
+got 105 from client 7
+got 105 from client 7
+got 105 from client 7
+got 105 from client 7
+got 105 from client 7
+got 105 from client 7
+got 105 from client 7
+got 105 from client 7
+got 105 from client 7
+got 105 from client 7
+got 105 from client 7
+got 105 from client 7
+got 105 from client 7
+got 105 from client 7
+got 105 from client 7
+got 105 from client 7
+got 105 from client 7
+got 105 from client 7
+got 105 from client 7
+got 105 from client 7
+got 105 from client 7
+got 105 from client 7
+got 105 from client 7
+got 105 from client 7
+got 105 from client 7
+got 105 from client 7
+got 105 from client 7
+got 105 from client 7
+got 105 from client 7
+got 106 from client 7
+got 200 from client 7
+job error 0x21001d0: test "$(uname)" = "Darwin", pid 7755
+job died 0x21001d0: test "$(uname)" = "Darwin", pid 7755
+free job 0x21001d0: test "$(uname)" = "Darwin"
+cmdq 0x20e5310: new-session (client 7)
+new term: xterm-256color
+xterm-256color override: colors 256
+xterm-256color override: XT 
+xterm-256color override: Ms ]52;%p1%s;%p2%s
+xterm-256color override: Cs ]12;%p1%s
+xterm-256color override: Cr ]112
+xterm-256color override: Ss [%p1%d q
+xterm-256color override: Se [2 q
+xterm-256color override: Tc 
+new key Oo: 0x1019 (KP/)
+new key Oj: 0x101a (KP*)
+new key Om: 0x101b (KP-)
+new key Ow: 0x101c (KP7)
+new key Ox: 0x101d (KP8)
+new key Oy: 0x101e (KP9)
+new key Ok: 0x101f (KP+)
+new key Ot: 0x1020 (KP4)
+new key Ou: 0x1021 (KP5)
+new key Ov: 0x1022 (KP6)
+new key Oq: 0x1023 (KP1)
+new key Or: 0x1024 (KP2)
+new key Os: 0x1025 (KP3)
+new key OM: 0x1026 (KPEnter)
+new key Op: 0x1027 (KP0)
+new key On: 0x1028 (KP.)
+new key OA: 0x1015 (Up)
+new key OB: 0x1016 (Down)
+new key OC: 0x1018 (Right)
+new key OD: 0x1017 (Left)
+new key [A: 0x1015 (Up)
+new key [B: 0x1016 (Down)
+new key [C: 0x1018 (Right)
+new key [D: 0x1017 (Left)
+new key OH: 0x1010 (Home)
+new key OF: 0x1011 (End)
+new key [H: 0x1010 (Home)
+new key [F: 0x1011 (End)
+new key Oa: 0x5015 (C-Up)
+new key Ob: 0x5016 (C-Down)
+new key Oc: 0x5018 (C-Right)
+new key Od: 0x5017 (C-Left)
+new key [a: 0x9015 (S-Up)
+new key [b: 0x9016 (S-Down)
+new key [c: 0x9018 (S-Right)
+new key [d: 0x9017 (S-Left)
+new key [11^: 0x5002 (C-F1)
+new key [12^: 0x5003 (C-F2)
+new key [13^: 0x5004 (C-F3)
+new key [14^: 0x5005 (C-F4)
+new key [15^: 0x5006 (C-F5)
+new key [17^: 0x5007 (C-F6)
+new key [18^: 0x5008 (C-F7)
+new key [19^: 0x5009 (C-F8)
+new key [20^: 0x500a (C-F9)
+new key [21^: 0x500b (C-F10)
+new key [23^: 0x500c (C-F11)
+new key [24^: 0x500d (C-F12)
+new key [2^: 0x500e (C-IC)
+new key [3^: 0x500f (C-DC)
+new key [7^: 0x5010 (C-Home)
+new key [8^: 0x5011 (C-End)
+new key [6^: 0x5012 (C-NPage)
+new key [5^: 0x5013 (C-PPage)
+new key [11$: 0x9002 (S-F1)
+new key [12$: 0x9003 (S-F2)
+new key [13$: 0x9004 (S-F3)
+new key [14$: 0x9005 (S-F4)
+new key [15$: 0x9006 (S-F5)
+new key [17$: 0x9007 (S-F6)
+new key [18$: 0x9008 (S-F7)
+new key [19$: 0x9009 (S-F8)
+new key [20$: 0x900a (S-F9)
+new key [21$: 0x900b (S-F10)
+new key [23$: 0x900c (S-F11)
+new key [24$: 0x900d (S-F12)
+new key [2$: 0x900e (S-IC)
+new key [3$: 0x900f (S-DC)
+new key [7$: 0x9010 (S-Home)
+new key [8$: 0x9011 (S-End)
+new key [6$: 0x9012 (S-NPage)
+new key [5$: 0x9013 (S-PPage)
+new key [11@: 0xd002 (C-S-F1)
+new key [12@: 0xd003 (C-S-F2)
+new key [13@: 0xd004 (C-S-F3)
+new key [14@: 0xd005 (C-S-F4)
+new key [15@: 0xd006 (C-S-F5)
+new key [17@: 0xd007 (C-S-F6)
+new key [18@: 0xd008 (C-S-F7)
+new key [19@: 0xd009 (C-S-F8)
+new key [20@: 0xd00a (C-S-F9)
+new key [21@: 0xd00b (C-S-F10)
+new key [23@: 0xd00c (C-S-F11)
+new key [24@: 0xd00d (C-S-F12)
+new key [2@: 0xd00e (C-S-IC)
+new key [3@: 0xd00f (C-S-DC)
+new key [7@: 0xd010 (C-S-Home)
+new key [8@: 0xd011 (C-S-End)
+new key [6@: 0xd012 (C-S-NPage)
+new key [5@: 0xd013 (C-S-PPage)
+new key [I: 0x1029 ((null))
+new key [O: 0x102a ((null))
+new key OP: 0x1002 (F1)
+new key OQ: 0x1003 (F2)
+new key OR: 0x1004 (F3)
+new key OS: 0x1005 (F4)
+new key [15~: 0x1006 (F5)
+new key [17~: 0x1007 (F6)
+new key [18~: 0x1008 (F7)
+new key [19~: 0x1009 (F8)
+new key [20~: 0x100a (F9)
+new key [21~: 0x100b (F10)
+new key [23~: 0x100c (F11)
+new key [24~: 0x100d (F12)
+new key [1;2P: 0x9002 (S-F1)
+new key [1;2Q: 0x9003 (S-F2)
+new key [1;2R: 0x9004 (S-F3)
+new key [1;2S: 0x9005 (S-F4)
+new key [15;2~: 0x9006 (S-F5)
+new key [17;2~: 0x9007 (S-F6)
+new key [18;2~: 0x9008 (S-F7)
+new key [19;2~: 0x9009 (S-F8)
+new key [20;2~: 0x900a (S-F9)
+new key [21;2~: 0x900b (S-F10)
+new key [23;2~: 0x900c (S-F11)
+new key [24;2~: 0x900d (S-F12)
+new key [1;5P: 0x5002 (C-F1)
+new key [1;5Q: 0x5003 (C-F2)
+new key [1;5R: 0x5004 (C-F3)
+new key [1;5S: 0x5005 (C-F4)
+new key [15;5~: 0x5006 (C-F5)
+new key [17;5~: 0x5007 (C-F6)
+new key [18;5~: 0x5008 (C-F7)
+new key [19;5~: 0x5009 (C-F8)
+new key [20;5~: 0x500a (C-F9)
+new key [21;5~: 0x500b (C-F10)
+new key [23;5~: 0x500c (C-F11)
+new key [24;5~: 0x500d (C-F12)
+new key [1;6P: 0xd002 (C-S-F1)
+new key [1;6Q: 0xd003 (C-S-F2)
+new key [1;6R: 0xd004 (C-S-F3)
+new key [1;6S: 0xd005 (C-S-F4)
+new key [15;6~: 0xd006 (C-S-F5)
+new key [17;6~: 0xd007 (C-S-F6)
+new key [18;6~: 0xd008 (C-S-F7)
+new key [19;6~: 0xd009 (C-S-F8)
+new key [20;6~: 0xd00a (C-S-F9)
+new key [21;6~: 0xd00b (C-S-F10)
+new key [23;6~: 0xd00c (C-S-F11)
+new key [24;6~: 0xd00d (C-S-F12)
+new key [1;3P: 0x3002 (M-F1)
+new key [1;3Q: 0x3003 (M-F2)
+new key [1;3R: 0x3004 (M-F3)
+new key [1;3S: 0x3005 (M-F4)
+new key [15;3~: 0x3006 (M-F5)
+new key [17;3~: 0x3007 (M-F6)
+new key [18;3~: 0x3008 (M-F7)
+new key [19;3~: 0x3009 (M-F8)
+new key [20;3~: 0x300a (M-F9)
+new key [21;3~: 0x300b (M-F10)
+new key [23;3~: 0x300c (M-F11)
+new key [24;3~: 0x300d (M-F12)
+new key [1;4P: 0xb002 (M-S-F1)
+new key [1;4Q: 0xb003 (M-S-F2)
+new key [1;4R: 0xb004 (M-S-F3)
+new key [2~: 0x100e (IC)
+new key [3~: 0x100f (DC)
+replacing key OH: 0x1010 (Home)
+replacing key OF: 0x1011 (End)
+new key [6~: 0x1012 (NPage)
+new key [5~: 0x1013 (PPage)
+new key [Z: 0x1014 (BTab)
+replacing key OA: 0x1015 (Up)
+replacing key OB: 0x1016 (Down)
+replacing key OD: 0x1017 (Left)
+replacing key OC: 0x1018 (Right)
+new key [3;2~: 0x900f (S-DC)
+new key [3;3~: 0x300f (M-DC)
+new key [3;4~: 0xb00f (M-S-DC)
+new key [3;5~: 0x500f (C-DC)
+new key [3;6~: 0xd00f (C-S-DC)
+new key [3;7~: 0x700f (C-M-DC)
+new key [1;2B: 0x9016 (S-Down)
+new key [1;3B: 0x3016 (M-Down)
+new key [1;4B: 0xb016 (M-S-Down)
+new key [1;5B: 0x5016 (C-Down)
+new key [1;6B: 0xd016 (C-S-Down)
+new key [1;7B: 0x7016 (C-M-Down)
+new key [1;2F: 0x9011 (S-End)
+new key [1;3F: 0x3011 (M-End)
+new key [1;4F: 0xb011 (M-S-End)
+new key [1;5F: 0x5011 (C-End)
+new key [1;6F: 0xd011 (C-S-End)
+new key [1;7F: 0x7011 (C-M-End)
+new key [1;2H: 0x9010 (S-Home)
+new key [1;3H: 0x3010 (M-Home)
+new key [1;4H: 0xb010 (M-S-Home)
+new key [1;5H: 0x5010 (C-Home)
+new key [1;6H: 0xd010 (C-S-Home)
+new key [1;7H: 0x7010 (C-M-Home)
+new key [2;2~: 0x900e (S-IC)
+new key [2;3~: 0x300e (M-IC)
+new key [2;4~: 0xb00e (M-S-IC)
+new key [2;5~: 0x500e (C-IC)
+new key [2;6~: 0xd00e (C-S-IC)
+new key [2;7~: 0x700e (C-M-IC)
+new key [1;2D: 0x9017 (S-Left)
+new key [1;3D: 0x3017 (M-Left)
+new key [1;4D: 0xb017 (M-S-Left)
+new key [1;5D: 0x5017 (C-Left)
+new key [1;6D: 0xd017 (C-S-Left)
+new key [1;7D: 0x7017 (C-M-Left)
+new key [6;2~: 0x9012 (S-NPage)
+new key [6;3~: 0x3012 (M-NPage)
+new key [6;4~: 0xb012 (M-S-NPage)
+new key [6;5~: 0x5012 (C-NPage)
+new key [6;6~: 0xd012 (C-S-NPage)
+new key [6;7~: 0x7012 (C-M-NPage)
+new key [5;2~: 0x9013 (S-PPage)
+new key [5;3~: 0x3013 (M-PPage)
+new key [5;4~: 0xb013 (M-S-PPage)
+new key [5;5~: 0x5013 (C-PPage)
+new key [5;6~: 0xd013 (C-S-PPage)
+new key [5;7~: 0x7013 (C-M-PPage)
+new key [1;2C: 0x9018 (S-Right)
+new key [1;3C: 0x3018 (M-Right)
+new key [1;4C: 0xb018 (M-S-Right)
+new key [1;5C: 0x5018 (C-Right)
+new key [1;6C: 0xd018 (C-S-Right)
+new key [1;7C: 0x7018 (C-M-Right)
+new key [1;2A: 0x9015 (S-Up)
+new key [1;3A: 0x3015 (M-Up)
+new key [1;4A: 0xb015 (M-S-Up)
+new key [1;5A: 0x5015 (C-Up)
+new key [1;6A: 0xd015 (C-S-Up)
+new key [1;7A: 0x7015 (C-M-Up)
+spawn: /usr/bin/zsh -- 
+session 0 created
+writing 207 to client 7
+got 208 from client 7
+keys are 7 ([?62;c)
+received service class 62
+complete key [?62;c 0xfff
+keys are 1 ()
+complete key  0xd
+input_parse: '' ground
+input_parse: 'P' esc_enter
+input_parse: 't' dcs_enter
+input_parse: 'm' dcs_handler
+input_parse: 'u' dcs_handler
+input_parse: 'x' dcs_handler
+input_parse: ';' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '' dcs_escape
+input_parse: ']' dcs_handler
+input_parse: '4' dcs_handler
+input_parse: ';' dcs_handler
+input_parse: '0' dcs_handler
+input_parse: ';' dcs_handler
+input_parse: 'r' dcs_handler
+input_parse: 'g' dcs_handler
+input_parse: 'b' dcs_handler
+input_parse: ':' dcs_handler
+input_parse: '2' dcs_handler
+input_parse: '7' dcs_handler
+input_parse: '/' dcs_handler
+input_parse: '2' dcs_handler
+input_parse: '8' dcs_handler
+input_parse: '/' dcs_handler
+input_parse: '2' dcs_handler
+input_parse: '2' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '\' dcs_escape
+input_dcs_dispatch: "tmux;]4;0;rgb:27/28/22"
+input_parse: '' ground
+input_parse: 'P' esc_enter
+input_parse: 't' dcs_enter
+input_parse: 'm' dcs_handler
+input_parse: 'u' dcs_handler
+input_parse: 'x' dcs_handler
+input_parse: ';' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '' dcs_escape
+input_parse: ']' dcs_handler
+input_parse: '4' dcs_handler
+input_parse: ';' dcs_handler
+input_parse: '1' dcs_handler
+input_parse: ';' dcs_handler
+input_parse: 'r' dcs_handler
+input_parse: 'g' dcs_handler
+input_parse: 'b' dcs_handler
+input_parse: ':' dcs_handler
+input_parse: 'f' dcs_handler
+input_parse: '9' dcs_handler
+input_parse: '/' dcs_handler
+input_parse: '2' dcs_handler
+input_parse: '6' dcs_handler
+input_parse: '/' dcs_handler
+input_parse: '7' dcs_handler
+input_parse: '2' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '\' dcs_escape
+input_dcs_dispatch: "tmux;]4;1;rgb:f9/26/72"
+input_parse: '' ground
+input_parse: 'P' esc_enter
+input_parse: 't' dcs_enter
+input_parse: 'm' dcs_handler
+input_parse: 'u' dcs_handler
+input_parse: 'x' dcs_handler
+input_parse: ';' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '' dcs_escape
+input_parse: ']' dcs_handler
+input_parse: '4' dcs_handler
+input_parse: ';' dcs_handler
+input_parse: '2' dcs_handler
+input_parse: ';' dcs_handler
+input_parse: 'r' dcs_handler
+input_parse: 'g' dcs_handler
+input_parse: 'b' dcs_handler
+input_parse: ':' dcs_handler
+input_parse: 'a' dcs_handler
+input_parse: '6' dcs_handler
+input_parse: '/' dcs_handler
+input_parse: 'e' dcs_handler
+input_parse: '2' dcs_handler
+input_parse: '/' dcs_handler
+input_parse: '2' dcs_handler
+input_parse: 'e' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '\' dcs_escape
+input_dcs_dispatch: "tmux;]4;2;rgb:a6/e2/2e"
+input_parse: '' ground
+input_parse: 'P' esc_enter
+input_parse: 't' dcs_enter
+input_parse: 'm' dcs_handler
+input_parse: 'u' dcs_handler
+input_parse: 'x' dcs_handler
+input_parse: ';' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '' dcs_escape
+input_parse: ']' dcs_handler
+input_parse: '4' dcs_handler
+input_parse: ';' dcs_handler
+input_parse: '3' dcs_handler
+input_parse: ';' dcs_handler
+input_parse: 'r' dcs_handler
+input_parse: 'g' dcs_handler
+input_parse: 'b' dcs_handler
+input_parse: ':' dcs_handler
+input_parse: 'f' dcs_handler
+input_parse: '4' dcs_handler
+input_parse: '/' dcs_handler
+input_parse: 'b' dcs_handler
+input_parse: 'f' dcs_handler
+input_parse: '/' dcs_handler
+input_parse: '7' dcs_handler
+input_parse: '5' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '\' dcs_escape
+input_dcs_dispatch: "tmux;]4;3;rgb:f4/bf/75"
+input_parse: '' ground
+input_parse: 'P' esc_enter
+input_parse: 't' dcs_enter
+input_parse: 'm' dcs_handler
+input_parse: 'u' dcs_handler
+input_parse: 'x' dcs_handler
+input_parse: ';' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '' dcs_escape
+input_parse: ']' dcs_handler
+input_parse: '4' dcs_handler
+input_parse: ';' dcs_handler
+input_parse: '4' dcs_handler
+input_parse: ';' dcs_handler
+input_parse: 'r' dcs_handler
+input_parse: 'g' dcs_handler
+input_parse: 'b' dcs_handler
+input_parse: ':' dcs_handler
+input_parse: '6' dcs_handler
+input_parse: '6' dcs_handler
+input_parse: '/' dcs_handler
+input_parse: 'd' dcs_handler
+input_parse: '9' dcs_handler
+input_parse: '/' dcs_handler
+input_parse: 'e' dcs_handler
+input_parse: 'f' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '\' dcs_escape
+input_dcs_dispatch: "tmux;]4;4;rgb:66/d9/ef"
+input_parse: '' ground
+input_parse: 'P' esc_enter
+input_parse: 't' dcs_enter
+input_parse: 'm' dcs_handler
+input_parse: 'u' dcs_handler
+input_parse: 'x' dcs_handler
+input_parse: ';' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '' dcs_escape
+input_parse: ']' dcs_handler
+input_parse: '4' dcs_handler
+input_parse: ';' dcs_handler
+input_parse: '5' dcs_handler
+input_parse: ';' dcs_handler
+input_parse: 'r' dcs_handler
+input_parse: 'g' dcs_handler
+input_parse: 'b' dcs_handler
+input_parse: ':' dcs_handler
+input_parse: 'a' dcs_handler
+input_parse: 'e' dcs_handler
+input_parse: '/' dcs_handler
+input_parse: '8' dcs_handler
+input_parse: '1' dcs_handler
+input_parse: '/' dcs_handler
+input_parse: 'f' dcs_handler
+input_parse: 'f' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '\' dcs_escape
+input_dcs_dispatch: "tmux;]4;5;rgb:ae/81/ff"
+input_parse: '' ground
+input_parse: 'P' esc_enter
+input_parse: 't' dcs_enter
+input_parse: 'm' dcs_handler
+input_parse: 'u' dcs_handler
+input_parse: 'x' dcs_handler
+input_parse: ';' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '' dcs_escape
+input_parse: ']' dcs_handler
+input_parse: '4' dcs_handler
+input_parse: ';' dcs_handler
+input_parse: '6' dcs_handler
+input_parse: ';' dcs_handler
+input_parse: 'r' dcs_handler
+input_parse: 'g' dcs_handler
+input_parse: 'b' dcs_handler
+input_parse: ':' dcs_handler
+input_parse: 'a' dcs_handler
+input_parse: '1' dcs_handler
+input_parse: '/' dcs_handler
+input_parse: 'e' dcs_handler
+input_parse: 'f' dcs_handler
+input_parse: '/' dcs_handler
+input_parse: 'e' dcs_handler
+input_parse: '4' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '\' dcs_escape
+input_dcs_dispatch: "tmux;]4;6;rgb:a1/ef/e4"
+input_parse: '' ground
+input_parse: 'P' esc_enter
+input_parse: 't' dcs_enter
+input_parse: 'm' dcs_handler
+input_parse: 'u' dcs_handler
+input_parse: 'x' dcs_handler
+input_parse: ';' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '' dcs_escape
+input_parse: ']' dcs_handler
+input_parse: '4' dcs_handler
+input_parse: ';' dcs_handler
+input_parse: '7' dcs_handler
+input_parse: ';' dcs_handler
+input_parse: 'r' dcs_handler
+input_parse: 'g' dcs_handler
+input_parse: 'b' dcs_handler
+input_parse: ':' dcs_handler
+input_parse: 'f' dcs_handler
+input_parse: '8' dcs_handler
+input_parse: '/' dcs_handler
+input_parse: 'f' dcs_handler
+input_parse: '8' dcs_handler
+input_parse: '/' dcs_handler
+input_parse: 'f' dcs_handler
+input_parse: '2' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '\' dcs_escape
+input_dcs_dispatch: "tmux;]4;7;rgb:f8/f8/f2"
+input_parse: '' ground
+input_parse: 'P' esc_enter
+input_parse: 't' dcs_enter
+input_parse: 'm' dcs_handler
+input_parse: 'u' dcs_handler
+input_parse: 'x' dcs_handler
+input_parse: ';' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '' dcs_escape
+input_parse: ']' dcs_handler
+input_parse: '4' dcs_handler
+input_parse: ';' dcs_handler
+input_parse: '8' dcs_handler
+input_parse: ';' dcs_handler
+input_parse: 'r' dcs_handler
+input_parse: 'g' dcs_handler
+input_parse: 'b' dcs_handler
+input_parse: ':' dcs_handler
+input_parse: '7' dcs_handler
+input_parse: '5' dcs_handler
+input_parse: '/' dcs_handler
+input_parse: '7' dcs_handler
+input_parse: '1' dcs_handler
+input_parse: '/' dcs_handler
+input_parse: '5' dcs_handler
+input_parse: 'e' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '\' dcs_escape
+input_dcs_dispatch: "tmux;]4;8;rgb:75/71/5e"
+input_parse: '' ground
+input_parse: 'P' esc_enter
+input_parse: 't' dcs_enter
+input_parse: 'm' dcs_handler
+input_parse: 'u' dcs_handler
+input_parse: 'x' dcs_handler
+input_parse: ';' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '' dcs_escape
+input_parse: ']' dcs_handler
+input_parse: '4' dcs_handler
+input_parse: ';' dcs_handler
+input_parse: '9' dcs_handler
+input_parse: ';' dcs_handler
+input_parse: 'r' dcs_handler
+input_parse: 'g' dcs_handler
+input_parse: 'b' dcs_handler
+input_parse: ':' dcs_handler
+input_parse: 'f' dcs_handler
+input_parse: '9' dcs_handler
+input_parse: '/' dcs_handler
+input_parse: '2' dcs_handler
+input_parse: '6' dcs_handler
+input_parse: '/' dcs_handler
+input_parse: '7' dcs_handler
+input_parse: '2' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '\' dcs_escape
+input_dcs_dispatch: "tmux;]4;9;rgb:f9/26/72"
+input_parse: '' ground
+input_parse: 'P' esc_enter
+input_parse: 't' dcs_enter
+input_parse: 'm' dcs_handler
+input_parse: 'u' dcs_handler
+input_parse: 'x' dcs_handler
+input_parse: ';' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '' dcs_escape
+input_parse: ']' dcs_handler
+input_parse: '4' dcs_handler
+input_parse: ';' dcs_handler
+input_parse: '1' dcs_handler
+input_parse: '0' dcs_handler
+input_parse: ';' dcs_handler
+input_parse: 'r' dcs_handler
+input_parse: 'g' dcs_handler
+input_parse: 'b' dcs_handler
+input_parse: ':' dcs_handler
+input_parse: 'a' dcs_handler
+input_parse: '6' dcs_handler
+input_parse: '/' dcs_handler
+input_parse: 'e' dcs_handler
+input_parse: '2' dcs_handler
+input_parse: '/' dcs_handler
+input_parse: '2' dcs_handler
+input_parse: 'e' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '\' dcs_escape
+input_dcs_dispatch: "tmux;]4;10;rgb:a6/e2/2e"
+input_parse: '' ground
+input_parse: 'P' esc_enter
+input_parse: 't' dcs_enter
+input_parse: 'm' dcs_handler
+input_parse: 'u' dcs_handler
+input_parse: 'x' dcs_handler
+input_parse: ';' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '' dcs_escape
+input_parse: ']' dcs_handler
+input_parse: '4' dcs_handler
+input_parse: ';' dcs_handler
+input_parse: '1' dcs_handler
+input_parse: '1' dcs_handler
+input_parse: ';' dcs_handler
+input_parse: 'r' dcs_handler
+input_parse: 'g' dcs_handler
+input_parse: 'b' dcs_handler
+input_parse: ':' dcs_handler
+input_parse: 'f' dcs_handler
+input_parse: '4' dcs_handler
+input_parse: '/' dcs_handler
+input_parse: 'b' dcs_handler
+input_parse: 'f' dcs_handler
+input_parse: '/' dcs_handler
+input_parse: '7' dcs_handler
+input_parse: '5' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '\' dcs_escape
+input_dcs_dispatch: "tmux;]4;11;rgb:f4/bf/75"
+input_parse: '' ground
+input_parse: 'P' esc_enter
+input_parse: 't' dcs_enter
+input_parse: 'm' dcs_handler
+input_parse: 'u' dcs_handler
+input_parse: 'x' dcs_handler
+input_parse: ';' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '' dcs_escape
+input_parse: ']' dcs_handler
+input_parse: '4' dcs_handler
+input_parse: ';' dcs_handler
+input_parse: '1' dcs_handler
+input_parse: '2' dcs_handler
+input_parse: ';' dcs_handler
+input_parse: 'r' dcs_handler
+input_parse: 'g' dcs_handler
+input_parse: 'b' dcs_handler
+input_parse: ':' dcs_handler
+input_parse: '6' dcs_handler
+input_parse: '6' dcs_handler
+input_parse: '/' dcs_handler
+input_parse: 'd' dcs_handler
+input_parse: '9' dcs_handler
+input_parse: '/' dcs_handler
+input_parse: 'e' dcs_handler
+input_parse: 'f' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '\' dcs_escape
+input_dcs_dispatch: "tmux;]4;12;rgb:66/d9/ef"
+input_parse: '' ground
+input_parse: 'P' esc_enter
+input_parse: 't' dcs_enter
+input_parse: 'm' dcs_handler
+input_parse: 'u' dcs_handler
+input_parse: 'x' dcs_handler
+input_parse: ';' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '' dcs_escape
+input_parse: ']' dcs_handler
+input_parse: '4' dcs_handler
+input_parse: ';' dcs_handler
+input_parse: '1' dcs_handler
+input_parse: '3' dcs_handler
+input_parse: ';' dcs_handler
+input_parse: 'r' dcs_handler
+input_parse: 'g' dcs_handler
+input_parse: 'b' dcs_handler
+input_parse: ':' dcs_handler
+input_parse: 'a' dcs_handler
+input_parse: 'e' dcs_handler
+input_parse: '/' dcs_handler
+input_parse: '8' dcs_handler
+input_parse: '1' dcs_handler
+input_parse: '/' dcs_handler
+input_parse: 'f' dcs_handler
+input_parse: 'f' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '\' dcs_escape
+input_dcs_dispatch: "tmux;]4;13;rgb:ae/81/ff"
+input_parse: '' ground
+input_parse: 'P' esc_enter
+input_parse: 't' dcs_enter
+input_parse: 'm' dcs_handler
+input_parse: 'u' dcs_handler
+input_parse: 'x' dcs_handler
+input_parse: ';' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '' dcs_escape
+input_parse: ']' dcs_handler
+input_parse: '4' dcs_handler
+input_parse: ';' dcs_handler
+input_parse: '1' dcs_handler
+input_parse: '4' dcs_handler
+input_parse: ';' dcs_handler
+input_parse: 'r' dcs_handler
+input_parse: 'g' dcs_handler
+input_parse: 'b' dcs_handler
+input_parse: ':' dcs_handler
+input_parse: 'a' dcs_handler
+input_parse: '1' dcs_handler
+input_parse: '/' dcs_handler
+input_parse: 'e' dcs_handler
+input_parse: 'f' dcs_handler
+input_parse: '/' dcs_handler
+input_parse: 'e' dcs_handler
+input_parse: '4' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '\' dcs_escape
+input_dcs_dispatch: "tmux;]4;14;rgb:a1/ef/e4"
+input_parse: '' ground
+input_parse: 'P' esc_enter
+input_parse: 't' dcs_enter
+input_parse: 'm' dcs_handler
+input_parse: 'u' dcs_handler
+input_parse: 'x' dcs_handler
+input_parse: ';' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '' dcs_escape
+input_parse: ']' dcs_handler
+input_parse: '4' dcs_handler
+input_parse: ';' dcs_handler
+input_parse: '1' dcs_handler
+input_parse: '5' dcs_handler
+input_parse: ';' dcs_handler
+input_parse: 'r' dcs_handler
+input_parse: 'g' dcs_handler
+input_parse: 'b' dcs_handler
+input_parse: ':' dcs_handler
+input_parse: 'f' dcs_handler
+input_parse: '9' dcs_handler
+input_parse: '/' dcs_handler
+input_parse: 'f' dcs_handler
+input_parse: '8' dcs_handler
+input_parse: '/' dcs_handler
+input_parse: 'f' dcs_handler
+input_parse: '5' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '\' dcs_escape
+input_dcs_dispatch: "tmux;]4;15;rgb:f9/f8/f5"
+input_parse: '' ground
+input_parse: 'P' esc_enter
+input_parse: 't' dcs_enter
+input_parse: 'm' dcs_handler
+input_parse: 'u' dcs_handler
+input_parse: 'x' dcs_handler
+input_parse: ';' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '' dcs_escape
+input_parse: ']' dcs_handler
+input_parse: '4' dcs_handler
+input_parse: ';' dcs_handler
+input_parse: '1' dcs_handler
+input_parse: '6' dcs_handler
+input_parse: ';' dcs_handler
+input_parse: 'r' dcs_handler
+input_parse: 'g' dcs_handler
+input_parse: 'b' dcs_handler
+input_parse: ':' dcs_handler
+input_parse: 'f' dcs_handler
+input_parse: 'd' dcs_handler
+input_parse: '/' dcs_handler
+input_parse: '9' dcs_handler
+input_parse: '7' dcs_handler
+input_parse: '/' dcs_handler
+input_parse: '1' dcs_handler
+input_parse: 'f' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '\' dcs_escape
+input_dcs_dispatch: "tmux;]4;16;rgb:fd/97/1f"
+input_parse: '' ground
+input_parse: 'P' esc_enter
+input_parse: 't' dcs_enter
+input_parse: 'm' dcs_handler
+input_parse: 'u' dcs_handler
+input_parse: 'x' dcs_handler
+input_parse: ';' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '' dcs_escape
+input_parse: ']' dcs_handler
+input_parse: '4' dcs_handler
+input_parse: ';' dcs_handler
+input_parse: '1' dcs_handler
+input_parse: '7' dcs_handler
+input_parse: ';' dcs_handler
+input_parse: 'r' dcs_handler
+input_parse: 'g' dcs_handler
+input_parse: 'b' dcs_handler
+input_parse: ':' dcs_handler
+input_parse: 'c' dcs_handler
+input_parse: 'c' dcs_handler
+input_parse: '/' dcs_handler
+input_parse: '6' dcs_handler
+input_parse: '6' dcs_handler
+input_parse: '/' dcs_handler
+input_parse: '3' dcs_handler
+input_parse: '3' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '\' dcs_escape
+input_dcs_dispatch: "tmux;]4;17;rgb:cc/66/33"
+input_parse: '' ground
+input_parse: 'P' esc_enter
+input_parse: 't' dcs_enter
+input_parse: 'm' dcs_handler
+input_parse: 'u' dcs_handler
+input_parse: 'x' dcs_handler
+input_parse: ';' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '' dcs_escape
+input_parse: ']' dcs_handler
+input_parse: '4' dcs_handler
+input_parse: ';' dcs_handler
+input_parse: '1' dcs_handler
+input_parse: '8' dcs_handler
+input_parse: ';' dcs_handler
+input_parse: 'r' dcs_handler
+input_parse: 'g' dcs_handler
+input_parse: 'b' dcs_handler
+input_parse: ':' dcs_handler
+input_parse: '3' dcs_handler
+input_parse: '8' dcs_handler
+input_parse: '/' dcs_handler
+input_parse: '3' dcs_handler
+input_parse: '8' dcs_handler
+input_parse: '/' dcs_handler
+input_parse: '3' dcs_handler
+input_parse: '0' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '\' dcs_escape
+input_dcs_dispatch: "tmux;]4;18;rgb:38/38/30"
+input_parse: '' ground
+input_parse: 'P' esc_enter
+input_parse: 't' dcs_enter
+input_parse: 'm' dcs_handler
+input_parse: 'u' dcs_handler
+input_parse: 'x' dcs_handler
+input_parse: ';' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '' dcs_escape
+input_parse: ']' dcs_handler
+input_parse: '4' dcs_handler
+input_parse: ';' dcs_handler
+input_parse: '1' dcs_handler
+input_parse: '9' dcs_handler
+input_parse: ';' dcs_handler
+input_parse: 'r' dcs_handler
+input_parse: 'g' dcs_handler
+input_parse: 'b' dcs_handler
+input_parse: ':' dcs_handler
+input_parse: '4' dcs_handler
+input_parse: '9' dcs_handler
+input_parse: '/' dcs_handler
+input_parse: '4' dcs_handler
+input_parse: '8' dcs_handler
+input_parse: '/' dcs_handler
+input_parse: '3' dcs_handler
+input_parse: 'e' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '\' dcs_escape
+input_dcs_dispatch: "tmux;]4;19;rgb:49/48/3e"
+input_parse: '' ground
+input_parse: 'P' esc_enter
+input_parse: 't' dcs_enter
+input_parse: 'm' dcs_handler
+input_parse: 'u' dcs_handler
+input_parse: 'x' dcs_handler
+input_parse: ';' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '' dcs_escape
+input_parse: ']' dcs_handler
+input_parse: '4' dcs_handler
+input_parse: ';' dcs_handler
+input_parse: '2' dcs_handler
+input_parse: '0' dcs_handler
+input_parse: ';' dcs_handler
+input_parse: 'r' dcs_handler
+input_parse: 'g' dcs_handler
+input_parse: 'b' dcs_handler
+input_parse: ':' dcs_handler
+input_parse: 'a' dcs_handler
+input_parse: '5' dcs_handler
+input_parse: '/' dcs_handler
+input_parse: '9' dcs_handler
+input_parse: 'f' dcs_handler
+input_parse: '/' dcs_handler
+input_parse: '8' dcs_handler
+input_parse: '5' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '\' dcs_escape
+input_dcs_dispatch: "tmux;]4;20;rgb:a5/9f/85"
+input_parse: '' ground
+input_parse: 'P' esc_enter
+input_parse: 't' dcs_enter
+input_parse: 'm' dcs_handler
+input_parse: 'u' dcs_handler
+input_parse: 'x' dcs_handler
+input_parse: ';' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '' dcs_escape
+input_parse: ']' dcs_handler
+input_parse: '4' dcs_handler
+input_parse: ';' dcs_handler
+input_parse: '2' dcs_handler
+input_parse: '1' dcs_handler
+input_parse: ';' dcs_handler
+input_parse: 'r' dcs_handler
+input_parse: 'g' dcs_handler
+input_parse: 'b' dcs_handler
+input_parse: ':' dcs_handler
+input_parse: 'f' dcs_handler
+input_parse: '5' dcs_handler
+input_parse: '/' dcs_handler
+input_parse: 'f' dcs_handler
+input_parse: '4' dcs_handler
+input_parse: '/' dcs_handler
+input_parse: 'f' dcs_handler
+input_parse: '1' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '\' dcs_escape
+input_dcs_dispatch: "tmux;]4;21;rgb:f5/f4/f1"
+input_parse: '' ground
+input_parse: 'P' esc_enter
+input_parse: 't' dcs_enter
+input_parse: 'm' dcs_handler
+input_parse: 'u' dcs_handler
+input_parse: 'x' dcs_handler
+input_parse: ';' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '' dcs_escape
+input_parse: ']' dcs_handler
+input_parse: '1' dcs_handler
+input_parse: '0' dcs_handler
+input_parse: ';' dcs_handler
+input_parse: 'r' dcs_handler
+input_parse: 'g' dcs_handler
+input_parse: 'b' dcs_handler
+input_parse: ':' dcs_handler
+input_parse: 'f' dcs_handler
+input_parse: '8' dcs_handler
+input_parse: '/' dcs_handler
+input_parse: 'f' dcs_handler
+input_parse: '8' dcs_handler
+input_parse: '/' dcs_handler
+input_parse: 'f' dcs_handler
+input_parse: '2' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '\' dcs_escape
+input_dcs_dispatch: "tmux;]10;rgb:f8/f8/f2"
+input_parse: '' ground
+input_parse: 'P' esc_enter
+input_parse: 't' dcs_enter
+input_parse: 'm' dcs_handler
+input_parse: 'u' dcs_handler
+input_parse: 'x' dcs_handler
+input_parse: ';' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '' dcs_escape
+input_parse: ']' dcs_handler
+input_parse: '1' dcs_handler
+input_parse: '1' dcs_handler
+input_parse: ';' dcs_handler
+input_parse: 'r' dcs_handler
+input_parse: 'g' dcs_handler
+input_parse: 'b' dcs_handler
+input_parse: ':' dcs_handler
+input_parse: '2' dcs_handler
+input_parse: '7' dcs_handler
+input_parse: '/' dcs_handler
+input_parse: '2' dcs_handler
+input_parse: '8' dcs_handler
+input_parse: '/' dcs_handler
+input_parse: '2' dcs_handler
+input_parse: '2' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '\' dcs_escape
+input_dcs_dispatch: "tmux;]11;rgb:27/28/22"
+input_parse: '' ground
+input_parse: 'P' esc_enter
+input_parse: 't' dcs_enter
+input_parse: 'm' dcs_handler
+input_parse: 'u' dcs_handler
+input_parse: 'x' dcs_handler
+input_parse: ';' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '' dcs_escape
+input_parse: ']' dcs_handler
+input_parse: '1' dcs_handler
+input_parse: '2' dcs_handler
+input_parse: ';' dcs_handler
+input_parse: 'r' dcs_handler
+input_parse: 'g' dcs_handler
+input_parse: 'b' dcs_handler
+input_parse: ':' dcs_handler
+input_parse: 'f' dcs_handler
+input_parse: '8' dcs_handler
+input_parse: '/' dcs_handler
+input_parse: 'f' dcs_handler
+input_parse: '8' dcs_handler
+input_parse: '/' dcs_handler
+input_parse: 'f' dcs_handler
+input_parse: '2' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '' dcs_handler
+input_parse: '\' dcs_escape
+input_dcs_dispatch: "tmux;]12;rgb:f8/f8/f2"
+input_parse: '' ground
+input_parse: '[' esc_enter
+input_parse: '1' csi_enter
+input_parse: 'm' csi_parameter
+input_csi_dispatch: 'm' "" "1"
+input_parse: '' ground
+input_parse: '[' esc_enter
+input_parse: '7' csi_enter
+input_parse: 'm' csi_parameter
+input_csi_dispatch: 'm' "" "7"
+input_parse: '%' ground
+input_parse: '' ground
+input_parse: '[' esc_enter
+input_parse: '2' csi_enter
+input_parse: '7' csi_parameter
+input_parse: 'm' csi_parameter
+input_csi_dispatch: 'm' "" "27"
+input_parse: '' ground
+input_parse: '[' esc_enter
+input_parse: '1' csi_enter
+input_parse: 'm' csi_parameter
+input_csi_dispatch: 'm' "" "1"
+input_parse: '' ground
+input_parse: '[' esc_enter
+input_parse: '0' csi_enter
+input_parse: 'm' csi_parameter
+input_csi_dispatch: 'm' "" "0"
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: '' ground
+input_c0_dispatch: '
+input_parse: ' ' ground
+input_parse: '' ground
+input_c0_dispatch: '
+input_parse: '' ground
+input_parse: ']' esc_enter
+input_enter_osc
+input_parse: '7' osc_string
+input_parse: ';' osc_string
+input_parse: 'f' osc_string
+input_parse: 'i' osc_string
+input_parse: 'l' osc_string
+input_parse: 'e' osc_string
+input_parse: ':' osc_string
+input_parse: '/' osc_string
+input_parse: '/' osc_string
+input_parse: 'l' osc_string
+input_parse: 'o' osc_string
+input_parse: 'c' osc_string
+input_parse: 'a' osc_string
+input_parse: 'l' osc_string
+input_parse: 'h' osc_string
+input_parse: 'o' osc_string
+input_parse: 's' osc_string
+input_parse: 't' osc_string
+input_parse: '.' osc_string
+input_parse: 'l' osc_string
+input_parse: 'o' osc_string
+input_parse: 'c' osc_string
+input_parse: 'a' osc_string
+input_parse: 'l' osc_string
+input_parse: 'd' osc_string
+input_parse: 'o' osc_string
+input_parse: 'm' osc_string
+input_parse: 'a' osc_string
+input_parse: 'i' osc_string
+input_parse: 'n' osc_string
+input_parse: '/' osc_string
+input_parse: 'h' osc_string
+input_parse: 'o' osc_string
+input_parse: 'm' osc_string
+input_parse: 'e' osc_string
+input_parse: '/' osc_string
+input_parse: 'p' osc_string
+input_parse: 'e' osc_string
+input_parse: 't' osc_string
+input_parse: 'e' osc_string
+input_parse: 'y' osc_string
+input_parse: 'y' osc_string
+input_parse: '/' osc_string
+input_parse: 'd' osc_string
+input_parse: 'o' osc_string
+input_parse: 't' osc_string
+input_parse: 'f' osc_string
+input_parse: 'i' osc_string
+input_parse: 'l' osc_string
+input_parse: 'e' osc_string
+input_parse: 's' osc_string
+input_parse: '' osc_string
+input_exit_osc: "7;file://localhost.localdomain/home/peteyy/dotfiles"
+input_exit_osc: unknown '7'
+input_parse: '' ground
+input_parse: ']' esc_enter
+input_enter_osc
+input_parse: '2' osc_string
+input_parse: ';' osc_string
+input_parse: 'p' osc_string
+input_parse: 'e' osc_string
+input_parse: 't' osc_string
+input_parse: 'e' osc_string
+input_parse: 'y' osc_string
+input_parse: 'y' osc_string
+input_parse: '@' osc_string
+input_parse: 'l' osc_string
+input_parse: 'o' osc_string
+input_parse: 'c' osc_string
+input_parse: 'a' osc_string
+input_parse: 'l' osc_string
+input_parse: 'h' osc_string
+input_parse: 'o' osc_string
+input_parse: 's' osc_string
+input_parse: 't' osc_string
+input_parse: ':' osc_string
+input_parse: ' ' osc_string
+input_parse: '~' osc_string
+input_parse: '/' osc_string
+input_parse: 'd' osc_string
+input_parse: 'o' osc_string
+input_parse: 't' osc_string
+input_parse: 'f' osc_string
+input_parse: 'i' osc_string
+input_parse: 'l' osc_string
+input_parse: 'e' osc_string
+input_parse: 's' osc_string
+input_parse: '' osc_string
+input_exit_osc: "2;peteyy@localhost: ~/dotfiles"
+input_parse: '' ground
+input_parse: ']' esc_enter
+input_enter_osc
+input_parse: '1' osc_string
+input_parse: ';' osc_string
+input_parse: '~' osc_string
+input_parse: '/' osc_string
+input_parse: 'd' osc_string
+input_parse: 'o' osc_string
+input_parse: 't' osc_string
+input_parse: 'f' osc_string
+input_parse: 'i' osc_string
+input_parse: 'l' osc_string
+input_parse: 'e' osc_string
+input_parse: 's' osc_string
+input_parse: '' osc_string
+input_exit_osc: "1;~/dotfiles"
+input_exit_osc: unknown '1'
+input_parse: '' ground
+input_c0_dispatch: '
+input_parse: '' ground
+input_parse: '[' esc_enter
+input_parse: '0' csi_enter
+input_parse: 'm' csi_parameter
+input_csi_dispatch: 'm' "" "0"
+input_parse: '' ground
+input_parse: '[' esc_enter
+input_parse: '2' csi_enter
+input_parse: '7' csi_parameter
+input_parse: 'm' csi_parameter
+input_csi_dispatch: 'm' "" "27"
+input_parse: '' ground
+input_parse: '[' esc_enter
+input_parse: '2' csi_enter
+input_parse: '4' csi_parameter
+input_parse: 'm' csi_parameter
+input_csi_dispatch: 'm' "" "24"
+input_parse: '' ground
+input_parse: '[' esc_enter
+input_parse: 'J' csi_enter
+input_csi_dispatch: 'J' "" ""
+input_parse: '' ground
+input_c0_dispatch: '
+input_parse: '
+' ground
+input_c0_dispatch: '
+
+input_parse: '' ground
+input_parse: '[' esc_enter
+input_parse: '3' csi_enter
+input_parse: '4' csi_parameter
+input_parse: 'm' csi_parameter
+input_csi_dispatch: 'm' "" "34"
+input_parse: '~' ground
+input_parse: '/' ground
+input_parse: 'd' ground
+input_parse: 'o' ground
+input_parse: 't' ground
+input_parse: 'f' ground
+input_parse: 'i' ground
+input_parse: 'l' ground
+input_parse: 'e' ground
+input_parse: 's' ground
+input_parse: '' ground
+input_parse: '[' esc_enter
+input_parse: '0' csi_enter
+input_parse: '0' csi_parameter
+input_parse: 'm' csi_parameter
+input_csi_dispatch: 'm' "" "00"
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: '' ground
+input_parse: '[' esc_enter
+input_parse: '3' csi_enter
+input_parse: '2' csi_parameter
+input_parse: 'm' csi_parameter
+input_csi_dispatch: 'm' "" "32"
+input_parse: 'm' ground
+input_parse: 'a' ground
+input_parse: 's' ground
+input_parse: 't' ground
+input_parse: 'e' ground
+input_parse: 'r' ground
+input_parse: ' ' ground
+input_parse: '' ground
+input_parse: '[' esc_enter
+input_parse: '3' csi_enter
+input_parse: '1' csi_parameter
+input_parse: 'm' csi_parameter
+input_csi_dispatch: 'm' "" "31"
+input_parse: 'â' ground
+input_utf8_open
+input_parse: 'œ' utf8_two
+input_utf8_add
+input_parse: '—' utf8_one
+input_utf8_close
+input_parse: '' ground
+input_parse: '[' esc_enter
+input_parse: '0' csi_enter
+input_parse: '0' csi_parameter
+input_parse: 'm' csi_parameter
+input_csi_dispatch: 'm' "" "00"
+input_parse: '' ground
+input_parse: '[' esc_enter
+input_parse: '0' csi_enter
+input_parse: '0' csi_parameter
+input_parse: 'm' csi_parameter
+input_csi_dispatch: 'm' "" "00"
+input_parse: ' ' ground
+input_parse: '' ground
+input_c0_dispatch: '
+input_parse: '
+' ground
+input_c0_dispatch: '
+
+input_parse: 'â' ground
+input_utf8_open
+input_parse: '–' utf8_two
+input_utf8_add
+input_parse: '¶' utf8_one
+input_utf8_close
+input_parse: ' ' ground
+input_parse: '' ground
+input_parse: '[' esc_enter
+input_parse: 'K' csi_enter
+input_csi_dispatch: 'K' "" ""
+input_parse: '' ground
+input_parse: '[' esc_enter
+input_parse: '1' csi_enter
+input_parse: '2' csi_parameter
+input_parse: '4' csi_parameter
+input_parse: 'C' csi_parameter
+input_csi_dispatch: 'C' "" "124"
+input_parse: '' ground
+input_parse: '[' esc_enter
+input_parse: '1' csi_enter
+input_parse: 'A' csi_parameter
+input_csi_dispatch: 'A' "" "1"
+input_parse: '' ground
+input_parse: '[' esc_enter
+input_parse: '3' csi_enter
+input_parse: '0' csi_parameter
+input_parse: 'm' csi_parameter
+input_csi_dispatch: 'm' "" "30"
+input_parse: '4' ground
+input_parse: 'h' ground
+input_parse: '2' ground
+input_parse: '8' ground
+input_parse: 'm' ground
+input_parse: '' ground
+input_parse: '[' esc_enter
+input_parse: '0' csi_enter
+input_parse: '0' csi_parameter
+input_parse: 'm' csi_parameter
+input_csi_dispatch: 'm' "" "00"
+input_parse: ' ' ground
+input_parse: '' ground
+input_parse: '[' esc_enter
+input_parse: '3' csi_enter
+input_parse: '0' csi_parameter
+input_parse: 'm' csi_parameter
+input_csi_dispatch: 'm' "" "30"
+input_parse: 'â' ground
+input_utf8_open
+input_parse: '—' utf8_two
+input_utf8_add
+input_parse: '’' utf8_one
+input_utf8_close
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: '' ground
+input_parse: '[' esc_enter
+input_parse: '3' csi_enter
+input_parse: '1' csi_parameter
+input_parse: 'm' csi_parameter
+input_csi_dispatch: 'm' "" "31"
+input_parse: '' ground
+input_parse: '[' esc_enter
+input_parse: '0' csi_enter
+input_parse: '0' csi_parameter
+input_parse: 'm' csi_parameter
+input_csi_dispatch: 'm' "" "00"
+input_parse: '' ground
+input_parse: '[' esc_enter
+input_parse: '1' csi_enter
+input_parse: 'B' csi_parameter
+input_csi_dispatch: 'B' "" "1"
+input_parse: '' ground
+input_parse: '[' esc_enter
+input_parse: '1' csi_enter
+input_parse: '3' csi_parameter
+input_parse: '3' csi_parameter
+input_parse: 'D' csi_parameter
+input_csi_dispatch: 'D' "" "133"
+input_parse: '' ground
+input_parse: '[' esc_enter
+input_parse: '?' csi_enter
+input_parse: '1' csi_parameter
+input_parse: 'h' csi_parameter
+input_csi_dispatch: 'h' "?" "1"
+input_parse: '' ground
+input_parse: '=' esc_enter
+input_esc_dispatch: '=', 
+input_parse: '' ground
+input_parse: '[' esc_enter
+input_parse: '?' csi_enter
+input_parse: '2' csi_parameter
+input_parse: '0' csi_parameter
+input_parse: '0' csi_parameter
+input_parse: '4' csi_parameter
+input_parse: 'h' csi_parameter
+input_csi_dispatch: 'h' "?" "2004"
+keys are 1 (:)
+complete key : 0x3a
+writing key 0x3a
+input_parse: '' ground
+input_parse: '[' esc_enter
+input_parse: '3' csi_enter
+input_parse: '2' csi_parameter
+input_parse: 'm' csi_parameter
+input_csi_dispatch: 'm' "" "32"
+input_parse: ':' ground
+input_parse: '' ground
+input_parse: '[' esc_enter
+input_parse: '3' csi_enter
+input_parse: '9' csi_parameter
+input_parse: 'm' csi_parameter
+input_csi_dispatch: 'm' "" "39"
+keys are 1 (q)
+complete key q 0x71
+writing key 0x71
+input_parse: '' ground
+input_c0_dispatch: '
+input_parse: '' ground
+input_parse: '[' esc_enter
+input_parse: '1' csi_enter
+input_parse: 'm' csi_parameter
+input_csi_dispatch: 'm' "" "1"
+input_parse: '' ground
+input_parse: '[' esc_enter
+input_parse: '3' csi_enter
+input_parse: '1' csi_parameter
+input_parse: 'm' csi_parameter
+input_csi_dispatch: 'm' "" "31"
+input_parse: ':' ground
+input_parse: '' ground
+input_parse: '[' esc_enter
+input_parse: '1' csi_enter
+input_parse: 'm' csi_parameter
+input_csi_dispatch: 'm' "" "1"
+input_parse: '' ground
+input_parse: '[' esc_enter
+input_parse: '3' csi_enter
+input_parse: '1' csi_parameter
+input_parse: 'm' csi_parameter
+input_csi_dispatch: 'm' "" "31"
+input_parse: 'q' ground
+input_parse: '' ground
+input_parse: '[' esc_enter
+input_parse: '0' csi_enter
+input_parse: 'm' csi_parameter
+input_csi_dispatch: 'm' "" "0"
+input_parse: '' ground
+input_parse: '[' esc_enter
+input_parse: '3' csi_enter
+input_parse: '9' csi_parameter
+input_parse: 'm' csi_parameter
+input_csi_dispatch: 'm' "" "39"
+keys are 1 ()
+complete key  0xd
+writing key 0xd
+input_parse: '' ground
+input_parse: '[' esc_enter
+input_parse: '?' csi_enter
+input_parse: '1' csi_parameter
+input_parse: 'l' csi_parameter
+input_csi_dispatch: 'l' "?" "1"
+input_parse: '' ground
+input_parse: '>' esc_enter
+input_esc_dispatch: '>', 
+input_parse: '' ground
+input_parse: '[' esc_enter
+input_parse: '?' csi_enter
+input_parse: '2' csi_parameter
+input_parse: '0' csi_parameter
+input_parse: '0' csi_parameter
+input_parse: '4' csi_parameter
+input_parse: 'l' csi_parameter
+input_csi_dispatch: 'l' "?" "2004"
+input_parse: '' ground
+input_c0_dispatch: '
+input_parse: '' ground
+input_c0_dispatch: '
+input_parse: '
+' ground
+input_c0_dispatch: '
+
+input_parse: '' ground
+input_parse: ']' esc_enter
+input_enter_osc
+input_parse: '2' osc_string
+input_parse: ';' osc_string
+input_parse: ':' osc_string
+input_parse: 'q' osc_string
+input_parse: '' osc_string
+input_exit_osc: "2;:q"
+input_parse: '' ground
+input_parse: ']' esc_enter
+input_enter_osc
+input_parse: '1' osc_string
+input_parse: ';' osc_string
+input_parse: ':' osc_string
+input_parse: 'q' osc_string
+input_parse: '' osc_string
+input_exit_osc: "1;:q"
+input_exit_osc: unknown '1'
+input_parse: 'z' ground
+input_parse: 's' ground
+input_parse: 'h' ground
+input_parse: ':' ground
+input_parse: ' ' ground
+input_parse: 'c' ground
+input_parse: 'o' ground
+input_parse: 'm' ground
+input_parse: 'm' ground
+input_parse: 'a' ground
+input_parse: 'n' ground
+input_parse: 'd' ground
+input_parse: ' ' ground
+input_parse: 'n' ground
+input_parse: 'o' ground
+input_parse: 't' ground
+input_parse: ' ' ground
+input_parse: 'f' ground
+input_parse: 'o' ground
+input_parse: 'u' ground
+input_parse: 'n' ground
+input_parse: 'd' ground
+input_parse: ':' ground
+input_parse: ' ' ground
+input_parse: ':' ground
+input_parse: 'q' ground
+input_parse: '' ground
+input_c0_dispatch: '
+input_parse: '
+' ground
+input_c0_dispatch: '
+
+input_parse: '' ground
+input_parse: '[' esc_enter
+input_parse: '1' csi_enter
+input_parse: 'm' csi_parameter
+input_csi_dispatch: 'm' "" "1"
+input_parse: '' ground
+input_parse: '[' esc_enter
+input_parse: '7' csi_enter
+input_parse: 'm' csi_parameter
+input_csi_dispatch: 'm' "" "7"
+input_parse: '%' ground
+input_parse: '' ground
+input_parse: '[' esc_enter
+input_parse: '2' csi_enter
+input_parse: '7' csi_parameter
+input_parse: 'm' csi_parameter
+input_csi_dispatch: 'm' "" "27"
+input_parse: '' ground
+input_parse: '[' esc_enter
+input_parse: '1' csi_enter
+input_parse: 'm' csi_parameter
+input_csi_dispatch: 'm' "" "1"
+input_parse: '' ground
+input_parse: '[' esc_enter
+input_parse: '0' csi_enter
+input_parse: 'm' csi_parameter
+input_csi_dispatch: 'm' "" "0"
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: '' ground
+input_c0_dispatch: '
+input_parse: ' ' ground
+input_parse: '' ground
+input_c0_dispatch: '
+input_parse: '' ground
+input_parse: ']' esc_enter
+input_enter_osc
+input_parse: '7' osc_string
+input_parse: ';' osc_string
+input_parse: 'f' osc_string
+input_parse: 'i' osc_string
+input_parse: 'l' osc_string
+input_parse: 'e' osc_string
+input_parse: ':' osc_string
+input_parse: '/' osc_string
+input_parse: '/' osc_string
+input_parse: 'l' osc_string
+input_parse: 'o' osc_string
+input_parse: 'c' osc_string
+input_parse: 'a' osc_string
+input_parse: 'l' osc_string
+input_parse: 'h' osc_string
+input_parse: 'o' osc_string
+input_parse: 's' osc_string
+input_parse: 't' osc_string
+input_parse: '.' osc_string
+input_parse: 'l' osc_string
+input_parse: 'o' osc_string
+input_parse: 'c' osc_string
+input_parse: 'a' osc_string
+input_parse: 'l' osc_string
+input_parse: 'd' osc_string
+input_parse: 'o' osc_string
+input_parse: 'm' osc_string
+input_parse: 'a' osc_string
+input_parse: 'i' osc_string
+input_parse: 'n' osc_string
+input_parse: '/' osc_string
+input_parse: 'h' osc_string
+input_parse: 'o' osc_string
+input_parse: 'm' osc_string
+input_parse: 'e' osc_string
+input_parse: '/' osc_string
+input_parse: 'p' osc_string
+input_parse: 'e' osc_string
+input_parse: 't' osc_string
+input_parse: 'e' osc_string
+input_parse: 'y' osc_string
+input_parse: 'y' osc_string
+input_parse: '/' osc_string
+input_parse: 'd' osc_string
+input_parse: 'o' osc_string
+input_parse: 't' osc_string
+input_parse: 'f' osc_string
+input_parse: 'i' osc_string
+input_parse: 'l' osc_string
+input_parse: 'e' osc_string
+input_parse: 's' osc_string
+input_parse: '' osc_string
+input_exit_osc: "7;file://localhost.localdomain/home/peteyy/dotfiles"
+input_exit_osc: unknown '7'
+input_parse: '' ground
+input_parse: ']' esc_enter
+input_enter_osc
+input_parse: '2' osc_string
+input_parse: ';' osc_string
+input_parse: 'p' osc_string
+input_parse: 'e' osc_string
+input_parse: 't' osc_string
+input_parse: 'e' osc_string
+input_parse: 'y' osc_string
+input_parse: 'y' osc_string
+input_parse: '@' osc_string
+input_parse: 'l' osc_string
+input_parse: 'o' osc_string
+input_parse: 'c' osc_string
+input_parse: 'a' osc_string
+input_parse: 'l' osc_string
+input_parse: 'h' osc_string
+input_parse: 'o' osc_string
+input_parse: 's' osc_string
+input_parse: 't' osc_string
+input_parse: ':' osc_string
+input_parse: ' ' osc_string
+input_parse: '~' osc_string
+input_parse: '/' osc_string
+input_parse: 'd' osc_string
+input_parse: 'o' osc_string
+input_parse: 't' osc_string
+input_parse: 'f' osc_string
+input_parse: 'i' osc_string
+input_parse: 'l' osc_string
+input_parse: 'e' osc_string
+input_parse: 's' osc_string
+input_parse: '' osc_string
+input_exit_osc: "2;peteyy@localhost: ~/dotfiles"
+input_parse: '' ground
+input_parse: ']' esc_enter
+input_enter_osc
+input_parse: '1' osc_string
+input_parse: ';' osc_string
+input_parse: '~' osc_string
+input_parse: '/' osc_string
+input_parse: 'd' osc_string
+input_parse: 'o' osc_string
+input_parse: 't' osc_string
+input_parse: 'f' osc_string
+input_parse: 'i' osc_string
+input_parse: 'l' osc_string
+input_parse: 'e' osc_string
+input_parse: 's' osc_string
+input_parse: '' osc_string
+input_exit_osc: "1;~/dotfiles"
+input_exit_osc: unknown '1'
+input_parse: '' ground
+input_c0_dispatch: '
+input_parse: '' ground
+input_parse: '[' esc_enter
+input_parse: '0' csi_enter
+input_parse: 'm' csi_parameter
+input_csi_dispatch: 'm' "" "0"
+input_parse: '' ground
+input_parse: '[' esc_enter
+input_parse: '2' csi_enter
+input_parse: '7' csi_parameter
+input_parse: 'm' csi_parameter
+input_csi_dispatch: 'm' "" "27"
+input_parse: '' ground
+input_parse: '[' esc_enter
+input_parse: '2' csi_enter
+input_parse: '4' csi_parameter
+input_parse: 'm' csi_parameter
+input_csi_dispatch: 'm' "" "24"
+input_parse: '' ground
+input_parse: '[' esc_enter
+input_parse: 'J' csi_enter
+input_csi_dispatch: 'J' "" ""
+input_parse: '' ground
+input_c0_dispatch: '
+input_parse: '
+' ground
+input_c0_dispatch: '
+
+input_parse: '' ground
+input_parse: '[' esc_enter
+input_parse: '3' csi_enter
+input_parse: '4' csi_parameter
+input_parse: 'm' csi_parameter
+input_csi_dispatch: 'm' "" "34"
+input_parse: '~' ground
+input_parse: '/' ground
+input_parse: 'd' ground
+input_parse: 'o' ground
+input_parse: 't' ground
+input_parse: 'f' ground
+input_parse: 'i' ground
+input_parse: 'l' ground
+input_parse: 'e' ground
+input_parse: 's' ground
+input_parse: '' ground
+input_parse: '[' esc_enter
+input_parse: '0' csi_enter
+input_parse: '0' csi_parameter
+input_parse: 'm' csi_parameter
+input_csi_dispatch: 'm' "" "00"
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: '' ground
+input_parse: '[' esc_enter
+input_parse: '3' csi_enter
+input_parse: '2' csi_parameter
+input_parse: 'm' csi_parameter
+input_csi_dispatch: 'm' "" "32"
+input_parse: 'm' ground
+input_parse: 'a' ground
+input_parse: 's' ground
+input_parse: 't' ground
+input_parse: 'e' ground
+input_parse: 'r' ground
+input_parse: ' ' ground
+input_parse: '' ground
+input_parse: '[' esc_enter
+input_parse: '3' csi_enter
+input_parse: '1' csi_parameter
+input_parse: 'm' csi_parameter
+input_csi_dispatch: 'm' "" "31"
+input_parse: 'â' ground
+input_utf8_open
+input_parse: 'œ' utf8_two
+input_utf8_add
+input_parse: '—' utf8_one
+input_utf8_close
+input_parse: '' ground
+input_parse: '[' esc_enter
+input_parse: '0' csi_enter
+input_parse: '0' csi_parameter
+input_parse: 'm' csi_parameter
+input_csi_dispatch: 'm' "" "00"
+input_parse: '' ground
+input_parse: '[' esc_enter
+input_parse: '0' csi_enter
+input_parse: '0' csi_parameter
+input_parse: 'm' csi_parameter
+input_csi_dispatch: 'm' "" "00"
+input_parse: ' ' ground
+input_parse: '' ground
+input_c0_dispatch: '
+input_parse: '
+' ground
+input_c0_dispatch: '
+
+input_parse: 'â' ground
+input_utf8_open
+input_parse: '–' utf8_two
+input_utf8_add
+input_parse: '¶' utf8_one
+input_utf8_close
+input_parse: ' ' ground
+input_parse: '' ground
+input_parse: '[' esc_enter
+input_parse: 'K' csi_enter
+input_csi_dispatch: 'K' "" ""
+input_parse: '' ground
+input_parse: '[' esc_enter
+input_parse: '1' csi_enter
+input_parse: '2' csi_parameter
+input_parse: '3' csi_parameter
+input_parse: 'C' csi_parameter
+input_csi_dispatch: 'C' "" "123"
+input_parse: '' ground
+input_parse: '[' esc_enter
+input_parse: '1' csi_enter
+input_parse: 'A' csi_parameter
+input_csi_dispatch: 'A' "" "1"
+input_parse: '' ground
+input_parse: '[' esc_enter
+input_parse: '3' csi_enter
+input_parse: '0' csi_parameter
+input_parse: 'm' csi_parameter
+input_csi_dispatch: 'm' "" "30"
+input_parse: '4' ground
+input_parse: 'h' ground
+input_parse: '2' ground
+input_parse: '8' ground
+input_parse: 'm' ground
+input_parse: '' ground
+input_parse: '[' esc_enter
+input_parse: '0' csi_enter
+input_parse: '0' csi_parameter
+input_parse: 'm' csi_parameter
+input_csi_dispatch: 'm' "" "00"
+input_parse: ' ' ground
+input_parse: '' ground
+input_parse: '[' esc_enter
+input_parse: '3' csi_enter
+input_parse: '0' csi_parameter
+input_parse: 'm' csi_parameter
+input_csi_dispatch: 'm' "" "30"
+input_parse: 'â' ground
+input_utf8_open
+input_parse: '—' utf8_two
+input_utf8_add
+input_parse: '’' utf8_one
+input_utf8_close
+input_parse: ' ' ground
+input_parse: ' ' ground
+input_parse: '' ground
+input_parse: '[' esc_enter
+input_parse: '3' csi_enter
+input_parse: '1' csi_parameter
+input_parse: 'm' csi_parameter
+input_csi_dispatch: 'm' "" "31"
+input_parse: 'â' ground
+input_utf8_open
+input_parse: '' utf8_two
+input_utf8_add
+input_parse: '‰' utf8_one
+input_utf8_close
+input_parse: '' ground
+input_parse: '[' esc_enter
+input_parse: '0' csi_enter
+input_parse: '0' csi_parameter
+input_parse: 'm' csi_parameter
+input_csi_dispatch: 'm' "" "00"
+input_parse: '' ground
+input_parse: '[' esc_enter
+input_parse: '1' csi_enter
+input_parse: 'B' csi_parameter
+input_csi_dispatch: 'B' "" "1"
+input_parse: '' ground
+input_parse: '[' esc_enter
+input_parse: '1' csi_enter
+input_parse: '3' csi_parameter
+input_parse: '3' csi_parameter
+input_parse: 'D' csi_parameter
+input_csi_dispatch: 'D' "" "133"
+input_parse: '' ground
+input_parse: '[' esc_enter
+input_parse: '?' csi_enter
+input_parse: '1' csi_parameter
+input_parse: 'h' csi_parameter
+input_csi_dispatch: 'h' "?" "1"
+input_parse: '' ground
+input_parse: '=' esc_enter
+input_esc_dispatch: '=', 
+input_parse: '' ground
+input_parse: '[' esc_enter
+input_parse: '?' csi_enter
+input_parse: '2' csi_parameter
+input_parse: '0' csi_parameter
+input_parse: '0' csi_parameter
+input_parse: '4' csi_parameter
+input_parse: 'h' csi_parameter
+input_csi_dispatch: 'h' "?" "2004"
+keys are 1 ()
+complete key  0x2
+keys are 1 (c)
+complete key c 0x63
+cmdq 0x20e5310: kill-pane (client 7)
+session 0 destroyed
+writing 203 to client 7
+got 205 from client 7
+writing 204 to client 7
+lost client 7

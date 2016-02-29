@@ -106,11 +106,11 @@ set -g display-panes-time 1000
 setw -g automatic-rename on
 
 set -g status-interval 5
-set -g status-justify centre
+set -g status-justify left
 
-set-window-option -g status-left " #S "
+set-window-option -g status-left ""
 
-set-window-option -g status-right " %H:%M, %d. %B "
+set-window-option -g status-right "#S  %H:%M, %d. %B "
 
 set-window-option -g window-status-format " #I: #W "
 
@@ -134,7 +134,7 @@ set-window-option -g window-status-current-bg blue
 set-window-option -g window-status-current-attr dim
 
 # pane border
-set-option -g pane-border-fg brightgreen #base02
+set-option -g pane-border-fg black #base02
 set-option -g pane-active-border-fg red #base01
 
 # message text
