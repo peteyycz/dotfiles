@@ -250,7 +250,7 @@ let base16colorspace=256
 let g:sierra_Twilight = 1
 let g:alduin_Shout_Windhelm = 1
 set background=dark
-colorscheme base16-monokai
+colorscheme alduin
 
 " The silver searcher (ACK)
 " =========================
