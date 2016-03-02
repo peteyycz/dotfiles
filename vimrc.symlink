@@ -8,10 +8,11 @@ set autoread " Detect file changes outside vim
 call plug#begin('~/.config/nvim/bundle')
 
 " Can't live without colors
-Plug 'chriskempson/base16-vim'
 " Plug 'nanotech/jellybeans.vim'
-" Plug 'w0ng/vim-hybrid'
-Plug 'AlessandroYorba/Alduin'
+Plug 'w0ng/vim-hybrid'
+Plug 'frankier/neovim-colors-solarized-truecolor-only'
+Plug 'morhetz/gruvbox'
+" Plug 'AlessandroYorba/Alduin'
 " Plug 'AlessandroYorba/Sierra'
 " Plug 'tpope/vim-vividchalk'
 " Plug 'junegunn/seoul256.vim'
@@ -35,6 +36,7 @@ Plug 'Raimondi/delimitMate' " Auto insert paired characters
 Plug 'rking/ag.vim'
 Plug 'mhinz/vim-signify' " 'airblade/vim-gitgutter' Nice git lines at the side
 Plug 'rizzatti/dash.vim' " Dash integration
+Plug 'vim-airline/vim-airline'
 
 Plug 'tpope/vim-commentary' " Commentary
 Plug 'tpope/vim-fugitive' " Git interactions within VIM (blame and diff)
@@ -71,7 +73,7 @@ call plug#end()
 
 " General settings
 " ================
-let mapleader=','
+let mapleader="\<Space>"
 set hidden " Some kind of buffer tweak
 set history=1000
 set undofile
@@ -246,11 +248,8 @@ nnoremap <silent> <leader>md :call MochaRemoveOnly()<CR>
 " Colorscheme
 " ===========
 set t_Co=256
-let base16colorspace=256
-let g:sierra_Twilight = 1
-let g:alduin_Shout_Windhelm = 1
 set background=dark
-colorscheme alduin
+colorscheme solarized
 
 " The silver searcher (ACK)
 " =========================

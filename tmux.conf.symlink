@@ -119,8 +119,8 @@ set-window-option -g window-status-current-format " #I: #W "
 #### COLOUR (Solarized dark)
 
 # default statusbar colors
-set-option -g status-bg black
-set-option -g status-fg colour255
+set-option -g status-bg colour8
+set-option -g status-fg colour241
 set-option -g status-attr default
 
 # default window title colors
@@ -129,25 +129,16 @@ set-window-option -g window-status-bg colour241
 #set-window-option -g window-status-attr dim
 
 # active window title colors
-set-window-option -g window-status-current-fg brightred
-set-window-option -g window-status-current-bg blue
+set-window-option -g window-status-current-fg colour241
+set-window-option -g window-status-current-bg colour255
 set-window-option -g window-status-current-attr dim
 
 # pane border
 set-option -g pane-border-fg white
 set-option -g pane-active-border-fg red
 
-# message text
-set-option -g message-bg black
-set-option -g message-fg brightred
-
-# pane number display
-set-option -g display-panes-active-colour blue
-set-option -g display-panes-colour brightred
-
 set -g status-interval 1
 
-set -g status-left-length 20
 set -g status-right-length 150
 
 if-shell 'test "$(uname)" = "Darwin"' 'source $DOTFILES/tmux/tmux.darwin.conf'
