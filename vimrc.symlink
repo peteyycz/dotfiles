@@ -36,7 +36,10 @@ Plug 'Raimondi/delimitMate' " Auto insert paired characters
 Plug 'rking/ag.vim'
 Plug 'mhinz/vim-signify' " 'airblade/vim-gitgutter' Nice git lines at the side
 Plug 'rizzatti/dash.vim' " Dash integration
+
+" Pretty powerline
 Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 Plug 'tpope/vim-commentary' " Commentary
 Plug 'tpope/vim-fugitive' " Git interactions within VIM (blame and diff)
@@ -298,3 +301,7 @@ autocmd! BufWritePost * Neomake
 imap <c-x><c-l> <plug>(fzf-complete-line)
 nnoremap <C-p> :Files<CR>
 nnoremap <leader>b :Buffers<CR>
+
+" Airline
+" =======
+let g:airline_powerline_fonts=1
