@@ -1,0 +1,60 @@
+snippet func
+function $1 ($2) {
+  $0
+}
+endsnippet
+
+snippet stub
+this.sandbox.stub($1, '$2', () => {
+  $0
+})
+endsnippet
+
+snippet stub*
+this.sandbox.stub($1, '$2', function * () {
+  $0
+})
+endsnippet
+
+snippet spy
+this.sandbox.spy($1)$0
+endsnippet
+
+snippet logval
+console.log('${1}', $1)$0
+endsnippet
+
+snippet logobj
+console.log('${1}', JSON.stringify($1, null, 2))$0
+endsnippet
+
+snippet req
+const ${1} = require('${2:$1}')
+$0
+endsnippet
+
+snippet desc
+describe('$1', () => {
+  $0
+})
+endsnippet
+
+snippet it
+it('$1', () => {
+  $0
+})
+endsnippet
+
+snippet it*
+it('$1', function * () {
+  $0
+})
+endsnippet
+
+snippet shebang
+#!/usr/bin/env node
+endsnippet
+
+snippet exp
+expect($1).$0
+endsnippet
