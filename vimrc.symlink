@@ -252,7 +252,7 @@ nnoremap <silent> <leader>md :call MochaRemoveOnly()<CR>
 " ===========
 set t_Co=256
 set background=dark
-colorscheme solarized
+colorscheme hybrid
 
 " The silver searcher (ACK)
 " =========================
@@ -304,4 +304,5 @@ nnoremap <leader>b :Buffers<CR>
 
 " Airline
 " =======
-let g:airline_powerline_fonts=1
+let g:airline_powerline_fonts = 1
+let g:airline_theme = 'hybrid'
