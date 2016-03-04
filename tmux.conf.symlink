@@ -119,18 +119,18 @@ set-window-option -g window-status-current-format " #I: #W "
 #### COLOUR (Solarized dark)
 
 # default statusbar colors
-set-option -g status-bg colour8
-set-option -g status-fg colour241
+set-option -g status-bg colour234
+set-option -g status-fg colour15
 set-option -g status-attr default
 
 # default window title colors
-set-window-option -g window-status-fg colour255
-set-window-option -g window-status-bg colour241
+set-window-option -g window-status-fg colour15
+set-window-option -g window-status-bg colour6
 #set-window-option -g window-status-attr dim
 
 # active window title colors
-set-window-option -g window-status-current-fg colour241
-set-window-option -g window-status-current-bg colour255
+set-window-option -g window-status-current-fg colour15
+set-window-option -g window-status-current-bg colour9
 set-window-option -g window-status-current-attr dim
 
 # pane border
