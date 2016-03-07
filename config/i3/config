@@ -240,7 +240,7 @@ exec --no-startup-id "setxkbmap -option ctrl:nocaps"
 # CTRL one tap is escape
 exec --no-startup-id "xcape"
 # Reverse scrolling direction on touchpad
-exec --no-startup-id "xinput set-prop \"ETPS/2 Elantech Touchpad\" \"Synaptics Scrolling Distance\" -125 -125"
+exec --no-startup-id "xinput set-prop 13 283 1"
 exec_always --no-startup-id "feh --bg-scale ~/Documents/sea.jpg"
 
 # Change background
