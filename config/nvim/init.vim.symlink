@@ -19,27 +19,23 @@ Plug 'morhetz/gruvbox'
 " Plug 'vim-scripts/wombat256.vim'
 " Plug 'vim-scripts/xoria256.vim'
 
-" Snippets
-Plug 'SirVer/ultisnips'
-
 " Experimental
-Plug 'Olical/vim-enmasse'
+" Plug 'Olical/vim-enmasse'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+" Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 
+Plug 'SirVer/ultisnips' " Snippets
 Plug 'benekastah/neomake' " Async execution engine for syntax checking
-" Plug '0x0dea/vim-molasses' " For not being efficient...
+Plug '0x0dea/vim-molasses' " For not being efficient...
 " Plug 'ap/vim-buftabline' " Display open buffers
-" Plug 'itchyny/lightline.vim' " Prettier status line
 " Plug 'ervandew/supertab' " Tab completion instead of ctrl p and n
 Plug 'Raimondi/delimitMate' " Auto insert paired characters
 Plug 'rking/ag.vim'
 Plug 'mhinz/vim-signify' " 'airblade/vim-gitgutter' Nice git lines at the side
 Plug 'rizzatti/dash.vim' " Dash integration
-
-" Pretty powerline
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline' " Very powerline
+Plug 'vim-airline/vim-airline-themes' " Such themes
 
 Plug 'tpope/vim-commentary' " Commentary
 Plug 'tpope/vim-fugitive' " Git interactions within VIM (blame and diff)
@@ -94,9 +90,8 @@ set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
 set showbreak=↪
 set visualbell " No noise just flash
 
-" Environment variables
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1 " True color palette
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1 " Cursor based on modes
 
 " Backup
 set nobackup
@@ -307,3 +302,6 @@ nnoremap <leader>b :Buffers<CR>
 " =======
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'hybrid'
+
+" Let me see that lineNr DROP
+highlight LineNr ctermfg=grey ctermbg=white guibg=NONE guifg=#c5c8c6
