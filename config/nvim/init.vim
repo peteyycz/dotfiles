@@ -27,7 +27,7 @@ Plug 'junegunn/fzf.vim'
 
 Plug 'SirVer/ultisnips' " Snippets
 Plug 'benekastah/neomake' " Async execution engine for syntax checking
-Plug '0x0dea/vim-molasses' " For not being efficient...
+" Plug '0x0dea/vim-molasses' " For not being efficient...
 " Plug 'ap/vim-buftabline' " Display open buffers
 " Plug 'ervandew/supertab' " Tab completion instead of ctrl p and n
 Plug 'Raimondi/delimitMate' " Auto insert paired characters
@@ -248,7 +248,7 @@ nnoremap <silent> <leader>md :call MochaRemoveOnly()<CR>
 " ===========
 set t_Co=256
 set background=dark
-colorscheme hybrid
+colorscheme gruvbox
 
 " The silver searcher (ACK)
 " =========================
@@ -295,13 +295,15 @@ autocmd! BufWritePost * Neomake
 " Fzf
 " =======
 imap <c-x><c-l> <plug>(fzf-complete-line)
+imap <c-x><c-f> <plug>(fzf-complete-path)
+let g:fzf_layout = { 'up': '20%' }
 nnoremap <C-p> :Files<CR>
 nnoremap <leader>b :Buffers<CR>
 
 " Airline
 " =======
 let g:airline_powerline_fonts = 1
-let g:airline_theme = 'hybrid'
+let g:airline_theme = 'gruvbox'
 
 " Let me see that lineNr DROP
-highlight LineNr ctermfg=grey ctermbg=white guibg=NONE guifg=#c5c8c6
+highlight LineNr ctermfg=grey ctermbg=white guibg=NONE guifg=#fdf4c1
