@@ -1,5 +1,6 @@
 [options]
-font = Input Mono 12
+# font = Input Mono 12
+font = Inconsolata-g 12
 
 [colors]
 

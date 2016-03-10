@@ -1,6 +1,10 @@
+# Plugins
+set -g @plugin 'tmux-plugins/tmux-sensible'
+set -g @plugin 'tmux-plugins/tmux-yank'
+set -g @plugin 'tmux-plugins/tmux-resurrect'
+
 # tmux display things in 256 colors
 set-option -ga terminal-overrides ",xterm-256color:Tc"
-# set -g default-terminal "screen-256color"
 
 set -g history-limit 20000
 
@@ -142,3 +146,5 @@ set -g status-interval 1
 set -g status-right-length 150
 
 if-shell 'test "$(uname)" = "Darwin"' 'source $DOTFILES/tmux/tmux.darwin.conf'
+
+run '~/.tmux/plugins/tpm/tpm'

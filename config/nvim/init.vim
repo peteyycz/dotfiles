@@ -27,6 +27,7 @@ Plug 'junegunn/fzf.vim'
 
 Plug 'SirVer/ultisnips' " Snippets
 Plug 'benekastah/neomake' " Async execution engine for syntax checking
+Plug 'bronson/vim-visual-star-search' " Visual star search
 " Plug '0x0dea/vim-molasses' " For not being efficient...
 " Plug 'ap/vim-buftabline' " Display open buffers
 " Plug 'ervandew/supertab' " Tab completion instead of ctrl p and n
@@ -54,7 +55,7 @@ Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
 Plug 'othree/yajs.vim', { 'for': 'javascript' }
 Plug 'mxw/vim-jsx', { 'for': 'javascript' }
 Plug 'moll/vim-node', { 'for': 'javascript' }
-Plug 'helino/vim-json', { 'for': 'json' }
+" Plug 'helino/vim-json', { 'for': 'json' }
 
 Plug 'leafgarland/typescript-vim', { 'for': 'typescript' } " Might come handy
 Plug 'mustache/vim-mustache-handlebars'
