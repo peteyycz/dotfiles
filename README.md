@@ -30,7 +30,7 @@ xcape <- CTRL 1 tap is escape
 unclutter <- hides mouse after inactivity
 
 ### For the looks
-freetype-freeworld <- better font rendering on linux
+infinality bundle <- better font rendering on linux
 OR
 infinality
 rofi <- dmenu alternative, launcher program
