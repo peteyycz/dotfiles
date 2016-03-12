@@ -23,6 +23,7 @@ Plug 'morhetz/gruvbox'
 " Plug 'Olical/vim-enmasse'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'junegunn/rainbow_parentheses.vim'
 " Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 
 Plug 'SirVer/ultisnips' " Snippets
@@ -68,6 +69,7 @@ Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
 Plug 'tpope/vim-markdown', { 'for': 'markdown' }
 Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+Plug 'honza/dockerfile.vim'
 
 call plug#end()
 
@@ -305,6 +307,10 @@ nnoremap <leader>b :Buffers<CR>
 " =======
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'gruvbox'
+
+" Rainbow paren
+" =============
+let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
 
 " Let me see that lineNr DROP
 highlight LineNr ctermfg=grey ctermbg=white guibg=NONE guifg=#fdf4c1

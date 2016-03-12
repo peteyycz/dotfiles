@@ -2,8 +2,9 @@ alias l="ls -la"
 
 # For configs
 # -----------
-alias csh="vim ~/.bash_profile"
-alias cvim="vim ~/.vimrc"
+alias csh="vim ~/.zhsrc"
+alias cvim="vim ~/.config/nvim/init.vim"
+alias ci3="vim ~/.config/i3/config"
 alias ctmux="vim ~/.tmux.conf"
 
 # General

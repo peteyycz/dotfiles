@@ -40,7 +40,7 @@ bindsym $mod+Shift+q kill
 
 # start program launcher
 # bindsym $mod+d exec --no-startup-id dmenu_recency
-bindsym $mod+d exec rofi -opacity 95 -show run -lines 3 -eh 2 -bc '$bg-color' -bg '$bg-color' -fg '$text-color' -font '$my-font'
+bindsym $mod+d exec rofi -opacity 90 -show run -lines 3 -eh 2 -bc '$bg-color' -bg '$bg-color' -fg '$text-color' -font '$my-font'
 
 ################################################################################################
 # sound-section
@@ -88,11 +88,6 @@ bindsym $mod+s split v;exec notify-send 'tile vertically'
 
 # toggle fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
-
-# change container layout (stacked, tabbed, toggle split)
-# bindsym $mod+s layout stacking
-# bindsym $mod+w layout tabbed
-# bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -205,14 +200,25 @@ mode "resize" {
 # bindsym $mod+9 exec --no-startup-id blurlock
 
 # Autostart applications
-exec --no-startup-id nitrogen --restore
 exec --no-startup-id nm-applet
-exec --no-startup-id xfce4-power-manager
 exec --no-startup-id parcellite
-# exec --no-startup-id blueman
-# exec_always --no-startup-id sbxkb
+exec --no-startup-id blueman
+exec --no-startup-id blueman-applet
 exec --no-startup-id compton -b
-exec --no-startup-id xautolock -time 10 -locker blurlock
+exec --no-startup-id xautolock -time 10
+exec --no-startup-id "setxkbmap -option ctrl:nocaps" # Swap control and escape
+exec --no-startup-id unclutter -idle 2
+exec --no-startup-id "xcape" # CTRL one tap is escape
+# TODO move this out to some config
+exec --no-startup-id xinput set-prop 13 283 1 # Reverse scrolling direction on touchpad
+exec --no-startup-id feh --bg-scale /usr/share/backgrounds/sea.jpg
+# Change background
+exec --no-startup-id termite
+exec --no-startup-id chromium
+exec --no-startup-id slack
+exec --no-startup-id soundnode
+# exec_always --no-startup-id sbxkb
+# exec --no-startup-id xfce4-power-manager
 
 # window colors
 #                       border              background         text                 indicator
@@ -234,17 +240,3 @@ bar {
     urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
   }
 }
-
-# Swap control and escape
-exec --no-startup-id "setxkbmap -option ctrl:nocaps"
-# CTRL one tap is escape
-exec --no-startup-id "xcape"
-# Reverse scrolling direction on touchpad
-exec --no-startup-id "xinput set-prop 13 283 1"
-exec_always --no-startup-id "feh --bg-scale ~/Documents/sea.jpg"
-
-# Change background
-exec --no-startup-id termite
-exec --no-startup-id firefox
-exec --no-startup-id slack
-exec --no-startup-id soundnode

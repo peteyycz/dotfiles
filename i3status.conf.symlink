@@ -46,10 +46,10 @@ wireless _first_ {
   format_down = " no wlan "
 }
 
-ethernet _first_ {
-  format_up = " lan: %ip %speed "
-  format_down = " no lan "
-}
+# ethernet _first_ {
+#   format_up = " lan: %ip %speed "
+#   format_down = " no lan "
+# }
 
 battery 1 {
   format = " %status %percentage "
