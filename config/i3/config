@@ -39,17 +39,24 @@ bindsym $mod+Return exec termite
 bindsym $mod+Shift+q kill
 
 # start program launcher
-# bindsym $mod+d exec --no-startup-id dmenu_recency
 bindsym $mod+d exec rofi -opacity 90 -show run -lines 3 -eh 2 -bc '$bg-color' -bg '$bg-color' -fg '$text-color' -font '$my-font'
 
-################################################################################################
-# sound-section
+# Do you even gaps bro?
+# =====================
+for_window [class="^.*"] border pixel 2 # Disable window titlebars entirely
+gaps inner 10
+gaps outer 10
+# smart_gaps on # Smart gaps (gaps used if only more than one container on the workspace)
+# smart_borders on # Smart borders (draw borders around container only if it is not the only container on this workspace)
+
+# Sound-section
+# =============
 exec --no-startup-id pulseaudio
 exec --no-startup-id volumeicon
 bindsym $mod+Ctrl+m exec pavucontrol
 
-################################################################################################
 # Screen brightness controls
+# ==========================
 bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up'"
 bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
 
@@ -105,6 +112,7 @@ bindsym $mod+a focus parent
 set $ws1 1: 
 set $ws2 2: 
 set $ws3 3: 
+set $ws4 4: 
 set $ws7 7: 
 set $ws8 8: 
 set $ws9 9: 
@@ -114,7 +122,7 @@ set $ws10 10: 
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
 bindsym $mod+3 workspace $ws3
-bindsym $mod+4 workspace 4
+bindsym $mod+4 workspace $ws4
 bindsym $mod+5 workspace 5
 bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace $ws7
@@ -126,7 +134,7 @@ bindsym $mod+0 workspace $ws10
 bindsym $mod+Shift+1 move container to workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $ws2
 bindsym $mod+Shift+3 move container to workspace $ws3
-bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+4 move container to workspace $ws4
 bindsym $mod+Shift+5 move container to workspace number 5
 bindsym $mod+Shift+6 move container to workspace number 6
 bindsym $mod+Shift+7 move container to workspace $ws7
@@ -141,9 +149,9 @@ bindsym $mod+Ctrl+Left workspace prev
 # Open applications on specific workspaces
 assign [class="chromium"] $ws2
 assign [class="Firefox"] $ws2
+assign [class="Vlc"] $ws4
 assign [class="Slack"] $ws3
 assign [class="Steam"] $ws8
-assign [class="Vlc"] $ws7
 assign [class="Soundnode App"] $ws10
 
 # Open specific applications in floating mode
@@ -206,16 +214,16 @@ exec --no-startup-id blueman
 exec --no-startup-id blueman-applet
 exec --no-startup-id compton -b
 exec --no-startup-id xautolock -time 10
+exec --no-startup-id "sleep 1; xcape"
 exec --no-startup-id "setxkbmap -option ctrl:nocaps"
 exec --no-startup-id "unclutter --timeout 1 -b"
-exec --no-startup-id "xcape"
 # TODO move this out to some config
 exec --no-startup-id xinput set-prop 13 283 1 # Reverse scrolling direction on touchpad
 exec --no-startup-id feh --bg-scale /usr/share/backgrounds/sea.jpg
 # Change background
 exec --no-startup-id termite
 exec --no-startup-id chromium
-exec --no-startup-id slack
+# exec --no-startup-id slack
 exec --no-startup-id soundnode
 # exec_always --no-startup-id sbxkb
 # exec --no-startup-id xfce4-power-manager
