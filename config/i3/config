@@ -214,7 +214,7 @@ exec --no-startup-id blueman
 exec --no-startup-id blueman-applet
 exec --no-startup-id compton -b
 exec --no-startup-id xautolock -time 10
-exec --no-startup-id "sleep 1; xcape"
+# exec --no-startup-id "sleep 1; xcape"
 exec --no-startup-id "setxkbmap -option ctrl:nocaps"
 exec --no-startup-id "unclutter --timeout 1 -b"
 # TODO move this out to some config
