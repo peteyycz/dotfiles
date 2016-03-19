@@ -250,8 +250,8 @@ nnoremap <silent> <leader>md :call MochaRemoveOnly()<CR>
 " Colorscheme
 " ===========
 set t_Co=256
-set background=dark
-colorscheme gruvbox
+set background=light
+colorscheme solarized
 
 " The silver searcher (ACK)
 " =========================
@@ -309,8 +309,12 @@ let g:airline_powerline_fonts = 1
 let g:airline_theme = 'gruvbox'
 
 " Rainbow paren
-" =============
 let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
 
+" DelimitMate
+" ===========
+let g:delimitMate_expand_cr = 1
+let g:delimitMate_expand_space = 1
+
 " Let me see that lineNr DROP
-highlight LineNr ctermfg=grey ctermbg=white guibg=NONE guifg=#fdf4c1
+" highlight LineNr ctermfg=grey ctermbg=white guibg=NONE guifg=#fdf4c1
