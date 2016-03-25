@@ -18,6 +18,8 @@ export NVM_DIR=~/.nvm
 export GEM_HOME=~/.gem
 export GEM_PATH=~/.gem
 
+export NODE_ENV=development
+
 # Setting ag as the default source for fzf
 export FZF_DEFAULT_COMMAND='ag -g ""'
 

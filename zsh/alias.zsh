@@ -33,5 +33,4 @@ alias ta='tmux attach'
 
 # Typo-protector
 alias got='git'
-alias vim='nvim'
 alias vom='vim'

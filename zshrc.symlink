@@ -1,5 +1,5 @@
 # Source general configurations
-for config ($DOTFILES/zsh/*.zsh) source $config
+source $DOTFILES/zsh/*.zsh
 
 # Source OS specific configuration
 source $DOTFILES/zsh/OS/`uname -s`.zsh
@@ -19,6 +19,7 @@ antigen bundle tmuxinator
 antigen bundle heroku
 antigen bundle npm
 antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle zsh-users/zsh-completions
 antigen theme avit
 
 # Tell antigen that you're done.

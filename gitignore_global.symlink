@@ -11,6 +11,7 @@ typings
 npm-debug.log
 .flowconfig
 nodemon*
+ecosystem.json
 
 # Tag files
 TAGS
