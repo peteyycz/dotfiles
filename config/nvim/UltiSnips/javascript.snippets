@@ -4,6 +4,12 @@ function $1 ($2) {
 }
 endsnippet
 
+snippet func*
+function * $1($2) {
+  $0
+}
+endsnippet
+
 snippet stub
 this.sandbox.stub($1, '$2', () => {
   $0
@@ -28,9 +34,13 @@ snippet logobj
 console.log('${1}', JSON.stringify($1, null, 2))$0
 endsnippet
 
-snippet req
+snippet reqs
 const ${1} = require('${2:$1}')
 $0
+endsnippet
+
+snippet req
+const $1 = require('$2')$0
 endsnippet
 
 snippet desc

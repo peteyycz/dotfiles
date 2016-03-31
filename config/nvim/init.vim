@@ -170,6 +170,10 @@ set foldmethod=indent
 set foldnestmax=3
 set nofoldenable
 
+" Change directory automatically for C-x C-f
+" ==========================================
+set autochdir
+
 " Real programmers don't use TABs but spaces
 " ==========================================
 set tabstop=2
@@ -250,8 +254,8 @@ nnoremap <silent> <leader>md :call MochaRemoveOnly()<CR>
 " Colorscheme
 " ===========
 set t_Co=256
-set background=light
-colorscheme solarized
+set background=dark
+colorscheme gruvbox
 
 " The silver searcher (ACK)
 " =========================
@@ -299,8 +303,8 @@ autocmd! BufWritePost * Neomake
 " =======
 imap <c-x><c-l> <plug>(fzf-complete-line)
 imap <c-x><c-f> <plug>(fzf-complete-path)
-let g:fzf_layout = { 'up': '20%' }
-nnoremap <C-p> :Files<CR>
+let g:fzf_layout = { 'down': '20%' }
+nnoremap <C-p> :GitFiles<CR>
 nnoremap <leader>b :Buffers<CR>
 
 " Airline

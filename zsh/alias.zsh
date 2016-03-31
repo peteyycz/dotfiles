@@ -22,6 +22,7 @@ alias cpssh="cat ~/.ssh/id_rsa.pub | pbcopy"
 
 # Editors
 # -------
+alias vi=nvim
 alias subl="/Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl"
 code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
 
