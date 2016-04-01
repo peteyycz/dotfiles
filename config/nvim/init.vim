@@ -56,6 +56,7 @@ Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
 Plug 'othree/yajs.vim', { 'for': 'javascript' }
 Plug 'mxw/vim-jsx', { 'for': 'javascript' }
 Plug 'moll/vim-node', { 'for': 'javascript' }
+Plug 'kylef/apiblueprint.vim'
 " Plug 'helino/vim-json', { 'for': 'json' }
 
 Plug 'leafgarland/typescript-vim', { 'for': 'typescript' } " Might come handy
