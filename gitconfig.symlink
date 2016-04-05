@@ -31,7 +31,6 @@
   d = diff
   dt = difftool
   lol= log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-
-
 [pager]
   diff = diff-highlight | diff-so-fancy | less -r
   show = diff-highlight | diff-so-fancy | less -r
