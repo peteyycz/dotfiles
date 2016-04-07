@@ -29,6 +29,7 @@ Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'SirVer/ultisnips' " Snippets
 Plug 'benekastah/neomake' " Async execution engine for syntax checking
 Plug 'bronson/vim-visual-star-search' " Visual star search
+Plug 'ctrlpvim/ctrlp.vim' " Fuzzy file finder
 " Plug '0x0dea/vim-molasses' " For not being efficient...
 " Plug 'ap/vim-buftabline' " Display open buffers
 " Plug 'ervandew/supertab' " Tab completion instead of ctrl p and n
@@ -305,8 +306,11 @@ autocmd! BufWritePost * Neomake
 imap <c-x><c-l> <plug>(fzf-complete-line)
 imap <c-x><c-f> <plug>(fzf-complete-path)
 let g:fzf_layout = { 'down': '20%' }
-nnoremap <C-p> :GitFiles<CR>
-nnoremap <leader>b :Buffers<CR>
+
+" Ctrl+P
+" ======
+let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""' " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+let g:ctrlp_use_caching = 0 " ag is fast enough that CtrlP doesn't need to cache
 
 " Airline
 " =======
