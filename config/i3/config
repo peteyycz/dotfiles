@@ -214,15 +214,15 @@ exec --no-startup-id blueman
 exec --no-startup-id blueman-applet
 exec --no-startup-id compton -b
 exec --no-startup-id xautolock -time 10
-# exec --no-startup-id "sleep 1; xcape"
+exec --no-startup-id "sleep 1; xcape"
 exec --no-startup-id "setxkbmap -option ctrl:nocaps"
 exec --no-startup-id "unclutter --timeout 1 -b"
 # TODO move this out to some config
 exec --no-startup-id xinput set-prop 13 283 1 # Reverse scrolling direction on touchpad
-exec --no-startup-id feh --bg-scale /usr/share/backgrounds/sea.jpg
+exec --no-startup-id feh --bg-scale /usr/share/backgrounds/images/default
 # Change background
 exec --no-startup-id termite
-exec --no-startup-id chromium
+exec --no-startup-id google-chrome
 # exec --no-startup-id slack
 exec --no-startup-id soundnode
 # exec_always --no-startup-id sbxkb
