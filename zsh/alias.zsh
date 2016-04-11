@@ -2,7 +2,7 @@ alias l="ls -la"
 
 # For configs
 # -----------
-alias csh="vim ~/.zhsrc"
+alias czsh="vim ~/.zhsrc"
 alias cvim="vim ~/.config/nvim/init.vim"
 alias ci3="vim ~/.config/i3/config"
 alias ctmux="vim ~/.tmux.conf"
@@ -22,7 +22,6 @@ alias cpssh="cat ~/.ssh/id_rsa.pub | pbcopy"
 
 # Editors
 # -------
-alias vi=nvim
 alias subl="/Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl"
 code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
 

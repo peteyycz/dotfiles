@@ -8,7 +8,7 @@ source $DOTFILES/zsh/OS/`uname -s`.zsh
 KEYTIMEOUT=1
 
 # ====================
-# ZSH PLUGINS
+# ZSH PLUGINS (Antigen)
 # ====================
 source $DOTFILES/antigen/antigen.zsh
 
@@ -30,11 +30,14 @@ antigen apply
 # Base16 Shell
 # ====================
 BASE16_SHELL="$DOTFILES/base16-shell/$THEME.$BACKGROUND.sh"
-# source $BASE16_SHELL
+source $BASE16_SHELL
 
 # ====================
 # Base16 Shell
 # ====================
 source $NVM_DIR/nvm.sh
 
+# ====================
+# Fuzzy finder
+# ====================
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
