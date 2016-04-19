@@ -1,6 +1,7 @@
 snippet strict
 'use strict'$0
 endsnippet
+
 snippet func
 function $1 ($2) {
   $0
@@ -34,7 +35,7 @@ console.log('${1}', $1)$0
 endsnippet
 
 snippet logobj
-console.log('${1}', JSON.stringify($1, null, 2))$0
+console.log('${1}\n========\n', JSON.stringify($1, null, 2).replace(/"/g, '\'').replace(/(\s+)'([^']*)'(: )/g, '\$1\$2\$3'))$0
 endsnippet
 
 snippet reqs

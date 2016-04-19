@@ -36,7 +36,6 @@ Plug 'ctrlpvim/ctrlp.vim' " Fuzzy file finder
 Plug 'Raimondi/delimitMate' " Auto insert paired characters
 Plug 'rking/ag.vim'
 Plug 'mhinz/vim-signify' " 'airblade/vim-gitgutter' Nice git lines at the side
-Plug 'rizzatti/dash.vim' " Dash integration
 Plug 'vim-airline/vim-airline' " Very powerline
 Plug 'vim-airline/vim-airline-themes' " Such themes
 
@@ -223,7 +222,7 @@ nnoremap <leader>t :!npm t<CR>
 " ========
 command! JSON :%!python -mjson.tool
 command! XML :%!xmllint --format -
-command! STANDARD :!standard % --format
+command! STANDARD :!standard-format % -w
 
 " Typo protector lvl: 99999
 " =========================
@@ -279,10 +278,6 @@ nnoremap <leader>gd :Gdiff<CR>
 nnoremap <leader>gb :Gblame<CR>
 nnoremap <leader>gs :Gstatus<CR>
 
-" Gitgutter
-" =========
-let g:gitgutter_eager=1
-
 " UltiSnips
 " =======
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -324,6 +319,3 @@ let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
 " ===========
 let g:delimitMate_expand_cr = 1
 let g:delimitMate_expand_space = 1
-
-" Let me see that lineNr DROP
-" highlight LineNr ctermfg=grey ctermbg=white guibg=NONE guifg=#fdf4c1
