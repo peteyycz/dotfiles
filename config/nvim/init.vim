@@ -42,12 +42,9 @@ Plug 'vim-airline/vim-airline-themes' " Such themes
 Plug 'tpope/vim-commentary' " Commentary
 Plug 'tpope/vim-fugitive' " Git interactions within VIM (blame and diff)
 Plug 'tpope/vim-surround' " Surround
-Plug 'tpope/vim-repeat' " Repeat last command with .
+Plug 'tpope/vim-repeat' " Repeat last command with.
 Plug 'tpope/vim-unimpaired' " Additional paired mappings
 Plug 'tpope/vim-abolish' " Better abbrev
-
-Plug 'junegunn/limelight.vim', { 'on': 'Limelight' } " Focusing tool
-Plug 'junegunn/goyo.vim', { 'on': 'Limelight' } " Focusing tool
 
 Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript']} " Zen coding at it's best
 Plug 'othree/html5.vim', { 'for': 'html' }
@@ -71,6 +68,11 @@ Plug 'tpope/vim-markdown', { 'for': 'markdown' }
 Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 Plug 'honza/dockerfile.vim'
+
+" For writing
+Plug 'junegunn/limelight.vim', { 'on': 'Limelight' } " Focusing tool
+Plug 'junegunn/goyo.vim', { 'on': 'Limelight' } " Focusing tool
+Plug 'rhysd/vim-grammarous', { 'on': 'GrammarousCheck' } " English spell check
 
 call plug#end()
 

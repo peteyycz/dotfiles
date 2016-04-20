@@ -24,3 +24,10 @@ export FZF_DEFAULT_COMMAND='ag -g ""'
 if [ -f ~/.zshenv_private ]; then
     source ~/.zshenv_private
 fi
+
+# export GOPATH=$HOME/.go
+# export GOROOT=/usr/local/opt/go/libexec
+# export PATH=$PATH:$GOPATH/bin
+# export PATH=$PATH:$GOROOT/bin
+
+PATH="/usr/local/heroku/bin:$PATH"
