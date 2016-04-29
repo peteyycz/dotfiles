@@ -4,7 +4,7 @@
 [core]
   excludesfile = ~/.gitignore_global
 [push]
-  default = simple
+	default = current
 [pull]
   rebase = true
 [github]
