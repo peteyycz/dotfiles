@@ -243,7 +243,7 @@ command! -bang Qa qa<bang>
 
 " Adds only to a describe line
 function! MochaAddOnly()
-    normal ^wi.only^
+    normal mm?^\s\+\(it\|describe\)wwi.only'm
 endfunction
 
 " Removes only from a describe line
