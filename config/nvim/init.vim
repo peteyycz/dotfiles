@@ -7,6 +7,9 @@ set autoread " Detect file changes outside vim
 " ====================
 call plug#begin('~/.config/nvim/bundle')
 
+" My plugins
+Plug 'peteyy/mocha.vim'
+
 " Can't live without colors
 " Plug 'nanotech/jellybeans.vim'
 Plug 'w0ng/vim-hybrid'
@@ -238,22 +241,6 @@ command! -bang Q q<bang>
 command! -bang QA qa<bang>
 command! -bang Qa qa<bang>
 
-" Custom functions
-" ================
-
-" Adds only to a describe line
-function! MochaAddOnly()
-    normal mm?^\s\+\(it\|describe\)wwi.only'm
-endfunction
-
-" Removes only from a describe line
-function! MochaRemoveOnly()
-    normal ^wde^
-endfunction
-
-nnoremap <silent> <leader>mo :call MochaAddOnly()<CR>
-nnoremap <silent> <leader>md :call MochaRemoveOnly()<CR>
-
 " Colorscheme
 " ===========
 set t_Co=256
@@ -321,3 +308,7 @@ let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
 " ===========
 let g:delimitMate_expand_cr = 1
 let g:delimitMate_expand_space = 1
+
+" Mocha vim
+" =========
+nnoremap <silent> <leader>mo :ToggleOnly<CR>

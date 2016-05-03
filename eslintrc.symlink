@@ -1,33 +1,15 @@
 {
-  "extends": "standard",
-
-  "env": {
-    "browser": true,
-    "es6": true,
-    "node": true
-  },
-
   "plugins": [
-    "standard",
-    "react"
+    "mocha",
+    "standard"
   ],
-
-  "globals": {
-    "document": false,
-    "navigator": false,
-    "window": false,
-    "expect": false,
-    "sinon": false,
-    "before": false,
-    "after": false,
-    "afterEach": false,
-    "describe": false,
-    "beforeEach": false,
-    "inject": false,
-    "it": false
-  },
-
   "rules": {
-    "no-extend-native": [0]
+    "mocha/no-exclusive-tests": 2,
+    "no-console": 2
+  },
+  "env": {
+    "es6": true,
+    "node": true,
+    "mocha": true
   }
 }
