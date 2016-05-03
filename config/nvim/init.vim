@@ -41,6 +41,7 @@ Plug 'rking/ag.vim'
 Plug 'mhinz/vim-signify' " 'airblade/vim-gitgutter' Nice git lines at the side
 Plug 'vim-airline/vim-airline' " Very powerline
 Plug 'vim-airline/vim-airline-themes' " Such themes
+Plug 'sjl/gundo.vim' " Undo history
 
 Plug 'tpope/vim-commentary' " Commentary
 Plug 'tpope/vim-fugitive' " Git interactions within VIM (blame and diff)
@@ -312,3 +313,4 @@ let g:delimitMate_expand_space = 1
 " Mocha vim
 " =========
 nnoremap <silent> <leader>mo :ToggleOnly<CR>
+nnoremap <silent> <leader>ms :ToggleSkip<CR>

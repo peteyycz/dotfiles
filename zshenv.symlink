@@ -7,14 +7,18 @@ export THEME="base16-monokai"
 export BACKGROUND="dark"
 
 export LANG=en_US.UTF-8
-export LC_CTYPE="en_US.UTF-8"
+export LC_CTYPE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
+# GO configuration
+export GOPATH=$HOME/.go
 
 # Add locals to path
-export PATH=$HOME/.gem/bin:$HOME/bin:/usr/local/bin:/usr/local/sbin:$PATH
+export PATH=$GOPATH/bin:$HOME/bin:/usr/local/bin:/usr/local/sbin:$PATH
 export MANPATH="/usr/local/man:$MANPATH"
 
+# NodeJS configuration
 export NVM_DIR=~/.nvm
-
 export NODE_ENV=development
 
 # Setting ag as the default source for fzf
@@ -24,8 +28,3 @@ export FZF_DEFAULT_COMMAND='ag -g ""'
 if [ -f ~/.zshenv_private ]; then
     source ~/.zshenv_private
 fi
-
-export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
-
-PATH="/usr/local/heroku/bin:$PATH"
