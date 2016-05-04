@@ -3,19 +3,16 @@ export DOTFILES="$HOME/dotfiles"
 
 export TERM="xterm-256color"
 
-export THEME="base16-monokai"
-export BACKGROUND="dark"
-
-export LANG=en_US.UTF-8
-export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
-
-# GO configuration
-export GOPATH=$HOME/.go
+export LC_CTYPE=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 # NodeJS configuration
 export NVM_DIR=~/.nvm
 export NODE_ENV=development
+
+# GO configuration
+export GOPATH=$HOME/.go
 
 # Setting ag as the default source for fzf
 export FZF_DEFAULT_COMMAND='ag -g ""'
