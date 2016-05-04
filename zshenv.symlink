@@ -13,10 +13,6 @@ export LC_ALL=en_US.UTF-8
 # GO configuration
 export GOPATH=$HOME/.go
 
-# Add locals to path
-export PATH=$GOPATH/bin:$HOME/bin:/usr/local/bin:/usr/local/sbin:$PATH
-export MANPATH="/usr/local/man:$MANPATH"
-
 # NodeJS configuration
 export NVM_DIR=~/.nvm
 export NODE_ENV=development
@@ -28,3 +24,7 @@ export FZF_DEFAULT_COMMAND='ag -g ""'
 if [ -f ~/.zshenv_private ]; then
     source ~/.zshenv_private
 fi
+
+# Add locals to path
+export PATH=$GOPATH/bin:$HOME/bin:/usr/local/bin:/usr/local/sbin:$PATH
+export MANPATH="/usr/local/man:$MANPATH"
