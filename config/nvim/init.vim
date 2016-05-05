@@ -246,7 +246,7 @@ command! -bang Qa qa<bang>
 " ===========
 set t_Co=256
 set background=dark
-colorscheme gruvbox
+colorscheme hybrid
 
 " The silver searcher (ACK)
 " =========================
