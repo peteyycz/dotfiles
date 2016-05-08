@@ -212,12 +212,12 @@ vnoremap > >gv
 " Use jk in insert mode to quickly switch to normal mode
 inoremap jk <esc>
 " Better navigation
-nnoremap <silent> n nzz
-nnoremap <silent> N Nzz
-nnoremap <silent> * *zz
-nnoremap <silent> # #zz
-nnoremap <silent> g* g*zz
-nnoremap <silent> g# g#zz
+nnoremap <silent> n nzt
+nnoremap <silent> N Nzt
+nnoremap <silent> * *zt
+nnoremap <silent> # #zt
+nnoremap <silent> g* g*zt
+nnoremap <silent> g# g#zt
 " Make y behave like other capitals
 map Y y$
 " Select all text in current buffer
@@ -246,7 +246,7 @@ command! -bang Qa qa<bang>
 " ===========
 set t_Co=256
 set background=dark
-colorscheme hybrid
+colorscheme gruvbox
 
 " The silver searcher (ACK)
 " =========================
@@ -300,7 +300,7 @@ let g:ctrlp_use_caching = 0 " ag is fast enough that CtrlP doesn't need to cache
 " Airline
 " =======
 let g:airline_powerline_fonts = 1
-let g:airline_theme = 'gruvbox'
+let g:airline_theme = 'hybrid'
 
 " Rainbow paren
 let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
@@ -314,3 +314,5 @@ let g:delimitMate_expand_space = 1
 " =========
 nnoremap <silent> <leader>mo :ToggleOnly<CR>
 nnoremap <silent> <leader>ms :ToggleSkip<CR>
+nnoremap <silent> <leader>mn :JumpToNextBlock<CR>
+nnoremap <silent> <leader>mp :JumpToPrevBlock<CR>

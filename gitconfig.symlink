@@ -22,7 +22,7 @@
 [difftool]
   prompt = false
 [alias]
-  co = "!sh -c 'git stash; git stash apply; git checkout \"$*\"'"
+  co = checkout
   p = push
   c = commit
   st = status
