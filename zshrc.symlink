@@ -31,3 +31,5 @@ antigen apply
 # Base16 Shell
 # ====================
 source $NVM_DIR/nvm.sh
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
