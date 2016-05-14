@@ -11,16 +11,12 @@ call plug#begin('~/.config/nvim/bundle')
 Plug 'peteyy/mocha.vim'
 
 " Can't live without colors
-" Plug 'nanotech/jellybeans.vim'
+Plug 'nanotech/jellybeans.vim'
 Plug 'w0ng/vim-hybrid'
-Plug 'frankier/neovim-colors-solarized-truecolor-only'
 Plug 'morhetz/gruvbox'
-" Plug 'AlessandroYorba/Alduin'
-" Plug 'AlessandroYorba/Sierra'
-" Plug 'tpope/vim-vividchalk'
-" Plug 'junegunn/seoul256.vim'
-" Plug 'vim-scripts/wombat256.vim'
-" Plug 'vim-scripts/xoria256.vim'
+Plug 'AlessandroYorba/Alduin'
+Plug 'AlessandroYorba/Sierra'
+Plug 'whatyouhide/vim-gotham'
 
 " Experimental
 " Plug 'Olical/vim-enmasse'
@@ -39,8 +35,6 @@ Plug 'ctrlpvim/ctrlp.vim' " Fuzzy file finder
 Plug 'Raimondi/delimitMate' " Auto insert paired characters
 Plug 'rking/ag.vim'
 Plug 'mhinz/vim-signify' " 'airblade/vim-gitgutter' Nice git lines at the side
-Plug 'vim-airline/vim-airline' " Very powerline
-Plug 'vim-airline/vim-airline-themes' " Such themes
 Plug 'sjl/gundo.vim' " Undo history
 
 Plug 'tpope/vim-commentary' " Commentary
@@ -222,7 +216,6 @@ nnoremap <silent> g# g#zt
 map Y y$
 " Select all text in current buffer
 map <Leader>a ggVG
-nnoremap <leader>t :!npm t<CR>
 
 " Commands
 " ========
@@ -246,7 +239,7 @@ command! -bang Qa qa<bang>
 " ===========
 set t_Co=256
 set background=dark
-colorscheme gruvbox
+colorscheme hybrid
 
 " The silver searcher (ACK)
 " =========================
@@ -296,11 +289,6 @@ let g:fzf_layout = { 'down': '20%' }
 " ======
 let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""' " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
 let g:ctrlp_use_caching = 0 " ag is fast enough that CtrlP doesn't need to cache
-
-" Airline
-" =======
-let g:airline_powerline_fonts = 1
-let g:airline_theme = 'hybrid'
 
 " Rainbow paren
 let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
