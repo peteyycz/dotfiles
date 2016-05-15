@@ -6,39 +6,39 @@ font = Fira Mono 11
 [colors]
 
 # special
-foreground      = #c0b18b
-foreground_bold = #c0b18b
-cursor          = #c0b18b
-background      = #1f1f1f
+foreground      = #c5c8c6
+foreground_bold = #c5c8c6
+cursor          = #c5c8c6
+background      = #1d1f21
 
 # black
-color0  = #4a3637
-color8  = #4a3637
+color0  = #282a2e
+color8  = #373b41
 
 # red
-color1  = #d17b49
-color9  = #d17b49
+color1  = #a54242
+color9  = #cc6666
 
 # green
-color2  = #7b8748
-color10 = #7b8748
+color2  = #8c9440
+color10 = #b5bd68
 
 # yellow
-color3  = #af865a
-color11 = #af865a
+color3  = #de935f
+color11 = #f0c674
 
 # blue
-color4  = #535c5c
-color12 = #535c5c
+color4  = #5f819d
+color12 = #81a2be
 
 # magenta
-color5  = #775759
-color13 = #775759
+color5  = #85678f
+color13 = #b294bb
 
 # cyan
-color6  = #6d715e
-color14 = #6d715e
+color6  = #5e8d87
+color14 = #8abeb7
 
 # white
-color7  = #c0b18b
-color15 = #c0b18b
+color7  = #707880
+color15 = #c5c8c6
