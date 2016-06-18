@@ -17,6 +17,14 @@ Plug 'morhetz/gruvbox'
 Plug 'AlessandroYorba/Alduin'
 Plug 'AlessandroYorba/Sierra'
 Plug 'whatyouhide/vim-gotham'
+" Plug 'facebook/vim-flow', {
+"   \ 'autoload': {
+"   \     'filetypes': 'javascript'
+"   \ },
+"   \ 'build': {
+"   \     'mac': 'npm install -g flow-bin',
+"   \     'unix': 'npm install -g flow-bin'
+"   \ }}
 
 " Experimental
 " Plug 'Olical/vim-enmasse'
@@ -42,7 +50,8 @@ Plug 'tpope/vim-fugitive' " Git interactions within VIM (blame and diff)
 Plug 'tpope/vim-surround' " Surround
 Plug 'tpope/vim-repeat' " Repeat last command with.
 Plug 'tpope/vim-unimpaired' " Additional paired mappings
-Plug 'tpope/vim-abolish' " Better abbrev
+Plug 'tpope/vim-abolish' " Better substitute with Subvert
+Plug 'tpope/vim-endwise', { 'for': 'vim' }
 
 Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript']} " Zen coding at it's best
 Plug 'othree/html5.vim', { 'for': 'html' }
@@ -93,6 +102,7 @@ set list " Display invisibles
 set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
 set showbreak=↪
 set visualbell " No noise just flash
+set autochdir " Change working directory to current open buffer
 
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1 " True color palette
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1 " Cursor based on modes
@@ -120,7 +130,7 @@ syntax on
 " ==================
 set wildmenu
 set wildmode=longest,list,full
-set wildignore+=build,cache,dist,*.min.*,coverage,node_modules
+set wildignore+=build,cache,dist,coverage,node_modules
 
 " Grep
 " ====
@@ -298,9 +308,16 @@ let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
 let g:delimitMate_expand_cr = 1
 let g:delimitMate_expand_space = 1
 
+" Signify
+" =======
+let g:signify_update_on_focusgained = 1
+
+" Base64 decode in visual mode
+vnoremap <leader>64 y:echo system('base64 --decode', @")<cr>
+
 " Mocha vim
 " =========
 nnoremap <silent> <leader>mo :ToggleOnly<CR>
 nnoremap <silent> <leader>ms :ToggleSkip<CR>
-nnoremap <silent> <leader>mn :JumpToNextBlock<CR>
-nnoremap <silent> <leader>mp :JumpToPrevBlock<CR>
+nnoremap <silent> ]t :FocusNextTest<CR>
+nnoremap <silent> [t :FocusPreviousTest<CR>
