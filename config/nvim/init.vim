@@ -17,6 +17,9 @@ Plug 'morhetz/gruvbox'
 Plug 'AlessandroYorba/Alduin'
 Plug 'AlessandroYorba/Sierra'
 Plug 'whatyouhide/vim-gotham'
+
+" Experimental
+
 " Plug 'facebook/vim-flow', {
 "   \ 'autoload': {
 "   \     'filetypes': 'javascript'
@@ -26,7 +29,6 @@ Plug 'whatyouhide/vim-gotham'
 "   \     'unix': 'npm install -g flow-bin'
 "   \ }}
 
-" Experimental
 " Plug 'Olical/vim-enmasse'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -249,7 +251,7 @@ command! -bang Qa qa<bang>
 " ===========
 set t_Co=256
 set background=dark
-colorscheme hybrid
+colorscheme gruvbox
 
 " The silver searcher (ACK)
 " =========================
