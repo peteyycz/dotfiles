@@ -23,5 +23,5 @@ if [ -f ~/.zshenv_private ]; then
 fi
 
 # Add locals to path
-export PATH=$HOME/.gem/ruby/2.0.0/bin:$GOPATH/bin:$HOME/bin:/usr/local/bin:/usr/local/sbin:$HOME/bin:$PATH
+export PATH=$HOME/.cargo/bin:$HOME/.gem/ruby/2.0.0/bin:$GOPATH/bin:$HOME/bin:/usr/local/bin:/usr/local/sbin:$HOME/bin:$PATH
 export MANPATH="/usr/local/man:$MANPATH"

@@ -1,4 +1,4 @@
-alias l="ls -la"
+alias l="k -a"
 
 # For configs
 # -----------

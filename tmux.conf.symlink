@@ -111,9 +111,9 @@ setw -g automatic-rename on
 set -g status-interval 5
 set -g status-justify left
 
-set-window-option -g status-left "#S "
+set-window-option -g status-left ""
 
-set-window-option -g status-right "%H:%M, %d. %B "
+set-window-option -g status-right "#S %H:%M, %d. %B "
 
 set-window-option -g window-status-format " #I: #W "
 
