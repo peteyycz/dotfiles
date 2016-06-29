@@ -19,7 +19,7 @@ Plug 'AlessandroYorba/Sierra'
 Plug 'whatyouhide/vim-gotham'
 
 " Experimental
-
+Plug 'christoomey/vim-tmux-navigator'
 " Plug 'facebook/vim-flow', {
 "   \ 'autoload': {
 "   \     'filetypes': 'javascript'
@@ -105,6 +105,8 @@ set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
 set showbreak=↪
 set visualbell " No noise just flash
 set autochdir " Change working directory to current open buffer
+set splitbelow " Horizontal splits open below the current window
+set splitright " Vertical splits open right to the current window
 
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1 " True color palette
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1 " Cursor based on modes
@@ -224,6 +226,12 @@ nnoremap <silent> * *zt
 nnoremap <silent> # #zt
 nnoremap <silent> g* g*zt
 nnoremap <silent> g# g#zt
+
+nnoremap <silent><C-h> <C-w>h
+nnoremap <silent><C-j> <C-w>j
+nnoremap <silent><C-k> <C-w>k
+nnoremap <silent><C-l> <C-w>l
+
 " Make y behave like other capitals
 map Y y$
 " Select all text in current buffer

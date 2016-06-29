@@ -1,6 +1,7 @@
 # Plugins
 set -g @plugin 'tmux-plugins/tmux-sensible'
 set -g @plugin 'tmux-plugins/tmux-yank'
+set -g @plugin 'christoomey/vim-tmux-navigator'
 
 # tmux display things in 256 colors
 set-option -ga terminal-overrides ",xterm-256color:Tc"

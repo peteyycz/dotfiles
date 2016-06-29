@@ -25,3 +25,7 @@ curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 echo "creating nvim symlink"
 ln -s $DOTFILES/config/nvim/* ~/.config/nvim/
+
+# NeoVim CTRL + H
+infocmp $TERM | sed 's/kbs=^[hH]/kbs=\\177/' > $TERM.ti
+tic $TERM.ti
