@@ -20,6 +20,7 @@ Plug 'whatyouhide/vim-gotham'
 
 " Experimental
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'mileszs/ack.vim'
 " Plug 'facebook/vim-flow', {
 "   \ 'autoload': {
 "   \     'filetypes': 'javascript'
@@ -43,7 +44,6 @@ Plug 'ctrlpvim/ctrlp.vim' " Fuzzy file finder
 " Plug 'ap/vim-buftabline' " Display open buffers
 " Plug 'ervandew/supertab' " Tab completion instead of ctrl p and n
 Plug 'Raimondi/delimitMate' " Auto insert paired characters
-Plug 'rking/ag.vim'
 Plug 'mhinz/vim-signify' " 'airblade/vim-gitgutter' Nice git lines at the side
 Plug 'sjl/gundo.vim' " Undo history
 
@@ -175,8 +175,7 @@ set number " Display number on the sidebar
 set relativenumber
 set textwidth=80
 set colorcolumn=+1
-" set nowrap
-set wrap
+set nowrap
 set linebreak
 
 " Folding
@@ -304,6 +303,10 @@ autocmd! BufWritePost * Neomake
 imap <c-x><c-l> <plug>(fzf-complete-line)
 imap <c-x><c-f> <plug>(fzf-complete-path)
 let g:fzf_layout = { 'down': '20%' }
+
+" Ack vim
+" =======
+let g:ackprg = 'ag --vimgrep'
 
 " Ctrl+P
 " ======

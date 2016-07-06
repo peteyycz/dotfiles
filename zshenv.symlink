@@ -12,7 +12,8 @@ export NVM_DIR=~/.nvm
 export NODE_ENV=development
 
 # GO configuration
-export GOPATH=$HOME/.go
+export GOROOT=$HOME/go
+export GOPATH=$GOROOT/work
 
 # Setting ag as the default source for fzf
 export FZF_DEFAULT_COMMAND='ag -g ""'
@@ -23,5 +24,5 @@ if [ -f ~/.zshenv_private ]; then
 fi
 
 # Add locals to path
-export PATH=$HOME/.cargo/bin:$HOME/.gem/ruby/2.0.0/bin:$GOPATH/bin:$HOME/bin:/usr/local/bin:/usr/local/sbin:$HOME/bin:$PATH
+export PATH=$HOME/.cargo/bin:$HOME/.gem/ruby/2.0.0/bin:$GOROOT/bin:$HOME/bin:/usr/local/bin:/usr/local/sbin:$HOME/bin:$PATH
 export MANPATH="/usr/local/man:$MANPATH"
