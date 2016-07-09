@@ -11,16 +11,17 @@ call plug#begin('~/.config/nvim/bundle')
 Plug 'peteyy/mocha.vim'
 
 " Can't live without colors
-Plug 'nanotech/jellybeans.vim'
 Plug 'w0ng/vim-hybrid'
 Plug 'morhetz/gruvbox'
 Plug 'AlessandroYorba/Alduin'
 Plug 'AlessandroYorba/Sierra'
-Plug 'whatyouhide/vim-gotham'
+Plug 'rakr/vim-two-firewatch'
+
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 " Experimental
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'mileszs/ack.vim'
+Plug 'haya14busa/incsearch.vim'
 " Plug 'facebook/vim-flow', {
 "   \ 'autoload': {
 "   \     'filetypes': 'javascript'
@@ -31,11 +32,16 @@ Plug 'mileszs/ack.vim'
 "   \ }}
 
 " Plug 'Olical/vim-enmasse'
+
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'mileszs/ack.vim'
 Plug 'junegunn/rainbow_parentheses.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'editorconfig/editorconfig-vim'
 " Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
-
+Plug 'christoomey/vim-tmux-navigator'
 Plug 'SirVer/ultisnips' " Snippets
 Plug 'benekastah/neomake' " Async execution engine for syntax checking
 Plug 'bronson/vim-visual-star-search' " Visual star search
@@ -44,7 +50,8 @@ Plug 'ctrlpvim/ctrlp.vim' " Fuzzy file finder
 " Plug 'ap/vim-buftabline' " Display open buffers
 " Plug 'ervandew/supertab' " Tab completion instead of ctrl p and n
 Plug 'Raimondi/delimitMate' " Auto insert paired characters
-Plug 'mhinz/vim-signify' " 'airblade/vim-gitgutter' Nice git lines at the side
+" Plug 'mhinz/vim-signify' " Nice git lines at the side
+Plug 'airblade/vim-gitgutter'
 Plug 'sjl/gundo.vim' " Undo history
 
 Plug 'tpope/vim-commentary' " Commentary
@@ -58,9 +65,12 @@ Plug 'tpope/vim-endwise', { 'for': 'vim' }
 Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript']} " Zen coding at it's best
 Plug 'othree/html5.vim', { 'for': 'html' }
 
-Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
-Plug 'othree/yajs.vim', { 'for': 'javascript' }
-Plug 'mxw/vim-jsx', { 'for': 'javascript' }
+Plug 'othree/yajs.vim', { 'on_ft': 'javascript' }
+Plug 'othree/jsdoc-syntax.vim', { 'on_ft': ['javascript', 'typescript'] }
+Plug 'othree/es.next.syntax.vim', { 'on_ft': 'javascript' }
+Plug '1995eaton/vim-better-javascript-completion', { 'on_ft': ['javascript'] }
+Plug 'othree/javascript-libraries-syntax.vim'
+
 Plug 'moll/vim-node', { 'for': 'javascript' }
 Plug 'kylef/apiblueprint.vim'
 " Plug 'helino/vim-json', { 'for': 'json' }
@@ -258,7 +268,8 @@ command! -bang Qa qa<bang>
 " ===========
 set t_Co=256
 set background=dark
-colorscheme gruvbox
+let g:two_firewatch_italics = 1 " Allow italics in firewatch theme
+colorscheme two-firewatch
 
 " The silver searcher (ACK)
 " =========================
@@ -334,3 +345,23 @@ nnoremap <silent> <leader>mo :ToggleOnly<CR>
 nnoremap <silent> <leader>ms :ToggleSkip<CR>
 nnoremap <silent> ]t :FocusNextTest<CR>
 nnoremap <silent> [t :FocusPreviousTest<CR>
+
+" Airline
+" =======
+let g:airline_theme='twofirewatch'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_left_sep = ' '
+let g:airline_right_sep = ' '
+
+" GitGutter
+" =========
+nmap ]h <Plug>GitGutterNextHunk
+nmap [h <Plug>GitGutterPrevHunk
+nmap <Leader>ha <Plug>GitGutterStageHunk
+nmap <Leader>hr <Plug>GitGutterUndoHunk
+
+" Incsearch
+" =========
+map /  <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
