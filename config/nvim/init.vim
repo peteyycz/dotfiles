@@ -18,7 +18,6 @@ Plug 'AlessandroYorba/Sierra'
 Plug 'rakr/vim-two-firewatch'
 
 Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 
 " Experimental
 Plug 'haya14busa/incsearch.vim'
@@ -241,6 +240,9 @@ nnoremap <silent><C-j> <C-w>j
 nnoremap <silent><C-k> <C-w>k
 nnoremap <silent><C-l> <C-w>l
 
+" Base64 decode in visual mode
+vnoremap <leader>64 y:echo system('base64 --decode', @")<cr>
+
 " Make y behave like other capitals
 map Y y$
 " Select all text in current buffer
@@ -274,10 +276,6 @@ colorscheme two-firewatch
 " The silver searcher (ACK)
 " =========================
 nmap <leader>/ :Ag<space>
-
-" Dash
-" ====
-noremap <leader>d :Dash<CR>
 
 " Limelight
 " =========
@@ -336,9 +334,6 @@ let g:delimitMate_expand_space = 1
 " =======
 let g:signify_update_on_focusgained = 1
 
-" Base64 decode in visual mode
-vnoremap <leader>64 y:echo system('base64 --decode', @")<cr>
-
 " Mocha vim
 " =========
 nnoremap <silent> <leader>mo :ToggleOnly<CR>
@@ -349,9 +344,8 @@ nnoremap <silent> [t :FocusPreviousTest<CR>
 " Airline
 " =======
 let g:airline_theme='twofirewatch'
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_left_sep = ' '
-let g:airline_right_sep = ' '
+let g:airline_left_sep = ':'
+let g:airline_right_sep = ':'
 
 " GitGutter
 " =========
