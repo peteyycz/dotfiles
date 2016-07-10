@@ -11,13 +11,15 @@ call plug#begin('~/.config/nvim/bundle')
 Plug 'peteyy/mocha.vim'
 
 " Can't live without colors
-Plug 'w0ng/vim-hybrid'
+" Plug 'w0ng/vim-hybrid'
 Plug 'morhetz/gruvbox'
-Plug 'AlessandroYorba/Alduin'
-Plug 'AlessandroYorba/Sierra'
+" Plug 'AlessandroYorba/Alduin'
+" Plug 'AlessandroYorba/Sierra'
 Plug 'rakr/vim-two-firewatch'
+Plug 'atelierbram/vim-colors_duotones'
 
 Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 " Experimental
 Plug 'haya14busa/incsearch.vim'
@@ -270,8 +272,7 @@ command! -bang Qa qa<bang>
 " ===========
 set t_Co=256
 set background=dark
-let g:two_firewatch_italics = 1 " Allow italics in firewatch theme
-colorscheme two-firewatch
+colorscheme gruvbox
 
 " The silver searcher (ACK)
 " =========================
@@ -343,7 +344,6 @@ nnoremap <silent> [t :FocusPreviousTest<CR>
 
 " Airline
 " =======
-let g:airline_theme='twofirewatch'
 let g:airline_left_sep = ':'
 let g:airline_right_sep = ':'
 
@@ -354,8 +354,13 @@ nmap [h <Plug>GitGutterPrevHunk
 nmap <Leader>ha <Plug>GitGutterStageHunk
 nmap <Leader>hr <Plug>GitGutterUndoHunk
 
+" NERDTree
+" ========
+nnoremap <silent> <leader>m :NERDTreeToggle<CR>
+
 " Incsearch
 " =========
 map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
+
