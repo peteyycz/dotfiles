@@ -11,12 +11,8 @@ call plug#begin('~/.config/nvim/bundle')
 Plug 'peteyy/mocha.vim'
 
 " Can't live without colors
-" Plug 'w0ng/vim-hybrid'
 Plug 'morhetz/gruvbox'
-" Plug 'AlessandroYorba/Alduin'
-" Plug 'AlessandroYorba/Sierra'
 Plug 'rakr/vim-two-firewatch'
-Plug 'atelierbram/vim-colors_duotones'
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -38,9 +34,6 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'mileszs/ack.vim'
 Plug 'junegunn/rainbow_parentheses.vim'
-Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'editorconfig/editorconfig-vim'
 " Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'SirVer/ultisnips' " Snippets
@@ -51,8 +44,7 @@ Plug 'ctrlpvim/ctrlp.vim' " Fuzzy file finder
 " Plug 'ap/vim-buftabline' " Display open buffers
 " Plug 'ervandew/supertab' " Tab completion instead of ctrl p and n
 Plug 'Raimondi/delimitMate' " Auto insert paired characters
-" Plug 'mhinz/vim-signify' " Nice git lines at the side
-Plug 'airblade/vim-gitgutter'
+Plug 'airblade/vim-gitgutter' " Nice git lines at the side
 Plug 'sjl/gundo.vim' " Undo history
 
 Plug 'tpope/vim-commentary' " Commentary
@@ -112,7 +104,7 @@ set lazyredraw
 set ttyfast
 set showmatch " Highlight matching pair
 set list " Display invisibles
-set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
+set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮,space:·
 set showbreak=↪
 set visualbell " No noise just flash
 set autochdir " Change working directory to current open buffer
@@ -174,9 +166,9 @@ au BufWritePre * :silent :%s/\s\+$//e
 
 " Only show cursorcolumn in the current window and in normal mode.
 augroup cline
-    au!
-    au WinLeave * set nocursorcolumn
-    au WinEnter * set cursorcolumn
+  au!
+  au WinLeave * set nocursorcolumn
+  au WinEnter * set cursorcolumn
 augroup END
 
 " Visual tweaks
@@ -272,7 +264,8 @@ command! -bang Qa qa<bang>
 " ===========
 set t_Co=256
 set background=dark
-colorscheme gruvbox
+let g:two_firewatch_italics = 1 " Allow italics in firewatch theme
+colorscheme two-firewatch
 
 " The silver searcher (ACK)
 " =========================
@@ -331,10 +324,6 @@ let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
 let g:delimitMate_expand_cr = 1
 let g:delimitMate_expand_space = 1
 
-" Signify
-" =======
-let g:signify_update_on_focusgained = 1
-
 " Mocha vim
 " =========
 nnoremap <silent> <leader>mo :ToggleOnly<CR>
@@ -344,6 +333,7 @@ nnoremap <silent> [t :FocusPreviousTest<CR>
 
 " Airline
 " =======
+let g:airline_theme='twofirewatch'
 let g:airline_left_sep = ':'
 let g:airline_right_sep = ':'
 
@@ -360,7 +350,7 @@ nnoremap <silent> <leader>m :NERDTreeToggle<CR>
 
 " Incsearch
 " =========
-map /  <Plug>(incsearch-forward)
-map ?  <Plug>(incsearch-backward)
+map / <Plug>(incsearch-forward)
+map ? <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
 
