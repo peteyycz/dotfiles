@@ -1,6 +1,5 @@
 snippet reqf
-const $1 = require('./$2$1')
-$0
+const $1 = require('./$2$1')$0
 endsnippet
 
 snippet testbegin
@@ -9,19 +8,16 @@ snippet testbegin
 const expect = require('chai').expect
 
 describe('$1', () => {
-	const $2 = require('./$2')
-	$0
+  const $2 = require('./$2')$0
 })
 endsnippet
 
 snippet reqexpect
-const expect = require('chai').expect
-$0
+const expect = require('chai').expect$0
 endsnippet
 
 snippet req_
-const _ = require('lodash')
-$0
+const _ = require('lodash/fp')$0
 endsnippet
 
 snippet expo

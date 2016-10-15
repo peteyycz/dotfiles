@@ -22,3 +22,5 @@ GRTAGS
 .tern-project
 
 .env
+
+*.cert

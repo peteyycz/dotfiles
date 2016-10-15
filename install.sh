@@ -18,13 +18,13 @@ done
 
 # Install node version manager
 echo "installing nvm"
-curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.0/install.sh | bash
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.32.0/install.sh | bash
 
 echo "installing plug.vim"
-curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 echo "creating nvim symlink"
-ln -s $DOTFILES/config/nvim/* ~/.config/nvim/
+ln -s $DOTFILES/vim ~/.vim
 
 # NeoVim CTRL + H
 infocmp $TERM | sed 's/kbs=^[hH]/kbs=\\177/' > $TERM.ti
