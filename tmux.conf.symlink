@@ -1,0 +1,150 @@
+# Plugins
+set -g @plugin 'tmux-plugins/tmux-sensible'
+set -g @plugin 'tmux-plugins/tmux-yank'
+set -g @plugin 'christoomey/vim-tmux-navigator'
+
+# tmux display things in 256 colors
+set-option -ga terminal-overrides ",xterm-256color:Tc"
+
+set -g history-limit 20000
+
+# Rather than constraining window size to the maximum size of any client
+# connected to the *session*, constrain window size to the maximum size of any
+# client connected to *that window*. Much more reasonable.
+setw -g aggressive-resize on
+
+# make delay shorter
+set -sg escape-time 0
+
+# make window/pane index start with 1
+set -g base-index 1
+setw -g pane-base-index 1
+
+# enable mouse support for switching and resizing panes/windows
+set -g mouse on
+
+# to enable mouse scroll, see https://github.com/tmux/tmux/issues/145#issuecomment-150736967
+bind -n WheelUpPane if-shell -F -t = "#{mouse_any_flag}" "send-keys -M" "if -Ft= '#{pane_in_mode}' 'send-keys -M' 'copy-mode -e'"
+# set -g terminal-overrides 'xterm*:smcup@:rmcup@'
+
+# more settings to make copy-mode more vim-like
+unbind [
+bind Escape copy-mode
+unbind p
+bind p paste-buffer
+bind -t vi-copy 'v' begin-selection
+bind -t vi-copy 'y' copy-selection
+
+# Vi mode
+set -g status-keys vi
+setw -g mode-keys vi
+
+## Unbinds
+## `-> these are part of the default mappings
+##     and will get new functionality
+unbind c
+unbind i
+unbind l
+unbind s
+unbind w
+
+# automatically renumber tmux windows
+set -g renumber-windows on
+
+##-------~---~----------~----------~----
+## Keybindings
+##-------~---~----------~----------~----
+
+bind r source-file ~/.tmux.conf \; display "Config Reloaded!"
+
+bind w neww
+bind m choose-window
+bind a choose-session
+bind c kill-pane
+bind t set status
+
+bind h select-pane -L
+bind j select-pane -D
+bind k select-pane -U
+bind l select-pane -R
+
+bind ^h resize-pane -L
+bind ^j resize-pane -D
+bind ^k resize-pane -U
+bind ^l resize-pane -R
+
+bind v split-window -h
+bind s split-window
+
+# colon :
+bind : command-prompt
+
+##-------~---~----------~----------~----
+## General settings
+##-------~---~----------~----------~----
+
+# set -g default-shell /bin/zsh
+set -g set-titles on
+set -g set-titles-string 'tmux: #T'
+set -g repeat-time 100
+setw -g clock-mode-style 12
+setw -g alternate-screen on
+
+## Don't close windows
+set -g set-remain-on-exit on
+
+
+# loud or quiet?
+set-option -g visual-activity on
+set-option -g visual-bell on
+set-option -g visual-silence off
+set-window-option -g monitor-activity off
+set-option -g bell-action none
+
+##-------~---~----------~----------~----
+## Status bar
+##-------~---~----------~----------~----
+
+set -g display-panes-time 1000
+
+setw -g automatic-rename on
+
+set -g status-interval 5
+set -g status-justify left
+
+set-window-option -g status-left ""
+
+set-window-option -g status-right "#S %H:%M, %d. %B "
+
+set-window-option -g window-status-format " #I: #W "
+
+set-window-option -g window-status-current-format " #I: #W "
+
+#### COLOUR (Solarized dark)
+
+# default statusbar colors
+set-option -g status-bg colour0
+set-option -g status-fg colour15
+set-option -g status-attr default
+
+# default window title colors
+set-window-option -g window-status-fg colour0
+set-window-option -g window-status-bg colour4
+#set-window-option -g window-status-attr dim
+
+# active window title colors
+set-window-option -g window-status-current-fg colour0
+set-window-option -g window-status-current-bg colour1
+set-window-option -g window-status-current-attr dim
+
+# pane border
+set-option -g pane-border-fg white
+set-option -g pane-active-border-fg red
+
+set -g status-interval 1
+
+set -g status-right-length 150
+
+if-shell 'test "$(uname)" = "Darwin"' 'source $DOTFILES/tmux.darwin.conf'
+
+run '~/.tmux/plugins/tpm/tpm'

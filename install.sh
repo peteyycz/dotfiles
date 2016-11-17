@@ -16,6 +16,10 @@ for file in $linkables ; do
     ln -s $DOTFILES/$file $target
 done
 
+# Installing tmux plugin manager
+mkdir -p $DOTFILES/.tmux/plugins
+ln -s $DOTFILES/tpm $HOME/.tmux/plugins/tpm
+
 # Install node version manager
 echo "installing nvm"
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.32.0/install.sh | bash
@@ -25,6 +29,7 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 echo "creating nvim symlink"
 ln -s $DOTFILES/vim ~/.vim
+ln -s $DOTFILES/vim ~/.config/nvim
 
 # NeoVim CTRL + H
 infocmp $TERM | sed 's/kbs=^[hH]/kbs=\\177/' > $TERM.ti

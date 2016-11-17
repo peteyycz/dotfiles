@@ -18,9 +18,9 @@ export GOPATH=$GOROOT/work
 # Setting ag as the default source for fzf
 export FZF_DEFAULT_COMMAND='ag -g ""'
 
-# If private config available use it
-if [ -f ~/.zshenv_private ]; then
-    source ~/.zshenv_private
+# If local config available use it
+if [ -f ~/.zshenv-local ]; then
+    source ~/.zshenv-local
 fi
 
 # Add locals to path

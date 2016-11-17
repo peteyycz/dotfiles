@@ -16,6 +16,7 @@
   prompt = true
 [diff]
   tool = vimdiff
+	algorithm = patience
 [difftool "vimdiff"]
   prompt = false
 [alias]
