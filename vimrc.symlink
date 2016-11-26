@@ -248,6 +248,8 @@ nnoremap <silent><C-j> <C-w>j
 nnoremap <silent><C-k> <C-w>k
 nnoremap <silent><C-l> <C-w>l
 
+nnoremap <silent><F5> :make<CR>
+
 " Base64 decode in visual mode
 vnoremap <leader>64 y:echo system('base64 --decode', @")<cr>
 
