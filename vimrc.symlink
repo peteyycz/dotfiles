@@ -13,8 +13,9 @@ Plug 'peteyy/mocha.vim'
 " Can't live without colors
 " Plug 'morhetz/gruvbox'
 " Plug 'rakr/vim-two-firewatch'
-Plug 'chriskempson/base16-vim'
+" Plug 'chriskempson/base16-vim'
 Plug 'ayu-theme/ayu-vim'
+" Plug 'frankier/neovim-colors-solarized-truecolor-only'
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -68,8 +69,7 @@ Plug 'mxw/vim-jsx'
 Plug 'othree/javascript-libraries-syntax.vim'
 
 Plug 'moll/vim-node', { 'for': 'javascript' }
-" Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
-Plug 'kylef/apiblueprint.vim'
+" Plug 'kylef/apiblueprint.vim'
 " Plug 'helino/vim-json', { 'for': 'json' }
 
 Plug 'leafgarland/typescript-vim', { 'for': 'typescript' } " Might come handy
@@ -102,7 +102,7 @@ set undofile
 set undolevels=1000
 set title " Set title of the window
 set clipboard=unnamed " Use OS clipboard
-" set encoding=utf-8
+set encoding=utf-8
 set mouse=a
 set backspace=indent,eol,start
 set lazyredraw
@@ -280,7 +280,7 @@ command! -bang Qa qa<bang>
 " ===========
 set t_Co=256
 set background=dark
-let base16colorspace=256  " Access colors present in 256 colorspace
+let ayucolor="mirage"
 colorscheme ayu
 
 " The silver searcher (ACK)
