@@ -22,16 +22,17 @@ antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-completions
 # antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle felixr/docker-zsh-completion
-antigen theme avit
+antigen bundle mafredri/zsh-async
+antigen bundle sindresorhus/pure
 
 # Tell antigen that you're done.
 antigen apply
 
 source $NVM_DIR/nvm.sh
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 # If kubernetes controller installed add the completions
 if hash kubectl 2>/dev/null; then
   source <(kubectl completion zsh)
 fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

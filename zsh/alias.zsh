@@ -15,3 +15,5 @@ alias cpssh="cat ~/.ssh/id_rsa.pub | pbcopy"
 alias got=git
 
 alias mux=tmuxinator
+
+alias vim=nvim

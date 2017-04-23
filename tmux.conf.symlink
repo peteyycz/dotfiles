@@ -114,7 +114,7 @@ set -g status-justify left
 
 set-window-option -g status-left ""
 
-set-window-option -g status-right "#S %H:%M, %d. %B "
+set-window-option -g status-right ""
 
 set-window-option -g window-status-format " #I: #W "
 
@@ -128,13 +128,12 @@ set-option -g status-fg colour15
 set-option -g status-attr default
 
 # default window title colors
-set-window-option -g window-status-fg colour0
-set-window-option -g window-status-bg colour4
-#set-window-option -g window-status-attr dim
+set-window-option -g window-status-fg colour7
+set-window-option -g window-status-bg colour0
 
 # active window title colors
-set-window-option -g window-status-current-fg colour0
-set-window-option -g window-status-current-bg colour1
+set-window-option -g window-status-current-fg colour1
+set-window-option -g window-status-current-bg colour0
 set-window-option -g window-status-current-attr dim
 
 # pane border
