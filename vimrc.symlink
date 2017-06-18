@@ -13,6 +13,7 @@ Plug 'peteyy/mocha.vim'
 " Can't live without colors
 Plug 'chriskempson/base16-vim'
 Plug 'rakr/vim-two-firewatch'
+Plug 'ayu-theme/ayu-vim'
 Plug 'morhetz/gruvbox'
 
 Plug 'vim-airline/vim-airline'
@@ -98,7 +99,7 @@ set backspace=indent,eol,start
 set lazyredraw
 set ttyfast
 set showmatch " Highlight matching pair
-set list " Display invisibles
+set nolist " Display invisibles
 set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮,space:·
 set showbreak=↪
 set visualbell " No noise just flash
@@ -106,6 +107,8 @@ set autochdir " Change working directory to current open buffer
 set splitbelow " Horizontal splits open below the current window
 set splitright " Vertical splits open right to the current window
 set termguicolors " Enable true color support in terminal
+set exrc " Project local vimrc
+set secure " Doesn't allow unsafe commands in exrc
 
 " Backup
 set nobackup
@@ -189,9 +192,9 @@ set autochdir
 
 " Real programmers don't use TABs but spaces
 " ==========================================
-set tabstop=2
-set softtabstop=2
-set shiftwidth=2
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
 set expandtab
 set autoindent
 set smartindent
@@ -265,7 +268,8 @@ command! -bang Qa qa<bang>
 " ===========
 set t_Co=256
 set background=dark
-colorscheme gruvbox
+let ayucolor="mirage"
+colorscheme ayu
 
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
@@ -359,3 +363,10 @@ nmap ga <Plug>(EasyAlign)
 " vim-jsx-pretty
 " ==============
 let g:vim_jsx_pretty_colorful_config = 1
+
+" Rust
+" ====
+au FileType rust nmap gd <Plug>(rust-def)
+au FileType rust nmap gs <Plug>(rust-def-split)
+au FileType rust nmap gx <Plug>(rust-def-vertical)
+au FileType rust nmap <leader>gd <Plug>(rust-doc)
