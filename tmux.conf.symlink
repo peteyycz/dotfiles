@@ -32,8 +32,8 @@ unbind [
 bind Escape copy-mode
 unbind p
 bind p paste-buffer
-bind -t vi-copy 'v' begin-selection
-bind -t vi-copy 'y' copy-selection
+bind-key -Tcopy-mode-vi 'v' send -X begin-selection
+bind-key -Tcopy-mode-vi 'y' send -X copy-selection
 
 # Vi mode
 set -g status-keys vi
@@ -89,10 +89,6 @@ set -g set-titles-string 'tmux: #T'
 set -g repeat-time 100
 setw -g clock-mode-style 12
 setw -g alternate-screen on
-
-## Don't close windows
-set -g set-remain-on-exit on
-
 
 # loud or quiet?
 set-option -g visual-activity on
