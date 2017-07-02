@@ -106,11 +106,13 @@ set -g display-panes-time 1000
 setw -g automatic-rename on
 
 set -g status-interval 5
-set -g status-justify left
+set -g status-justify centre
 
-set-window-option -g status-left ""
+# set-window-option -g status-left "#[bg=color2] #S "
 
-set-window-option -g status-right ""
+set -g status-left "#[fg=colour0,bg=colour2,bold] #S #[fg=colour2,bg=colour11,nobold]#[fg=colour0,bg=colour11] #(hostname) #[fg=colour11,bg=colour6]#[fg=colour0,bg=colour6] #(whoami) #[fg=colour6,bg=colour0,nobold]"
+
+set -g status-right "#[fg=colour12,bg=colour0]#[fg=colour0,bg=colour12] %H:%M:%S #[fg=colour3,bg=colour12]#[fg=colour0,bg=colour3] %d-%b-%y #[fg=colour0,bg=colour3]"
 
 set-window-option -g window-status-format " #I: #W "
 
@@ -138,7 +140,8 @@ set-option -g pane-active-border-fg red
 
 set -g status-interval 1
 
-set -g status-right-length 150
+set -g status-right-length 30
+set -g status-left-length 40
 
 if-shell 'test "$(uname)" = "Darwin"' 'source $DOTFILES/tmux.darwin.conf'
 

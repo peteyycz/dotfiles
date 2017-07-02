@@ -15,6 +15,7 @@ Plug 'chriskempson/base16-vim'
 Plug 'rakr/vim-two-firewatch'
 Plug 'ayu-theme/ayu-vim'
 Plug 'morhetz/gruvbox'
+Plug 'w0ng/vim-hybrid'
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -268,8 +269,7 @@ command! -bang Qa qa<bang>
 " ===========
 set t_Co=256
 set background=dark
-let ayucolor="mirage"
-colorscheme ayu
+colorscheme hybrid
 
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
@@ -324,11 +324,8 @@ nnoremap <silent> [t :FocusPreviousTest<CR>
 
 " Airline
 " =======
-let g:airline_left_sep = ':'
-let g:airline_right_sep = ':'
-let g:airline_powerline_fonts=0
-let g:airline_theme='gruvbox'
-let g:airline#extensions#tabline#enabled=0
+let g:airline_powerline_fonts=1
+let g:airline_theme='hybrid'
 
 " GitGutter
 " =========
