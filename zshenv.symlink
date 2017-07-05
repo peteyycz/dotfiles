@@ -19,7 +19,7 @@ fi
 # Add locals to path
 export GOROOT=$HOME/go/root
 export GOPATH=$HOME/go/packages
-export PATH=$HOME/.cargo/bin:$HOME/.gem/ruby/2.2.0/bin:$GOROOT/bin:$GOPATH/bin:$HOME/bin:/usr/local/bin:/usr/local/sbin:$HOME/.bin:$PATH:$GOROOT/bin:$GOPATH/bin
+export PATH=$HOME/.cargo/bin:$HOME/.gem/ruby/2.0.0/bin:$GOROOT/bin:$GOPATH/bin:$HOME/bin:/usr/local/bin:/usr/local/sbin:$HOME/.bin:$PATH:$GOROOT/bin:$GOPATH/bin
 export MANPATH="/usr/local/man:$MANPATH"
 export CARGO_HOME=~/.cargo
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'

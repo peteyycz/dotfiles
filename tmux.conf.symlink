@@ -141,7 +141,7 @@ set-option -g pane-active-border-fg red
 set -g status-interval 1
 
 set -g status-right-length 30
-set -g status-left-length 40
+set -g status-left-length 45
 
 if-shell 'test "$(uname)" = "Darwin"' 'source $DOTFILES/tmux.darwin.conf'
 

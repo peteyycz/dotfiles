@@ -11,11 +11,7 @@ call plug#begin('~/.vim/bundle')
 Plug 'peteyy/mocha.vim'
 
 " Can't live without colors
-Plug 'chriskempson/base16-vim'
-Plug 'rakr/vim-two-firewatch'
-Plug 'ayu-theme/ayu-vim'
 Plug 'morhetz/gruvbox'
-Plug 'w0ng/vim-hybrid'
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -269,7 +265,7 @@ command! -bang Qa qa<bang>
 " ===========
 set t_Co=256
 set background=dark
-colorscheme hybrid
+colorscheme gruvbox
 
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
@@ -325,7 +321,7 @@ nnoremap <silent> [t :FocusPreviousTest<CR>
 " Airline
 " =======
 let g:airline_powerline_fonts=1
-let g:airline_theme='hybrid'
+let g:airline_theme='gruvbox'
 
 " GitGutter
 " =========

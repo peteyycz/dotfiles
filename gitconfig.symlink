@@ -1,7 +1,7 @@
 [user]
   email = p.czibik@gmail.com
   name = Peter Czibik
-  signingkey = 691CBB95
+	signingkey = C04FDD5E691CBB95
 [url "git@github.com"]
   insteadOf = gh
 [core]
@@ -36,3 +36,5 @@
   show = diff-highlight | diff-so-fancy | less -r
 [commit]
   gpgsign = true
+[gpg]
+	program = gpg2
