@@ -15,8 +15,7 @@ source $DOTFILES/antigen/antigen.zsh
 # Load oh-my-zsh with antigen
 antigen use oh-my-zsh
 antigen bundle git
-antigen bundle tmuxinator
-# antigen bundle heroku
+antigen bundle heroku
 antigen bundle npm
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-completions
@@ -31,9 +30,5 @@ antigen apply
 
 source $NVM_DIR/nvm.sh
 
-# If kubernetes controller installed add the completions
-if hash kubectl 2>/dev/null; then
-  source <(kubectl completion zsh)
-fi
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

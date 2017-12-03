@@ -1,7 +1,9 @@
 export EDITOR="vim"
-export DOTFILES="$HOME/dotfiles"
+export DOTFILES="$HOME/.dotfiles"
 
 export TERM="xterm-256color"
+
+export LIBRARY_PATH="$LIBRARY_PATH:/usr/local/lib"
 
 export LC_ALL=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
@@ -17,9 +19,7 @@ if [ -f ~/.zshenv-local ]; then
 fi
 
 # Add locals to path
-export GOROOT=$HOME/go/root
-export GOPATH=$HOME/go/packages
-export PATH=$HOME/.cargo/bin:$HOME/.gem/ruby/2.0.0/bin:$GOROOT/bin:$GOPATH/bin:$HOME/bin:/usr/local/bin:/usr/local/sbin:$HOME/.bin:$PATH:$GOROOT/bin:$GOPATH/bin
+export PATH=$HOME/.cargo/bin:$GOROOT/bin:$GOPATH/bin:$HOME/bin:/usr/local/bin:/usr/local/sbin:$HOME/.bin:$PATH
 export MANPATH="/usr/local/man:$MANPATH"
 export CARGO_HOME=~/.cargo
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'

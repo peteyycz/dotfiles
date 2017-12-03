@@ -1,25 +1,4 @@
 # ====================
-# Semantic version bumping like ng
-# ====================
-function bump() {
-  if [ -z "$1" ]
-    then
-      echo "No argument supplied"
-    else
-      npm version $1 -m 'chore(package): bumping version to %s'
-      changelog
-  fi
-}
-
-# ====================
-# Changelog
-# ====================
-function changelog() {
-  conventional-changelog -p angular -i CHANGELOG.md -o CHANGELOG.md
-  git c -am 'chore(CHANGELOG): update CHANGELOG.md'
-}
-
-# ====================
 # Extract file with the specific program
 # ====================
 extract() {
