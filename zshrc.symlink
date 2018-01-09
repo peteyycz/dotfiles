@@ -1,2 +1,4 @@
 # What a fucker, got hold of me for a while
 KEYTIMEOUT=1
+
+source $ZSH/oh-my-zsh.sh

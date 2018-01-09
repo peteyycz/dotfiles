@@ -1,15 +1,13 @@
 [user]
   email = p.czibik@gmail.com
   name = Peter Czibik
-	signingkey = C04FDD5E691CBB95
+  signingkey = C04FDD5E691CBB95
 [url "git@github.com"]
   insteadOf = gh
 [core]
   excludesfile = ~/.gitignore_global
 [push]
   default = current
-[github]
-  user = peteyy
 [merge]
   tool = vimdiff
 [mergetool]
@@ -37,4 +35,6 @@
 [commit]
   gpgsign = true
 [gpg]
-	program = gpg2
+  program = gpg2
+[include]
+  path = $HOME/.gitconfig-local

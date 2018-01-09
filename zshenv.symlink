@@ -2,6 +2,15 @@ export EDITOR="emacs -nw"
 export DOTFILES="$HOME/.dotfiles"
 export TERM="xterm-256color"
 
+# Oh my ZSH!
+export ZSH=$HOME/.oh-my-zsh
+ZSH_THEME="robbyrussell"
+
+# If local config available use it
+if [ -f ~/.zshenv-local ]; then
+    source ~/.zshenv-local
+fi
+
 # GO configuration
 export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
 
@@ -13,8 +22,3 @@ source $NVM_DIR/nvm.sh
 export CARGO_HOME=~/.cargo
 export PATH=$CARGO_HOME/bin:$PATH
 source $HOME/.cargo/env
-
-# If local config available use it
-if [ -f ~/.zshenv-local ]; then
-    source ~/.zshenv-local
-fi
