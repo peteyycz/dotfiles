@@ -1,25 +1,20 @@
-export EDITOR="vim"
+export EDITOR="emacs -nw"
 export DOTFILES="$HOME/.dotfiles"
-
 export TERM="xterm-256color"
 
-export LIBRARY_PATH="$LIBRARY_PATH:/usr/local/lib"
-
-export LC_ALL=en_US.UTF-8
-export LC_CTYPE=en_US.UTF-8
-export LANG=en_US.UTF-8
+# GO configuration
+export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
 
 # NodeJS configuration
 export NVM_DIR=~/.nvm
-export NODE_ENV=development
+source $NVM_DIR/nvm.sh
+
+# Rust configuration
+export CARGO_HOME=~/.cargo
+export PATH=$CARGO_HOME/bin:$PATH
+source $HOME/.cargo/env
 
 # If local config available use it
 if [ -f ~/.zshenv-local ]; then
     source ~/.zshenv-local
 fi
-
-# Add locals to path
-export PATH=$HOME/.cargo/bin:$GOROOT/bin:$GOPATH/bin:$HOME/bin:/usr/local/bin:/usr/local/sbin:$HOME/.bin:$PATH
-export MANPATH="/usr/local/man:$MANPATH"
-export CARGO_HOME=~/.cargo
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
