@@ -24,9 +24,7 @@ setw -g pane-base-index 1
 set -g mouse on
 
 # to enable mouse scroll, see https://github.com/tmux/tmux/issues/145#issuecomment-150736967
-bind -n WheelUpPane if-shell -F -t = "#{mouse_any_flag}" "send-keys -M" "if -Ft= '#{pane_in_mode}' 'send-keys -M'
-'copy-mode -e'"
-# set -g terminal-overrides 'xterm*:smcup@:rmcup@'
+copy-mode -e
 
 # more settings to make copy-mode more vim-like
 unbind [
@@ -35,6 +33,7 @@ unbind p
 bind p paste-buffer
 bind-key -Tcopy-mode-vi 'v' send -X begin-selection
 bind-key -Tcopy-mode-vi 'y' send -X copy-selection
+bind -t vi-copy y copy-pipe 'xclip -in -selection clipboard'
 
 # Vi mode
 set -g status-keys vi
@@ -107,34 +106,27 @@ set -g display-panes-time 1000
 setw -g automatic-rename on
 
 set -g status-interval 5
-set -g status-justify centre
+set -g status-justify left
 
-# set-window-option -g status-left "#[bg=color2] #S "
-
-set -g status-left "#[fg=colour0,bg=colour2,bold] #S #[fg=colour2,bg=colour11,nobold]#[fg=colour0,bg=colour11]
-#(hostname) #[fg=colour11,bg=colour6]#[fg=colour0,bg=colour6] #(whoami) #[fg=colour6,bg=colour0,nobold]"
-
-set -g status-right "#[fg=colour12,bg=colour0]#[fg=colour0,bg=colour12] %H:%M:%S
-#[fg=colour3,bg=colour12]#[fg=colour0,bg=colour3] %d-%b-%y #[fg=colour0,bg=colour3]"
+set -g status-left ""
+set -g status-right ""
 
 set-window-option -g window-status-format " #I: #W "
+
+# soften status bar color from harsh green to light gray
 
 set-window-option -g window-status-current-format " #I: #W "
 
 #### COLOUR (Solarized dark)
 
 # default statusbar colors
-set-option -g status-bg colour0
-set-option -g status-fg colour15
+set -g status-bg '#268bd2'
+set -g status-fg '#073642'
+set -g status-bg blue
 set-option -g status-attr default
 
-# default window title colors
-set-window-option -g window-status-fg colour7
-set-window-option -g window-status-bg colour0
-
 # active window title colors
-set-window-option -g window-status-current-fg colour1
-set-window-option -g window-status-current-bg colour0
+set-window-option -g window-status-current-bg yellow
 set-window-option -g window-status-current-attr dim
 
 # pane border

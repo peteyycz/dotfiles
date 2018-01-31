@@ -95,7 +95,7 @@ set history=1000
 set undofile
 set undolevels=1000
 set title " Set title of the window
-set clipboard=unnamed " Use OS clipboard
+set clipboard=unnamedplus " Use OS clipboard
 set encoding=UTF-8
 set mouse=a
 set backspace=indent,eol,start
@@ -109,7 +109,7 @@ set visualbell " No noise just flash
 set autochdir " Change working directory to current open buffer
 set splitbelow " Horizontal splits open below the current window
 set splitright " Vertical splits open right to the current window
-" set termguicolors " Enable true color support in terminal
+set termguicolors " Enable true color support in terminal
 set exrc " Project local vimrc
 set secure " Doesn't allow unsafe commands in exrc
 
@@ -195,7 +195,7 @@ set autochdir
 
 " Real programmers don't use TABs but spaces
 " ==========================================
-set tabstop=2
+set tabstop=8
 set softtabstop=2
 set shiftwidth=2
 set expandtab
@@ -326,7 +326,7 @@ nnoremap <silent> [t :FocusPreviousTest<CR>
 
 " Airline
 " =======
-let g:airline_powerline_fonts=1
+let g:airline_powerline_fonts=0
 let g:airline_theme='gruvbox'
 
 " GitGutter
