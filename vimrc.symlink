@@ -3,6 +3,12 @@
 set nocompatible " No VI compatibility
 set autoread " Detect file changes outside vim
 
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+      \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 " Plug all the Plugins
 " ====================
 call plug#begin('~/.vim/bundle')
@@ -96,14 +102,14 @@ set backspace=indent,eol,start
 set lazyredraw
 set ttyfast
 set showmatch " Highlight matching pair
-set nolist " Display invisibles
+set list " Display invisibles
 set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮,space:·
 set showbreak=↪
 set visualbell " No noise just flash
 set autochdir " Change working directory to current open buffer
 set splitbelow " Horizontal splits open below the current window
 set splitright " Vertical splits open right to the current window
-set termguicolors " Enable true color support in terminal
+" set termguicolors " Enable true color support in terminal
 set exrc " Project local vimrc
 set secure " Doesn't allow unsafe commands in exrc
 

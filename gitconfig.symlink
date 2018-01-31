@@ -6,6 +6,7 @@
   insteadOf = gh
 [core]
   excludesfile = ~/.gitignore_global
+	editor = vim
 [push]
   default = current
 [merge]
