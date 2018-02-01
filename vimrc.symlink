@@ -14,7 +14,7 @@ endif
 call plug#begin('~/.vim/bundle')
 
 " My plugins
-Plug 'peteyy/mocha.vim'
+Plug 'peteyycz/mocha.vim'
 
 " Can't live without colors
 Plug 'morhetz/gruvbox'
@@ -95,7 +95,7 @@ set history=1000
 set undofile
 set undolevels=1000
 set title " Set title of the window
-set clipboard=unnamedplus " Use OS clipboard
+set clipboard=unnamed,unnamedplus " Use OS clipboard
 set encoding=UTF-8
 set mouse=a
 set backspace=indent,eol,start
