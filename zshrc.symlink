@@ -1,8 +1,6 @@
 # What a fucker, got hold of me for a while
 KEYTIMEOUT=1
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 # ====================
 # ZSH PLUGINS (Antigen)
 # ====================
@@ -15,10 +13,15 @@ antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-completions
 # antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle felixr/docker-zsh-completion
-antigen bundle uvaes/fzf-marks
 antigen bundle mafredri/zsh-async
 antigen bundle sindresorhus/pure
 
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+antigen bundle uvaes/fzf-marks
+
 # Tell antigen that you're done.
 antigen apply
+
+alias vim=nvim
 

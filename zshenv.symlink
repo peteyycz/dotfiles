@@ -13,6 +13,7 @@ fi
 
 # GO configuration
 export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
+export GOPATH=$HOME/Code
 
 # NodeJS configuration
 export NVM_DIR=~/.nvm
