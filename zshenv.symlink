@@ -23,3 +23,8 @@ source $NVM_DIR/nvm.sh
 export CARGO_HOME=~/.cargo
 export PATH=$CARGO_HOME/bin:$PATH
 source $HOME/.cargo/env
+
+# .NET configuration
+export PATH=$PATH:$HOME/dotnet
+export ASPNETCORE_ENVIRONMENT=Development
+

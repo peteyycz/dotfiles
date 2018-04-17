@@ -48,6 +48,7 @@ Plug 'bronson/vim-visual-star-search' " Visual star search
 " Plug 'ervandew/supertab' " Tab completion instead of ctrl p and n
 Plug 'Raimondi/delimitMate' " Auto insert paired characters
 Plug 'airblade/vim-gitgutter' " Nice git lines at the side
+Plug 'k0kubun/vim-open-github'
 
 Plug 'tpope/vim-commentary' " Commentary
 Plug 'tpope/vim-fugitive' " Git interactions within VIM (blame and diff)

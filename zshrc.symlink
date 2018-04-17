@@ -23,5 +23,3 @@ antigen bundle uvaes/fzf-marks
 # Tell antigen that you're done.
 antigen apply
 
-alias vim=nvim
-
