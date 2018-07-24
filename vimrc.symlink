@@ -61,12 +61,14 @@ Plug 'tpope/vim-endwise', { 'for': 'vim' }
 Plug 'mattn/emmet-vim', { 'for': ['html']} " Zen coding at it's best
 Plug 'othree/html5.vim', { 'for': 'html' }
 
+Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
+Plug 'Quramy/tsuquyomi', { 'for': 'typescript' }
+
 Plug 'pangloss/vim-javascript'
 Plug 'maxmellon/vim-jsx-pretty'
 " Plug 'mxw/vim-jsx'
 Plug 'derekwyatt/vim-scala', { 'on_ft': 'scala' }
 
-Plug 'leafgarland/typescript-vim', { 'for': 'typescript' } " Might come handy
 Plug 'mustache/vim-mustache-handlebars'
 " Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
 " Plug 'wavded/vim-stylus', { 'for': 'stylus' }
@@ -370,3 +372,8 @@ au FileType rust nmap gd <Plug>(rust-def)
 au FileType rust nmap gs <Plug>(rust-def-split)
 au FileType rust nmap gx <Plug>(rust-def-vertical)
 au FileType rust nmap <leader>gd <Plug>(rust-doc)
+
+" TypeScript
+" ==========
+
+autocmd FileType typescript nmap <buffer> <Leader>t : <C-u>echo tsuquyomi#hint()<CR>

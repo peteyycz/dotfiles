@@ -1,4 +1,4 @@
-export EDITOR="emacs -nw"
+export EDITOR="vim"
 export DOTFILES="$HOME/.dotfiles"
 export TERM="xterm-256color"
 
@@ -27,4 +27,7 @@ source $HOME/.cargo/env
 # .NET configuration
 export PATH=$PATH:$HOME/dotnet
 export ASPNETCORE_ENVIRONMENT=Development
+
+# Python PIP
+export PATH=$PATH:$HOME/.local/bin
 

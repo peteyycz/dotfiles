@@ -1,6 +1,5 @@
 # What a fucker, got hold of me for a while
 KEYTIMEOUT=1
-
 # ====================
 # ZSH PLUGINS (Antigen)
 # ====================
@@ -23,3 +22,6 @@ antigen bundle uvaes/fzf-marks
 # Tell antigen that you're done.
 antigen apply
 
+hash kubectl && source <(kubectl completion zsh)
+
+alias tmuxn="tmux new-session -t $(basename $PWD)"

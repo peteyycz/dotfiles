@@ -6,8 +6,8 @@
   insteadOf = gh
 [core]
   excludesfile = ~/.gitignore_global
-	editor = vim
-	attributesfile = /home/peteyycz/.gitattributes
+  editor = vim
+  attributesfile = ~/.gitattributes
 [push]
   default = current
 [merge]
@@ -36,7 +36,5 @@
   show = diff-so-fancy | less --tabs=1,5 -R
 [commit]
   gpgsign = true
-[gpg]
-  program = gpg2
 [include]
   path = $HOME/.gitconfig-local
