@@ -22,6 +22,8 @@ Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
+Plug 'prettier/vim-prettier', { 'do': 'npm install' }
+
 " Plug 'facebook/vim-flow', {
 "   \ 'autoload': {
 "   \     'filetypes': 'javascript'
@@ -60,6 +62,7 @@ Plug 'tpope/vim-endwise', { 'for': 'vim' }
 
 Plug 'mattn/emmet-vim', { 'for': ['html']} " Zen coding at it's best
 Plug 'othree/html5.vim', { 'for': 'html' }
+Plug 'posva/vim-vue'
 
 Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 Plug 'Quramy/tsuquyomi', { 'for': 'typescript' }
@@ -86,7 +89,6 @@ Plug 'honza/dockerfile.vim'
 " For writing
 Plug 'junegunn/limelight.vim', { 'on': 'Limelight' } " Focusing tool
 Plug 'junegunn/goyo.vim', { 'on': 'Limelight' } " Focusing tool
-Plug 'rhysd/vim-grammarous', { 'on': 'GrammarousCheck' } " English spell check
 
 call plug#end()
 
@@ -176,6 +178,9 @@ augroup cline
   au WinEnter * set cursorcolumn
 augroup END
 
+" add templates in templates/ using filetype as file name
+au BufNewFile * :silent! exec ":0r ".$HOME."/.vim/"."templates/".&ft
+
 " Visual tweaks
 " =============
 set cursorcolumn " Highlight the coloumn of the cursor
@@ -198,7 +203,7 @@ set autochdir
 
 " Real programmers don't use TABs but spaces
 " ==========================================
-set tabstop=8
+set tabstop=2
 set softtabstop=2
 set shiftwidth=2
 set expandtab
@@ -273,6 +278,7 @@ command! -bang Qa qa<bang>
 " Colorscheme
 " ===========
 set t_Co=256
+set t_ut=
 set background=dark
 colorscheme gruvbox
 
@@ -375,5 +381,9 @@ au FileType rust nmap <leader>gd <Plug>(rust-doc)
 
 " TypeScript
 " ==========
-
 autocmd FileType typescript nmap <buffer> <Leader>t : <C-u>echo tsuquyomi#hint()<CR>
+
+" Prettier
+" ========
+let g:prettier#autoformat = 0
+" autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue PrettierAsync

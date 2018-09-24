@@ -38,3 +38,5 @@
   gpgsign = true
 [include]
   path = $HOME/.gitconfig-local
+[pull]
+	rebase = true

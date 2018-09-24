@@ -25,3 +25,4 @@ antigen apply
 hash kubectl && source <(kubectl completion zsh)
 
 alias tmuxn="tmux new-session -t $(basename $PWD)"
+alias mux="tmuxinator"
