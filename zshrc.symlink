@@ -1,11 +1,10 @@
-# What a fucker, got hold of me for a while
 KEYTIMEOUT=1
+
 # ====================
 # ZSH PLUGINS (Antigen)
 # ====================
 source $DOTFILES/antigen/antigen.zsh
 
-# Load oh-my-zsh with antigen
 antigen use oh-my-zsh
 antigen bundle git
 antigen bundle zsh-users/zsh-syntax-highlighting
@@ -14,6 +13,7 @@ antigen bundle zsh-users/zsh-completions
 antigen bundle felixr/docker-zsh-completion
 antigen bundle mafredri/zsh-async
 antigen bundle sindresorhus/pure
+antigen bundle command-not-found
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -22,7 +22,7 @@ antigen bundle uvaes/fzf-marks
 # Tell antigen that you're done.
 antigen apply
 
-hash kubectl && source <(kubectl completion zsh)
+hash kubectl 2> /dev/null && source <(kubectl completion zsh)
 
 alias tmuxn="tmux new-session -t $(basename $PWD)"
 alias mux="tmuxinator"

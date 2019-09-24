@@ -340,10 +340,10 @@ let g:airline_theme='gruvbox'
 
 " GitGutter
 " =========
-nmap ]h <Plug>GitGutterNextHunk
-nmap [h <Plug>GitGutterPrevHunk
-nmap <Leader>ha <Plug>GitGutterStageHunk
-nmap <Leader>hr <Plug>GitGutterUndoHunk
+nmap ]h <Plug>(GitGutterNextHunk)
+nmap [h <Plug>(GitGutterPrevHunk)
+nmap <Leader>ha <Plug>(GitGutterStageHunk)
+nmap <Leader>hr <Plug>(GitGutterUndoHunk)
 
 " NERDTree
 " ========
