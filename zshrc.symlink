@@ -1,26 +1,39 @@
 KEYTIMEOUT=1
 
+# Enable emacs mode
+bindkey -e
+
 # ====================
-# ZSH PLUGINS (Antigen)
+# ZSH PLUGINS (ZPlug)
 # ====================
-source $DOTFILES/antigen/antigen.zsh
+source ~/.zplug/init.zsh
 
-antigen use oh-my-zsh
-antigen bundle git
-antigen bundle zsh-users/zsh-syntax-highlighting
-antigen bundle zsh-users/zsh-completions
-# antigen bundle zsh-users/zsh-autosuggestions
-antigen bundle felixr/docker-zsh-completion
-antigen bundle mafredri/zsh-async
-antigen bundle sindresorhus/pure
-antigen bundle command-not-found
+zplug "mafredri/zsh-async", from:github
+zplug "sindresorhus/pure", use:pure.zsh, from:github, as:theme
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+zplug "zsh-users/zsh-syntax-highlighting", defer:2
+zplug "zsh-users/zsh-completions", use:src
 
-antigen bundle uvaes/fzf-marks
+zplug "plugins/git",   from:oh-my-zsh
 
-# Tell antigen that you're done.
-antigen apply
+zplug "junegunn/fzf-bin", \
+    from:gh-r, \
+    as:command, \
+    rename-to:fzf, \
+    use:"*linux*amd64*"
+zplug "junegunn/fzf", use:"shell/*.zsh", defer:2
+
+zplug "uvaes/fzf-marks"
+
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
+
+# Then, source plugins and add commands to $PATH
+zplug load
 
 hash kubectl 2> /dev/null && source <(kubectl completion zsh)
 
