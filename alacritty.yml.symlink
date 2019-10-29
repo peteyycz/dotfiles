@@ -4,7 +4,6 @@ env:
   TERM: xterm-256color
 
 window:
-  decorations: true
   dimensions:
     columns: 80
     lines: 24
@@ -21,16 +20,8 @@ draw_bold_text_with_bright_colors: false
 
 font:
   normal:
-    family: monospace # should be "Menlo" or something on macOS.
-  bold:
-    family: monospace # should be "Menlo" or something on macOS.
-  italic:
-    family: monospace # should be "Menlo" or something on macOS.
-
+    family: Operator Mono # should be "Menlo" or something on macOS.
   size: 11.0
-
-# Should display the render timer
-render_timer: false
 
 custom_cursor_colors: false
 
