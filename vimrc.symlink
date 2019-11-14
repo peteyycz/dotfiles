@@ -17,7 +17,8 @@ call plug#begin('~/.vim/bundle')
 Plug 'peteyycz/mocha.vim'
 
 " Can't live without colors
-Plug 'morhetz/gruvbox'
+Plug 'mhartington/oceanic-next'
+Plug 'chriskempson/base16-vim'
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -33,11 +34,12 @@ Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 "   \     'unix': 'npm install -g flow-bin'
 "   \ }}
 
-Plug 'editorconfig/editorconfig-vim'
+" Plug 'editorconfig/editorconfig-vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
-Plug 'scrooloose/nerdtree'
+" Plug 'scrooloose/nerdtree'
+" Plug 'liuchengxu/vim-clap'
 " Plug 'junegunn/vim-emoji'
 Plug 'haya14busa/incsearch.vim' " Incremental search like in emacs
 Plug 'mileszs/ack.vim'
@@ -64,9 +66,11 @@ Plug 'mattn/emmet-vim', { 'for': ['html']} " Zen coding at it's best
 Plug 'othree/html5.vim', { 'for': 'html' }
 Plug 'posva/vim-vue'
 
-Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
+Plug 'HerringtonDarkholme/yats.vim', { 'for': 'typescript' }
+" Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 Plug 'Quramy/tsuquyomi', { 'for': 'typescript' }
-Plug 'jordwalke/vim-reasonml'
+" Plug 'jordwalke/vim-reasonml'
+Plug 'jparise/vim-graphql'
 
 Plug 'pangloss/vim-javascript'
 Plug 'maxmellon/vim-jsx-pretty'
@@ -200,7 +204,7 @@ set nofoldenable
 
 " Change directory automatically for C-x C-f
 " ==========================================
-set autochdir
+" set autochdir
 
 " Real programmers don't use TABs but spaces
 " ==========================================
@@ -281,7 +285,7 @@ command! -bang Qa qa<bang>
 set t_Co=256
 set t_ut=
 set background=dark
-colorscheme gruvbox
+colorscheme OceanicNext
 
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
@@ -336,8 +340,8 @@ nnoremap <silent> [t :FocusPreviousTest<CR>
 
 " Airline
 " =======
-let g:airline_powerline_fonts=0
-let g:airline_theme='gruvbox'
+let g:airline_powerline_fonts=1
+let g:airline_theme='oceanicnext'
 
 " GitGutter
 " =========
@@ -360,7 +364,15 @@ map g/ <Plug>(incsearch-stay)
 " =======
 let g:ale_linters = {
   \   'javascript': ['eslint'],
+  \   'typescript': ['tsserver', 'tslint'],
   \}
+
+let g:ale_fixers = {
+\    'javascript': ['eslint'],
+\    'typescript': ['prettier'],
+\    'vue': ['eslint']
+\}
+let g:ale_fix_on_save = 1
 
 " EasyAlign
 " =========
@@ -388,4 +400,10 @@ autocmd FileType typescript nmap <buffer> <Leader>t : <C-u>echo tsuquyomi#hint()
 " ========
 let g:prettier#autoformat = 0
 " autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue PrettierAsync
+
+" Tsuquyomi
+" =========
+
+let g:tsuquyomi_completion_detail = 1
+autocmd FileType typescript nmap <buffer> <Leader>t : <C-u>echo tsuquyomi#hint()<CR>
 

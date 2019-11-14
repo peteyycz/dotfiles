@@ -10,11 +10,27 @@ source ~/.zplug/init.zsh
 
 zplug "mafredri/zsh-async", from:github
 zplug "sindresorhus/pure", use:pure.zsh, from:github, as:theme
+zplug "zdharma/zsh-diff-so-fancy", as:command, use:bin/git-dsf
+
 
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "zsh-users/zsh-completions", use:src
+zplug "zsh-users/zsh-history-substring-search"
 
+# zplug "plugins/common-aliases", from:oh-my-zsh
+zplug "plugins/history",   from:oh-my-zsh
 zplug "plugins/git",   from:oh-my-zsh
+zplug "plugins/tmux",   from:oh-my-zsh
+zplug "plugins/node",   from:oh-my-zsh
+zplug "plugins/golang",   from:oh-my-zsh
+zplug "plugins/cp",   from:oh-my-zsh
+zplug "plugins/docker",   from:oh-my-zsh
+zplug "plugins/docker-compose",   from:oh-my-zsh
+
+zplug "djui/alias-tips"
+zplug "knu/zsh-manydots-magic"
+
+zplug "lukechilds/zsh-nvm"
 
 zplug "junegunn/fzf-bin", \
     from:gh-r, \
@@ -37,5 +53,8 @@ zplug load
 
 hash kubectl 2> /dev/null && source <(kubectl completion zsh)
 
-alias tmuxn="tmux new-session -t $(basename $PWD)"
+alias tmuxn='tmux new-session -t $(basename $PWD)'
 alias mux="tmuxinator"
+alias ls="ls --color=auto"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
