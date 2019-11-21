@@ -19,6 +19,7 @@ Plug 'peteyycz/mocha.vim'
 " Can't live without colors
 Plug 'mhartington/oceanic-next'
 Plug 'chriskempson/base16-vim'
+Plug 'morhetz/gruvbox'
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -39,7 +40,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
 " Plug 'scrooloose/nerdtree'
-" Plug 'liuchengxu/vim-clap'
+Plug 'liuchengxu/vim-clap'
 " Plug 'junegunn/vim-emoji'
 Plug 'haya14busa/incsearch.vim' " Incremental search like in emacs
 Plug 'mileszs/ack.vim'
@@ -285,7 +286,7 @@ command! -bang Qa qa<bang>
 set t_Co=256
 set t_ut=
 set background=dark
-colorscheme OceanicNext
+colorscheme gruvbox
 
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
@@ -341,7 +342,7 @@ nnoremap <silent> [t :FocusPreviousTest<CR>
 " Airline
 " =======
 let g:airline_powerline_fonts=1
-let g:airline_theme='oceanicnext'
+let g:airline_theme='gruvbox'
 
 " GitGutter
 " =========

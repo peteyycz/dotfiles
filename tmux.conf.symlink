@@ -28,6 +28,7 @@ set -g mouse on
 # Vi mode
 set -g status-keys vi
 setw -g mode-keys vi
+bind-key -T copy-mode-vi 'v' send-keys -X begin-selection
 
 ## Unbinds
 ## `-> these are part of the default mappings
@@ -68,6 +69,7 @@ bind s split-window
 
 # colon :
 bind : command-prompt
+bind Escape copy-mode
 
 ##-------~---~----------~----------~----
 ## General settings
