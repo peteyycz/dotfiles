@@ -39,7 +39,7 @@ Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
-" Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree'
 Plug 'liuchengxu/vim-clap'
 " Plug 'junegunn/vim-emoji'
 Plug 'haya14busa/incsearch.vim' " Incremental search like in emacs
@@ -117,7 +117,7 @@ set list " Display invisibles
 set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮,space:·
 set showbreak=↪
 set visualbell " No noise just flash
-set autochdir " Change working directory to current open buffer
+" set autochdir " Change working directory to current open buffer
 set splitbelow " Horizontal splits open below the current window
 set splitright " Vertical splits open right to the current window
 set termguicolors " Enable true color support in terminal
@@ -289,6 +289,9 @@ set background=dark
 colorscheme gruvbox
 
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+
+" Transparency fix
+hi Normal ctermbg=NONE guibg=NONE
 
 " The silver searcher (ACK)
 " =========================
