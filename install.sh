@@ -1,10 +1,6 @@
 #!/bin/bash
 
-echo "installing dotfiles"
-
-# In case of submodules
-echo "initializing submodule(s)"
-git submodule update --init --recursive
+echo "Installing dotfiles"
 
 DOTFILES=$HOME/.dotfiles
 
