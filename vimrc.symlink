@@ -40,7 +40,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'scrooloose/nerdtree'
-Plug 'liuchengxu/vim-clap'
+" Plug 'liuchengxu/vim-clap'
 " Plug 'junegunn/vim-emoji'
 Plug 'haya14busa/incsearch.vim' " Incremental search like in emacs
 Plug 'mileszs/ack.vim'

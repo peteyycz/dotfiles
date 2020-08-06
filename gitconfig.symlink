@@ -1,5 +1,5 @@
 [user]
-  email = p.czibik@gmail.com
+	email = peter.czibik@risingstack.com
   name = Peter Czibik
   signingkey = C04FDD5E691CBB95
 [url "git@github.com"]
@@ -41,3 +41,5 @@
   path = $HOME/.gitconfig-local
 [pull]
 	rebase = true
+[luser]
+	email = peter.czibik@risingstack.com
