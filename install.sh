@@ -10,7 +10,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 echo "Installing dotfiles"
 
-DOTFILES=$HOME/.dotfiles
+DOTFILES=$HOME/Code/src/github.com/peteyycz/dotfiles
 
 echo "creating symlinks"
 linkables=$( ls -1 -d *.symlink )
