@@ -304,7 +304,6 @@ nmap <leader>f :Limelight!!<cr>
 
 " Fugitive
 " ========
-set diffopt+=vertical
 nnoremap <leader>gd :Gdiff<CR>
 nnoremap <leader>gb :Gblame<CR>
 nnoremap <leader>gs :Gstatus<CR>

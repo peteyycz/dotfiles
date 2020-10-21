@@ -1,7 +1,7 @@
 [user]
 	email = peter.czibik@risingstack.com
   name = Peter Czibik
-  signingkey = C04FDD5E691CBB95
+  signingkey = 3FB42B64
 [url "git@github.com"]
   insteadOf = gh
 [core]
@@ -43,3 +43,5 @@
 	rebase = true
 [luser]
 	email = peter.czibik@risingstack.com
+[gpg]
+	program = /usr/local/MacGPG2/bin/gpg2
