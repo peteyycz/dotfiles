@@ -26,14 +26,8 @@ Plug 'vim-airline/vim-airline-themes'
 
 Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 
-" Plug 'facebook/vim-flow', {
-"   \ 'autoload': {
-"   \     'filetypes': 'javascript'
-"   \ },
-"   \ 'build': {
-"   \     'mac': 'npm install -g flow-bin',
-"   \     'unix': 'npm install -g flow-bin'
-"   \ }}
+" Let's try this one
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Plug 'editorconfig/editorconfig-vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -45,7 +39,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'haya14busa/incsearch.vim' " Incremental search like in emacs
 Plug 'mileszs/ack.vim'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'SirVer/ultisnips' " Snippets
+" Plug 'SirVer/ultisnips' " Snippets
 Plug 'w0rp/ale' " Async execution engine for syntax checking
 Plug 'bronson/vim-visual-star-search' " Visual star search
 " Plug '0x0dea/vim-molasses' " For not being efficient...
@@ -67,9 +61,10 @@ Plug 'mattn/emmet-vim', { 'for': ['html']} " Zen coding at it's best
 Plug 'othree/html5.vim', { 'for': 'html' }
 Plug 'posva/vim-vue'
 
-Plug 'HerringtonDarkholme/yats.vim', { 'for': 'typescript' }
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 " Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
-Plug 'Quramy/tsuquyomi', { 'for': 'typescript' }
+" Plug 'Quramy/tsuquyomi', { 'for': 'typescript' }
 " Plug 'jordwalke/vim-reasonml'
 Plug 'jparise/vim-graphql'
 
@@ -91,6 +86,7 @@ Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 Plug 'racer-rust/vim-racer', { 'for': 'rust' }
 Plug 'cespare/vim-toml', { 'for': 'toml' }
 Plug 'honza/dockerfile.vim'
+Plug 'dag/vim-fish'
 
 " For writing
 Plug 'junegunn/limelight.vim', { 'on': 'Limelight' } " Focusing tool
@@ -300,6 +296,7 @@ nmap <leader>/ :Ag<space>
 " Limelight
 " =========
 let g:limelight_default_coefficient=0.7
+let g:limelight_conceal_ctermfg = 'gray'
 nmap <leader>f :Limelight!!<cr>
 
 " Fugitive
@@ -343,7 +340,7 @@ nnoremap <silent> [t :FocusPreviousTest<CR>
 
 " Airline
 " =======
-let g:airline_powerline_fonts=1
+let g:airline_powerline_fonts=0
 let g:airline_theme='gruvbox'
 
 " GitGutter
@@ -406,7 +403,40 @@ let g:prettier#autoformat = 0
 
 " Tsuquyomi
 " =========
-
 let g:tsuquyomi_completion_detail = 1
 autocmd FileType typescript nmap <buffer> <Leader>t : <C-u>echo tsuquyomi#hint()<CR>
 
+" yats
+" ====
+set re=0
+
+" COC
+" ===
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" Make <CR> auto-select the first completion item and notify coc.nvim to
+" format on enter, <cr> could be remapped by other vim plugin
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
+endfunction
+
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)

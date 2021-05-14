@@ -13,8 +13,9 @@ export GOPATH=$HOME/Code
 export GO111MODULE=on
 
 # NodeJS configuration
-export NVM_DIR=~/.nvm
-source $NVM_DIR/nvm.sh
+export NVM_SYMLINK_CURRENT="true" # nvm use should make a symlink
+export NVM_DIR="$HOME/.nvm"
+export NVM_LAZY_LOAD=true
 
 # Rust configuration
 export CARGO_HOME=~/.cargo
@@ -40,3 +41,5 @@ export PATH=$PATH:~/.gem/ruby/2.5.0/bin
 
 # OCaml
 export PATH=$PATH:~/.opam/default/bin
+
++export GHQ_ROOT="$HOME/Code/src"

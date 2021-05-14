@@ -4,58 +4,95 @@ KEYTIMEOUT=1
 bindkey -e
 
 # ====================
-# ZSH PLUGINS (ZPlug)
+# ZSH PLUGINS (zinit)
 # ====================
-source ~/.zplug/init.zsh
+source ~/.zinit/bin/zinit.zsh
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
 
-zplug "mafredri/zsh-async", from:github
-zplug "sindresorhus/pure", use:pure.zsh, from:github, as:theme
-zplug "zdharma/zsh-diff-so-fancy", as:command, use:bin/git-dsf
+# Fancy prompt
+zinit ice from"gh-r" as"program" atload'!eval $(starship init zsh)'
+zinit light starship/starship
 
+# Node version manager
+zinit light lukechilds/zsh-nvm
 
-zplug "zsh-users/zsh-syntax-highlighting", defer:2
-zplug "zsh-users/zsh-completions", use:src
-zplug "zsh-users/zsh-history-substring-search"
+# Docker-compose which rarely works?
+zinit ice from"gh-r" as"program" mv"docker* -> docker-compose"
+zinit load docker/compose
 
-# zplug "plugins/common-aliases", from:oh-my-zsh
-zplug "lib/history",   from:oh-my-zsh
-zplug "plugins/history",   from:oh-my-zsh
-zplug "plugins/git",   from:oh-my-zsh
-zplug "plugins/tmux",   from:oh-my-zsh
-zplug "plugins/node",   from:oh-my-zsh
-zplug "plugins/golang",   from:oh-my-zsh
-zplug "plugins/cp",   from:oh-my-zsh
-zplug "plugins/docker",   from:oh-my-zsh
-zplug "plugins/docker-compose",   from:oh-my-zsh
+# Oh my ZSH plugins
+zinit snippet OMZP::common-aliases
+zinit snippet OMZP::git
+zinit snippet OMZL::history.zsh
+zinit snippet OMZP::tmux
+zinit snippet OMZP::node
+# zinit snippet OMZP::docker # ??? doesn't work for some reason
+zinit snippet OMZP::docker-compose
 
-zplug "djui/alias-tips"
-zplug "knu/zsh-manydots-magic"
+# Tips for aliases
+zinit load djui/alias-tips
 
-zplug "lukechilds/zsh-nvm"
+# zdharma/history-search-multi-word, better CTRL+R
+zinit ice wait"1" lucid
+zinit load zdharma/history-search-multi-word
 
-zplug "junegunn/fzf-bin", \
-    from:gh-r, \
-    as:command, \
-    rename-to:fzf, \
-    use:"*linux*amd64*"
-zplug "junegunn/fzf", use:"shell/*.zsh", defer:2
+# ghq, go style directory management
+zinit ice from"gh-r" as"program" pick"*/ghq"
+zinit load x-motemen/ghq
 
-zplug "uvaes/fzf-marks"
+# ... -> ../../
+zinit wait lucid pick"manydots-magic" compile"manydots-magic" for knu/zsh-manydots-magic
 
-if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    fi
-fi
+# BurntSushi/ripgrep, grep
+zinit ice as"command" from"gh-r" mv"ripgrep* -> rg" pick"rg/rg"
+zinit light BurntSushi/ripgrep
 
-# Then, source plugins and add commands to $PATH
-zplug load
+# ogham/exa, replacement for ls
+zinit ice wait"2" lucid from"gh-r" as"program" mv"exa* -> exa"
+zinit light ogham/exa
 
-hash kubectl 2> /dev/null && source <(kubectl completion zsh)
+# fzf
+zinit ice from"gh-r" as"program"
+zinit light junegunn/fzf-bin
+
+# forgit, magit?
+zinit ice wait lucid
+zinit load 'wfxr/forgit'
+
+# zsh-startify, a vim-startify like plugin
+zinit ice wait"0" lucid atload"zsh-startify"
+zinit load zdharma/zsh-startify
+
+# Gitignore plugin – commands gii and gi
+zinit ice wait"2" lucid
+zinit load voronkovich/gitignore.plugin.zsh
+
+# Autosuggestions & fast-syntax-highlighting
+zinit ice wait"1" lucid atinit"zpcompinit; zpcdreplay" atload"FAST_HIGHLIGHT[chroma-git]=\"chroma/-ogit.ch\""
+zinit light zdharma/fast-syntax-highlighting
+
+# zsh-autosuggestions
+zinit ice wait"1" lucid atload"!_zsh_autosuggest_start"
+zinit load zsh-users/zsh-autosuggestions
+
+# it's k or j. no it's z
+zinit load agkozak/zsh-z
+
+# ====================
+# Aliases
+# ====================
 
 alias tmuxn='tmux new-session -t $(basename $PWD)'
-alias mux="tmuxinator"
-alias ls="ls --color=auto"
+alias ll="exa -la"
+alias ls=exa
+alias cat=bat
+alias less=bat
+alias more=bat
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# ====================
+# Utilities
+# ====================
+
+chpwd() exa -la
+
