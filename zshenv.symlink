@@ -42,4 +42,5 @@ export PATH=$PATH:~/.gem/ruby/2.5.0/bin
 # OCaml
 export PATH=$PATH:~/.opam/default/bin
 
-+export GHQ_ROOT="$HOME/Code/src"
+# GHQ
+export GHQ_ROOT="$HOME/Code/src"
