@@ -20,7 +20,6 @@ export NVM_LAZY_LOAD=true
 # Rust configuration
 export CARGO_HOME=~/.cargo
 export PATH=$CARGO_HOME/bin:$PATH
-source $HOME/.cargo/env
 
 # .NET configuration
 export PATH=$PATH:$HOME/dotnet

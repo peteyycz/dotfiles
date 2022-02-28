@@ -4,88 +4,76 @@ KEYTIMEOUT=1
 bindkey -e
 
 # ====================
-# ZSH PLUGINS (zinit)
+# ZSH PLUGINS (zi)
 # ====================
-source ~/.zinit/bin/zinit.zsh
-autoload -Uz _zinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
+zi_home="${HOME}/.zi"
+source "${zi_home}/bin/zi.zsh"
+# Next two lines must be below the above two
+autoload -Uz _zi
+(( ${+_comps} )) && _comps[zi]=_zi
 
 # Fancy prompt
-zinit ice from"gh-r" as"program" atload'!eval $(starship init zsh)'
-zinit light starship/starship
+zi ice from"gh-r" as"program" atload'!eval $(starship init zsh)'
+zi light starship/starship
 
 # Node version manager
-zinit light lukechilds/zsh-nvm
-
-# Docker-compose which rarely works?
-zinit ice from"gh-r" as"program" mv"docker* -> docker-compose"
-zinit load docker/compose
+zi light lukechilds/zsh-nvm
 
 # Oh my ZSH plugins
-zinit snippet OMZP::common-aliases
-zinit snippet OMZP::git
-zinit snippet OMZL::history.zsh
-zinit snippet OMZP::tmux
-zinit snippet OMZP::node
-# zinit snippet OMZP::docker # ??? doesn't work for some reason
-zinit snippet OMZP::docker-compose
+zi snippet OMZP::common-aliases
+zi snippet OMZP::git
+zi snippet OMZL::history.zsh
+zi snippet OMZP::tmux
+zi snippet OMZP::node
+# zi snippet OMZP::docker # ??? doesn't work for some reason
+zi snippet OMZP::docker-compose
 
 # Tips for aliases
-zinit load djui/alias-tips
-
-# zdharma/history-search-multi-word, better CTRL+R
-zinit ice wait"1" lucid
-zinit load zdharma/history-search-multi-word
+zi load djui/alias-tips
 
 # ghq, go style directory management
-zinit ice from"gh-r" as"program" pick"*/ghq"
-zinit load x-motemen/ghq
+zi ice from"gh-r" as"program" pick"*/ghq"
+zi load x-motemen/ghq
+
+# exa === ls
+# zi ice from'gh-r' as'program' sbin'**/exa -> exa' atclone'cp -vf completions/exa.zsh _exa'
+# zi light ogham/exa
 
 # BurntSushi/ripgrep, grep
-zinit ice as"command" from"gh-r" mv"ripgrep* -> rg" pick"rg/rg"
-zinit light BurntSushi/ripgrep
-
-# ogham/exa, replacement for ls
-zinit ice wait"2" lucid from"gh-r" as"program" mv"exa* -> exa"
-zinit light ogham/exa
+zi ice as"command" from"gh-r" mv"ripgrep* -> rg" pick"rg/rg"
+zi light BurntSushi/ripgrep
 
 # fzf
-zinit ice from"gh-r" as"program"
-zinit light junegunn/fzf-bin
-
-# forgit, magit?
-zinit ice wait lucid
-zinit load 'wfxr/forgit'
+zi ice from"gh-r" as"program"
+zi light junegunn/fzf-bin
 
 # Gitignore plugin – commands gii and gi
-zinit ice wait"2" lucid
-zinit load voronkovich/gitignore.plugin.zsh
+zi ice wait"2" lucid
+zi load voronkovich/gitignore.plugin.zsh
 
 # Autosuggestions & fast-syntax-highlighting
-zinit ice wait"1" lucid atinit"zpcompinit; zpcdreplay" atload"FAST_HIGHLIGHT[chroma-git]=\"chroma/-ogit.ch\""
-zinit light zdharma/fast-syntax-highlighting
+zi ice wait lucid atinit"ZI[COMPINIT_OPTS]=-C; zpcompinit; zpcdreplay"
+zi light z-shell/F-Sy-H
+zi ice wait"1" lucid atload"!_zsh_autosuggest_start"
+zi load zsh-users/zsh-autosuggestions
 
-# zsh-autosuggestions
-zinit ice wait"1" lucid atload"!_zsh_autosuggest_start"
-zinit load zsh-users/zsh-autosuggestions
+# Diff so fancy
+zi ice as"program" pick"bin/git-dsf"
+zi light z-shell/zsh-diff-so-fancy
 
 # it's k or j. no it's z
-zinit load agkozak/zsh-z
+zi load agkozak/zsh-z
 
 # ====================
 # Aliases
 # ====================
 
 alias tmuxn='tmux new-session -t $(basename $PWD)'
-alias ll="exa -la"
-alias ls=exa
-alias cat=bat
-alias less=bat
-alias more=bat
+alias ll="ls -Gla"
 
 # ====================
 # Utilities
 # ====================
 
-chpwd() exa -la
+chpwd() ll
 
