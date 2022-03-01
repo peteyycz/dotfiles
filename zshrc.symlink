@@ -67,17 +67,12 @@ zi load agkozak/zsh-z
 zi ice from'gh-r' as'program' sbin'**/exa -> exa' atclone'cp -vf completions/exa.zsh _exa'
 zi light ogham/exa
 
-# Bat
-zi ice from'gh-r' as'program' mv'bat* bat' sbin'**/bat(.exe|) -> bat'
-zi light @sharkdp/bat
-
 # ====================
 # Aliases
 # ====================
 
 alias tmuxn='tmux new-session -t $(basename $PWD)'
 alias ls="exa"
-alias cat="bat"
 alias ll="exa -la"
 
 # ====================
