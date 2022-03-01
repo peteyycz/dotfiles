@@ -33,8 +33,10 @@
   lol= log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-
   yolo= !git commit --amend --no-edit && git p -f
 [pager]
-  diff = diff-so-fancy | less --tabs=1,5 -R
-  show = diff-so-fancy | less --tabs=1,5 -R
+  diff = delta --diff-so-fancy
+  log = delta --diff-so-fancy
+  reflog = delta --diff-so-fancy
+  show = delta --diff-so-fancy
 [include]
   path = $HOME/.gitconfig-local
 [pull]

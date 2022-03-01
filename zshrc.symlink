@@ -12,6 +12,9 @@ source "${zi_home}/bin/zi.zsh"
 autoload -Uz _zi
 (( ${+_comps} )) && _comps[zi]=_zi
 
+# required for sbin
+zi light z-shell/z-a-bin-gem-node
+
 # Fancy prompt
 zi ice from"gh-r" as"program" atload'!eval $(starship init zsh)'
 zi light starship/starship
@@ -35,10 +38,6 @@ zi load djui/alias-tips
 zi ice from"gh-r" as"program" pick"*/ghq"
 zi load x-motemen/ghq
 
-# exa === ls
-# zi ice from'gh-r' as'program' sbin'**/exa -> exa' atclone'cp -vf completions/exa.zsh _exa'
-# zi light ogham/exa
-
 # BurntSushi/ripgrep, grep
 zi ice as"command" from"gh-r" mv"ripgrep* -> rg" pick"rg/rg"
 zi light BurntSushi/ripgrep
@@ -57,19 +56,29 @@ zi light z-shell/F-Sy-H
 zi ice wait"1" lucid atload"!_zsh_autosuggest_start"
 zi load zsh-users/zsh-autosuggestions
 
-# Diff so fancy
-zi ice as"program" pick"bin/git-dsf"
-zi light z-shell/zsh-diff-so-fancy
+# diff-so-fancy
+zi ice wait lucid as'program' from'gh-r' sbin'**/delta -> delta'
+zi light dandavison/delta
 
 # it's k or j. no it's z
 zi load agkozak/zsh-z
+
+# Exa
+zi ice from'gh-r' as'program' sbin'**/exa -> exa' atclone'cp -vf completions/exa.zsh _exa'
+zi light ogham/exa
+
+# Bat
+zi ice from'gh-r' as'program' mv'bat* bat' sbin'**/bat(.exe|) -> bat'
+zi light @sharkdp/bat
 
 # ====================
 # Aliases
 # ====================
 
 alias tmuxn='tmux new-session -t $(basename $PWD)'
-alias ll="ls -Gla"
+alias ls="exa"
+alias cat="bat"
+alias ll="exa -la"
 
 # ====================
 # Utilities

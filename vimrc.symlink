@@ -29,11 +29,16 @@ Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 " Let's try this one
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+
+Plug 'machakann/vim-highlightedyank'
+
 " Plug 'editorconfig/editorconfig-vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'scrooloose/nerdtree'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+
 " Plug 'liuchengxu/vim-clap'
 " Plug 'junegunn/vim-emoji'
 Plug 'haya14busa/incsearch.vim' " Incremental search like in emacs
@@ -412,11 +417,7 @@ set re=0
 
 " COC
 " ===
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-" Make <CR> auto-select the first completion item and notify coc.nvim to
-" format on enter, <cr> could be remapped by other vim plugin
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+" inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
@@ -440,3 +441,8 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
+
+" yank highlight
+if !exists('##TextYankPost')
+  map y <Plug>(highlightedyank)
+endif
