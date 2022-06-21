@@ -33,7 +33,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'machakann/vim-highlightedyank'
 
 " Plug 'editorconfig/editorconfig-vim'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'scrooloose/nerdtree'
@@ -322,7 +322,6 @@ let g:UltiSnipsSnippetDirectories=["UltiSnips"]
 imap <c-x><c-l> <plug>(fzf-complete-line)
 imap <c-x><c-f> <plug>(fzf-complete-path)
 nmap <C-p> :GFiles<CR>
-let g:fzf_layout = { 'down': '20%' }
 
 " Ack vim
 " =======

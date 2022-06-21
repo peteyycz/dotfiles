@@ -1,83 +1,69 @@
-KEYTIMEOUT=1
+if [[ ! -f $HOME/.asdf/asdf.sh ]]; then
+  print -P "%F{33}▓▒░ %F{160}Installing (%F{33}asdf%F{160})…%f"
+  command git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.0 && \
+    print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
+    print -P "%F{160}▓▒░ The clone has failed.%f%b"
+fi
+source $HOME/.asdf/asdf.sh
+fpath=(${ASDF_DIR}/completions $fpath)
+autoload -Uz compinit && compinit
 
-# Enable emacs mode
-bindkey -e
+if [[ ! -f $HOME/.zi/bin/zi.zsh ]]; then
+  print -P "%F{33}▓▒░ %F{160}Installing (%F{33}z-shell/zi%F{160})…%f"
+  command mkdir -p "$HOME/.zi" && command chmod g-rwX "$HOME/.zi"
+  command git clone -q --depth=1 --branch "main" https://github.com/z-shell/zi "$HOME/.zi/bin" && \
+    print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
+    print -P "%F{160}▓▒░ The clone has failed.%f%b"
+fi
+source "$HOME/.zi/bin/zi.zsh"
 
-# ====================
-# ZSH PLUGINS (zi)
-# ====================
-zi_home="${HOME}/.zi"
-source "${zi_home}/bin/zi.zsh"
-# Next two lines must be below the above two
 autoload -Uz _zi
 (( ${+_comps} )) && _comps[zi]=_zi
+# examples here -> https://z.digitalclouds.dev/ecosystem/annexes
+zicompinit # <- https://z.digitalclouds.dev/docs/guides/commands
+zi light-mode for \
+  z-shell/z-a-meta-plugins \
+  @annexes # <- https://z.digitalclouds.dev/ecosystem/annexes
+# examples here -> https://z.digitalclouds.dev/docs/gallery/collection
 
-# required for sbin
-zi light z-shell/z-a-bin-gem-node
+zi ice from'gh-r' as'program'
+zi light @junegunn/fzf
 
-# Fancy prompt
-zi ice from"gh-r" as"program" atload'!eval $(starship init zsh)'
-zi light starship/starship
-
-# Node version manager
-zi light lukechilds/zsh-nvm
-
-# Oh my ZSH plugins
-zi snippet OMZP::common-aliases
-zi snippet OMZP::git
-zi snippet OMZL::history.zsh
-zi snippet OMZP::tmux
-zi snippet OMZP::node
-# zi snippet OMZP::docker # ??? doesn't work for some reason
-zi snippet OMZP::docker-compose
-
-# Tips for aliases
-zi load djui/alias-tips
-
-# ghq, go style directory management
-zi ice from"gh-r" as"program" pick"*/ghq"
-zi load x-motemen/ghq
-
-# BurntSushi/ripgrep, grep
-zi ice as"command" from"gh-r" mv"ripgrep* -> rg" pick"rg/rg"
-zi light BurntSushi/ripgrep
-
-# fzf
-zi ice from"gh-r" as"program"
-zi light junegunn/fzf-bin
-
-# Gitignore plugin – commands gii and gi
-zi ice wait"2" lucid
-zi load voronkovich/gitignore.plugin.zsh
-
-# Autosuggestions & fast-syntax-highlighting
-zi ice wait lucid atinit"ZI[COMPINIT_OPTS]=-C; zpcompinit; zpcdreplay"
-zi light z-shell/F-Sy-H
-zi ice wait"1" lucid atload"!_zsh_autosuggest_start"
-zi load zsh-users/zsh-autosuggestions
-
-# diff-so-fancy
 zi ice wait lucid as'program' from'gh-r' sbin'**/delta -> delta'
 zi light dandavison/delta
 
-# it's k or j. no it's z
-zi load agkozak/zsh-z
-
-# Exa
 zi ice from'gh-r' as'program' sbin'**/exa -> exa' atclone'cp -vf completions/exa.zsh _exa'
 zi light ogham/exa
 
-# ====================
+zi ice lucid wait as'program' has'git' atclone"cp git-open.1.md $ZPFX/man/man1/git-open.1" atpull'%atclone'
+zi light paulirish/git-open
+
+zi light-mode for @sindresorhus/pure
+
+zi light z-shell/F-Sy-H
+
+zi ice lucid wait as'completion' blockf has'rg'
+zi snippet https://github.com/BurntSushi/ripgrep/blob/master/complete/_rg
+
+zi ice as"command" from"gh-r" mv"ripgrep* -> rg" pick"rg/rg"
+zi light BurntSushi/ripgrep
+
+zi load agkozak/zsh-z
+
+zstyle ":history-search-multi-word" page-size "11"
+zi ice wait lucid
+zi load z-shell/H-S-MW
+
+zicompinit # <- https://z.digitalclouds.dev/docs/guides/commands
+
 # Aliases
-# ====================
+# =======
 
 alias tmuxn='tmux new-session -t $(basename $PWD)'
 alias ls="exa"
 alias ll="exa -la"
 
-# ====================
 # Utilities
-# ====================
+# =========
 
 chpwd() ll
-
