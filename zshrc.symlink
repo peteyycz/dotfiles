@@ -8,6 +8,12 @@ source $HOME/.asdf/asdf.sh
 fpath=(${ASDF_DIR}/completions $fpath)
 autoload -Uz compinit && compinit
 
+if [[ ! -d $ASDF_DIR/plugins/nodejs ]]; then
+  command asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git && \
+    print -P "%F{33}▓▒░ %F{34}Nodejs plugin installation successful.%f%b" || \
+    print -P "%F{160}▓▒░ Nodejs plugin installation has failed.%f%b"
+fi
+
 if [[ ! -f $HOME/.zi/bin/zi.zsh ]]; then
   print -P "%F{33}▓▒░ %F{160}Installing (%F{33}z-shell/zi%F{160})…%f"
   command mkdir -p "$HOME/.zi" && command chmod g-rwX "$HOME/.zi"
