@@ -26,6 +26,11 @@ zi light-mode for \
   @annexes # <- https://z.digitalclouds.dev/ecosystem/annexes
 # examples here -> https://z.digitalclouds.dev/docs/gallery/collection
 
+zi snippet OMZP::common-aliases
+zi snippet OMZP::git
+zi snippet OMZL::history.zsh
+zi snippet OMZP::tmux
+
 zi ice from'gh-r' as'program'
 zi light @junegunn/fzf
 
@@ -38,7 +43,10 @@ zi light ogham/exa
 zi ice lucid wait as'program' has'git' atclone"cp git-open.1.md $ZPFX/man/man1/git-open.1" atpull'%atclone'
 zi light paulirish/git-open
 
-zi light-mode for @sindresorhus/pure
+zi ice as"command" from"gh-r" \
+  atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
+  atpull"%atclone" src"init.zsh"
+zi light starship/starship
 
 zi light z-shell/F-Sy-H
 
@@ -55,6 +63,8 @@ zi ice wait lucid
 zi load z-shell/H-S-MW
 
 zicompinit # <- https://z.digitalclouds.dev/docs/guides/commands
+
+bindkey -e
 
 # Aliases
 # =======
