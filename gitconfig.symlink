@@ -1,7 +1,6 @@
 [user]
-	email = peter.czibik@risingstack.com
+	email = peter.czibik@gmail.com
   name = Peter Czibik
-  signingkey = 3FB42B64
 [url "git@github.com"]
   insteadOf = gh
 [core]
@@ -12,13 +11,19 @@
   default = current
 [merge]
   tool = vimdiff
-[mergetool]
-  prompt = true
 [diff]
   tool = vimdiff
-  algorithm = patience
 [difftool "vimdiff"]
   prompt = false
+[pager]
+  diff = delta --diff-so-fancy
+  log = delta --diff-so-fancy
+  reflog = delta --diff-so-fancy
+  show = delta --diff-so-fancy
+[include]
+  path = $HOME/.gitconfig-local
+[pull]
+	rebase = true
 [alias]
   co = checkout
   p = push
@@ -32,16 +37,3 @@
   dt = difftool
   lol= log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-
   yolo= !git commit --amend --no-edit && git p -f
-[pager]
-  diff = delta --diff-so-fancy
-  log = delta --diff-so-fancy
-  reflog = delta --diff-so-fancy
-  show = delta --diff-so-fancy
-[include]
-  path = $HOME/.gitconfig-local
-[pull]
-	rebase = true
-[luser]
-	email = peter.czibik@risingstack.com
-[gpg]
-	program = /usr/local/MacGPG2/bin/gpg2

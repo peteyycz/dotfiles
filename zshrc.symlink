@@ -64,6 +64,7 @@ bindkey -e
 alias tmuxn='tmux new-session -t $(basename $PWD)'
 alias ls="exa"
 alias ll="exa -la"
+alias vim="nvim"
 
 # Utilities
 # =========
