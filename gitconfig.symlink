@@ -1,8 +1,6 @@
 [user]
 	email = peter.czibik@gmail.com
   name = Peter Czibik
-[url "git@github.com"]
-  insteadOf = gh
 [core]
   excludesfile = ~/.gitignore_global
   editor = vim
@@ -21,7 +19,7 @@
   reflog = delta --diff-so-fancy
   show = delta --diff-so-fancy
 [include]
-  path = $HOME/.gitconfig-local
+  path = ~/.gitconfig-local
 [pull]
 	rebase = true
 [alias]

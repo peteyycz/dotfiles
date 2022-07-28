@@ -70,3 +70,12 @@ alias vim="nvim"
 # =========
 
 chpwd() ll
+
+gch () {
+  git checkout $(git for-each-ref refs/heads/ --format='%(refname:short)' | fzf)
+}
+
+nrun () {
+  npm run $(jq -r '.scripts | keys[]' < package.json | fzf)
+}
+
