@@ -1,4 +1,3 @@
-//registry.npmjs.org/:_authToken=${NPM_TOKEN}
 save-prefix=
 init.author.name=Peter Czibik
 init.author.email=p.czibik@gmail.com

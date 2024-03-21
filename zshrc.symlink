@@ -19,9 +19,6 @@ zi snippet OMZP::git
 zi snippet OMZL::history.zsh
 zi snippet OMZP::tmux
 
-# Node version manager
-zi light lukechilds/zsh-nvm
-
 # ghq, go style directory management
 zi ice from"gh-r" as"program" pick"*/ghq"
 zi load x-motemen/ghq
@@ -42,9 +39,6 @@ zi light starship/starship
 
 zi light z-shell/F-Sy-H
 
-zi ice lucid wait as'completion' blockf has'rg'
-zi snippet https://github.com/BurntSushi/ripgrep/blob/master/complete/_rg
-
 zi ice as"command" from"gh-r" mv"ripgrep* -> rg" pick"rg/rg"
 zi light BurntSushi/ripgrep
 
@@ -64,7 +58,6 @@ bindkey -e
 alias tmuxn='tmux new-session -t $(basename $PWD)'
 alias ls="exa"
 alias ll="exa -la"
-alias vim="nvim"
 
 # Utilities
 # =========
@@ -78,4 +71,7 @@ gch () {
 nrun () {
   npm run $(jq -r '.scripts | keys[]' < package.json | fzf)
 }
+
+# ASDF
+. $(brew --prefix asdf)/libexec/asdf.sh
 

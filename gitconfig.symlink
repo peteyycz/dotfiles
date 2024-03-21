@@ -1,5 +1,5 @@
 [user]
-	email = peter.czibik@gmail.com
+  email = dev@peterczibik.com
   name = Peter Czibik
 [core]
   excludesfile = ~/.gitignore_global
