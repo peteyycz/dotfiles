@@ -1,77 +1,20 @@
-if [[ ! -f $HOME/.zi/bin/zi.zsh ]]; then
-  print -P "%F{33}▓▒░ %F{160}Installing (%F{33}z-shell/zi%F{160})…%f"
-  command mkdir -p "$HOME/.zi" && command chmod g-rwX "$HOME/.zi"
-  command git clone -q --depth=1 --branch "main" https://github.com/z-shell/zi "$HOME/.zi/bin" && \
-    print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
-    print -P "%F{160}▓▒░ The clone has failed.%f%b"
-fi
-source "$HOME/.zi/bin/zi.zsh"
+source $HOME/antigen.zsh
 
-autoload -Uz _zi
-(( ${+_comps} )) && _comps[zi]=_zi
-zicompinit # <- https://z.digitalclouds.dev/docs/guides/commands
-zi light-mode for \
-  z-shell/z-a-meta-plugins \
-  @annexes
+antigen use oh-my-zsh
+antigen bundle git
+antigen bundle asdf
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle zsh-users/zsh-autosuggestions
+antigen bundle zsh-users/zsh-completions
+antigen bundle chrissicool/zsh-256color
+antigen bundle agkozak/zsh-z
 
-zi snippet OMZP::common-aliases
-zi snippet OMZP::git
-zi snippet OMZL::history.zsh
-zi snippet OMZP::tmux
+antigen apply
 
-# ghq, go style directory management
-zi ice from"gh-r" as"program" pick"*/ghq"
-zi load x-motemen/ghq
+export EDITOR=vim
+export VISUAL=vim
+export GHQ_ROOT="$HOME/Code/src"
 
-zi ice from'gh-r' as'program'
-zi light @junegunn/fzf
+alias tmuxn="tmux new-session -t $(basename $PWD)";
 
-zi ice wait lucid as'program' from'gh-r' sbin'**/delta -> delta'
-zi light dandavison/delta
-
-zi ice from'gh-r' as'program' sbin'**/exa -> exa' atclone'cp -vf completions/exa.zsh _exa'
-zi light ogham/exa
-
-zi ice as"command" from"gh-r" \
-  atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
-  atpull"%atclone" src"init.zsh"
-zi light starship/starship
-
-zi light z-shell/F-Sy-H
-
-zi ice as"command" from"gh-r" mv"ripgrep* -> rg" pick"rg/rg"
-zi light BurntSushi/ripgrep
-
-zi load agkozak/zsh-z
-
-zstyle ":history-search-multi-word" page-size "11"
-zi ice wait lucid
-zi load z-shell/H-S-MW
-
-zicompinit
-
-bindkey -e
-
-# Aliases
-# =======
-
-alias tmuxn='tmux new-session -t $(basename $PWD)'
-alias ls="exa"
-alias ll="exa -la"
-
-# Utilities
-# =========
-
-chpwd() ll
-
-gch () {
-  git checkout $(git for-each-ref refs/heads/ --format='%(refname:short)' | fzf)
-}
-
-nrun () {
-  npm run $(jq -r '.scripts | keys[]' < package.json | fzf)
-}
-
-# ASDF
-. $(brew --prefix asdf)/libexec/asdf.sh
-
+eval "$(starship init zsh)"

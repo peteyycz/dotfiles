@@ -1,38 +1,25 @@
-# Plugins
-set-environment -g TMUX_PLUGIN_MANAGER_PATH '~/.tmux/plugins/'
-
+set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'tmux-plugins/tmux-sensible'
 set -g @plugin 'tmux-plugins/tmux-yank'
 set -g @plugin 'christoomey/vim-tmux-navigator'
+set -g @plugin 'nhdaly/tmux-better-mouse-mode'
+set -g @plugin 'egel/tmux-gruvbox'
 
-# tmux display things in 256 colors
-set-option -ga terminal-overrides ",xterm-256color:Tc"
-
-set -g history-limit 20000
-
-# Rather than constraining window size to the maximum size of any client
-# connected to the *session*, constrain window size to the maximum size of any
-# client connected to *that window*. Much more reasonable.
-setw -g aggressive-resize on
-
-# make delay shorter
-set -sg escape-time 0
-
-# make window/pane index start with 1
-set -g base-index 1
+set  -g default-terminal "screen"
+set  -g base-index      1
 setw -g pane-base-index 1
 
-# enable mouse support for switching and resizing panes/windows
-set -g mouse on
-
-# Vi mode
 set -g status-keys vi
-setw -g mode-keys vi
-bind-key -T copy-mode-vi 'v' send-keys -X begin-selection
+set -g mode-keys   vi
 
-## Unbinds
-## `-> these are part of the default mappings
-##     and will get new functionality
+set  -g mouse             on
+setw -g aggressive-resize on
+setw -g clock-mode-style  12
+set  -s escape-time       0
+set  -g history-limit     20000
+
+set -g @tmux-gruvbox 'dark' # or 'light'
+
 unbind c
 unbind i
 unbind l
@@ -42,86 +29,31 @@ unbind w
 # automatically renumber tmux windows
 set -g renumber-windows on
 
-##-------~---~----------~----------~----
-## Keybindings
-##-------~---~----------~----------~----
-
-bind r source-file ~/.tmux.conf \; display "Config Reloaded!"
-
+bind-key -T copy-mode-vi 'v' send-keys -X begin-selection
 bind w neww
 bind m choose-window
 bind a choose-session
 bind c kill-pane
 bind t set status
-
 bind h select-pane -L
 bind j select-pane -D
 bind k select-pane -U
 bind l select-pane -R
-
 bind ^h resize-pane -L
 bind ^j resize-pane -D
 bind ^k resize-pane -U
 bind ^l resize-pane -R
-
 bind v split-window -h
 bind s split-window
-
-# colon :
 bind : command-prompt
 bind Escape copy-mode
 
-##-------~---~----------~----------~----
-## General settings
-##-------~---~----------~----------~----
-
-# set -g default-shell /bin/zsh
 set -g set-titles on
 set -g set-titles-string 'tmux: #T'
 set -g repeat-time 100
-setw -g clock-mode-style 12
 setw -g alternate-screen on
 
-# loud or quiet?
-set-option -g visual-activity on
-set-option -g visual-bell on
-set-option -g visual-silence off
-set-window-option -g monitor-activity off
-set-option -g bell-action none
-
-##-------~---~----------~----------~----
-## Status bar
-##-------~---~----------~----------~----
-
 set -g display-panes-time 1000
-
 setw -g automatic-rename on
 
-set -g status-interval 5
-set -g status-justify left
-
-set -g status-left ""
-set -g status-right ""
-
-set-window-option -g window-status-format " #I: #W "
-
-# soften status bar color from harsh green to light gray
-
-set-window-option -g window-status-current-format " #I: #W "
-
-# default statusbar colors
-set -g status-style bg=blue,fg=white
-
-# active window title colors
-set -g window-status-current-style fg=black,bg=yellow,dim
-
-# pane border
-set -g pane-border-style fg=white
-set -g pane-active-border-style fg=red
-
-set -g status-interval 1
-
-set -g status-right-length 30
-set -g status-left-length 45
-
-run -b '~/.tmux/plugins/tpm/tpm'
+run '~/.tmux/plugins/tpm/tpm'

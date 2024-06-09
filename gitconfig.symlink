@@ -10,28 +10,13 @@
 [merge]
   tool = vimdiff
 [diff]
-  tool = vimdiff
-[difftool "vimdiff"]
-  prompt = false
+  tool = difftastic
+  external = difft
+[difftool]
+  promt = false
+[difftool "difftastic"]
+  cmd = difft "$LOCAL" "$REMOTE"
 [pager]
-  diff = delta --diff-so-fancy
-  log = delta --diff-so-fancy
-  reflog = delta --diff-so-fancy
-  show = delta --diff-so-fancy
-[include]
-  path = ~/.gitconfig-local
+  difftool = true
 [pull]
 	rebase = true
-[alias]
-  co = checkout
-  p = push
-  c = commit
-  st = status
-  aa = add --all
-  # needed for hub
-  pr = pull-request
-  a = add
-  d = diff
-  dt = difftool
-  lol= log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-
-  yolo= !git commit --amend --no-edit && git p -f
