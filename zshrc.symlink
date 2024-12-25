@@ -11,10 +11,13 @@ antigen bundle agkozak/zsh-z
 
 antigen apply
 
+bindkey -e
+
 export EDITOR=vim
 export VISUAL=vim
 export GHQ_ROOT="$HOME/Code/src"
 
-alias tmuxn="tmux new-session -t $(basename $PWD)";
+alias tmuxn='tmux new-session -t $(basename $PWD)';
+alias vim='nvim';
 
 eval "$(starship init zsh)"
