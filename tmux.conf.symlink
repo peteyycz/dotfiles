@@ -3,7 +3,7 @@ set -g @plugin 'tmux-plugins/tmux-sensible'
 set -g @plugin 'tmux-plugins/tmux-yank'
 set -g @plugin 'christoomey/vim-tmux-navigator'
 set -g @plugin 'nhdaly/tmux-better-mouse-mode'
-set -g @plugin 'egel/tmux-gruvbox'
+set -g @plugin 'niksingh710/minimal-tmux-status'
 
 set  -g default-terminal "screen"
 set  -g base-index      1
@@ -17,8 +17,6 @@ setw -g aggressive-resize on
 setw -g clock-mode-style  12
 set  -s escape-time       0
 set  -g history-limit     20000
-
-set -g @tmux-gruvbox 'dark' # or 'light'
 
 unbind c
 unbind i
@@ -55,5 +53,9 @@ setw -g alternate-screen on
 
 set -g display-panes-time 1000
 setw -g automatic-rename on
+
+set -g @minimal-tmux-left false
+set -g @minimal-tmux-justify "left"
+set -g @minimal-tmux-bg "yellow"
 
 run '~/.tmux/plugins/tpm/tpm'
