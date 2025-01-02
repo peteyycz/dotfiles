@@ -1,8 +1,13 @@
-golang 1.23.2
 ghq 1.6.3
+lazygit 0.44.1
+difftastic 0.61.0
+
 erlang 27.1.2
 elixir 1.17.3-otp-27
+gleam 1.6.3
+
+golang 1.23.2
 nodejs 23.1.0
-difftastic 0.61.0
 odin dev-2024-11
 rust 1.83.0
+zig 0.13.0
