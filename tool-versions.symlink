@@ -11,3 +11,4 @@ nodejs 23.1.0
 odin dev-2024-11
 rust 1.83.0
 zig 0.13.0
+bun 1.1.42
