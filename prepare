@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # starship
 curl -sS https://starship.rs/install.sh | sh
 
@@ -6,3 +8,8 @@ git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.1
 
 # antigen
 curl -L git.io/antigen > $HOME/antigen.zsh
+
+if ! command -v stow &> /dev/null; then
+    echo "stow is not installed"
+    exit 1
+fi

@@ -11,3 +11,5 @@ for file in $linkables ; do
     echo "creating symlink for $file"
     ln -s $DOTFILES/$file $target
 done
+
+stow -t ~ i3
