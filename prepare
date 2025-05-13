@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # starship
 curl -sS https://starship.rs/install.sh | sh
