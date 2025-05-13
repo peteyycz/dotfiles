@@ -2,4 +2,4 @@
 
 echo "Installing dotfiles"
 
-stow -t ~ i3
+stow -t ~ home
