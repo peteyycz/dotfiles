@@ -45,11 +45,12 @@ config.font = wezterm.font_with_fallback({
 config.font_size = 12
 
 -- Window padding
+local padding = 0;
 config.window_padding = {
-  left = 4,
-  right = 4,
-  top = 4,
-  bottom = 4,
+  left = padding,
+  right = padding,
+  top = padding,
+  bottom = padding,
 }
 
 -- Tab bar styling

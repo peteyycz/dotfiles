@@ -1,0 +1,12 @@
+configuration {
+    modi:                    "drun,run,window"; /* Define active modes */
+    show-icons:              false;           /* No icons for minimalism */
+    drun-display-format:     "{name}";        /* Show only the name */
+    font:                    "RecMonoDuotone Nerd Font 10"; /* Choose your preferred font */
+    kb-clear-line:           "Control+w";
+    kb-remove-word-back:     "Alt+BackSpace";
+    kb-accept-entry:         "Return";
+    kb-cancel:               "Escape,Control+g,Control+bracketleft";
+}
+
+@theme "gruvbox-dark"
