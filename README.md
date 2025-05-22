@@ -5,5 +5,10 @@ ENJOY!!! :)
 ## Installing
 
 ```sh
-sh ./install.sh
+stow -t ~ common
+```
+
+## Removing
+```sh
+stow -D -t ~ common
 ```

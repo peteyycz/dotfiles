@@ -39,7 +39,7 @@ config.color_scheme = "Gruvbox Dark"
 
 -- Font configuration
 config.font = wezterm.font_with_fallback({
-  "RecMonoDuotone Nerd Font",
+  "Recursive Mono Linear Static",
 })
 
 config.font_size = 12
