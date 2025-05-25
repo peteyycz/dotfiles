@@ -1,0 +1,59 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 34,
+    "spacing": 4,
+
+    "margin-top": 5,
+    "margin-right": 8,
+    "margin-left": 8,
+    "margin-bottom": 0,
+
+    "modules-left": ["sway/workspaces"],
+    "modules-center": [],
+    "modules-right": ["tray", "network", "bluetooth", "cpu", "pulseaudio", "clock"],
+    "sway/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "format": "{name}",
+        "format-icons": {
+            "urgent": "",
+            "focused": "",
+            "default": ""
+        }
+    },
+    "tray": {
+    },
+    "network": {
+        "format-wifi": "{essid}",
+        "format-ethernet": "Ethernet",
+        "format-disconnected": "Disconnected",
+        "tooltip-format": "{ifname}: {ipaddr}/{cidr}"
+    },
+    "bluetooth": {
+        "format": "{status}",
+        "format-connected": "{device_alias}",
+        "format-connected-battery": "{device_alias} {device_battery_percentage}%",
+        "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+        "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+        "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%"
+    },
+    "cpu": {
+        "format": "CPU: {usage}%",
+        "tooltip": false,
+        "interval": 1
+    },
+    
+    "pulseaudio": {
+        "format": "Vol: {volume}%",
+        "format-muted": "Vol: Muted",
+        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle"
+    },
+    
+    "clock": {
+        "format": "{:%H:%M %p}",
+        "tooltip-format": "{:%Y-%m-%d | %H:%M:%S}",
+        "interval": 1
+    }
+}

@@ -1,0 +1,39 @@
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "Montserrat", monospace;
+    font-size: 14px;
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: #323232;
+    color: #ffffff;
+    margin: 10;
+    margin-top: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+#workspaces button {
+    padding: 0 8px;
+    background-color: #323232;
+    color: #5c5c5c;
+    border: none;
+}
+
+#workspaces button.focused {
+    background-color: #3a4c4f;
+    color: #ebdbb2;
+}
+
+#workspaces button.urgent {
+    background-color: #cc241d;
+    color: #ffffff;
+}
+
+#network, #custom-bluetooth, #cpu, #pulseaudio, #clock {
+    padding: 0 10px;
+    color: #ffffff;
+    background-color: #323232;
+}

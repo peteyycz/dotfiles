@@ -220,22 +220,7 @@ bindsym Shift+Print exec grim -g "$(slurp)" - | wl-copy
 # Status Bar:
 #
 bar {
-  position top
-  gaps 3
-  height 34
-
-  status_command ~/.config/sway/status.sh
-
-  strip_workspace_numbers yes
-
-  colors {
-    statusline #ffffff
-    background #323232
-
-    inactive_workspace #323232 #323232 #5c5c5c
-    focused_workspace  #458588 #3a4c4f #ebdbb2
-    urgent_workspace   #cc241d #cc241d #ffffff
-  }
+  swaybar_command waybar
 }
 
 # Gruvbox colors for window decorations with less popping focus color
