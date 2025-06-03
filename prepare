@@ -3,11 +3,11 @@
 # starship
 curl -sS https://starship.rs/install.sh | sh
 
-# asdf-vm
-git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.1
+# fish plugin manager
+curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source
 
-# antigen
-curl -L git.io/antigen > $HOME/antigen.zsh
+fisher install jorgebucaran/fisher
+fisher install jethrokuan/z
 
 if ! command -v stow &> /dev/null; then
     echo "stow is not installed"

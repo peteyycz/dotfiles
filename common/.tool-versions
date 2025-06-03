@@ -11,7 +11,7 @@ nodejs v22.14.0
 # elixir 1.17.3-otp-27
 # gleam 1.6.3
 
-# golang 1.23.2
+golang 1.23.2
 # nodejs 23.1.0
 # odin dev-2024-11
 # rust 1.83.0
