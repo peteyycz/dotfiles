@@ -9,6 +9,15 @@ if status is-interactive
     set -x VISUAL vim
     set -x GHQ_ROOT "$GOPATH/src"
 
+    set -gx ASDF_DIR /opt/asdf-vm
+    set -gx ASDF_DATA_DIR $HOME/.asdf
+
+    # Add asdf shims to PATH
+    fish_add_path $ASDF_DATA_DIR/shims
+
+    # Add asdf bin to PATH
+    fish_add_path $ASDF_DIR/bin
+
     set -x GOPATH "$HOME/Code"
     fish_add_path $GOPATH/bin
 
