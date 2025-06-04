@@ -2,6 +2,20 @@
 
 ENJOY!!! :)
 
+# Prerequisites
+
+- fish
+- fisher
+- stow
+- ripgrep
+- fzf
+- asdf
+- tmux
+- ghq
+- lazygit
+- difftastic
+- neovim
+
 ## Installing
 
 ```sh
