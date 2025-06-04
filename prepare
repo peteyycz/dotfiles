@@ -1,13 +1,20 @@
 #!/bin/sh
 
 # starship
-curl -sS https://starship.rs/install.sh | sh
+if ! command -v starship &> /dev/null; then
+    echo "starship is not installed"
+    exit 1
+fi
 
-# fish plugin manager
-curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source
+if ! command -v fisher &> /dev/null; then
+    echo "fisher is not installed"
+    exit 1
+fi
 
 fisher install jorgebucaran/fisher
 fisher install jethrokuan/z
+fisher install rstacruz/fish-asdf
+
 
 if ! command -v stow &> /dev/null; then
     echo "stow is not installed"

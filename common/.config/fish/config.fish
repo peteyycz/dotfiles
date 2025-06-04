@@ -2,6 +2,8 @@
 if status is-interactive
     eval "$(starship init fish)"
 
+    set -U fish_greeting "🐟"
+
     # Variables {
     set -x EDITOR vim
     set -x VISUAL vim
@@ -26,4 +28,6 @@ if status is-interactive
     # }
 
     fish_add_path (go env GOBIN)
+
+    fish_add_path /opt/homebrew/bin
 end
