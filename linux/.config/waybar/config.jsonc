@@ -11,7 +11,7 @@
 
     "modules-left": ["sway/workspaces"],
     "modules-center": [],
-    "modules-right": ["tray", "network", "bluetooth", "cpu", "pulseaudio", "clock"],
+    "modules-right": ["tray", "network", "bluetooth", "cpu", "pulseaudio", "custom/notification", "clock"],
     "sway/workspaces": {
         "disable-scroll": true,
         "all-outputs": true,
@@ -21,6 +21,21 @@
             "focused": "",
             "default": ""
         }
+    },
+    "custom/notification": {
+      "format": "{icon}",
+      "format-icons": {
+        "notification": "",         // Font Awesome bell icon, or use your preferred icon
+        "none": "",                 // Same icon for no notifications
+        "dnd-notification": "",     // Example: bell with slash for Do Not Disturb
+        "dnd-none": ""
+      },
+      "return-type": "json",
+      "exec-if": "which swaync-client",
+      "exec": "swaync-client -swb",
+      "on-click": "sleep 0.1 && swaync-client -t -sw",
+      "on-click-right": "sleep 0.1 && swaync-client -d -sw",
+      "escape": true
     },
     "tray": {
     },

@@ -33,7 +33,7 @@ default_floating_border pixel 3
 #          timeout 300 'swaylock' \
 #          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
 #          before-sleep 'swaylock'
-bindsym $mod+Control+q exec swaylock
+bindsym $mod+Control+q exec swaylock && systemctl suspend
 
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
@@ -42,6 +42,7 @@ bindsym $mod+Control+q exec swaylock
 # Makes the display easy on the eyes at night has it's config in ~/.config/gammastep/config.ini but the automatic
 # location didn't work for some reason
 exec sleep 5 & gammastep
+exec sleep 5 & exec swaync
 
 # This connects the MOMENTUM 4 headphones automatically
 exec bluetoothctl connect 80:C3:BA:74:C7:51
