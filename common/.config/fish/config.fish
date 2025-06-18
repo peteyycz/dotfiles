@@ -7,7 +7,6 @@ if status is-interactive
     # Variables {
     set -x EDITOR vim
     set -x VISUAL vim
-    set -x GHQ_ROOT "$GOPATH/src"
 
     set -gx ASDF_DIR /opt/asdf-vm
     set -gx ASDF_DATA_DIR $HOME/.asdf
@@ -20,6 +19,7 @@ if status is-interactive
 
     set -x GOPATH "$HOME/Code"
     fish_add_path $GOPATH/bin
+    set -x GHQ_ROOT "$GOPATH/src"
 
     alias gc="git commit"
     alias gco="git checkout"
