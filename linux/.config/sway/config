@@ -41,11 +41,11 @@ bindsym $mod+Control+q exec swaylock
 
 # Makes the display easy on the eyes at night has it's config in ~/.config/gammastep/config.ini but the automatic
 # location didn't work for some reason
-exec sleep 5 & gammastep
+exec sleep 5 & exec gammastep
 exec sleep 5 & exec swaync
 
 # This connects the MOMENTUM 4 headphones automatically
-exec bluetoothctl connect 80:C3:BA:74:C7:51
+exec sleep 5 & exec bluetoothctl connect 80:C3:BA:74:C7:51
 
 ### Input configuration
 input type:keyboard {
