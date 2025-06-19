@@ -11,7 +11,7 @@
 
     "modules-left": ["sway/workspaces"],
     "modules-center": [],
-    "modules-right": ["tray", "network", "bluetooth", "cpu", "pulseaudio", "custom/notification", "clock"],
+    "modules-right": ["custom/docker", "network", "bluetooth", "battery", "cpu", "pulseaudio", "custom/notification", "clock"],
     "sway/workspaces": {
         "disable-scroll": true,
         "all-outputs": true,
@@ -21,6 +21,32 @@
             "focused": "",
             "default": ""
         }
+    },
+    "battery": {
+      "bat": "BAT0",
+      "interval": 30,
+      "states": {
+        "warning": 30,
+        "critical": 15
+      },
+      "format": "{icon} {capacity}%",
+      "format-charging": "⚡ {capacity}%",
+      "format-plugged": "ﮣ {capacity}%",
+      "format-full": " {capacity}%",
+      "format-icons": [
+        "",  // 0-20%
+        "",  // 21-40%
+        "",  // 41-60%
+        "",  // 61-80%
+        ""   // 81-100%
+      ],
+    },
+    "custom/docker": {
+      "exec": "~/.config/waybar/docker_status.sh",
+      "interval": 10,
+      "return-type": "json",
+      "format": "🐳{text}",
+      "tooltip": true
     },
     "custom/notification": {
       "format": "{icon}",
@@ -37,8 +63,7 @@
       "on-click-right": "sleep 0.1 && swaync-client -d -sw",
       "escape": true
     },
-    "tray": {
-    },
+    "tray": {},
     "network": {
         "format-wifi": "{essid}",
         "format-ethernet": "Ethernet",
@@ -46,7 +71,7 @@
         "tooltip-format": "{ifname}: {ipaddr}/{cidr}"
     },
     "bluetooth": {
-        "format": "{status}",
+        "format": "",
         "format-connected": "{device_alias}",
         "format-connected-battery": "{device_alias} {device_battery_percentage}%",
         "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",

@@ -16,13 +16,17 @@ window#waybar {
 }
 
 #workspaces button {
-    padding: 0 8px;
-    background-color: #323232;
+    font-weight: 600;
     color: #5c5c5c;
-    border: none;
+    background-color: #323232;
+    border-radius: 6px;
+
+    padding: 0 15px;
+    margin: 3px 4px;
 }
 
 #workspaces button.focused {
+    font-weight: bold;
     background-color: #3a4c4f;
     color: #ebdbb2;
 }
@@ -32,8 +36,60 @@ window#waybar {
     color: #ffffff;
 }
 
-#network, #custom-bluetooth, #cpu, #pulseaudio, #clock {
-    padding: 0 10px;
-    color: #ffffff;
-    background-color: #323232;
+#network, #battery, #custom-docker, #custom-notification, #custom-bluetooth, #cpu, #pulseaudio, #clock {
+    padding: 0 15px;
+    color: #ebdbb2;
+    border-radius: 6px;
+    font-weight: 600;
+    margin: 3px 4px;
 }
+
+
+/* Docker */
+#custom-docker {
+    /* background: #485754; */
+}
+
+/* Network */
+#network {
+    background: #4c594a;
+}
+
+/* Bluetooth */
+#bluetooth {
+    background: #624b52;
+}
+
+/* CPU */
+#cpu {
+    background: #565a41;
+}
+
+/* Pulseaudio (Volume) */
+#pulseaudio {
+    background: #64553d;
+}
+
+/* Notification */
+#custom-notification {
+    background: #684c3a;
+}
+
+/* Clock */
+#clock {
+    background: #694240;
+}
+
+#battery {
+    background: #423f3c;
+    color: #ebdbb2;
+}
+#battery.warning {
+    background: #684c3a;
+    color: #ebdbb2;
+}
+#battery.critical {
+    background: #694240;
+    color: #ebdbb2;
+}
+
