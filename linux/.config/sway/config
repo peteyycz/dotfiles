@@ -46,7 +46,7 @@ exec sleep 5 & exec swaync
 exec kitty --hold -e fastfetch
 
 # This connects the MOMENTUM 4 headphones automatically
-exec sleep 5 & exec bluetoothctl connect 80:C3:BA:74:C7:51
+exec sleep 5 & exec ~/.config/sway/bluetooth-autoconnect.sh
 
 ### Input configuration
 input type:keyboard {
