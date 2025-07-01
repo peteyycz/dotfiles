@@ -8,7 +8,7 @@ if status is-interactive
     set -x EDITOR vim
     set -x VISUAL vim
 
-    set -gx ASDF_DIR /opt/asdf-vm
+    set -gx ASDF_DIR $HOME/.asdf
     set -gx ASDF_DATA_DIR $HOME/.asdf
 
     # Add asdf shims to PATH
