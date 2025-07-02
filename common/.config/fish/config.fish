@@ -32,6 +32,7 @@ if status is-interactive
     alias gaa="git add --all"
     alias grbc="git rebase --continue"
     alias grba="git rebase --abort"
+    alias gq="git quick"
 
     alias tmuxn='tmux new-session -t $(basename $PWD)';
     alias vim='nvim';
