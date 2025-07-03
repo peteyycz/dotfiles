@@ -36,7 +36,7 @@ window#waybar {
     color: #ffffff;
 }
 
-#network, #battery, #custom-docker, #custom-notification, #custom-bluetooth, #cpu, #pulseaudio, #clock {
+#network, #battery, #custom-docker, #custom-notification, #bluetooth, #cpu, #pulseaudio, #clock {
     padding: 0 15px;
     color: #ebdbb2;
     border-radius: 6px;
