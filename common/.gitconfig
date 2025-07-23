@@ -12,8 +12,6 @@
 [diff]
   tool = difftastic
   external = difft
-[difftool]
-  promt = false
 [difftool "difftastic"]
   cmd = difft "$LOCAL" "$REMOTE"
 [pager]
