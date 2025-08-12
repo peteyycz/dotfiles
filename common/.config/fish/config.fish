@@ -16,6 +16,11 @@ if status is-interactive
 
     # Add asdf bin to PATH
     fish_add_path $ASDF_DIR/bin
+    
+    # Source asdf fish integration if it exists
+    if test -f $ASDF_DIR/asdf.fish
+        source $ASDF_DIR/asdf.fish
+    end
 
     set -x GOPATH "$HOME/Code"
     fish_add_path $GOPATH/bin
