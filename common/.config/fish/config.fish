@@ -46,6 +46,12 @@ if status is-interactive
 
     switch (uname)
       case Darwin
+        source $HOME/.local/bin/env.fish
         fish_add_path /opt/homebrew/bin
+    end
+
+    # Source local configuration if it exists
+    if test -f ~/.config/fish/config.local.fish
+        source ~/.config/fish/config.local.fish
     end
 end
