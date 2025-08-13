@@ -219,8 +219,9 @@ bindsym --locked XF86AudioMicMute exec pactl set-source-mute \@DEFAULT_SOURCE@ t
 bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
 bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
 # Special key to take a screenshot with grim
-bindsym Print exec grim -g "$(slurp)" ~/Pictures/Screenshots/screenshot_$(date +'%Y-%m-%d_%H-%M-%S').png
-bindsym Shift+Print exec grim -g "$(slurp)" - | wl-copy
+bindsym Print exec ~/.config/sway/grimclip.sh
+bindsym Shift+Print exec grim -g "$(slurp)" ~/Pictures/Screenshots/screenshot_$(date +'%Y-%m-%d_%H-%M-%S').png
+# bindsym Shift+Print exec grim -g "$(slurp)" - | wl-copy
 
 
 #

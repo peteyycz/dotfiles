@@ -12,6 +12,6 @@ python 3.13.4
 golang 1.23.2
 # odin dev-2024-11
 # rust 1.83.0
-zig 0.14.0
+zig 0.14.1
 
 ruby 3.4.4
