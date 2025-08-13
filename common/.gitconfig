@@ -3,7 +3,7 @@
   name = Peter Czibik
 [core]
   excludesfile = ~/.gitignore_global
-  editor = vim
+	editor = nvim
   attributesfile = ~/.gitattributes
 [push]
   default = current

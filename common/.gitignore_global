@@ -24,3 +24,12 @@ GRTAGS
 .env
 
 *.cert
+.phpactor.json
+
+settings.local.json
+
+# Fish shell local configuration
+config.local.fish
+
+.aider*
+
