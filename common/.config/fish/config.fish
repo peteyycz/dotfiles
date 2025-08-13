@@ -42,6 +42,8 @@ if status is-interactive
 
     fish_add_path (go env GOBIN)
 
+    fish_add_path "$HOME/.local/bin"
+
     switch (uname)
       case Darwin
         fish_add_path /opt/homebrew/bin
