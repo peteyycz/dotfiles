@@ -5,22 +5,10 @@ if status is-interactive
     set -U fish_greeting "🐟"
 
     # Variables {
-    set -x EDITOR vim
     set -x VISUAL vim
 
-    set -gx ASDF_DIR $HOME/.asdf
-    set -gx ASDF_DATA_DIR $HOME/.asdf
-
-    # Add asdf shims to PATH
-    fish_add_path $ASDF_DATA_DIR/shims
-
-    # Add asdf bin to PATH
-    fish_add_path $ASDF_DIR/bin
-    
     # Source asdf fish integration if it exists
-    if test -f $ASDF_DIR/asdf.fish
-        source $ASDF_DIR/asdf.fish
-    end
+    mise activate fish | source
 
     set -x GOPATH "$HOME/Code"
     fish_add_path $GOPATH/bin
@@ -39,8 +27,8 @@ if status is-interactive
     alias grba="git rebase --abort"
     alias gq="git quick"
 
-    alias tmuxn='tmux new-session -t $(basename $PWD)';
-    alias vim='nvim';
+    alias tmuxn='tmux new-session -t $(basename $PWD)'
+    alias vim='nvim'
 
     alias l="ls -la"
     # }
@@ -50,9 +38,9 @@ if status is-interactive
     fish_add_path "$HOME/.local/bin"
 
     switch (uname)
-      case Darwin
-        source $HOME/.local/bin/env.fish
-        fish_add_path /opt/homebrew/bin
+        case Darwin
+            source $HOME/.local/bin/env.fish
+            fish_add_path /opt/homebrew/bin
     end
 
     # Source local configuration if it exists
