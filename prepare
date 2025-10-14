@@ -1,20 +1,5 @@
 #!/bin/sh
 
-# starship
-if ! command -v starship &> /dev/null; then
-    echo "starship is not installed"
-    exit 1
-fi
-
-if ! command -v fisher &> /dev/null; then
-    echo "fisher is not installed"
-    exit 1
-fi
-
-fisher install jorgebucaran/fisher
-fisher install jethrokuan/z
-
-
 if ! command -v stow &> /dev/null; then
     echo "stow is not installed"
     exit 1
