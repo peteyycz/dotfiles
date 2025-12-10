@@ -46,3 +46,6 @@ command = zellij-session-picker
 
 # Close without confirmation
 confirm-close-surface = false
+
+# Keybindings
+keybind = ctrl+enter=unbind
