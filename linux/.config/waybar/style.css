@@ -1,3 +1,11 @@
+/* Theme colors - change these to match your theme */
+@define-color bar-bg rgba(0, 0, 0, 0.7);
+@define-color text-primary #ffffff;
+@define-color text-secondary rgba(255, 255, 255, 0.6);
+@define-color text-muted rgba(255, 255, 255, 0.4);
+@define-color accent #ffffff;
+@define-color hover-bg rgba(255, 255, 255, 0.1);
+
 * {
     font-family: "Inter", "Symbols Nerd Font", sans-serif;
     font-size: 14px;
@@ -6,11 +14,11 @@
 
 window#waybar {
     background: transparent;
-    color: #ebdbb2;
+    color: @text-primary;
 }
 
 window#waybar > box {
-    background-color: #282828;
+    background-color: @bar-bg;
     margin: 4px 6px 0 6px;
     padding: 0 6px;
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
@@ -25,8 +33,7 @@ window#waybar > box {
     padding: 2px 6px;
     margin: 3px 1px;
     min-width: 20px;
-    background-color: transparent;
-    color: #928374;
+    color: @text-muted;
     border: none;
     border-radius: 0;
     transition: all 0.2s ease;
@@ -49,25 +56,25 @@ window#waybar > box {
 }
 
 #workspaces button:hover {
-    background: #3c3836;
-    color: #ebdbb2;
+    background: @hover-bg;
+    color: @text-primary;
 }
 
 #workspaces button.active {
     background: transparent;
-    color: #ebdbb2;
+    color: @text-primary;
     font-weight: 700;
-    border-bottom: 2px solid #d79921;
+    border-bottom: 2px solid @accent;
 }
 
 #workspaces button.urgent {
     background: transparent;
-    color: #fb4934;
-    border-bottom: 2px solid #fb4934;
+    color: #ff5555;
+    border-bottom: 2px solid #ff5555;
 }
 
 #window {
-    color: #a89984;
+    color: @text-secondary;
     margin-left: 8px;
 }
 
@@ -78,53 +85,53 @@ window#waybar > box {
 #network,
 #pulseaudio,
 #language,
-#tray {
-    background-color: transparent;
+#tray,
+#custom-notification {
     padding: 2px 10px;
     margin: 3px 2px;
 }
 
 #clock {
     background: transparent;
-    color: #ebdbb2;
+    color: @text-primary;
     font-size: 17px;
     font-weight: 400;
 }
 
 #language {
-    color: #ebdbb2;
+    color: @text-primary;
 }
 
 #cpu {
-    color: #83a598;
+    color: @text-primary;
 }
 
 #memory {
-    color: #8ec07c;
+    color: @text-primary;
 }
 
 #network {
-    color: #b8bb26;
+    color: @text-primary;
 }
 
 #pulseaudio {
-    color: #fabd2f;
+    color: @text-primary;
 }
 
 #battery {
-    color: #fe8019;
+    color: @text-primary;
 }
 
 #battery.charging, #battery.plugged {
-    color: #98971a;
+    color: #50fa7b;
 }
 
 #battery.warning:not(.charging) {
-    color: #d79921;
+    color: #f1fa8c;
 }
 
 #battery.critical:not(.charging) {
-    color: #fb4934;
+    color: #ff5555;
     animation: pulse 1s infinite alternate;
 }
 
@@ -134,16 +141,14 @@ window#waybar > box {
 }
 
 #network.disconnected {
-    color: #928374;
+    color: @text-muted;
 }
 
 #pulseaudio.muted {
-    color: #928374;
+    color: @text-muted;
 }
 
 #tray {
-    background-color: rgba(40, 40, 40, 0.7);
-    border-radius: 4px;
     padding: 2px 8px;
 }
 
@@ -153,4 +158,8 @@ window#waybar > box {
 
 #tray > .needs-attention {
     -gtk-icon-effect: highlight;
+}
+
+#custom-notification {
+    color: @text-primary;
 }

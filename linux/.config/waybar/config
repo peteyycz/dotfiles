@@ -13,11 +13,11 @@
         "all-outputs": true,
         "format": "{icon}",
         "format-icons": {
-            "1": "",
-            "2": "",
-            "3": "󰓓",
-            "8": "󰒱",
-            "9": "󰊻"
+            "1": "<span size='large'></span>",
+            "2": "<span size='large'></span>",
+            "3": "<span size='large'>󰓓</span>",
+            "8": "<span size='large'>󰒱</span>",
+            "9": "<span size='large'>󰊻</span>"
         }
     },
 
@@ -26,7 +26,7 @@
     },
 
     "hyprland/language": {
-        "format": "󰌌 {}",
+        "format": "<span size='large'>󰌌</span>  {}",
         "format-en": "US",
         "format-hu": "HU",
         "on-click": "hyprctl switchxkblayout all next"
@@ -39,12 +39,12 @@
     },
 
     "cpu": {
-        "format": "󰻠 {usage}%",
+        "format": "<span size='large'>󰻠</span>  {usage}%",
         "tooltip": false
     },
 
     "memory": {
-        "format": "󰍛 {}%"
+        "format": "<span size='large'>󰍛</span>  {}%"
     },
 
     "battery": {
@@ -53,16 +53,16 @@
             "critical": 15
         },
         "format": "{icon} {capacity}%",
-        "format-charging": "󰂄 {capacity}%",
-        "format-plugged": "󰚥 {capacity}%",
-        "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾"]
+        "format-charging": "<span size='large'>󰂄</span> {capacity}%",
+        "format-plugged": "<span size='large'>󰚥</span> {capacity}%",
+        "format-icons": ["<span size='large'>󰁺</span>", "<span size='large'>󰁻</span>", "<span size='large'>󰁼</span>", "<span size='large'>󰁽</span>", "<span size='large'>󰁾</span>"]
     },
 
     "pulseaudio": {
-        "format": "{icon} {volume}%",
-        "format-muted": "󰝟",
+        "format": "{icon}  {volume}%",
+        "format-muted": "<span size='large'>󰝟</span>",
         "format-icons": {
-            "default": ["󰕿", "󰖀", "󰕾"]
+            "default": ["<span size='large'>󰕿</span>", "<span size='large'>󰖀</span>", "<span size='large'>󰕾</span>"]
         },
         "on-click": "pavucontrol"
     },
@@ -75,14 +75,14 @@
       "tooltip": true,
       "format": "{icon}",
       "format-icons": {
-        "notification": "󱅫",
-        "none": "󰂜",
-        "dnd-notification": "󰂠",
-        "dnd-none": "󰪓",
-        "inhibited-notification": "󰂛",
-        "inhibited-none": "󰪑",
-        "dnd-inhibited-notification": "󰂛",
-        "dnd-inhibited-none": "󰪑"
+        "notification": "<span size='large'>󱅫</span>",
+        "none": "<span size='large'>󰂜</span>",
+        "dnd-notification": "<span size='large'>󰂠</span>",
+        "dnd-none": "<span size='large'>󰪓</span>",
+        "inhibited-notification": "<span size='large'>󰂛</span>",
+        "inhibited-none": "<span size='large'>󰪑</span>",
+        "dnd-inhibited-notification": "<span size='large'>󰂛</span>",
+        "dnd-inhibited-none": "<span size='large'>󰪑</span>"
       },
       "return-type": "json",
       "exec-if": "which swaync-client",
