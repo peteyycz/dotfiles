@@ -9,6 +9,10 @@ return {
         styles = {
           transparency = true,
         },
+        highlight_groups = {
+          Whitespace = { fg = "highlight_med" },
+          NonText = { fg = "highlight_med" },
+        },
       })
       vim.cmd.colorscheme "rose-pine"
     end,

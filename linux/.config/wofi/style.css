@@ -1,4 +1,4 @@
-/* Gruvbox Dark theme for wofi */
+/* Rose Pine Moon theme for wofi */
 
 * {
     font-family: "Inter", "Symbols Nerd Font", sans-serif;
@@ -7,14 +7,14 @@
 }
 
 window {
-    background-color: #282828;
-    border: 2px solid #3c3836;
+    background-color: #232136;
+    border: 2px solid #ea9a97;
     border-radius: 8px;
 }
 
 #input {
-    background-color: #3c3836;
-    color: #ebdbb2;
+    background-color: #2a273f;
+    color: #e0def4;
     border: none;
     border-radius: 4px;
     margin: 10px;
@@ -22,16 +22,16 @@ window {
 }
 
 #input:focus {
-    border: 2px solid #d79921;
+    border: 2px solid #ea9a97;
 }
 
 #inner-box {
-    background-color: #282828;
+    background-color: #232136;
     margin: 0 10px 10px 10px;
 }
 
 #outer-box {
-    background-color: #282828;
+    background-color: #232136;
 }
 
 #scroll {
@@ -40,12 +40,12 @@ window {
 }
 
 #text {
-    color: #ebdbb2;
+    color: #e0def4;
     padding: 5px;
 }
 
 #text:selected {
-    color: #ebdbb2;
+    color: #e0def4;
 }
 
 #entry {
@@ -54,10 +54,10 @@ window {
 }
 
 #entry:selected {
-    background-color: #3c3836;
-    border-left: 2px solid #d79921;
+    background-color: #2a273f;
+    border-left: 2px solid #ea9a97;
 }
 
 #entry:hover {
-    background-color: #3c3836;
+    background-color: #2a273f;
 }
