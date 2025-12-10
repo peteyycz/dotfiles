@@ -20,5 +20,3 @@
 	rebase = true
 [include]
   path = ~/.gitconfig-local
-[alias]
-  quick = !git commit --amend --no-verify --no-edit && git push --force-with-lease

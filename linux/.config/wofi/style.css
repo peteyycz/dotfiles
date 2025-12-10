@@ -1,0 +1,63 @@
+/* Gruvbox Dark theme for wofi */
+
+* {
+    font-family: "Inter", "Symbols Nerd Font", sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+window {
+    background-color: #282828;
+    border: 2px solid #3c3836;
+    border-radius: 8px;
+}
+
+#input {
+    background-color: #3c3836;
+    color: #ebdbb2;
+    border: none;
+    border-radius: 4px;
+    margin: 10px;
+    padding: 10px;
+}
+
+#input:focus {
+    border: 2px solid #d79921;
+}
+
+#inner-box {
+    background-color: #282828;
+    margin: 0 10px 10px 10px;
+}
+
+#outer-box {
+    background-color: #282828;
+}
+
+#scroll {
+    margin: 0;
+    padding: 0;
+}
+
+#text {
+    color: #ebdbb2;
+    padding: 5px;
+}
+
+#text:selected {
+    color: #ebdbb2;
+}
+
+#entry {
+    padding: 5px;
+    border-radius: 4px;
+}
+
+#entry:selected {
+    background-color: #3c3836;
+    border-left: 2px solid #d79921;
+}
+
+#entry:hover {
+    background-color: #3c3836;
+}

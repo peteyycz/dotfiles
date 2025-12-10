@@ -1,0 +1,156 @@
+* {
+    font-family: "Inter", "Symbols Nerd Font", sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+window#waybar {
+    background: transparent;
+    color: #ebdbb2;
+}
+
+window#waybar > box {
+    background-color: #282828;
+    margin: 4px 6px 0 6px;
+    padding: 0 6px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
+}
+
+#workspaces {
+    margin: 3px 4px;
+    padding: 0 2px;
+}
+
+#workspaces button {
+    padding: 2px 6px;
+    margin: 3px 1px;
+    min-width: 20px;
+    background-color: transparent;
+    color: #928374;
+    border: none;
+    border-radius: 0;
+    transition: all 0.2s ease;
+    border-bottom: 2px solid transparent;
+}
+
+#workspaces button * {
+    margin: 0;
+    padding: 0;
+}
+
+#workspaces button label {
+    min-width: 0;
+    min-height: 0;
+}
+
+#workspaces box {
+    margin: 0;
+    padding: 0;
+}
+
+#workspaces button:hover {
+    background: #3c3836;
+    color: #ebdbb2;
+}
+
+#workspaces button.active {
+    background: transparent;
+    color: #ebdbb2;
+    font-weight: 700;
+    border-bottom: 2px solid #d79921;
+}
+
+#workspaces button.urgent {
+    background: transparent;
+    color: #fb4934;
+    border-bottom: 2px solid #fb4934;
+}
+
+#window {
+    color: #a89984;
+    margin-left: 8px;
+}
+
+#clock,
+#battery,
+#cpu,
+#memory,
+#network,
+#pulseaudio,
+#language,
+#tray {
+    background-color: transparent;
+    padding: 2px 10px;
+    margin: 3px 2px;
+}
+
+#clock {
+    background: transparent;
+    color: #ebdbb2;
+    font-size: 17px;
+    font-weight: 400;
+}
+
+#language {
+    color: #ebdbb2;
+}
+
+#cpu {
+    color: #83a598;
+}
+
+#memory {
+    color: #8ec07c;
+}
+
+#network {
+    color: #b8bb26;
+}
+
+#pulseaudio {
+    color: #fabd2f;
+}
+
+#battery {
+    color: #fe8019;
+}
+
+#battery.charging, #battery.plugged {
+    color: #98971a;
+}
+
+#battery.warning:not(.charging) {
+    color: #d79921;
+}
+
+#battery.critical:not(.charging) {
+    color: #fb4934;
+    animation: pulse 1s infinite alternate;
+}
+
+@keyframes pulse {
+    from { opacity: 1; }
+    to { opacity: 0.7; }
+}
+
+#network.disconnected {
+    color: #928374;
+}
+
+#pulseaudio.muted {
+    color: #928374;
+}
+
+#tray {
+    background-color: rgba(40, 40, 40, 0.7);
+    border-radius: 4px;
+    padding: 2px 8px;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+}

@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Get all sessions
+all_sessions=$(zellij list-sessions --no-formatting 2>/dev/null || true)
+
+# Extract just the session name from a line like "name [Created ...] (status)"
+get_session_name() {
+  echo "$1" | sed 's/ \[Created.*//'
+}
+
+if [[ -n "$all_sessions" ]]; then
+  selected=$(echo -e "$all_sessions\n[new session]" | fzf --height=40% --reverse --prompt="Session: ")
+
+  if [[ "$selected" == "[new session]" ]]; then
+    exec zellij
+  elif [[ -n "$selected" ]]; then
+    session_name=$(get_session_name "$selected")
+    exec zellij attach "$session_name"
+  else
+    exit 0
+  fi
+else
+  exec zellij
+fi
