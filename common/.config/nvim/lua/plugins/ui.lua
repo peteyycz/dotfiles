@@ -1,21 +1,17 @@
 return {
   {
-    "ellisonleao/gruvbox.nvim",
-    config = function()
-      require("gruvbox").setup({
-        transparent_mode = true,
-      })
-      vim.cmd.colorscheme "gruvbox"
-    end,
-  },
-  {
-    "folke/tokyonight.nvim",
-    lazy = false,
+    "rose-pine/neovim",
+    name = "rose-pine",
     priority = 1000,
-    opts = {},
-    -- config = function()
-    --   vim.cmd.colorscheme "tokyonight"
-    -- end,
+    config = function()
+      require("rose-pine").setup({
+        variant = "moon",
+        styles = {
+          transparency = true,
+        },
+      })
+      vim.cmd.colorscheme "rose-pine"
+    end,
   },
   {
     "echasnovski/mini.icons",

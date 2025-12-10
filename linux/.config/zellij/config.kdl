@@ -1,6 +1,24 @@
-theme "gruvbox-dark"
+theme "rose-pine-moon"
+
+themes {
+    rose-pine-moon {
+        bg "#232136"
+        fg "#e0def4"
+        red "#eb6f92"
+        green "#3e8fb0"
+        yellow "#f6c177"
+        blue "#9ccfd8"
+        magenta "#c4a7e7"
+        cyan "#ea9a97"
+        white "#e0def4"
+        black "#393552"
+        orange "#ea9a97"
+    }
+}
 default_layout "compact"
 on_force_close "quit"
+pane_frames false
+simplified_ui true
 
 default_mode "locked"
 keybinds clear-defaults=true {

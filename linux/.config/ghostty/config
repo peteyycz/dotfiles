@@ -6,32 +6,33 @@ font-size = 12
 cursor-style = block
 cursor-style-blink = false
 
-# Colors (Gruvbox Dark theme)
-foreground = #ebdbb2
-background = #32302f
-
-selection-foreground = #32302f
-selection-background = #ebdbb2
+# Colors (Rosé Pine Moon)
+background = #232136
+foreground = #e0def4
+cursor-color = #e0def4
+cursor-text = #232136
+selection-background = #44415a
+selection-foreground = #e0def4
 
 # Normal colors (palette 0-7)
-palette = 0=#32302f
-palette = 1=#cc241d
-palette = 2=#98971a
-palette = 3=#d79921
-palette = 4=#458588
-palette = 5=#b16286
-palette = 6=#689d6a
-palette = 7=#a89984
+palette = 0=#393552
+palette = 1=#eb6f92
+palette = 2=#3e8fb0
+palette = 3=#f6c177
+palette = 4=#9ccfd8
+palette = 5=#c4a7e7
+palette = 6=#ea9a97
+palette = 7=#e0def4
 
 # Bright colors (palette 8-15)
-palette = 8=#928374
-palette = 9=#fb4934
-palette = 10=#b8bb26
-palette = 11=#fabd2f
-palette = 12=#83a598
-palette = 13=#d3869b
-palette = 14=#8ec07c
-palette = 15=#ebdbb2
+palette = 8=#393552
+palette = 9=#eb6f92
+palette = 10=#3e8fb0
+palette = 11=#f6c177
+palette = 12=#9ccfd8
+palette = 13=#c4a7e7
+palette = 14=#ea9a97
+palette = 15=#e0def4
 
 # Window configuration
 background-opacity = 0.97
