@@ -1,7 +1,9 @@
 # Font configuration
-font-family = VictorMono Nerd Font
-font-family-italic = VictorMono Nerd Font Italic
-font-size = 12
+font-family = VictorMono Nerd Font Mono
+font-style = medium
+font-family-italic = VictorMono Nerd Font Mono
+font-style-italic = medium italic
+font-size = 14
 
 # Cursor configuration
 cursor-style = block
@@ -17,9 +19,6 @@ window-padding-y = 5
 
 # Clipboard
 copy-on-select = clipboard
-
-# Launch zellij with session picker
-command = zellij-session-picker
 
 # Close without confirmation
 confirm-close-surface = false

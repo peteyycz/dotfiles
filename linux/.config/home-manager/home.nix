@@ -9,18 +9,18 @@
   nixpkgs.config.allowUnfree = true;
 
   home.packages = with pkgs; [
-    nerd-fonts.victor-mono
-    nerd-fonts.symbols-only
     nixd
     nixfmt-rfc-style
 
+    nerd-fonts.victor-mono
+    nerd-fonts.symbols-only
     inter
+
     kubectl
     kubernetes-helm
 
-    claude-code
-
     ghq
+    claude-code
 
     (writeShellScriptBin "zellij-session-picker" (builtins.readFile ./scripts/zellij-session-picker))
   ];
@@ -30,6 +30,8 @@
       color-scheme = "prefer-dark";
     };
   };
+
+  fonts.fontconfig.enable = true;
 
   programs.home-manager.enable = true;
   programs.difftastic.enable = true;
@@ -45,6 +47,8 @@
   };
 
   programs.fzf.enable = true;
+
+  programs.tmux.enable = true;
 
   programs.zellij = {
     enable = true;
