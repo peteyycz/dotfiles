@@ -1,5 +1,6 @@
 # Font configuration
-font-family = RecMonoLinear Nerd Font
+font-family = VictorMono Nerd Font
+font-family-italic = VictorMono Nerd Font Italic
 font-size = 12
 
 # Cursor configuration

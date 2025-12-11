@@ -9,7 +9,7 @@
   nixpkgs.config.allowUnfree = true;
 
   home.packages = with pkgs; [
-    nerd-fonts.recursive-mono
+    nerd-fonts.victor-mono
     nerd-fonts.symbols-only
     nixd
     nixfmt-rfc-style
