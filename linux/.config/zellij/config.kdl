@@ -1,7 +1,7 @@
 theme "rose-pine-moon"
 default_layout "compact"
 on_force_close "quit"
-pane_frames false
+pane_frames true
 simplified_ui true
 
 default_mode "locked"

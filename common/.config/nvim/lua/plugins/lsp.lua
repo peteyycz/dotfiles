@@ -138,6 +138,13 @@ return {
         on_attach = LspUtil.generic_on_attach,
       })
 
+      -- Astro Language Server
+      vim.lsp.config.astro = vim.tbl_deep_extend("force", get_config("astro"), {
+        cmd = { "astro-ls", "--stdio" },
+        filetypes = { "astro" },
+        on_attach = LspUtil.generic_on_attach,
+      })
+
       -- Rust Analyzer
       vim.lsp.config.rust_analyzer = vim.tbl_deep_extend("force", get_config("rust_analyzer"), {
         cmd = { "rust-analyzer" },
@@ -214,6 +221,13 @@ return {
         pattern = "rust",
         callback = function()
           vim.lsp.enable("rust_analyzer")
+        end,
+      })
+
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "astro",
+        callback = function()
+          vim.lsp.enable("astro")
         end,
       })
     end,
