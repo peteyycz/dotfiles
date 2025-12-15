@@ -13,7 +13,7 @@ cursor-style-blink = false
 theme = rose-pine-moon
 
 # Window configuration
-background-opacity = 0.97
+background-opacity = 0.98
 window-padding-x = 5
 window-padding-y = 5
 
