@@ -25,7 +25,6 @@
     gnomeExtensions.blur-my-shell
     gnomeExtensions.space-bar
 
-    (writeShellScriptBin "zellij-session-picker" (builtins.readFile ./scripts/zellij-session-picker))
     (writeShellScriptBin "tmuxn" ''tmux new-session -s "$(basename "$PWD")"'')
   ];
 
@@ -60,6 +59,10 @@
       tmux-fzf
     ];
     extraConfig = ''
+      set -g status-position top
+      set -g status-right ""
+      set -g status-left "[#S] "
+      set -g status-style bg=default
       setw -g pane-base-index 1
       set -g status-keys vi
       setw -g clock-mode-style 12
@@ -91,17 +94,13 @@
       bind Escape copy-mode
 
       set -g set-titles on
-      set -g set-titles-string 'tmux: #T'
+      set -g set-titles-string 'Linux is my IDE'
       set -g repeat-time 100
       setw -g alternate-screen on
 
       set -g display-panes-time 1000
       setw -g automatic-rename on
     '';
-  };
-
-  programs.zellij = {
-    enable = true;
   };
 
   programs.fish = {
