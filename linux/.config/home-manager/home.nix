@@ -22,6 +22,9 @@
     ghq
     claude-code
 
+    gnomeExtensions.blur-my-shell
+    gnomeExtensions.space-bar
+
     (writeShellScriptBin "zellij-session-picker" (builtins.readFile ./scripts/zellij-session-picker))
     (writeShellScriptBin "tmuxn" ''tmux new-session -s "$(basename "$PWD")"'')
   ];
@@ -182,12 +185,26 @@
   };
 
   dconf.settings = {
+    "org/gnome/shell" = {
+      disable-user-extensions = false;
+      enabled-extensions = [
+        pkgs.gnomeExtensions.blur-my-shell.extensionUuid
+        pkgs.gnomeExtensions.space-bar.extensionUuid
+      ];
+    };
+    "org/gnome/shell/app-switcher" = {
+      current-workspace-only = true;
+    };
     "org/gnome/desktop/interface" = {
       enable-animations = true;
     };
     "org/gnome/mutter" = {
       overlay-key = "";
       center-new-windows = true;
+      dynamic-workspaces = false;
+    };
+    "org/gnome/desktop/wm/preferences" = {
+      num-workspaces = 9;
     };
     "org/gnome/shell/keybindings" = {
       switch-to-application-1 = [];
