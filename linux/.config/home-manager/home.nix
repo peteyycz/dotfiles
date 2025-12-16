@@ -23,6 +23,7 @@
     claude-code
 
     (writeShellScriptBin "zellij-session-picker" (builtins.readFile ./scripts/zellij-session-picker))
+    (writeShellScriptBin "tmuxn" ''tmux new-session -s "$(basename "$PWD")"'')
   ];
 
   fonts.fontconfig.enable = true;
@@ -42,7 +43,59 @@
 
   programs.fzf.enable = true;
 
-  programs.tmux.enable = true;
+  programs.tmux = {
+    enable = true;
+    terminal = "screen";
+    baseIndex = 1;
+    keyMode = "vi";
+    mouse = true;
+    plugins = with pkgs.tmuxPlugins; [
+      sensible
+      yank
+      vim-tmux-navigator
+      better-mouse-mode
+      tmux-fzf
+    ];
+    extraConfig = ''
+      setw -g pane-base-index 1
+      set -g status-keys vi
+      setw -g clock-mode-style 12
+
+      unbind i
+
+      # automatically renumber tmux windows
+      set -g renumber-windows on
+
+      bind-key -T copy-mode-vi 'v' send-keys -X begin-selection
+      bind w neww
+      bind m choose-window
+      bind a choose-session
+      bind c kill-pane
+      bind t set status
+      bind h select-pane -L
+      bind j select-pane -D
+      bind k select-pane -U
+      bind l select-pane -R
+      bind ^h resize-pane -L
+      bind ^j resize-pane -D
+      bind ^k resize-pane -U
+      bind ^l resize-pane -R
+      bind C-k send-keys C-l
+      bind r source-file ~/.config/tmux/tmux.conf \; display-message "Config reloaded!"
+      bind v split-window -h
+      bind s split-window
+      bind : command-prompt
+      bind Escape copy-mode
+
+      set -g set-titles on
+      set -g set-titles-string 'tmux: #T'
+      set -g repeat-time 100
+      setw -g alternate-screen on
+
+      set -g display-panes-time 1000
+      setw -g automatic-rename on
+    '';
+  };
 
   programs.zellij = {
     enable = true;
