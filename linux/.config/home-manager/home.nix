@@ -196,7 +196,7 @@
       current-workspace-only = true;
     };
     "org/gnome/desktop/interface" = {
-      enable-animations = true;
+      enable-animations = false;
     };
     "org/gnome/mutter" = {
       overlay-key = "";
