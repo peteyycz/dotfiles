@@ -14,8 +14,8 @@ theme = rose-pine-moon
 
 # Window configuration
 background-opacity = 0.98
-window-padding-x = 5
-window-padding-y = 5
+window-padding-x = 7
+window-padding-y = 7
 
 # Clipboard
 copy-on-select = clipboard

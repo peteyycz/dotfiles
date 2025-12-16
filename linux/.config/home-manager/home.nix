@@ -62,7 +62,8 @@
       set -g status-position top
       set -g status-right ""
       set -g status-left "[#S] "
-      set -g status-style bg=default
+      set -g status-left-length 50
+      set -g status-style bg=#2a273f
       setw -g pane-base-index 1
       set -g status-keys vi
       setw -g clock-mode-style 12
