@@ -15,6 +15,7 @@
     nerd-fonts.victor-mono
     nerd-fonts.symbols-only
     inter
+    pandoc
 
     kubectl
     kubernetes-helm
@@ -222,12 +223,18 @@
     "org/gnome/settings-daemon/plugins/media-keys" = {
       custom-keybindings = [
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
+        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/"
       ];
     };
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
       name = "Ulauncher";
       command = "ulauncher-toggle";
       binding = "<Super>space";
+    };
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
+      name = "Terminal";
+      command = "ghostty";
+      binding = "<Super>Return";
     };
     "org/gnome/desktop/wm/keybindings" = {
       activate-window-menu = [];
