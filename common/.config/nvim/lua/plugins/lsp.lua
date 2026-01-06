@@ -58,7 +58,9 @@ return {
         on_attach = function(_client, bufnr)
           vim.api.nvim_create_autocmd("BufWritePre", {
             buffer = bufnr,
-            command = "EslintFixAll",
+            callback = function()
+              vim.lsp.buf.format()
+            end,
           })
         end,
       })
