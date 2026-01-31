@@ -1,5 +1,28 @@
 set $mod Mod4
 
+# Rose Pine Moon colors
+set $base #232136
+set $surface #2a273f
+set $overlay #393552
+set $muted #6e6a86
+set $subtle #908caa
+set $text #e0def4
+set $love #eb6f92
+set $gold #f6c177
+set $rose #ea9a97
+set $pine #3e8fb0
+set $foam #9ccfd8
+set $iris #c4a7e7
+set $highlightLow #2a283e
+set $highlightMed #44415a
+set $highlightHigh #56526e
+
+# Window colors          border    background  text    indicator   child_border
+client.focused           $iris     $surface    $text   $rose       $iris
+client.focused_inactive  $overlay  $base       $subtle $overlay    $overlay
+client.unfocused         $overlay  $base       $muted  $overlay    $overlay
+client.urgent            $love     $love       $base   $love       $love
+
 # Home row direction keys, like vim
 set $left h
 set $down j
@@ -25,7 +48,7 @@ set $menu $rofi_cmd -show combi -combi-modes drun#run -modes combi
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 # Requires: desktop-backgrounds-compat, swaybg, jxl-pixbuf-loader
 output * bg /usr/share/backgrounds/default.jxl fill
-output * scale 1.25
+output * scale 1.1
 
 # Workspace names with icons
 set $ws1 "1: 󰆍"
