@@ -9,6 +9,9 @@
   nixpkgs.config.allowUnfree = true;
 
   home.packages = with pkgs; [
+    gcc
+    gnumake
+
     nixd
     nixfmt-rfc-style
 
@@ -22,6 +25,9 @@
 
     ghq
     claude-code
+
+    beam.packages.erlang_27.erlang
+    beam.packages.erlang_27.elixir_1_18
 
     gnomeExtensions.blur-my-shell
     gnomeExtensions.space-bar
@@ -179,7 +185,7 @@
   programs.mise = {
     enable = true;
     enableFishIntegration = true;
-    settings = {
+    globalConfig.settings = {
       legacy_version_file = true;
       idiomatic_version_file_enable_tools = [ "node" ];
     };
