@@ -1,0 +1,86 @@
+configuration {
+    modi: "drun,run,window";
+    show-icons: true;
+    icon-theme: "Papirus-Dark";
+    font: "VictorMono Nerd Font Propo 11";
+    display-drun: "";
+    display-run: "";
+    display-window: "";
+    drun-display-format: "{name}";
+}
+
+* {
+    base:      #232136;
+    surface:   #2a273f;
+    overlay:   #393552;
+    muted:     #6e6a86;
+    subtle:    #908caa;
+    text:      #e0def4;
+    love:      #eb6f92;
+    gold:      #f6c177;
+    rose:      #ea9a97;
+    pine:      #3e8fb0;
+    foam:      #9ccfd8;
+    iris:      #c4a7e7;
+    highlight: #44415a;
+
+    background-color: transparent;
+    text-color:       @text;
+}
+
+window {
+    width:            400px;
+    background-color: @base;
+    border:           2px solid;
+    border-color:     @iris;
+    border-radius:    0;
+}
+
+mainbox {
+    padding: 12px;
+}
+
+inputbar {
+    padding:  8px 12px;
+    margin:   0 0 12px 0;
+    children: [ prompt, textbox-prompt-colon, entry ];
+}
+
+prompt {
+    text-color: @iris;
+}
+
+textbox-prompt-colon {
+    expand:     false;
+    str:        " ";
+}
+
+entry {
+    placeholder:       "Search...";
+    placeholder-color: @muted;
+    text-color:        @text;
+}
+
+listview {
+    lines:        8;
+    columns:      1;
+    fixed-height: true;
+}
+
+element {
+    padding: 8px 12px;
+}
+
+element selected {
+    background-color: @highlight;
+    text-color:       @iris;
+}
+
+element-icon {
+    size:   20px;
+    margin: 0 8px 0 0;
+}
+
+element-text {
+    vertical-align: 0.5;
+}

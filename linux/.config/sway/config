@@ -1,21 +1,21 @@
 set $mod Mod4
 
 # Rose Pine Moon colors
-set $base #232136
-set $surface #2a273f
-set $overlay #393552
-set $muted #6e6a86
-set $subtle #908caa
-set $text #e0def4
-set $love #eb6f92
-set $gold #f6c177
-set $rose #ea9a97
-set $pine #3e8fb0
-set $foam #9ccfd8
-set $iris #c4a7e7
-set $highlightLow #2a283e
-set $highlightMed #44415a
-set $highlightHigh #56526e
+set $base "#232136"
+set $surface "#2a273f"
+set $overlay "#393552"
+set $muted "#6e6a86"
+set $subtle "#908caa"
+set $text "#e0def4"
+set $love "#eb6f92"
+set $gold "#f6c177"
+set $rose "#ea9a97"
+set $pine "#3e8fb0"
+set $foam "#9ccfd8"
+set $iris "#c4a7e7"
+set $highlightLow "#2a283e"
+set $highlightMed "#44415a"
+set $highlightHigh "#56526e"
 
 # Window colors          border    background  text    indicator   child_border
 client.focused           $iris     $surface    $text   $rose       $iris
@@ -41,14 +41,14 @@ set $rofi_cmd rofi \
 # Shows a combined list of the applications with desktop files and
 # executables from PATH.
 # TODO: add window with the next release of rofi-wayland
-set $menu $rofi_cmd -show combi -combi-modes drun#run -modes combi
+set $menu $rofi_cmd -show combi -combi-modes "drun#run" -modes combi
 
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 # Requires: desktop-backgrounds-compat, swaybg, jxl-pixbuf-loader
-output * bg /usr/share/backgrounds/default.jxl fill
-output * scale 1.1
+output * bg $HOME/.local/share/backgrounds/fedora.png fill
+output * scale 1
 
 # Workspace names with icons
 set $ws1 "1: 󰆍"

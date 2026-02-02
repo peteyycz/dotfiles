@@ -1,0 +1,24 @@
+{
+    "layer": "top",
+    "position": "top",
+    "modules-left": ["sway/workspaces", "sway/mode"],
+    "modules-center": ["clock"],
+    "modules-right": ["tray"],
+
+    "sway/workspaces": {
+        "disable-scroll": true
+    },
+
+    "sway/mode": {
+        "format": "{}"
+    },
+
+    "clock": {
+        "format": "{:%Y-%m-%d %I:%M %p}"
+    },
+
+    "tray": {
+        "icon-size": 16,
+        "spacing": 8
+    }
+}

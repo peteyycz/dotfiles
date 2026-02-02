@@ -38,6 +38,7 @@ return {
           "c",
 
           "zig",
+          "odin",
         },
         sync_install = false,
         auto_install = false,

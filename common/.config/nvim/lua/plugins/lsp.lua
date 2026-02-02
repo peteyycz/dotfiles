@@ -9,7 +9,7 @@ return {
     "williamboman/mason-lspconfig.nvim",
     opts = {
       automatic_enable = false,
-      ensure_installed = { "lua_ls", "vtsls", "elixirls", "eslint", "rust_analyzer", "clangd", "templ", "gopls", "phpactor", "zls" },
+      ensure_installed = { "lua_ls", "vtsls", "elixirls", "eslint", "rust_analyzer", "clangd", "templ", "gopls", "phpactor", "zls", "ols" },
     },
   },
   {
@@ -37,6 +37,13 @@ return {
       vim.lsp.config.zls = vim.tbl_deep_extend("force", get_config("zls"), {
         cmd = { "zls" },
         filetypes = { "zig" },
+        on_attach = LspUtil.generic_on_attach,
+      })
+
+      -- Odin Language Server
+      vim.lsp.config.ols = vim.tbl_deep_extend("force", get_config("ols"), {
+        cmd = { "ols" },
+        filetypes = { "odin" },
         on_attach = LspUtil.generic_on_attach,
       })
 
@@ -159,6 +166,13 @@ return {
         pattern = "zig",
         callback = function()
           vim.lsp.enable("zls")
+        end,
+      })
+
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "odin",
+        callback = function()
+          vim.lsp.enable("ols")
         end,
       })
 
