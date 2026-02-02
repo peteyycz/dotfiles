@@ -34,6 +34,47 @@
     beam.packages.erlang_27.elixir_1_18
 
     (writeShellScriptBin "tmuxn" ''tmux new-session -s "$(basename "$PWD")"'')
+    (writeShellScriptBin "run-server" ''
+      if [ -f package.json ]; then
+        if grep -q '"dev"' package.json; then
+          exec npm run dev
+        elif grep -q '"start"' package.json; then
+          exec npm start
+        fi
+      elif [ -f mix.exs ]; then
+        exec mix phx.server
+      fi
+    '')
+    (writeShellScriptBin "start-accessories" ''
+      if [ -f docker-compose.yml ] || [ -f docker-compose.yaml ]; then
+        docker compose up -d
+      fi
+    '')
+    (writeShellScriptBin "tmuxw" ''
+      SESSION="$(basename "$PWD")"
+      tmux new-session -d -s "$SESSION" -c "$PWD"
+
+      # Split horizontally: new pane on right gets 120 columns (for claude)
+      tmux split-window -h -l 120 -t "$SESSION:1" -c "$PWD"
+
+      # Split the left pane vertically: top (run-server) and bottom (start-accessories)
+      tmux split-window -v -t "$SESSION:1.1" -c "$PWD"
+      tmux send-keys -t "$SESSION:1.1" 'run-server' Enter
+      tmux send-keys -t "$SESSION:1.2" 'start-accessories' Enter
+
+      # Start claude in the right pane (now pane 3 after the split)
+      tmux send-keys -t "$SESSION:1.3" 'claude' Enter
+
+      # Window 2: nvim
+      tmux new-window -t "$SESSION" -c "$PWD"
+      tmux send-keys -t "$SESSION:2" 'nvim .' Enter
+
+      # Select window 1, pane 3 (claude)
+      tmux select-window -t "$SESSION:1"
+      tmux select-pane -t "$SESSION:1.3"
+
+      tmux attach -t "$SESSION"
+    '')
   ];
 
   fonts.fontconfig.enable = true;
