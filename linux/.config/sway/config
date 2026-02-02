@@ -56,9 +56,8 @@ set $ws2 "2: 󰊯"
 set $ws9 "9: 󰒱"
 
 # Assign applications to workspaces
-assign [app_id="foot"] $ws1
-assign [class="Google-chrome"] $ws2
-assign [class="Slack"] $ws9
+assign [app_id="google-chrome"] $ws2
+assign [app_id="com.slack.Slack"] $ws9
 #
 # Example configuration:
 #
@@ -189,7 +188,7 @@ input type:keyboard {
     bindsym $mod+f fullscreen
 
     # Toggle the current focus between tiling and floating mode
-    bindsym $mod+Shift+space floating toggle
+    bindsym $mod+Shift+f floating toggle
 
     # Swap focus between the tiling area and the floating area
     bindsym $mod+space focus mode_toggle

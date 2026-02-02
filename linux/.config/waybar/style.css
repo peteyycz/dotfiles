@@ -59,3 +59,8 @@ window#waybar {
     -gtk-icon-effect: highlight;
     background: #eb6f92;
 }
+
+#custom-dotfiles.dirty {
+    color: #f6c177;
+    padding: 0 8px;
+}

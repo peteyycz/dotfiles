@@ -25,6 +25,10 @@
 
     ghq
     claude-code
+    _1password-cli
+
+    ruby
+    kamal
 
     beam.packages.erlang_27.erlang
     beam.packages.erlang_27.elixir_1_18
@@ -201,6 +205,15 @@
       color-scheme = "prefer-dark";
       enable-animations = false;
       icon-theme = "Papirus-Dark";
+    };
+  };
+
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "text/html" = "google-chrome.desktop";
+      "x-scheme-handler/http" = "google-chrome.desktop";
+      "x-scheme-handler/https" = "google-chrome.desktop";
     };
   };
 }

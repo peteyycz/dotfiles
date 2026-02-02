@@ -3,7 +3,14 @@
     "position": "top",
     "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-center": ["clock"],
-    "modules-right": ["tray"],
+    "modules-right": ["custom/dotfiles", "tray"],
+
+    "custom/dotfiles": {
+        "exec": "cd ~/Code/src/github.com/peteyycz/dotfiles && if [ -n \"$(git status --porcelain)\" ]; then echo '{\"text\": \"~/.\", \"tooltip\": \"Dotfiles have uncommitted changes\", \"class\": \"dirty\"}'; else echo '{}'; fi",
+        "return-type": "json",
+        "interval": 30,
+        "on-click": "foot --working-directory=$HOME/Code/src/github.com/peteyycz/dotfiles $SHELL -c 'git status; exec $SHELL'"
+    },
 
     "sway/workspaces": {
         "disable-scroll": true

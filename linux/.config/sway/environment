@@ -18,3 +18,6 @@
 
 # Application compatibility
 _JAVA_AWT_WM_NONREPARENTING=1
+
+# Portal/screen sharing
+XDG_CURRENT_DESKTOP=sway
