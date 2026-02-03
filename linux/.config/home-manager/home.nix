@@ -22,6 +22,7 @@
 
     kubectl
     kubernetes-helm
+    awscli2
 
     ghq
     claude-code
