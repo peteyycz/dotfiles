@@ -252,9 +252,9 @@
   xdg.mimeApps = {
     enable = true;
     defaultApplications = {
-      "text/html" = "google-chrome.desktop";
-      "x-scheme-handler/http" = "google-chrome.desktop";
-      "x-scheme-handler/https" = "google-chrome.desktop";
+      "text/html" = "com.google.Chrome.desktop";
+      "x-scheme-handler/http" = "com.google.Chrome.desktop";
+      "x-scheme-handler/https" = "com.google.Chrome.desktop";
     };
   };
 }
