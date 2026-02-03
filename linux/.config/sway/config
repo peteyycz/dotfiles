@@ -91,7 +91,9 @@ input "1267:14:Elan_Touchpad" {
 }
 
 input type:keyboard {
-    xkb_options ctrl:nocaps
+    xkb_layout us,hu
+    xkb_variant ,qwerty
+    xkb_options ctrl:nocaps,grp:alt_shift_toggle
 }
 
 ### Key bindings

@@ -3,7 +3,7 @@
     "position": "top",
     "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-center": ["clock"],
-    "modules-right": ["custom/dotfiles", "tray"],
+    "modules-right": ["sway/language", "custom/dotfiles", "tray"],
 
     "custom/dotfiles": {
         "exec": "cd ~/Code/src/github.com/peteyycz/dotfiles && if [ -n \"$(git status --porcelain)\" ]; then echo '{\"text\": \"~/.\", \"tooltip\": \"Dotfiles have uncommitted changes\", \"class\": \"dirty\"}'; else echo '{}'; fi",
@@ -21,7 +21,7 @@
     },
 
     "clock": {
-        "format": "{:%Y-%m-%d %I:%M %p}"
+        "format": "{:%A (%B %d), %I:%M %p}"
     },
 
     "tray": {
