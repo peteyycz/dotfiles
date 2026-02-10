@@ -52,6 +52,13 @@
       fi
     '')
     (writeShellScriptBin "tmuxw" ''
+      DETACH=false
+      for arg in "$@"; do
+        case "$arg" in
+          --detach) DETACH=true ;;
+        esac
+      done
+
       SESSION="$(basename "$PWD")"
       tmux new-session -d -s "$SESSION" -c "$PWD"
 
@@ -74,7 +81,9 @@
       tmux select-window -t "$SESSION:1"
       tmux select-pane -t "$SESSION:1.3"
 
-      tmux attach -t "$SESSION"
+      if [ "$DETACH" = false ]; then
+        tmux attach -t "$SESSION"
+      fi
     '')
   ];
 
@@ -106,7 +115,6 @@
       yank
       vim-tmux-navigator
       better-mouse-mode
-      tmux-fzf
     ];
     extraConfig = ''
       set -g status-position top
@@ -126,7 +134,7 @@
       bind-key -T copy-mode-vi 'v' send-keys -X begin-selection
       bind w neww
       bind m choose-window
-      bind a choose-session
+      bind a display-popup -E "tmux list-sessions -F '#{session_name}' | fzf --reverse | xargs tmux switch-client -t"
       bind c kill-pane
       bind t set status
       bind h select-pane -L
