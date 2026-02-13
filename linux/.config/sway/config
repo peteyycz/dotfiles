@@ -47,7 +47,7 @@ set $menu $rofi_cmd -show combi -combi-modes "drun#run" -modes combi
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 # Requires: desktop-backgrounds-compat, swaybg, jxl-pixbuf-loader
-output * bg $HOME/.local/share/backgrounds/fedora.png fill
+output * bg $HOME/.local/share/backgrounds/pixel-train-japan.png fill
 output * scale 1
 
 # Workspace names with icons

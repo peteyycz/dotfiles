@@ -66,6 +66,12 @@ window#waybar {
     padding: 0 8px;
 }
 
+#custom-recording.active {
+    color: #232136;
+    background: #eb6f92;
+    padding: 0 8px;
+}
+
 #language {
     color: #c4a7e7;
     padding: 0 8px;

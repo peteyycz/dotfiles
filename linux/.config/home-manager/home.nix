@@ -14,6 +14,7 @@
 
     nixd
     nixfmt-rfc-style
+    coturn
 
     nerd-fonts.victor-mono
     nerd-fonts.symbols-only
@@ -26,7 +27,7 @@
 
     ghq
     claude-code
-    _1password-cli
+    # _1password-cli
 
     ruby
     kamal
