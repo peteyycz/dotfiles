@@ -53,11 +53,26 @@ output * scale 1
 # Workspace names with icons
 set $ws1 "1: 󰆍"
 set $ws2 "2: 󰊯"
+set $ws3 "3: 󰓓"
+set $ws4 "4: 󰊗"
 set $ws9 "9: 󰒱"
 
 # Assign applications to workspaces
 assign [app_id="google-chrome"] $ws2
 assign [app_id="com.slack.Slack"] $ws9
+
+# Steam client to workspace 3
+assign [class="^Steam$"] $ws3
+# Float all Steam windows, then disable float for the main client window
+for_window [class="^Steam$"] floating enable
+for_window [class="^Steam$" title="^Steam$"] floating disable
+
+# Steam games to workspace 4
+assign [class="^steam_app"] $ws4
+# Inhibit idle (screen lock/dpms) while a Steam game is focused
+for_window [class="^steam_app"] inhibit_idle focus
+# Also inhibit idle for any fullscreen window (covers all games)
+for_window [class=".*"] inhibit_idle fullscreen
 #
 # Example configuration:
 #
@@ -151,8 +166,8 @@ input type:keyboard {
     # Switch to workspace
     bindsym $mod+1 workspace $ws1
     bindsym $mod+2 workspace $ws2
-    bindsym $mod+3 workspace number 3
-    bindsym $mod+4 workspace number 4
+    bindsym $mod+3 workspace $ws3
+    bindsym $mod+4 workspace $ws4
     bindsym $mod+5 workspace number 5
     bindsym $mod+6 workspace number 6
     bindsym $mod+7 workspace number 7
@@ -162,8 +177,8 @@ input type:keyboard {
     # Move focused container to workspace
     bindsym $mod+Shift+1 move container to workspace $ws1
     bindsym $mod+Shift+2 move container to workspace $ws2
-    bindsym $mod+Shift+3 move container to workspace number 3
-    bindsym $mod+Shift+4 move container to workspace number 4
+    bindsym $mod+Shift+3 move container to workspace $ws3
+    bindsym $mod+Shift+4 move container to workspace $ws4
     bindsym $mod+Shift+5 move container to workspace number 5
     bindsym $mod+Shift+6 move container to workspace number 6
     bindsym $mod+Shift+7 move container to workspace number 7
