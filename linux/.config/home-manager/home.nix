@@ -27,6 +27,7 @@
 
     ghq
     claude-code
+    piper-tts
     # _1password-cli
 
     ruby
@@ -63,8 +64,8 @@
       SESSION="$(basename "$PWD")"
       tmux new-session -d -s "$SESSION" -c "$PWD"
 
-      # Split horizontally: new pane on right gets 120 columns (for claude)
-      tmux split-window -h -l 120 -t "$SESSION:1" -c "$PWD"
+      # Split horizontally: new pane on right for claude
+      tmux split-window -h -l 150 -t "$SESSION:1" -c "$PWD"
 
       # Split the left pane vertically: top (run-server) and bottom (start-accessories)
       tmux split-window -v -t "$SESSION:1.1" -c "$PWD"
