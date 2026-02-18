@@ -131,6 +131,9 @@ input type:keyboard {
     # mouse button for dragging.
     floating_modifier $mod normal
 
+    # Lock screen
+    bindsym $mod+Escape exec loginctl lock-session
+
     # Reload the configuration file
     bindsym $mod+Shift+c reload
 

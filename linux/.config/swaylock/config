@@ -1,0 +1,53 @@
+# Rose Pine Moon colors
+
+# General
+ignore-empty-password
+show-failed-attempts
+
+# Background
+image=~/.local/share/backgrounds/pixel-train-japan.png
+scaling=fill
+
+# Ring
+ring-color=6e6a86
+ring-clear-color=9ccfd8
+ring-caps-lock-color=f6c177
+ring-ver-color=c4a7e7
+ring-wrong-color=eb6f92
+
+# Key highlight
+key-hl-color=c4a7e7
+bs-hl-color=eb6f92
+caps-lock-key-hl-color=f6c177
+caps-lock-bs-hl-color=eb6f92
+
+# Inside
+inside-color=232136
+inside-clear-color=232136
+inside-caps-lock-color=232136
+inside-ver-color=232136
+inside-wrong-color=232136
+
+# Line (border between inside and ring)
+line-color=232136
+line-clear-color=232136
+line-caps-lock-color=232136
+line-ver-color=232136
+line-wrong-color=232136
+
+# Separator (between indicator and text)
+separator-color=393552
+
+# Text
+text-color=e0def4
+text-clear-color=9ccfd8
+text-caps-lock-color=f6c177
+text-ver-color=c4a7e7
+text-wrong-color=eb6f92
+
+# Layout text
+layout-text-color=908caa
+
+# Indicator
+indicator-radius=60
+indicator-thickness=20

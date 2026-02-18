@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'SESSION=$(tmux display-message -p \"#S\" 2>/dev/null || echo \"claude\"); notify-send -a \"Claude Code\" \"Claude Code — $SESSION\" \"Task complete\";'"
+            "command": "bash -c 'SESSION=$(tmux display-message -p \"#S\" 2>/dev/null || echo \"claude\"); (ACTION=$(dunstify -a \"Claude Code\" -A \"open,Open\" \"Claude Code — $SESSION\" \"Task complete\"); [ \"$ACTION\" = \"open\" ] && swaymsg \"[app_id=foot] focus\" && tmux switch-client -t \"$SESSION\") &'"
           }
         ]
       },
@@ -28,7 +28,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'SESSION=$(tmux display-message -p \"#S\" 2>/dev/null || echo \"claude\"); notify-send -a \"Claude Code\" \"Claude Code — $SESSION\" \"Needs your attention\";'"
+            "command": "bash -c 'SESSION=$(tmux display-message -p \"#S\" 2>/dev/null || echo \"claude\"); (ACTION=$(dunstify -a \"Claude Code\" -A \"open,Open\" \"Claude Code — $SESSION\" \"Needs your attention\"); [ \"$ACTION\" = \"open\" ] && swaymsg \"[app_id=foot] focus\" && tmux switch-client -t \"$SESSION\") &'"
           }
         ]
       },
@@ -40,18 +40,6 @@
             "command": "/home/peteyycz/.claude/hooks/peon-ping/peon.sh",
             "timeout": 10,
             "async": true
-          }
-        ]
-      }
-    ],
-    "SessionStart": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "/home/peteyycz/.claude/hooks/peon-ping/peon.sh",
-            "timeout": 10
           }
         ]
       }
@@ -62,22 +50,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "/home/peteyycz/.claude/hooks/peon-ping/peon.sh",
-            "timeout": 10,
-            "async": true
-          }
-        ]
-      }
-    ],
-    "UserPromptSubmit": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "/home/peteyycz/.claude/hooks/peon-ping/peon.sh",
-            "timeout": 10,
-            "async": true
+            "command": "bash -c 'SESSION=$(tmux display-message -p \"#S\" 2>/dev/null || echo \"claude\"); (ACTION=$(dunstify -a \"Claude Code\" -A \"open,Open\" \"Claude Code — $SESSION\" \"Session ended\"); [ \"$ACTION\" = \"open\" ] && swaymsg \"[app_id=foot] focus\" && tmux switch-client -t \"$SESSION\") &'"
           }
         ]
       },
@@ -86,13 +59,23 @@
         "hooks": [
           {
             "type": "command",
-            "command": "/home/peteyycz/.claude/hooks/peon-ping/scripts/hook-handle-use.sh",
-            "timeout": 5
+            "command": "/home/peteyycz/.claude/hooks/peon-ping/peon.sh",
+            "timeout": 10,
+            "async": true
           }
         ]
       }
     ],
     "PermissionRequest": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'SESSION=$(tmux display-message -p \"#S\" 2>/dev/null || echo \"claude\"); (ACTION=$(dunstify -a \"Claude Code\" -A \"open,Open\" \"Claude Code — $SESSION\" \"Needs permission\"); [ \"$ACTION\" = \"open\" ] && swaymsg \"[app_id=foot] focus\" && tmux switch-client -t \"$SESSION\") &'"
+          }
+        ]
+      },
       {
         "matcher": "",
         "hooks": [
