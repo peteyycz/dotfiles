@@ -25,6 +25,7 @@
     kubernetes-helm
     awscli2
 
+    gh
     ghq
     claude-code
     piper-tts
@@ -198,6 +199,7 @@
       gst = "git status";
       gd = "git diff";
       gds = "git diff --staged";
+      ga = "git add";
       gaa = "git add --all";
       grbc = "git rebase --continue";
       grba = "git rebase --abort";
