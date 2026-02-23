@@ -27,9 +27,9 @@
 
     gh
     ghq
+    vault
     claude-code
     piper-tts
-    # _1password-cli
 
     ruby
     kamal
