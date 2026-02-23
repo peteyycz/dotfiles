@@ -1,11 +1,14 @@
+@theme "/dev/null"
+
 configuration {
     modi: "drun,run,window";
     show-icons: true;
     icon-theme: "Papirus-Dark";
-    font: "VictorMono Nerd Font Propo 11";
+    font: "VictorMono Nerd Font Propo 13";
     display-drun: "";
     display-run: "";
     display-window: "";
+    display-combi: "";
     drun-display-format: "{name}";
 }
 
@@ -22,17 +25,18 @@ configuration {
     pine:      #3e8fb0;
     foam:      #9ccfd8;
     iris:      #c4a7e7;
-    highlight: #44415a;
+    hl-med:    #44415a;
 
     background-color: transparent;
     text-color:       @text;
+    highlight:        bold #c4a7e7;
 }
 
 window {
     width:            400px;
     background-color: @base;
     border:           2px solid;
-    border-color:     @iris;
+    border-color:     @hl-med;
     border-radius:    0;
 }
 
@@ -72,7 +76,7 @@ element {
 }
 
 element selected {
-    background-color: @highlight;
+    background-color: @hl-med;
     text-color:       @iris;
 }
 
