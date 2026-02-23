@@ -28,7 +28,7 @@
     },
 
     "clock": {
-        "format": "{:%A (%B %d), %I:%M %p}"
+        "format": "{:%A (%B %d) %I:%M %p}"
     },
 
     "tray": {

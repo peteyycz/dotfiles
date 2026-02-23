@@ -18,7 +18,6 @@
 
     nerd-fonts.victor-mono
     nerd-fonts.symbols-only
-    inter
     pandoc
 
     kubectl
@@ -162,6 +161,10 @@
 
       set -g display-panes-time 1000
       setw -g automatic-rename on
+
+      # Rose Pine Moon pane borders
+      set -g pane-border-style fg=#393552
+      set -g pane-active-border-style fg=#56526e
     '';
   };
 

@@ -18,10 +18,13 @@ set $highlightMed "#44415a"
 set $highlightHigh "#56526e"
 
 # Window colors          border    background  text    indicator   child_border
-client.focused           $iris     $surface    $text   $rose       $iris
+client.focused           $highlightHigh     $surface    $text   $rose       $highlightHigh
 client.focused_inactive  $overlay  $base       $subtle $overlay    $overlay
 client.unfocused         $overlay  $base       $muted  $overlay    $overlay
 client.urgent            $love     $love       $base   $love       $love
+
+font pango:VictorMono Nerd Font 10
+titlebar_padding 8 4
 
 # Home row direction keys, like vim
 set $left h
