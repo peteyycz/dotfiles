@@ -136,7 +136,7 @@
       bind-key -T copy-mode-vi 'v' send-keys -X begin-selection
       bind w neww
       bind m choose-window
-      bind a display-popup -E "tmux list-sessions -F '#{session_name}' | fzf --reverse | xargs tmux switch-client -t"
+      bind a display-popup -S fg=#56526e -E "tmux list-sessions -F '#{session_name}' | fzf --reverse | xargs tmux switch-client -t"
       bind c kill-pane
       bind t set status
       bind h select-pane -L
