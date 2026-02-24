@@ -108,7 +108,7 @@
 
   programs.tmux = {
     enable = true;
-    terminal = "screen";
+    terminal = "tmux-256color";
     baseIndex = 1;
     keyMode = "vi";
     mouse = true;
@@ -119,6 +119,8 @@
       better-mouse-mode
     ];
     extraConfig = ''
+      set -g allow-passthrough on
+      set -g cursor-style block
       set -g status-position top
       set -g status-right ""
       set -g status-left "[#S] "
@@ -165,6 +167,9 @@
       # Rose Pine Moon pane borders
       set -g pane-border-style fg=#393552
       set -g pane-active-border-style fg=#56526e
+
+      # Rose Pine Moon selection highlight
+      set -g mode-style "fg=#e0def4,bg=#44415a"
     '';
   };
 
@@ -219,6 +224,9 @@
       # Add paths
       # fish_add_path (go env GOBIN)
       fish_add_path "$HOME/.local/bin"
+
+      set -g fish_cursor_default block
+      set -g fish_cursor_insert block
 
       set -gx GOPATH "$HOME/Code"
       set -gx GHQ_ROOT "$GOPATH/src"
