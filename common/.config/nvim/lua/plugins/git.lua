@@ -28,36 +28,6 @@ return {
         desc = "Browse file on remote",
         mode = "n",
       },
-      {
-        "<leader>gg",
-        function() Snacks.lazygit() end,
-        desc = "Open lazygit",
-        mode = "n",
-      },
-      {
-        "<leader>gl",
-        function() Snacks.lazygit.log() end,
-        desc = "Lazygit log",
-        mode = "n",
-      },
     },
-  },
-  {
-    "sindrets/diffview.nvim",
-    cmd = { "DiffviewOpen", "DiffviewFileHistory" },
-    keys = {
-      { "<leader>gd", "<cmd>DiffviewOpen<cr>", desc = "Diff view" },
-      { "<leader>gf", "<cmd>DiffviewFileHistory %<cr>", desc = "File history" },
-    },
-    opts = {},
-  },
-  {
-    "pwntester/octo.nvim",
-    cmd = "Octo",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-tree/nvim-web-devicons",
-    },
-    opts = {},
   },
 }

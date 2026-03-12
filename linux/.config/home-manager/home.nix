@@ -37,6 +37,12 @@
     })
     awscli2
 
+    opentofu
+    terraform
+    terragrunt
+
+    mediainfo
+
     gh
     ghq
     vault
@@ -88,7 +94,7 @@
       tmux send-keys -t "$SESSION:1.2" 'start-accessories' Enter
 
       # Start claude in the right pane (now pane 3 after the split)
-      tmux send-keys -t "$SESSION:1.3" 'claude' Enter
+      tmux send-keys -t "$SESSION:1.3" 'claude -c' Enter
 
       # Window 2: nvim
       tmux new-window -t "$SESSION" -c "$PWD"

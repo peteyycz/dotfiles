@@ -64,6 +64,12 @@ set $ws9 "9: 󰒱"
 assign [app_id="google-chrome"] $ws2
 assign [app_id="com.slack.Slack"] $ws9
 
+# Autostart applications
+exec flatpak run com.google.Chrome
+exec flatpak run com.slack.Slack
+exec $term
+exec 1password --silent
+
 # Steam client to workspace 3
 assign [class="^Steam$"] $ws3
 # Float all Steam windows, then disable float for the main client window
@@ -233,27 +239,8 @@ input type:keyboard {
 #
 # Resizing containers:
 #
-mode "resize" {
-    # left will shrink the containers width
-    # right will grow the containers width
-    # up will shrink the containers height
-    # down will grow the containers height
-    bindsym $left resize shrink width 10px
-    bindsym $down resize grow height 10px
-    bindsym $up resize shrink height 10px
-    bindsym $right resize grow width 10px
-
-    # Ditto, with arrow keys
-    bindsym Left resize shrink width 10px
-    bindsym Down resize grow height 10px
-    bindsym Up resize shrink height 10px
-    bindsym Right resize grow width 10px
-
-    # Return to default mode
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-bindsym $mod+r mode "resize"
+    # Run scripts from ~/src/github.com/peteyycz/scripts
+    bindsym $mod+r exec "ls $HOME/Code/src/github.com/peteyycz/scripts | rofi -dmenu -p 'Scripts' -i | xargs -I {} sh -c '$HOME/Code/src/github.com/peteyycz/scripts/{}'"
 
 # Include configs from 3 locations:
 #  - /usr/share/sway/config.d
