@@ -72,6 +72,23 @@ window#waybar {
     padding: 0 8px;
 }
 
+#battery {
+    color: #9ccfd8;
+    padding: 0 8px;
+}
+
+#battery.charging {
+    color: #3e8fb0;
+}
+
+#battery.warning:not(.charging) {
+    color: #f6c177;
+}
+
+#battery.critical:not(.charging) {
+    color: #eb6f92;
+}
+
 #language {
     color: #c4a7e7;
     padding: 0 8px;

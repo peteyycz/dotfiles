@@ -128,7 +128,16 @@ return {
 
       -- C/C++ Language Server
       vim.lsp.config.clangd = vim.tbl_deep_extend("force", get_config("clangd"), {
-        cmd = { "clangd" },
+        cmd = {
+          "clangd",
+          "--background-index",
+          "--clang-tidy",
+          "--header-insertion=iwyu",
+          "--completion-style=detailed",
+          "--function-arg-placeholders",
+          "--fallback-style=llvm",
+          "--query-driver=/nix/store/*/bin/gcc",
+        },
         filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
         on_attach = LspUtil.generic_on_attach,
       })
