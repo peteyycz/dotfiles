@@ -23,7 +23,7 @@ client.focused_inactive  $overlay  $base       $subtle $overlay    $overlay
 client.unfocused         $overlay  $base       $muted  $overlay    $overlay
 client.urgent            $love     $love       $base   $love       $love
 
-font pango:CaskaydiaMono Nerd Font 10
+font pango:MonaspiceNe Nerd Font 10
 titlebar_padding 8 4
 
 # Home row direction keys, like vim

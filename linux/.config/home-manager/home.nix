@@ -16,7 +16,7 @@
     nixfmt-rfc-style
     coturn
 
-    nerd-fonts.caskaydia-mono
+    nerd-fonts.monaspace
     nerd-fonts.symbols-only
     pandoc
 
