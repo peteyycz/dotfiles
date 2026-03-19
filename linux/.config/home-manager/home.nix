@@ -40,6 +40,9 @@
     opentofu
     terraform
     terragrunt
+    pomerium-cli
+
+    mongosh
 
     mediainfo
 
@@ -57,6 +60,48 @@
     beam.packages.erlang_27.erlang
     beam.packages.erlang_27.elixir_1_18
 
+    (writeShellScriptBin "tmux-rofi" ''
+      # Build list of sessions with git branch info
+      ENTRIES=$(tmux list-sessions -F '#{session_name} #{pane_current_path}' 2>/dev/null | while read -r name path; do
+        if [ -d "$path/.git" ]; then
+          branch=$(${pkgs.git}/bin/git -C "$path" branch --show-current 2>/dev/null)
+          dirty=$(${pkgs.git}/bin/git -C "$path" status --porcelain 2>/dev/null)
+          if [ -n "$dirty" ]; then
+            echo "$name <span color='#eb6f92'>(#$branch)</span>"
+          else
+            echo "$name (#$branch)"
+          fi
+        else
+          echo "$name"
+        fi
+      done)
+
+      SELECTED=$(echo "$ENTRIES" | rofi -dmenu -markup-rows -p "tmux" -theme-str 'window {width: 30%;}')
+      [ -z "$SELECTED" ] && exit 0
+      SESSION=$(echo "$SELECTED" | awk '{print $1}')
+      [ -z "$SESSION" ] && exit 0
+
+      if ! tmux has-session -t "$SESSION" 2>/dev/null; then
+        tmux new-session -d -s "$SESSION"
+      fi
+
+      # Check if focused window is a foot terminal running tmux
+      FOCUSED_APP=$(swaymsg -t get_tree | jq -r '.. | select(.focused? == true) | .app_id // empty')
+      if [ "$FOCUSED_APP" = "foot" ]; then
+        FOCUSED_PID=$(swaymsg -t get_tree | jq -r '.. | select(.focused? == true) | .pid')
+        CHILD_PID=$(${pkgs.procps}/bin/pgrep -P "$FOCUSED_PID" | head -1)
+        if [ -n "$CHILD_PID" ]; then
+          TTY="/dev/$(ps -o tty= -p "$CHILD_PID" | tr -d ' ')"
+          if tmux list-clients -F '#{client_tty}' | grep -qx "$TTY"; then
+            tmux switch-client -c "$TTY" -t "$SESSION"
+            exit 0
+          fi
+        fi
+      fi
+
+      # No terminal focused or not running tmux — open new foot with tmux
+      exec foot tmux attach -t "$SESSION"
+    '')
     (writeShellScriptBin "tmuxn" ''tmux new-session -s "$(basename "$PWD")"'')
     (writeShellScriptBin "run-server" ''
       if [ -f package.json ]; then
@@ -159,7 +204,7 @@
       bind-key -T copy-mode-vi 'v' send-keys -X begin-selection
       bind w neww
       bind m choose-window
-      bind a display-popup -S fg=#56526e -E "tmux list-sessions -F '#{session_name}' | fzf --reverse | xargs tmux switch-client -t"
+
       bind c kill-pane
       bind t set status
       bind h select-pane -L

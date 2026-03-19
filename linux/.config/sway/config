@@ -67,6 +67,7 @@ assign [app_id="com.slack.Slack"] $ws9
 # Autostart applications
 exec flatpak run com.google.Chrome
 exec flatpak run com.slack.Slack
+exec test -x $HOME/Code/src/github.com/peteyycz/scripts/@peteyycz:dev-start && $HOME/Code/src/github.com/peteyycz/scripts/@peteyycz:dev-start
 exec $term
 exec 1password --silent
 
@@ -210,7 +211,7 @@ input type:keyboard {
 
     # Switch the current container between different layout styles
     bindsym $mod+s layout stacking
-    bindsym $mod+w layout tabbed
+    bindsym $mod+w exec tmux-rofi
     bindsym $mod+e layout toggle split
 
     # Make the current focus fullscreen
