@@ -10,6 +10,12 @@ configuration {
     display-window: "";
     display-combi: "";
     drun-display-format: "{name}";
+
+    kb-remove-char-forward: "Delete";
+    kb-remove-to-sol: "";
+    kb-page-prev: "Control+u";
+    kb-page-next: "Control+d";
+    kb-delete-entry: "";
 }
 
 * {
@@ -66,13 +72,13 @@ entry {
 }
 
 listview {
-    lines:        8;
+    lines:        12;
     columns:      1;
     fixed-height: true;
 }
 
 element {
-    padding: 8px 12px;
+    padding: 4px 12px;
 }
 
 element selected {
