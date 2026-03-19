@@ -16,7 +16,7 @@
     nixfmt-rfc-style
     coturn
 
-    nerd-fonts.victor-mono
+    nerd-fonts.caskaydia-mono
     nerd-fonts.symbols-only
     pandoc
 
@@ -41,7 +41,6 @@
     terraform
     terragrunt
     pomerium-cli
-
     mongosh
 
     mediainfo
