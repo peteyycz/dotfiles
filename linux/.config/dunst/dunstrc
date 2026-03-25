@@ -31,7 +31,7 @@
     separator_color = frame
     sort = yes
 
-    font = MonaspiceNe Nerd Font Propo 10
+    font = VictorMono Nerd Font Propo 10
     line_height = 0
     markup = full
     format = "<b>%s</b>\n%b"

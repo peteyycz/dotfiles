@@ -4,7 +4,7 @@ configuration {
     modi: "drun,run,window";
     show-icons: true;
     icon-theme: "Papirus-Dark";
-    font: "MonaspiceNe Nerd Font Propo 13";
+    font: "VictorMono Nerd Font Propo 13";
     display-drun: "";
     display-run: "";
     display-window: "";

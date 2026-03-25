@@ -16,7 +16,7 @@
     nixfmt-rfc-style
     coturn
 
-    nerd-fonts.monaspace
+    nerd-fonts.victor-mono
     nerd-fonts.symbols-only
     pandoc
 
@@ -42,6 +42,7 @@
     terragrunt
     pomerium-cli
     mongosh
+    mongodb-tools
 
     mediainfo
 
@@ -221,6 +222,8 @@
       bind : command-prompt
       bind Escape copy-mode
 
+      unbind-key -n MouseDown3Pane
+
       set -g set-titles on
       set -g set-titles-string 'Linux is my IDE'
       set -g repeat-time 100
@@ -292,6 +295,8 @@
 
       set -g fish_cursor_default block
       set -g fish_cursor_insert block
+
+      bind \cg edit_command_buffer
 
       set -gx GOPATH "$HOME/Code"
       set -gx GHQ_ROOT "$GOPATH/src"

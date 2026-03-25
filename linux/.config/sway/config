@@ -23,7 +23,7 @@ client.focused_inactive  $overlay  $base       $subtle $overlay    $overlay
 client.unfocused         $overlay  $base       $muted  $overlay    $overlay
 client.urgent            $love     $love       $base   $love       $love
 
-font pango:MonaspiceNe Nerd Font 10
+font pango:VictorMono Nerd Font 10
 titlebar_padding 8 4
 
 # Home row direction keys, like vim
@@ -67,7 +67,7 @@ assign [app_id="com.slack.Slack"] $ws9
 # Autostart applications
 exec flatpak run com.google.Chrome
 exec flatpak run com.slack.Slack
-exec test -x $HOME/Code/src/github.com/peteyycz/scripts/@peteyycz:dev-start && $HOME/Code/src/github.com/peteyycz/scripts/@peteyycz:dev-start
+exec test -x $HOME/Code/src/github.com/peteyycz/scripts/@peteyycz:dev-start.sh && $HOME/Code/src/github.com/peteyycz/scripts/@peteyycz:dev-start.sh
 exec $term
 exec 1password --silent
 
@@ -241,7 +241,7 @@ input type:keyboard {
 # Resizing containers:
 #
     # Run scripts from ~/src/github.com/peteyycz/scripts
-    bindsym $mod+r exec "ls $HOME/Code/src/github.com/peteyycz/scripts | rofi -dmenu -p 'Scripts' -i | xargs -I {} sh -c '$HOME/Code/src/github.com/peteyycz/scripts/{}'"
+    bindsym $mod+r exec "find $HOME/Code/src/github.com/peteyycz/scripts -maxdepth 1 -name '*.sh' -printf '%f\n' | sed 's/\.sh$//' | rofi -dmenu -p 'Scripts' -i | xargs -I {} sh -c '$HOME/Code/src/github.com/peteyycz/scripts/{}.sh'"
 
 # Include configs from 3 locations:
 #  - /usr/share/sway/config.d
