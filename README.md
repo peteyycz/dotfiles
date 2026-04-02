@@ -26,6 +26,8 @@ stow
 wf-recorder
 ```
 
+> Current deployment also has `dkms` and `kernel-devel` layered.
+
 ## Extra repos
 
 Repos added for layered packages and drivers:
@@ -46,8 +48,11 @@ Repos added for layered packages and drivers:
 | `com.github.finefindus.eyedropper` | Eyedropper |
 | `com.google.Chrome` | Google Chrome |
 | `com.mongodb.Compass` | MongoDB Compass |
+| `com.rustdesk.RustDesk` | RustDesk |
 | `com.slack.Slack` | Slack |
 | `com.valvesoftware.Steam` | Steam |
+| `org.kde.kdenlive` | Kdenlive |
+| `org.videolan.VLC` | VLC |
 
 ## Flatpak overrides
 
