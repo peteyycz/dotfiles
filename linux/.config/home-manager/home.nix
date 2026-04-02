@@ -52,6 +52,9 @@
     claude-code
     piper-tts
 
+    libwebp
+    htop
+
     postgresql
 
     ruby
