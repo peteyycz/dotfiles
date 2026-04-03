@@ -8,15 +8,15 @@ show-failed-attempts
 color=282828
 
 # Ring
-ring-color=928374
-ring-clear-color=8ec07c
+ring-color=3c3836
+ring-clear-color=928374
 ring-caps-lock-color=fabd2f
-ring-ver-color=d3869b
+ring-ver-color=458588
 ring-wrong-color=fb4934
 
 # Key highlight
-key-hl-color=d3869b
-bs-hl-color=fb4934
+key-hl-color=458588
+bs-hl-color=928374
 caps-lock-key-hl-color=fabd2f
 caps-lock-bs-hl-color=fb4934
 
@@ -39,9 +39,9 @@ separator-color=3c3836
 
 # Text
 text-color=ebdbb2
-text-clear-color=8ec07c
+text-clear-color=928374
 text-caps-lock-color=fabd2f
-text-ver-color=d3869b
+text-ver-color=458588
 text-wrong-color=fb4934
 
 # Layout text
