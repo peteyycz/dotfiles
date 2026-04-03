@@ -149,7 +149,7 @@ input type:keyboard {
     bindsym $mod+Shift+c reload
 
     # Exit / shutdown / restart
-    bindsym $mod+Shift+e exec "echo -e 'Logout\nSuspend\nShutdown\nRestart' | rofi -dmenu -p 'Power' -i | xargs -I {} sh -c 'case {} in Logout) swaymsg exit;; Suspend) systemctl suspend;; Shutdown) systemctl poweroff;; Restart) systemctl reboot;; esac'"
+    bindsym $mod+Shift+e exec "echo -e 'Lock\nLogout\nSuspend\nShutdown\nRestart' | rofi -dmenu -p 'Power' -i | xargs -I {} sh -c 'case {} in Lock) loginctl lock-session;; Logout) swaymsg exit;; Suspend) systemctl suspend;; Shutdown) systemctl poweroff;; Restart) systemctl reboot;; esac'"
 #
 # Moving around:
 #

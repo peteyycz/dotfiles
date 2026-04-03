@@ -5,8 +5,7 @@ ignore-empty-password
 show-failed-attempts
 
 # Background
-image=~/.local/share/backgrounds/pixel-train-japan.png
-scaling=fill
+color=282828
 
 # Ring
 ring-color=928374
