@@ -19,30 +19,28 @@ configuration {
 }
 
 * {
-    base:      #232136;
-    surface:   #2a273f;
-    overlay:   #393552;
-    muted:     #6e6a86;
-    subtle:    #908caa;
-    text:      #e0def4;
-    love:      #eb6f92;
-    gold:      #f6c177;
-    rose:      #ea9a97;
-    pine:      #3e8fb0;
-    foam:      #9ccfd8;
-    iris:      #c4a7e7;
-    hl-med:    #44415a;
+    bg:        #282828;
+    bg1:       #3c3836;
+    bg2:       #504945;
+    gray:      #928374;
+    fg3:       #bdae93;
+    fg:        #ebdbb2;
+    red:       #fb4934;
+    yellow:    #fabd2f;
+    blue:      #458588;
+    purple:    #d3869b;
+    aqua:      #8ec07c;
 
     background-color: transparent;
-    text-color:       @text;
-    highlight:        bold #c4a7e7;
+    text-color:       @fg;
+    highlight:        bold #d3869b;
 }
 
 window {
     width:            400px;
-    background-color: @base;
+    background-color: @bg;
     border:           2px solid;
-    border-color:     @hl-med;
+    border-color:     @bg2;
     border-radius:    0;
 }
 
@@ -57,7 +55,7 @@ inputbar {
 }
 
 prompt {
-    text-color: @iris;
+    text-color: @purple;
 }
 
 textbox-prompt-colon {
@@ -67,8 +65,8 @@ textbox-prompt-colon {
 
 entry {
     placeholder:       "Search...";
-    placeholder-color: @muted;
-    text-color:        @text;
+    placeholder-color: @gray;
+    text-color:        @fg;
 }
 
 listview {
@@ -82,8 +80,8 @@ element {
 }
 
 element selected {
-    background-color: @hl-med;
-    text-color:       @iris;
+    background-color: @bg2;
+    text-color:       @purple;
 }
 
 element-icon {
