@@ -112,6 +112,8 @@ input "2:7:SynPS/2_Synaptics_TouchPad" {
     tap enabled
     natural_scroll enabled
     middle_emulation enabled
+    accel_profile adaptive
+    pointer_accel 0.5
 }
 
 input type:keyboard {
