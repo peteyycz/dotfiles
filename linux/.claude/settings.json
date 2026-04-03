@@ -1,4 +1,5 @@
 {
+  "model": "sonnet",
   "hooks": {
     "Stop": [
       {
@@ -88,6 +89,5 @@
         ]
       }
     ]
-  },
-  "model": "sonnet"
+  }
 }

@@ -1,27 +1,26 @@
 set $mod Mod4
 
-# Rose Pine Moon colors
-set $base "#232136"
-set $surface "#2a273f"
-set $overlay "#393552"
-set $muted "#6e6a86"
-set $subtle "#908caa"
-set $text "#e0def4"
-set $love "#eb6f92"
-set $gold "#f6c177"
-set $rose "#ea9a97"
-set $pine "#3e8fb0"
-set $foam "#9ccfd8"
-set $iris "#c4a7e7"
-set $highlightLow "#2a283e"
-set $highlightMed "#44415a"
-set $highlightHigh "#56526e"
+# Gruvbox Dark colors
+set $bg "#282828"
+set $bgHard "#1d2021"
+set $bg1 "#3c3836"
+set $bg2 "#504945"
+set $bg3 "#665c54"
+set $gray "#928374"
+set $fg3 "#bdae93"
+set $fg "#ebdbb2"
+set $red "#fb4934"
+set $yellow "#fabd2f"
+set $orange "#fe8019"
+set $blue "#458588"
+set $aqua "#8ec07c"
+set $purple "#d3869b"
 
-# Window colors          border    background  text    indicator   child_border
-client.focused           $highlightHigh     $surface    $text   $rose       $highlightHigh
-client.focused_inactive  $overlay  $base       $subtle $overlay    $overlay
-client.unfocused         $overlay  $base       $muted  $overlay    $overlay
-client.urgent            $love     $love       $base   $love       $love
+# Window colors          border  background  text    indicator   child_border
+client.focused           $bg3    $bgHard     $fg     $orange     $bg3
+client.focused_inactive  $bg1    $bg         $fg3    $bg1        $bg1
+client.unfocused         $bg1    $bg         $gray   $bg1        $bg1
+client.urgent            $red    $red        $bg     $red        $red
 
 font pango:VictorMono Nerd Font 10
 titlebar_padding 8 4
@@ -50,7 +49,7 @@ set $menu $rofi_cmd -show combi -combi-modes "drun#run" -modes combi
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 # Requires: desktop-backgrounds-compat, swaybg, jxl-pixbuf-loader
-output * bg $HOME/.local/share/backgrounds/pixel-train-japan.png fill
+output * bg $HOME/.local/share/backgrounds/default.jpg fill
 output * scale 1
 
 # Workspace names with icons

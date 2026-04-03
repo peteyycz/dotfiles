@@ -1,20 +1,16 @@
 return {
   {
-    "rose-pine/neovim",
-    name = "rose-pine",
+    "ellisonleao/gruvbox.nvim",
     priority = 1000,
     config = function()
-      require("rose-pine").setup({
-        variant = "moon",
-        styles = {
-          transparency = true,
-        },
-        highlight_groups = {
-          Whitespace = { fg = "#393552" },
-          NonText = { fg = "#393552" },
+      require("gruvbox").setup({
+        transparent_mode = true,
+        overrides = {
+          Whitespace = { fg = "#3c3836" },
+          NonText = { fg = "#3c3836" },
         },
       })
-      vim.cmd.colorscheme "rose-pine"
+      vim.cmd.colorscheme "gruvbox"
     end,
   },
   {

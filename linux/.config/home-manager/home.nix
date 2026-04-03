@@ -70,7 +70,7 @@
           branch=$(${pkgs.git}/bin/git -C "$path" branch --show-current 2>/dev/null)
           dirty=$(${pkgs.git}/bin/git -C "$path" status --porcelain 2>/dev/null)
           if [ -n "$dirty" ]; then
-            echo "$name <span color='#eb6f92'>(#$branch)</span>"
+            echo "$name <span color='#fb4934'>(#$branch)</span>"
           else
             echo "$name (#$branch)"
           fi
@@ -194,7 +194,7 @@
       set -g status-right ""
       set -g status-left "[#S] "
       set -g status-left-length 50
-      set -g status-style bg=#2a273f
+      set -g status-style bg=#282828
       setw -g pane-base-index 1
       set -g status-keys vi
       setw -g clock-mode-style 12
@@ -235,12 +235,12 @@
       set -g display-panes-time 1000
       setw -g automatic-rename on
 
-      # Rose Pine Moon pane borders
-      set -g pane-border-style fg=#393552
-      set -g pane-active-border-style fg=#56526e
+      # Gruvbox Dark pane borders
+      set -g pane-border-style fg=#3c3836
+      set -g pane-active-border-style fg=#665c54
 
-      # Rose Pine Moon selection highlight
-      set -g mode-style "fg=#e0def4,bg=#44415a"
+      # Gruvbox Dark selection highlight
+      set -g mode-style "fg=#ebdbb2,bg=#504945"
     '';
   };
 
