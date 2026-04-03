@@ -22,7 +22,7 @@ client.focused_inactive  $bg1    $bg         $fg3    $bg1        $bg1
 client.unfocused         $bg1    $bg         $gray   $bg1        $bg1
 client.urgent            $red    $red        $bg     $red        $red
 
-font pango:VictorMono Nerd Font 10
+font pango:VictorMono Nerd Font 11
 titlebar_padding 8 4
 
 # Home row direction keys, like vim
