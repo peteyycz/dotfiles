@@ -22,19 +22,6 @@
 
     kubectl
     kubernetes-helm
-    (stdenv.mkDerivation rec {
-      pname = "lazykube";
-      version = "0.10.3";
-      src = fetchurl {
-        url = "https://github.com/TNK-Studio/lazykube/releases/download/v${version}/lazykube_linux_amd64.tar.gz";
-        sha256 = "sha256-KFR3f6O4EBlfm9ynOgoi1awN4MCcJImO0U4Jd9+6WTw=";
-      };
-      sourceRoot = "lazykube_linux_amd64";
-      dontFixup = true;
-      installPhase = ''
-        install -Dm755 lazykube $out/bin/lazykube
-      '';
-    })
     awscli2
 
     opentofu
@@ -56,7 +43,6 @@
     btop
     fd
     eza
-    bat
 
     postgresql
 
@@ -301,7 +287,6 @@
 
       bind \cg edit_command_buffer
 
-      set -gx BAT_THEME "gruvbox-dark"
       set -gx GOPATH "$HOME/Code"
       set -gx GHQ_ROOT "$GOPATH/src"
 
