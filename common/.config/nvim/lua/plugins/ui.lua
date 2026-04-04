@@ -78,6 +78,11 @@ return {
     },
   },
   {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    opts = {},
+  },
+  {
     "ibhagwan/fzf-lua",
     opts = {
       { 'telescope' },

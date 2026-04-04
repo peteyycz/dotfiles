@@ -54,29 +54,6 @@ Repos added for layered packages and drivers:
 | `org.kde.kdenlive` | Kdenlive |
 | `org.videolan.VLC` | VLC |
 
-## Flatpak overrides
-
-**Global** (`~/.local/share/flatpak/overrides/global`):
-
-```ini
-[Environment]
-CHROME_EXTRA_ARGS=--enable-features=WebRTCPipeWireCapturer
-```
-
-**Chrome & Slack** — enable Wayland socket and PipeWire access:
-
-```ini
-[Context]
-sockets=wayland;
-filesystems=xdg-run/pipewire-0;
-```
-
-**Steam** — grant access to all devices:
-
-```ini
-[Context]
-devices=all;
-```
 
 ## Other installs
 

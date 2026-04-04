@@ -1,0 +1,2 @@
+[Environment]
+CHROME_EXTRA_ARGS=--enable-features=WebRTCPipeWireCapturer

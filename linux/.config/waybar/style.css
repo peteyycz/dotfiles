@@ -72,6 +72,32 @@ window#waybar {
     padding: 0 8px;
 }
 
+#cpu {
+    color: #a89984;
+    padding: 0 8px;
+}
+
+#cpu.warning {
+    color: #fabd2f;
+}
+
+#cpu.critical {
+    color: #fb4934;
+}
+
+#memory {
+    color: #a89984;
+    padding: 0 8px;
+}
+
+#memory.warning {
+    color: #fabd2f;
+}
+
+#memory.critical {
+    color: #fb4934;
+}
+
 #battery {
     color: #8ec07c;
     padding: 0 8px;

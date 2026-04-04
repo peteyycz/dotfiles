@@ -13,7 +13,7 @@
     gnumake
 
     nixd
-    nixfmt-rfc-style
+    nixfmt
     coturn
 
     nerd-fonts.victor-mono
@@ -53,7 +53,10 @@
     piper-tts
 
     libwebp
-    htop
+    btop
+    fd
+    eza
+    bat
 
     postgresql
 
@@ -244,18 +247,14 @@
     '';
   };
 
+  programs.zoxide = {
+    enable = true;
+    enableFishIntegration = true;
+  };
+
   programs.fish = {
     enable = true;
     plugins = [
-      {
-        name = "z";
-        src = pkgs.fetchFromGitHub {
-          owner = "jethrokuan";
-          repo = "z";
-          rev = "067e867debee59aee231e789fc4631f80fa5788e";
-          sha256 = "sha256-emmjTsqt8bdI5qpx1bAzhVACkg0MNB/uffaRjjeuFxU=";
-        };
-      }
       {
         name = "nix-env.fish";
         src = pkgs.fetchFromGitHub {
@@ -285,7 +284,8 @@
       gq = "git quick";
 
       # Other aliases
-      l = "ls -la";
+      l = "eza -la --icons --group-directories-first";
+      lt = "eza --tree --icons -L 2";
     };
 
     interactiveShellInit = ''
@@ -301,6 +301,7 @@
 
       bind \cg edit_command_buffer
 
+      set -gx BAT_THEME "gruvbox-dark"
       set -gx GOPATH "$HOME/Code"
       set -gx GHQ_ROOT "$GOPATH/src"
 
@@ -332,6 +333,7 @@
 
   gtk = {
     enable = true;
+    gtk4.theme = null;
     iconTheme = {
       name = "Papirus-Dark";
       package = pkgs.papirus-icon-theme;

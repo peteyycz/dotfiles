@@ -3,7 +3,7 @@
     "position": "top",
     "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-center": ["clock"],
-    "modules-right": ["custom/recording", "battery", "sway/language", "custom/dotfiles", "tray"],
+    "modules-right": ["custom/recording", "cpu", "memory", "battery", "sway/language", "custom/dotfiles", "tray"],
 
     "custom/dotfiles": {
         "exec": "cd ~/Code/src/github.com/peteyycz/dotfiles && if [ -n \"$(git status --porcelain)\" ]; then echo '{\"text\": \"~/.\", \"tooltip\": \"Dotfiles have uncommitted changes\", \"class\": \"dirty\"}'; else echo '{}'; fi",
@@ -29,6 +29,18 @@
 
     "clock": {
         "format": "{:%A (%B %d) %I:%M %p}"
+    },
+
+    "cpu": {
+        "format": "󰻠 {usage}%",
+        "interval": 5,
+        "states": { "warning": 70, "critical": 90 }
+    },
+
+    "memory": {
+        "format": "󰍛 {percentage}%",
+        "interval": 10,
+        "states": { "warning": 70, "critical": 90 }
     },
 
     "battery": {

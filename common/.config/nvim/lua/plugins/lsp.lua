@@ -2,6 +2,23 @@ local LspUtil = require "util.lsp"
 
 return {
   {
+    "folke/trouble.nvim",
+    opts = {},
+    cmd = "Trouble",
+    keys = {
+      {
+        "<leader>xx",
+        "<cmd>Trouble diagnostics toggle<cr>",
+        desc = "Workspace diagnostics (Trouble)",
+      },
+      {
+        "<leader>xX",
+        "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+        desc = "Buffer diagnostics (Trouble)",
+      },
+    },
+  },
+  {
     "williamboman/mason.nvim",
     opts = {},
   },
