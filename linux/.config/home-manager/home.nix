@@ -1,6 +1,10 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
+  imports = [
+    ./sway.nix
+  ];
+
   home.username = "peteyycz";
   home.homeDirectory = "/home/peteyycz";
 
@@ -9,6 +13,8 @@
   nixpkgs.config.allowUnfree = true;
 
   home.packages = with pkgs; [
+    networkmanagerapplet
+
     gcc
     gnumake
 
@@ -149,18 +155,11 @@
 
   fonts.fontconfig.enable = true;
 
+  services.network-manager-applet.enable = true;
+
   programs.home-manager.enable = true;
   programs.difftastic.enable = true;
   programs.ripgrep.enable = true;
-
-  programs.neovim = {
-    enable = true;
-    defaultEditor = true;
-
-    vimAlias = true;
-    viAlias = true;
-    vimdiffAlias = true;
-  };
 
   programs.fzf.enable = true;
 
