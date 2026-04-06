@@ -18,6 +18,8 @@
     gcc
     gnumake
 
+    nodejs_24
+
     nixd
     nixfmt
     coturn
@@ -42,7 +44,6 @@
     gh
     ghq
     vault
-    claude-code
     piper-tts
 
     libwebp
@@ -152,6 +153,11 @@
       fi
     '')
   ];
+
+  home.file.".npmrc".text = ''
+    prefix=~/.local
+  '';
+  home.sessionPath = [ "$HOME/.local/bin" ];
 
   fonts.fontconfig.enable = true;
 
@@ -306,13 +312,12 @@
     nix-direnv.enable = true;
   };
 
-  programs.mise = {
-    enable = true;
-    enableFishIntegration = true;
-    globalConfig.settings = {
-      legacy_version_file = true;
-      idiomatic_version_file_enable_tools = [ "node" ];
-    };
+
+  home.pointerCursor = {
+    name = "macOS";
+    package = pkgs.apple-cursor;
+    size = 24;
+    gtk.enable = true;
   };
 
   gtk = {
