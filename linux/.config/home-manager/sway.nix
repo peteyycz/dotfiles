@@ -216,6 +216,7 @@ in
 
       startup = [
         { command = "test -x $HOME/Code/src/github.com/peteyycz/scripts/@peteyycz:dev-start.sh && $HOME/Code/src/github.com/peteyycz/scripts/@peteyycz:dev-start.sh"; }
+        { command = "swaymsg workspace '${ws1}'"; }
         { command = "${terminal}"; }
         { command = "1password --silent"; }
       ];
