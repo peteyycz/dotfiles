@@ -10,14 +10,26 @@ let
     bg3 = "#665c54";
     gray = "#928374";
     fg3 = "#bdae93";
+    fg4 = "#a89984";
     fg = "#ebdbb2";
+    # Normal colors
     red = "#fb4934";
+    redDark = "#cc241d";
+    green = "#b8bb26";
+    greenDark = "#98971a";
     yellow = "#fabd2f";
+    yellowDark = "#d79921";
     orange = "#fe8019";
-    blue = "#458588";
-    aqua = "#8ec07c";
+    blue = "#83a598";
+    blueDark = "#458588";
     purple = "#d3869b";
+    purpleDark = "#b16286";
+    aqua = "#8ec07c";
+    aquaDark = "#689d6a";
   };
+
+  # Strip # from color for configs that don't want it
+  c = color: lib.removePrefix "#" color;
 
   modifier = "Mod4";
   terminal = "foot";
@@ -34,8 +46,6 @@ in
   home.packages = with pkgs; [
     # Sway and Wayland essentials
     libnotify
-    swaylock
-    foot
     slurp
     wf-recorder
     jq  # Used by tmux-rofi script
@@ -544,7 +554,7 @@ in
       }
 
       #cpu {
-        color: #a89984;
+        color: ${colors.fg4};
         padding: 0 8px;
       }
 
@@ -557,7 +567,7 @@ in
       }
 
       #memory {
-        color: #a89984;
+        color: ${colors.fg4};
         padding: 0 8px;
       }
 
@@ -591,5 +601,89 @@ in
         padding: 0 8px;
       }
     '';
+  };
+
+  programs.swaylock = {
+    enable = true;
+    settings = {
+      ignore-empty-password = true;
+      show-failed-attempts = true;
+
+      color = c colors.bg;
+
+      ring-color = c colors.bg1;
+      ring-clear-color = c colors.gray;
+      ring-caps-lock-color = c colors.yellow;
+      ring-ver-color = c colors.blueDark;
+      ring-wrong-color = c colors.red;
+
+      key-hl-color = c colors.blueDark;
+      bs-hl-color = c colors.gray;
+      caps-lock-key-hl-color = c colors.yellow;
+      caps-lock-bs-hl-color = c colors.red;
+
+      inside-color = c colors.bg;
+      inside-clear-color = c colors.bg;
+      inside-caps-lock-color = c colors.bg;
+      inside-ver-color = c colors.bg;
+      inside-wrong-color = c colors.bg;
+
+      line-color = c colors.bg;
+      line-clear-color = c colors.bg;
+      line-caps-lock-color = c colors.bg;
+      line-ver-color = c colors.bg;
+      line-wrong-color = c colors.bg;
+
+      separator-color = c colors.bg1;
+
+      text-color = c colors.fg;
+      text-clear-color = c colors.gray;
+      text-caps-lock-color = c colors.yellow;
+      text-ver-color = c colors.blueDark;
+      text-wrong-color = c colors.red;
+
+      layout-text-color = c colors.fg3;
+
+      indicator-radius = 60;
+      indicator-thickness = 20;
+    };
+  };
+
+  programs.foot = {
+    enable = true;
+    settings = {
+      main = {
+        font = "VictorMono Nerd Font Mono:style=Medium:size=14";
+        pad = "7x7";
+        selection-target = "clipboard";
+      };
+      url = {
+        launch = "xdg-open \${url}";
+      };
+      key-bindings = {
+        show-urls-launch = "Control+Shift+o";
+      };
+      colors = {
+        alpha = "0.99";
+        background = c colors.bg;
+        foreground = c colors.fg;
+        regular0 = c colors.bg;
+        regular1 = c colors.redDark;
+        regular2 = c colors.greenDark;
+        regular3 = c colors.yellowDark;
+        regular4 = c colors.blueDark;
+        regular5 = c colors.purpleDark;
+        regular6 = c colors.aquaDark;
+        regular7 = c colors.fg4;
+        bright0 = c colors.gray;
+        bright1 = c colors.red;
+        bright2 = c colors.green;
+        bright3 = c colors.yellow;
+        bright4 = c colors.blue;
+        bright5 = c colors.purple;
+        bright6 = c colors.aqua;
+        bright7 = c colors.fg;
+      };
+    };
   };
 }
