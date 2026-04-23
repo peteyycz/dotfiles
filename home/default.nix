@@ -111,22 +111,28 @@ in
         tmux new-session -d -s "$SESSION"
       fi
 
-      # Check if focused window is a foot terminal running tmux
-      ACTIVE_JSON=$(hyprctl activewindow -j)
-      FOCUSED_APP=$(echo "$ACTIVE_JSON" | jq -r '.class // empty')
-      if [ "$FOCUSED_APP" = "foot" ]; then
-        FOCUSED_PID=$(echo "$ACTIVE_JSON" | jq -r '.pid')
-        CHILD_PID=$(${pkgs.procps}/bin/pgrep -P "$FOCUSED_PID" | head -1)
-        if [ -n "$CHILD_PID" ]; then
-          TTY="/dev/$(ps -o tty= -p "$CHILD_PID" | tr -d ' ')"
-          if tmux list-clients -F '#{client_tty}' | grep -qx "$TTY"; then
-            tmux switch-client -c "$TTY" -t "$SESSION"
-            exit 0
-          fi
+      # Find a foot window running tmux, preferring the most-recently-focused
+      MATCH_ADDR=""
+      MATCH_TTY=""
+      while read -r ADDR PID; do
+        [ -z "$ADDR" ] && continue
+        CHILD_PID=$(${pkgs.procps}/bin/pgrep -P "$PID" | head -1)
+        [ -z "$CHILD_PID" ] && continue
+        CAND_TTY="/dev/$(ps -o tty= -p "$CHILD_PID" | tr -d ' ')"
+        if tmux list-clients -F '#{client_tty}' | grep -qx "$CAND_TTY"; then
+          MATCH_ADDR="$ADDR"
+          MATCH_TTY="$CAND_TTY"
+          break
         fi
+      done < <(hyprctl clients -j | jq -r 'sort_by(.focusHistoryID) | .[] | select(.class=="foot") | "\(.address) \(.pid)"')
+
+      if [ -n "$MATCH_TTY" ]; then
+        hyprctl dispatch focuswindow "address:$MATCH_ADDR"
+        tmux switch-client -c "$MATCH_TTY" -t "$SESSION"
+        exit 0
       fi
 
-      # No terminal focused or not running tmux — open new foot with tmux
+      # No foot terminal running tmux — open new one
       exec foot tmux attach -t "$SESSION"
     '')
     (writeShellScriptBin "tmuxn" ''tmux new-session -s "$(basename "$PWD")"'')
