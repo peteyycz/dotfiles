@@ -1,7 +1,7 @@
 { ... }:
 
 let
-  notifyCommand = body: ''bash -c 'SESSION=$(tmux display-message -p "#S" 2>/dev/null || echo "claude"); (ACTION=$(dunstify -a "Claude Code" -A "open,Open" "Claude Code — '$SESSION'" "${body}"); [ "$ACTION" = "open" ] && swaymsg "[app_id=foot] focus" && tmux switch-client -t "$SESSION") &' '';
+  notifyCommand = body: ''bash -c 'SESSION=$(tmux display-message -p "#S" 2>/dev/null || echo "claude"); (ACTION=$(dunstify -a "Claude Code" -A "open,Open" "Claude Code — '$SESSION'" "${body}"); [ "$ACTION" = "open" ] && hyprctl dispatch focuswindow "class:foot" && tmux switch-client -t "$SESSION") &' '';
 
   notifyHook = body: {
     matcher = "";

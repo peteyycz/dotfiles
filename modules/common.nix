@@ -147,6 +147,7 @@ in
     jdk21
     maven
     python3
+    psmisc
   ]);
 
   programs._1password.enable = true;
