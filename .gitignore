@@ -1,9 +1,1 @@
 result
-bundle
-*.netrwhist
-npm-debug.log
-*.DS-STORE
-.cache
-autoload
-tpm
-.claude
