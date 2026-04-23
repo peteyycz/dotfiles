@@ -1,6 +1,0 @@
-#!/bin/sh
-
-if ! command -v stow &> /dev/null; then
-    echo "stow is not installed"
-    exit 1
-fi
