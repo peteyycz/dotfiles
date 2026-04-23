@@ -1,7 +1,7 @@
 { ... }:
 
 let
-  notifyCommand = body: ''bash -c 'SESSION=$(tmux display-message -p "#S" 2>/dev/null || echo "claude"); (ACTION=$(dunstify -a "Claude Code" -A "open,Open" "Claude Code — '$SESSION'" "${body}"); [ "$ACTION" = "open" ] && hyprctl dispatch focuswindow "class:foot" && tmux switch-client -t "$SESSION") &' '';
+  notifyCommand = body: ''bash -c 'SESSION=$(tmux display-message -p "#S" 2>/dev/null || echo "claude"); (ACTION=$(notify-send --app-name="Claude Code" --icon="/home/peteyycz/.openpeon/docs/peon-icon.png" --action="open=Open" --wait "Claude Code — $SESSION" "${body}"); [ "$ACTION" = "open" ] && hyprctl dispatch focuswindow "class:foot" && tmux switch-client -t "$SESSION") </dev/null >/dev/null 2>&1 &' '';
 
   notifyHook = body: {
     matcher = "";
@@ -9,6 +9,7 @@ let
       {
         type = "command";
         command = notifyCommand body;
+        async = true;
       }
     ];
   };

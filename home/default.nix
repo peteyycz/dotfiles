@@ -28,7 +28,7 @@ in
     installPacks = [ "peon" ];
     settings = {
       enabled = true;
-      desktop_notifications = true;
+      desktop_notifications = false;
       volume = 0.5;
       default_pack = "peon";
     };
