@@ -15,7 +15,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "/home/peteyycz/.claude/hooks/peon-ping/peon.sh",
+            "command": "/home/peteyycz/.openpeon/peon.sh",
             "timeout": 10,
             "async": true
           }
@@ -37,7 +37,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "/home/peteyycz/.claude/hooks/peon-ping/peon.sh",
+            "command": "/home/peteyycz/.openpeon/peon.sh",
             "timeout": 10,
             "async": true
           }
@@ -59,7 +59,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "/home/peteyycz/.claude/hooks/peon-ping/peon.sh",
+            "command": "/home/peteyycz/.openpeon/peon.sh",
             "timeout": 10,
             "async": true
           }
@@ -81,12 +81,16 @@
         "hooks": [
           {
             "type": "command",
-            "command": "/home/peteyycz/.claude/hooks/peon-ping/peon.sh",
+            "command": "/home/peteyycz/.openpeon/peon.sh",
             "timeout": 10,
             "async": true
           }
         ]
       }
     ]
+  },
+  "skipAutoPermissionPrompt": true,
+  "permissions": {
+    "defaultMode": "auto"
   }
 }

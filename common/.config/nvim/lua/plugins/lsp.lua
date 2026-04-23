@@ -26,7 +26,7 @@ return {
     "williamboman/mason-lspconfig.nvim",
     opts = {
       automatic_enable = false,
-      ensure_installed = { "lua_ls", "vtsls", "elixirls", "eslint", "rust_analyzer", "clangd", "templ", "gopls", "phpactor", "zls", "ols" },
+      ensure_installed = { "lua_ls", "vtsls", "elixirls", "eslint", "rust_analyzer", "clangd", "templ", "gopls", "phpactor", "zls", "ols", "jdtls" },
     },
   },
   {
@@ -187,6 +187,26 @@ return {
         on_attach = LspUtil.generic_on_attach,
       })
 
+      -- Java Language Server (Eclipse JDT.LS, JDK 21)
+      vim.lsp.config.jdtls = vim.tbl_deep_extend("force", get_config("jdtls"), {
+        cmd = { "jdtls" },
+        filetypes = { "java" },
+        on_attach = LspUtil.generic_on_attach,
+        settings = {
+          java = {
+            configuration = {
+              runtimes = {
+                {
+                  name = "JavaSE-21",
+                  path = vim.env.JAVA_HOME or "/run/current-system/sw/lib/openjdk",
+                  default = true,
+                },
+              },
+            },
+          },
+        },
+      })
+
       -- Enable LSP servers for their respective filetypes
       vim.api.nvim_create_autocmd("FileType", {
         pattern = "zig",
@@ -270,6 +290,13 @@ return {
         pattern = "astro",
         callback = function()
           vim.lsp.enable("astro")
+        end,
+      })
+
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "java",
+        callback = function()
+          vim.lsp.enable("jdtls")
         end,
       })
     end,

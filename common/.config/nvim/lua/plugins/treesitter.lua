@@ -45,6 +45,9 @@ return {
           "php",
           "smarty",
 
+          -- Java
+          "java",
+
           -- Etc
           "xml",
           "yaml",
