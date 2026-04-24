@@ -71,20 +71,24 @@ in
         highlight = mkLiteral "bold ${colors.purple}";
       };
       window = {
-        width = mkLiteral "560px";
-        background-color = mkLiteral (rgba colors.bg 0.75);
-        border = mkLiteral "0";
-        border-radius = mkLiteral "14px";
+        width = mkLiteral "720px";
+        location = mkLiteral "north";
+        anchor = mkLiteral "north";
+        y-offset = mkLiteral "20%";
+        background-color = mkLiteral (rgba colors.bg 0.5);
+        border = mkLiteral "1px solid";
+        border-color = mkLiteral (rgba colors.fg 0.1);
+        border-radius = mkLiteral "20px";
       };
       mainbox = {
-        padding = mkLiteral "12px";
+        padding = mkLiteral "16px";
       };
       inputbar = {
-        padding = mkLiteral "10px 16px";
-        margin = mkLiteral "0 0 12px 0";
-        background-color = mkLiteral "@bg1";
-        border-radius = mkLiteral "9999px";
-        children = map mkLiteral [ "prompt" "textbox-prompt-colon" "entry" ];
+        padding = mkLiteral "14px 18px";
+        margin = mkLiteral "0 0 14px 0";
+        background-color = mkLiteral (rgba colors.bg1 0.35);
+        border-radius = mkLiteral "12px";
+        children = map mkLiteral [ "textbox-prompt-colon" "entry" ];
       };
       prompt = {
         text-color = mkLiteral "@purple";
@@ -99,20 +103,21 @@ in
         text-color = mkLiteral "@fg";
       };
       listview = {
-        lines = 8;
+        lines = 5;
         columns = 1;
-        fixed-height = true;
+        fixed-height = false;
+        dynamic = true;
         spacing = mkLiteral "4px";
       };
       element = {
-        padding = mkLiteral "8px 14px";
-        border-radius = mkLiteral "10px";
+        padding = mkLiteral "9px 14px";
+        border-radius = mkLiteral "8px";
         spacing = mkLiteral "10px";
       };
       "element selected" = {
-        background-color = mkLiteral "@bg2";
+        background-color = mkLiteral (rgba colors.purple 0.2);
         text-color = mkLiteral "@purple";
-        border-radius = mkLiteral "10px";
+        border-radius = mkLiteral "8px";
       };
       element-icon = {
         size = mkLiteral "24px";
