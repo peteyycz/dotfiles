@@ -1,9 +1,5 @@
 { config, pkgs, lib, ... }:
 
-let
-  colorsLib = import ./colors.nix { inherit lib; };
-  colors = colorsLib.palette;
-in
 {
   home.packages = with pkgs; [
     (writeShellScriptBin "notes-capture" ''
@@ -43,22 +39,13 @@ in
     '')
   ];
 
-  peteyycz.hyprpanelCustomModules."custom/todos" = {
-    icon = "󱃔";
-    label = "{}";
-    hideOnEmpty = true;
-    execute = "notes-stats";
-    interval = 5000;
-    actions.onLeftClick = "notes-open";
+  peteyycz.wayleCustomModules.todos = {
+    format = "󱃔 {{ output }}";
+    command = "notes-stats";
+    "interval-ms" = 5000;
+    "hide-if-empty" = true;
+    "left-click" = "notes-open";
   };
-
-  peteyycz.hyprpanelCustomScss = ''
-    .cmodule-todos {
-      background-color: ${colors.bg}F2;
-      color: ${colors.fg3};
-      border-color: ${colors.bg2};
-    }
-  '';
 
   peteyycz.hyprlandExtraBinds = [
     "$mod, N, exec, notes-capture"

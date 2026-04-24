@@ -8,6 +8,7 @@ in
   imports = [
     ./common-apps.nix
     ./hyprland.nix
+    ./wayle.nix
     ./notes.nix
     ./git.nix
     ./claude-code.nix

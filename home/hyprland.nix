@@ -1,4 +1,4 @@
-{ config, pkgs, lib, isLaptop, primaryMonitors ? [ ], ... }:
+{ config, pkgs, lib, isLaptop, ... }:
 
 let
   colorsLib = import ./colors.nix { inherit lib; };
@@ -7,24 +7,6 @@ let
 
   terminal = "foot";
   menu = "rofi -terminal '${terminal}' -show drun";
-
-  barLayout = {
-    left = [ "dashboard" "workspaces" "windowtitle" "media" ];
-    middle = [ "clock" ];
-    right = [
-      "custom/recording"
-      "custom/todos"
-      "volume"
-      "bluetooth"
-      "network"
-    ] ++ lib.optionals isLaptop [
-      "battery"
-    ] ++ [
-      "kbinput"
-      "custom/dotfiles"
-      "notifications"
-    ];
-  };
 
   hyprAutoScale = pkgs.writeShellApplication {
     name = "hypr-auto-scale";
@@ -89,66 +71,9 @@ let
     '';
   };
 
-  hyprpanelPrimaryBar = pkgs.writeShellApplication {
-    name = "hyprpanel-primary-bar";
-    runtimeInputs = with pkgs; [ jq socat hyprland hyprpanel coreutils ];
-    text = ''
-      set -uo pipefail
-
-      priority=("$@")
-      socket="$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock"
-
-      apply() {
-        local monitors primary="" id name desired current
-        monitors=$(hyprctl monitors -j 2>/dev/null) || return 0
-
-        for m in "''${priority[@]}"; do
-          if jq -e --arg n "$m" 'map(select(.name == $n)) | length > 0' <<<"$monitors" >/dev/null; then
-            primary="$m"
-            break
-          fi
-        done
-
-        while IFS=$'\t' read -r id name; do
-          desired=hidden
-          [[ "$name" == "$primary" ]] && desired=shown
-          current=$(hyprpanel isWindowVisible "bar-$id" 2>/dev/null || echo false)
-          case "$desired:$current" in
-            shown:false|hidden:true)
-              hyprpanel toggleWindow "bar-$id" >/dev/null 2>&1 || true
-              ;;
-          esac
-        done < <(jq -r '.[] | "\(.id)\t\(.name)"' <<<"$monitors")
-      }
-
-      for _ in $(seq 1 60); do
-        hyprpanel listWindows >/dev/null 2>&1 && break
-        sleep 0.5
-      done
-
-      apply
-
-      socat -U - UNIX-CONNECT:"$socket" | while IFS= read -r line; do
-        case "$line" in
-          monitoradded*|monitorremoved*|configreloaded*)
-            sleep 0.4
-            apply
-            ;;
-        esac
-      done
-    '';
-  };
 in
 {
   options.peteyycz = {
-    hyprpanelCustomModules = lib.mkOption {
-      type = lib.types.attrsOf (lib.types.attrsOf lib.types.anything);
-      default = {};
-    };
-    hyprpanelCustomScss = lib.mkOption {
-      type = lib.types.lines;
-      default = "";
-    };
     hyprlandExtraBinds = lib.mkOption {
       type = lib.types.listOf lib.types.str;
       default = [];
@@ -172,42 +97,6 @@ in
       }];
     };
   };
-
-  peteyycz.hyprpanelCustomModules = {
-    "custom/dotfiles" = {
-      icon = "󰊢";
-      hideOnEmpty = true;
-      execute = "bash -c 'cd ~/Code/src/github.com/peteyycz/nixos-config && if [ -n \"$(git status --porcelain)\" ]; then echo 1; fi'";
-      interval = 30000;
-      actions.onLeftClick = "${terminal} --working-directory=$HOME/Code/src/github.com/peteyycz/nixos-config $SHELL -c 'git status; exec $SHELL'";
-    };
-    "custom/recording" = {
-      icon = "󰻂";
-      label = "{}";
-      hideOnEmpty = true;
-      execute = "bash -c 'pgrep -x wf-recorder >/dev/null && echo REC || echo \"\"'";
-      interval = 2000;
-      actions.onLeftClick = "pkill -SIGINT -x wf-recorder";
-    };
-  };
-
-  peteyycz.hyprpanelCustomScss = ''
-    .cmodule-dotfiles,
-    .cmodule-recording {
-      background-color: ${colors.bg}F2;
-      color: ${colors.red};
-      border-color: ${colors.red};
-    }
-    .cmodule-dotfiles .button-label,
-    .cmodule-dotfiles .module-label {
-      min-width: 0;
-      padding: 0;
-      margin: 0;
-    }
-  '';
-
-  xdg.configFile."hyprpanel/modules.scss".text = config.peteyycz.hyprpanelCustomScss;
-  xdg.configFile."hyprpanel/modules.json".text = builtins.toJSON config.peteyycz.hyprpanelCustomModules;
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -308,8 +197,8 @@ in
       layerrule = [
         "blur on, match:namespace ^(rofi)$"
         "ignore_alpha 0.5, match:namespace ^(rofi)$"
-        "blur on, match:namespace ^(hyprpanel.*)$"
-        "ignore_alpha 0.5, match:namespace ^(hyprpanel.*)$"
+        "blur on, match:namespace ^(wayle.*)$"
+        "ignore_alpha 0.5, match:namespace ^(wayle.*)$"
       ];
 
       windowrule = [
@@ -423,51 +312,6 @@ in
     };
   };
 
-  programs.hyprpanel = {
-    enable = true;
-    systemd.enable = true;
-    settings = lib.recursiveUpdate {
-      theme.font.name = "Open Runde";
-      theme.font.size = "1.05rem";
-      theme.font.weight = 400;
-      theme.bar.floating = true;
-      theme.bar.transparent = true;
-      bar.launcher.icon = "󱄅";
-      theme.bar.outer_spacing = "0";
-      theme.bar.margin_top = "0.2em";
-      theme.bar.buttons.style = "default";
-      theme.bar.buttons.enableBorders = false;
-      theme.bar.buttons.radius = "9999px";
-      theme.bar.buttons.padding_x = "1.2rem";
-      theme.bar.buttons.padding_y = "0.5rem";
-      theme.bar.buttons.spacing = "0.4em";
-      "theme.bar.buttons.modules.ram.spacing" = "0.9em";
-      "theme.bar.buttons.modules.dotfiles.spacing" = "0";
-
-      bar.layouts =
-        if primaryMonitors == [ ]
-        then { "0" = barLayout; }
-        else lib.genAttrs primaryMonitors (_: barLayout);
-
-      bar.workspaces.showWsIcons = true;
-      bar.workspaces.showApplicationIcons = true;
-      bar.workspaces.applicationIconMap."title:Microsoft Teams" = "󰊻";
-
-      bar.media.show_label = true;
-      bar.media.truncation = true;
-      bar.media.truncation_size = 40;
-
-      bar.clock.format = "%a %d %b  %H:%M";
-      bar.clock.leftClick = "${terminal} -e cal -3";
-      bar.network.leftClick = "${terminal} -e nmtui";
-      bar.network.truncation = true;
-      bar.network.truncation_size = 12;
-
-    } (lib.optionalAttrs isLaptop {
-      bar.battery.label = true;
-    } // (import ./hyprpanel-theme.nix { inherit colors; }));
-  };
-
   systemd.user.services.hypr-auto-scale = {
     Unit = {
       Description = "Auto-scale Hyprland monitors based on DPI";
@@ -477,20 +321,6 @@ in
     Install.WantedBy = [ "graphical-session.target" ];
     Service = {
       ExecStart = "${hyprAutoScale}/bin/hypr-auto-scale";
-      Restart = "on-failure";
-      RestartSec = 2;
-    };
-  };
-
-  systemd.user.services.hyprpanel-primary-bar = lib.mkIf (primaryMonitors != [ ]) {
-    Unit = {
-      Description = "Show Hyprpanel bar only on the primary monitor";
-      PartOf = [ "graphical-session.target" ];
-      After = [ "graphical-session.target" ];
-    };
-    Install.WantedBy = [ "graphical-session.target" ];
-    Service = {
-      ExecStart = "${hyprpanelPrimaryBar}/bin/hyprpanel-primary-bar ${lib.escapeShellArgs primaryMonitors}";
       Restart = "on-failure";
       RestartSec = 2;
     };
