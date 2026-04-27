@@ -67,9 +67,14 @@ in
         "org.freedesktop.impl.portal.Screenshot" = "wlr";
         "org.freedesktop.impl.portal.ScreenCast" = "wlr";
       };
-      hyprland = {
+      Hyprland = {
         default = lib.mkForce [ "hyprland" "gtk" ];
         "org.freedesktop.impl.portal.Settings" = [ "gtk" ];
+        # xdg-desktop-portal-hyprland's restore-token persistence is incomplete
+        # (logs "v3 todo with data"), so route screencast/screenshot to wlr
+        # which persists tokens via xdg-permission-store.
+        "org.freedesktop.impl.portal.ScreenCast" = [ "wlr" ];
+        "org.freedesktop.impl.portal.Screenshot" = [ "wlr" ];
       };
     };
   };

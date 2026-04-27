@@ -77,7 +77,9 @@ in
           rounding = "lg";
           shadow = "none";
           "button-rounding" = "full";
-          "button-border-location" = "none";
+          "button-border-location" = "all";
+          "button-border-width" = 1;
+          "button-bg-opacity" = 85;
           "button-group-border-location" = "none";
           # Uniform pill (no colored icon-prefix block); icon + label share one color per module.
           "button-variant" = "basic";
@@ -142,8 +144,7 @@ in
             };
             "workspace-padding" = 0.5;
             "icon-size" = 0.8;
-            "active-color" = "accent";
-            "active-indicator" = "underline";
+            "active-color" = "bg-elevated";
           };
 
           custom = lib.mapAttrsToList
