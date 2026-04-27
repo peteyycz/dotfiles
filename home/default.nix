@@ -136,6 +136,43 @@ in
       # No foot terminal running tmux — open new one
       exec foot tmux attach -t "$SESSION"
     '')
+    (writeShellScriptBin "tmuxw-rofi" ''
+      SRC="$HOME/Code/src"
+      ENTRIES=$(find "$SRC" -mindepth 2 -type d -name .git -prune -printf '%h\n' 2>/dev/null | sed "s|^$SRC/||" | sort)
+
+      SELECTED=$(echo "$ENTRIES" | rofi -dmenu -p "project" -theme-str 'window {width: 40%;}')
+      [ -z "$SELECTED" ] && exit 0
+
+      PROJECT_PATH="$SRC/$SELECTED"
+      [ ! -d "$PROJECT_PATH/.git" ] && exit 0
+
+      SESSION="$(basename "$PROJECT_PATH")"
+      (cd "$PROJECT_PATH" && tmuxw --detach)
+
+      # Find a foot window running tmux, preferring the most-recently-focused
+      MATCH_ADDR=""
+      MATCH_TTY=""
+      while read -r ADDR PID; do
+        [ -z "$ADDR" ] && continue
+        CHILD_PID=$(${pkgs.procps}/bin/pgrep -P "$PID" | head -1)
+        [ -z "$CHILD_PID" ] && continue
+        CAND_TTY="/dev/$(ps -o tty= -p "$CHILD_PID" | tr -d ' ')"
+        if tmux list-clients -F '#{client_tty}' | grep -qx "$CAND_TTY"; then
+          MATCH_ADDR="$ADDR"
+          MATCH_TTY="$CAND_TTY"
+          break
+        fi
+      done < <(hyprctl clients -j | jq -r 'sort_by(.focusHistoryID) | .[] | select(.class=="foot") | "\(.address) \(.pid)"')
+
+      if [ -n "$MATCH_TTY" ]; then
+        hyprctl dispatch focuswindow "address:$MATCH_ADDR"
+        tmux switch-client -c "$MATCH_TTY" -t "$SESSION"
+        exit 0
+      fi
+
+      # No foot terminal running tmux — open new one
+      exec foot tmux attach -t "$SESSION"
+    '')
     (writeShellScriptBin "tmuxn" ''tmux new-session -s "$(basename "$PWD")"'')
     (writeShellScriptBin "run-server" ''
       if [ -f package.json ]; then
