@@ -44,6 +44,12 @@ in
     nodejs_24
     go
 
+    rustc
+    cargo
+    rustfmt
+    clippy
+    rust-analyzer
+
     nixd
     nixfmt
     coturn
