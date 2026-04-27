@@ -25,7 +25,6 @@ let
     center = [ "clock" ];
     right = [
       "custom-recording"
-      "custom-todos"
       "volume"
       "bluetooth"
       "network"
@@ -63,6 +62,11 @@ in
     services.wayle = {
       enable = true;
       settings = {
+        general = {
+          "font-sans" = "Open Runde";
+          "font-mono" = "VictorMono Nerd Font Mono";
+        };
+
         bar = {
           layout = barLayouts;
 
@@ -75,33 +79,76 @@ in
           "button-rounding" = "full";
           "button-border-location" = "none";
           "button-group-border-location" = "none";
+          # Uniform pill (no colored icon-prefix block); icon + label share one color per module.
+          "button-variant" = "basic";
+          "button-label-weight" = "medium";
+          "button-label-padding" = 1.5;
+          "button-icon-size" = 0.8;
         };
 
         modules = {
+          dashboard = {
+            "icon-color" = "yellow";
+          };
+
+          window-title = {
+            "icon-color" = "blue";
+          };
+
           clock = {
             format = "%a %d %b  %H:%M";
             "left-click" = "${terminal} -e cal -3";
+            "icon-color" = "accent";
           };
 
           network = {
             "label-max-length" = 12;
             "left-click" = "${terminal} -e nmtui";
+            "icon-color" = "accent";
+          };
+
+          bluetooth = {
+            "icon-color" = "blue";
+          };
+
+          volume = {
+            "icon-color" = "red";
+          };
+
+          notifications = {
+            "icon-color" = "green";
+          };
+
+          keyboard-input = {
+            "icon-color" = "yellow";
           };
 
           media = {
             "label-max-length" = 40;
+            "icon-color" = "blue";
           };
 
           hyprland-workspaces = {
             "min-workspace-count" = 10;
+            "app-icons-show" = true;
+            "app-icon-map" = {
+              "title:*Microsoft Teams*" = "ld-message-circle-symbolic";
+            };
+            "workspace-padding" = 0.5;
+            "icon-size" = 0.8;
           };
 
           custom = lib.mapAttrsToList
-            (id: attrs: { inherit id; } // attrs)
+            (id: attrs: {
+              inherit id;
+              "icon-color" = "red";
+              "label-color" = "red";
+            } // attrs)
             config.peteyycz.wayleCustomModules;
         } // lib.optionalAttrs isLaptop {
           battery = {
             "label-show" = true;
+            "icon-color" = "yellow";
           };
         };
 

@@ -39,14 +39,6 @@
     '')
   ];
 
-  peteyycz.wayleCustomModules.todos = {
-    format = "󱃔 {{ output }}";
-    command = "notes-stats";
-    "interval-ms" = 5000;
-    "hide-if-empty" = true;
-    "left-click" = "notes-open";
-  };
-
   peteyycz.hyprlandExtraBinds = [
     "$mod, N, exec, notes-capture"
     "$mod SHIFT, N, exec, notes-open"
