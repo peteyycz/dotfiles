@@ -97,13 +97,11 @@ in
 
           clock = {
             format = "%a %d %b  %H:%M";
-            "left-click" = "${terminal} -e cal -3";
             "icon-color" = "accent";
           };
 
           network = {
             "label-max-length" = 12;
-            "left-click" = "${terminal} -e nmtui";
             "icon-color" = "accent";
           };
 
