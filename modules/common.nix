@@ -170,6 +170,7 @@ in
   fonts.packages = with pkgs.nerd-fonts; [ symbols-only jetbrains-mono ];
 
   services.displayManager = {
+    defaultSession = "hyprland";
     sddm = {
       enable = true;
       wayland.enable = true;
