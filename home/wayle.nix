@@ -137,14 +137,13 @@ in
           };
 
           hyprland-workspaces = {
-            "min-workspace-count" = 10;
             "app-icons-show" = true;
             "app-icon-map" = {
               "title:*Microsoft Teams*" = "ld-message-circle-symbolic";
             };
             "workspace-padding" = 0.5;
             "icon-size" = 0.8;
-            "active-color" = "bg-elevated";
+            # "active-color" = "bg-elevated";
           };
 
           custom = lib.mapAttrsToList
@@ -185,10 +184,10 @@ in
     peteyycz.wayleCustomModules = {
       dotfiles = {
         format = "󰊢";
-        command = "bash -c 'cd ~/Code/src/github.com/peteyycz/nixos-config && if [ -n \"$(git status --porcelain)\" ]; then echo 1; fi'";
+        command = "bash -c 'cd ~/Code/src/github.com/peteyycz/dotfiles && if [ -n \"$(git status --porcelain)\" ]; then echo 1; fi'";
         "interval-ms" = 30000;
         "hide-if-empty" = true;
-        "left-click" = "${terminal} --working-directory=$HOME/Code/src/github.com/peteyycz/nixos-config $SHELL -c 'git status; exec $SHELL'";
+        "left-click" = "${terminal} --working-directory=$HOME/Code/src/github.com/peteyycz/dotfiles $SHELL -c 'git status; exec $SHELL'";
       };
       recording = {
         format = "󰻂 {{ output }}";
