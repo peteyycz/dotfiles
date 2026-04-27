@@ -92,7 +92,8 @@ in
           };
 
           window-title = {
-            "icon-color" = "blue";
+            "icon-color" = "accent";
+            "label-color" = "accent";
           };
 
           clock = {
@@ -110,7 +111,8 @@ in
           };
 
           volume = {
-            "icon-color" = "red";
+            "icon-color" = "accent";
+            "label-color" = "accent";
           };
 
           notifications = {
@@ -119,6 +121,12 @@ in
 
           keyboard-input = {
             "icon-color" = "yellow";
+            "layout-alias-map" = {
+              "English (US)" = "US";
+              "Hungarian (QWERTY)" = "HU";
+              "Hungarian" = "HU";
+            };
+            "left-click" = "hyprctl switchxkblayout all next";
           };
 
           media = {
@@ -134,6 +142,8 @@ in
             };
             "workspace-padding" = 0.5;
             "icon-size" = 0.8;
+            "active-color" = "accent";
+            "active-indicator" = "underline";
           };
 
           custom = lib.mapAttrsToList
