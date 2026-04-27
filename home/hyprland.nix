@@ -204,9 +204,10 @@ in
       windowrule = [
         "workspace 2 silent, match:class ^(google-chrome)$"
         "workspace 3 silent, match:class ^(Steam)$"
+        "workspace 3 silent, match:class ^(Slack)$, match:initial_title ^(Slack)$"
         "workspace 4 silent, match:class ^(steam_app)"
+        "workspace 4 silent, match:title ^(.*Microsoft Teams.*)$"
         "workspace 7 silent, match:class ^(spotify)$"
-        "workspace 9 silent, match:class ^(Slack)$"
 
         "float on, match:class ^(Steam)$"
         "tile on, match:class ^(Steam)$, match:title ^(Steam)$"
@@ -216,6 +217,11 @@ in
         "float on, match:class ^(imv)$"
         "float on, match:class ^(mpv)$"
         "float on, match:class ^(org\\.gnome\\.NautilusPreviewer)$"
+
+        # Slack subwindows (calls, huddles, screen-share controls) float;
+        # main Slack window keeps default tiling.
+        "float on, match:class ^(Slack)$, match:title ^(Slack \\|.*)$"
+        "float on, match:class ^(Slack)$, match:title ^(.*[Hh]uddle.*)$"
       ] ++ config.peteyycz.hyprlandExtraWindowRules;
 
       bind = [
