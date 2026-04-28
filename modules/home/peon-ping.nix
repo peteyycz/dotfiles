@@ -1,6 +1,7 @@
 { inputs, ... }:
 {
-  flake.modules.homeManager.peon-ping = { pkgs, ... }:
+  flake.modules.homeManager.peon-ping =
+    { pkgs, ... }:
     let
       pkg = inputs.peon-ping.packages.${pkgs.stdenv.hostPlatform.system}.default;
     in

@@ -1,56 +1,58 @@
 { ... }:
 {
-  flake.modules.homeManager.notes = { config, pkgs, ... }:
+  flake.modules.homeManager.notes =
+    { config, pkgs, ... }:
     let
       inherit (config.peteyycz) terminal notesDir;
-    in {
-    home.packages = with pkgs; [
-      (writeShellScriptBin "notes-capture" ''
-        set -eu
-        NOTES_DIR="${notesDir}"
-        INBOX="$NOTES_DIR/inbox.md"
+    in
+    {
+      home.packages = with pkgs; [
+        (writeShellScriptBin "notes-capture" ''
+          set -eu
+          NOTES_DIR="${notesDir}"
+          INBOX="$NOTES_DIR/inbox.md"
 
-        if [ ! -d "$NOTES_DIR" ]; then
+          if [ ! -d "$NOTES_DIR" ]; then
+            mkdir -p "$NOTES_DIR"
+            ${pkgs.git}/bin/git -C "$NOTES_DIR" init -q
+          fi
+
+          if [ ! -f "$INBOX" ]; then
+            printf '# Inbox\n\n' > "$INBOX"
+          fi
+
+          TEXT=$(rofi -dmenu -p "note" -l 0 -theme-str 'window {width: 40%;} entry { placeholder: "Capture a note..."; }')
+          [ -z "$TEXT" ] && exit 0
+
+          printf -- '- [ ] %s — %s\n' "$(date '+%Y-%m-%d %H:%M')" "$TEXT" >> "$INBOX"
+        '')
+        (writeShellScriptBin "notes-open" ''
+          NOTES_DIR="${notesDir}"
           mkdir -p "$NOTES_DIR"
-          ${pkgs.git}/bin/git -C "$NOTES_DIR" init -q
-        fi
+          exec ${terminal} --app-id=notes-floating --working-directory="$NOTES_DIR" nvim inbox.md
+        '')
+        (writeShellScriptBin "notes-stats" ''
+          NOTES_DIR="${notesDir}"
+          INBOX="$NOTES_DIR/inbox.md"
 
-        if [ ! -f "$INBOX" ]; then
-          printf '# Inbox\n\n' > "$INBOX"
-        fi
+          [ ! -f "$INBOX" ] && exit 0
 
-        TEXT=$(rofi -dmenu -p "note" -l 0 -theme-str 'window {width: 40%;} entry { placeholder: "Capture a note..."; }')
-        [ -z "$TEXT" ] && exit 0
+          COUNT=$(grep -c '^- \[ \]' "$INBOX" 2>/dev/null || true)
+          COUNT=''${COUNT:-0}
+          [ "$COUNT" = "0" ] && exit 0
+          printf '%s\n' "$COUNT"
+        '')
+      ];
 
-        printf -- '- [ ] %s — %s\n' "$(date '+%Y-%m-%d %H:%M')" "$TEXT" >> "$INBOX"
-      '')
-      (writeShellScriptBin "notes-open" ''
-        NOTES_DIR="${notesDir}"
-        mkdir -p "$NOTES_DIR"
-        exec ${terminal} --app-id=notes-floating --working-directory="$NOTES_DIR" nvim inbox.md
-      '')
-      (writeShellScriptBin "notes-stats" ''
-        NOTES_DIR="${notesDir}"
-        INBOX="$NOTES_DIR/inbox.md"
+      peteyycz.hyprlandExtraBinds = [
+        "$mod, N, exec, notes-capture"
+        "$mod SHIFT, N, exec, notes-open"
+      ];
 
-        [ ! -f "$INBOX" ] && exit 0
-
-        COUNT=$(grep -c '^- \[ \]' "$INBOX" 2>/dev/null || true)
-        COUNT=''${COUNT:-0}
-        [ "$COUNT" = "0" ] && exit 0
-        printf '%s\n' "$COUNT"
-      '')
-    ];
-
-    peteyycz.hyprlandExtraBinds = [
-      "$mod, N, exec, notes-capture"
-      "$mod SHIFT, N, exec, notes-open"
-    ];
-
-    peteyycz.hyprlandExtraWindowRules = [
-      "float on, match:class ^(notes-floating)$"
-      "size 60% 70%, match:class ^(notes-floating)$"
-      "center 1, match:class ^(notes-floating)$"
-    ];
-  };
+      peteyycz.hyprlandExtraWindowRules = [
+        "float on, match:class ^(notes-floating)$"
+        "size 60% 70%, match:class ^(notes-floating)$"
+        "center 1, match:class ^(notes-floating)$"
+      ];
+    };
 }
