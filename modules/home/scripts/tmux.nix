@@ -1,6 +1,9 @@
 { ... }:
 {
-  flake.modules.homeManager.tmux-scripts = { pkgs, ... }: {
+  flake.modules.homeManager.tmux-scripts = { config, theme, pkgs, ... }:
+    let
+      inherit (config.peteyycz) terminal codeRoot;
+    in {
     home.packages = with pkgs; [
       (writeShellScriptBin "tmux-rofi" ''
         # Build list of sessions with git branch info
@@ -9,7 +12,7 @@
             branch=$(${pkgs.git}/bin/git -C "$path" branch --show-current 2>/dev/null)
             dirty=$(${pkgs.git}/bin/git -C "$path" status --porcelain 2>/dev/null)
             if [ -n "$dirty" ]; then
-              echo "$name <span color='#fb4934'>(#$branch)</span>"
+              echo "$name <span color='${theme.palette.red}'>(#$branch)</span>"
             else
               echo "$name (#$branch)"
             fi
@@ -27,7 +30,7 @@
           tmux new-session -d -s "$SESSION"
         fi
 
-        # Find a foot window running tmux, preferring the most-recently-focused
+        # Find a terminal window running tmux, preferring the most-recently-focused
         MATCH_ADDR=""
         MATCH_TTY=""
         while read -r ADDR PID; do
@@ -40,7 +43,7 @@
             MATCH_TTY="$CAND_TTY"
             break
           fi
-        done < <(hyprctl clients -j | jq -r 'sort_by(.focusHistoryID) | .[] | select(.class=="foot") | "\(.address) \(.pid)"')
+        done < <(hyprctl clients -j | jq -r 'sort_by(.focusHistoryID) | .[] | select(.class=="${terminal}") | "\(.address) \(.pid)"')
 
         if [ -n "$MATCH_TTY" ]; then
           hyprctl dispatch focuswindow "address:$MATCH_ADDR"
@@ -48,11 +51,11 @@
           exit 0
         fi
 
-        # No foot terminal running tmux — open new one
-        exec foot tmux attach -t "$SESSION"
+        # No terminal running tmux — open new one
+        exec ${terminal} tmux attach -t "$SESSION"
       '')
       (writeShellScriptBin "tmuxw-rofi" ''
-        SRC="$HOME/Code/src"
+        SRC="${codeRoot}"
         ENTRIES=$(find "$SRC" -mindepth 2 -type d -name .git -prune -printf '%h\n' 2>/dev/null | sed "s|^$SRC/||" | sort)
 
         SELECTED=$(echo "$ENTRIES" | rofi -dmenu -p "project" -theme-str 'window {width: 40%;}')
@@ -64,7 +67,7 @@
         SESSION="$(basename "$PROJECT_PATH")"
         (cd "$PROJECT_PATH" && tmuxw --detach)
 
-        # Find a foot window running tmux, preferring the most-recently-focused
+        # Find a terminal window running tmux, preferring the most-recently-focused
         MATCH_ADDR=""
         MATCH_TTY=""
         while read -r ADDR PID; do
@@ -77,7 +80,7 @@
             MATCH_TTY="$CAND_TTY"
             break
           fi
-        done < <(hyprctl clients -j | jq -r 'sort_by(.focusHistoryID) | .[] | select(.class=="foot") | "\(.address) \(.pid)"')
+        done < <(hyprctl clients -j | jq -r 'sort_by(.focusHistoryID) | .[] | select(.class=="${terminal}") | "\(.address) \(.pid)"')
 
         if [ -n "$MATCH_TTY" ]; then
           hyprctl dispatch focuswindow "address:$MATCH_ADDR"
@@ -85,8 +88,8 @@
           exit 0
         fi
 
-        # No foot terminal running tmux — open new one
-        exec foot tmux attach -t "$SESSION"
+        # No terminal running tmux — open new one
+        exec ${terminal} tmux attach -t "$SESSION"
       '')
       (writeShellScriptBin "tmuxn" ''tmux new-session -s "$(basename "$PWD")"'')
       (writeShellScriptBin "tmuxw" ''

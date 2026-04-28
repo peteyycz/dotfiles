@@ -1,4 +1,7 @@
-{ ... }:
+{ config, ... }:
+let
+  fonts = config.fontFamilies;
+in
 {
   flake.modules.homeManager.gtk = { theme, pkgs, ... }: {
     gtk = {
@@ -11,7 +14,7 @@
       };
       gtk4.theme = null;
       font = {
-        name = "Open Runde";
+        name = fonts.sans;
         size = 11;
       };
       iconTheme = {

@@ -3,9 +3,8 @@
   flake.modules.homeManager.hyprland = { config, lib, theme, pkgs, ... }:
     let
       inherit (theme) palette c;
-      inherit (config.peteyycz) isLaptop;
+      inherit (config.peteyycz) isLaptop terminal scriptsDir;
 
-      terminal = "foot";
       menu = "rofi -terminal '${terminal}' -show drun";
 
       hyprAutoScale = pkgs.writeShellApplication {
@@ -75,10 +74,10 @@
       services.hyprpaper = {
         enable = true;
         settings = {
-          preload = [ "${config.home.homeDirectory}/.local/share/backgrounds/default.jpg" ];
+          preload = [ "${config.home.homeDirectory}/${config.peteyycz.wallpaperPath}" ];
           wallpaper = [{
             monitor = "";
-            path = "${config.home.homeDirectory}/.local/share/backgrounds/default.jpg";
+            path = "${config.home.homeDirectory}/${config.peteyycz.wallpaperPath}";
             fit_mode = "cover";
           }];
         };
@@ -102,7 +101,7 @@
             (map (n: "${toString n}, monitor:eDP-1") (lib.range 1 10));
 
           exec-once = [
-            "test -x $HOME/Code/src/github.com/peteyycz/scripts/@peteyycz:dev-start.sh && $HOME/Code/src/github.com/peteyycz/scripts/@peteyycz:dev-start.sh"
+            "test -x ${scriptsDir}/@peteyycz:dev-start.sh && ${scriptsDir}/@peteyycz:dev-start.sh"
             "sleep 0.5 && hyprctl dispatch workspace 1 && ${terminal}"
             "1password --silent"
             "google-chrome-stable"
@@ -274,7 +273,7 @@
             "$mod SHIFT, minus, movetoworkspacesilent, special:scratch"
             "$mod, minus, togglespecialworkspace, scratch"
 
-            "$mod, R, exec, find $HOME/Code/src/github.com/peteyycz/scripts -maxdepth 1 -name '*.sh' -printf '%f\\n' | sed 's/\\.sh$//' | rofi -dmenu -p 'Scripts' -i | xargs -I {} sh -c '$HOME/Code/src/github.com/peteyycz/scripts/{}.sh'"
+            "$mod, R, exec, find ${scriptsDir} -maxdepth 1 -name '*.sh' -printf '%f\\n' | sed 's/\\.sh$//' | rofi -dmenu -p 'Scripts' -i | xargs -I {} sh -c '${scriptsDir}/{}.sh'"
 
             ", Print, exec, grimblast save output"
             "ALT, Print, exec, grimblast save active"

@@ -1,11 +1,12 @@
-{ ... }:
+{ config, ... }:
+let
+  fonts = config.fontFamilies;
+in
 {
   flake.modules.homeManager.wayle = { config, lib, theme, pkgs, ... }:
     let
       inherit (theme) palette;
-      inherit (config.peteyycz) isLaptop primaryMonitors;
-
-      terminal = "foot";
+      inherit (config.peteyycz) isLaptop primaryMonitors terminal dotfilesDir;
 
       # Wayle registers its NetworkManager client once at startup and drops the
       # network module for the whole session if NM isn't on the system bus yet.
@@ -52,8 +53,8 @@
         enable = true;
         settings = {
           general = {
-            "font-sans" = "Open Runde";
-            "font-mono" = "VictorMono Nerd Font Mono";
+            "font-sans" = fonts.sans;
+            "font-mono" = fonts.mono;
           };
 
           bar = {
@@ -171,11 +172,12 @@
 
       peteyycz.wayleCustomModules = {
         dotfiles = {
+          icon = "󰊢";
           format = "󰊢";
-          command = "bash -c 'cd ~/Code/src/github.com/peteyycz/dotfiles && if [ -n \"$(git status --porcelain)\" ]; then echo 1; fi'";
+          command = "bash -c 'cd ${dotfilesDir} && if [ -n \"$(git status --porcelain)\" ]; then echo 1; fi'";
           "interval-ms" = 30000;
           "hide-if-empty" = true;
-          "left-click" = "${terminal} --working-directory=$HOME/Code/src/github.com/peteyycz/dotfiles $SHELL -c 'git status; exec $SHELL'";
+          "left-click" = "${terminal} --working-directory=${dotfilesDir} $SHELL -c 'git status; exec $SHELL'";
         };
         recording = {
           format = "󰻂 {{ output }}";

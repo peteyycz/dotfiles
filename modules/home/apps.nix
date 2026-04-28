@@ -1,26 +1,11 @@
-{ ... }:
+{ config, ... }:
+let
+  fonts = config.fontFamilies;
+in
 {
-  flake.modules.homeManager.apps = { config, lib, theme, pkgs, ... }:
+  flake.modules.homeManager.apps = { config, theme, pkgs, ... }:
     let
       inherit (theme) palette c;
-
-      open-runde = pkgs.stdenvNoCC.mkDerivation {
-        pname = "open-runde";
-        version = "1.0.1";
-        src = pkgs.fetchzip {
-          url = "https://github.com/lauridskern/open-runde/releases/download/v1.0.1/OpenRunde-1.0.1.zip";
-          sha256 = "1nv2124hpkmvn5byk9xnm3vq7nh0ivlld0nndmm5dvw142mf222x";
-          stripRoot = false;
-        };
-        installPhase = ''
-          install -Dm644 -t $out/share/fonts/opentype "$src"/OpenRunde-1.0.1/desktop/*.otf
-        '';
-        meta = {
-          description = "A soft, rounded variant of Inter";
-          homepage = "https://github.com/lauridskern/open-runde";
-          license = lib.licenses.ofl;
-        };
-      };
     in
     {
       home.packages = with pkgs; [
@@ -28,15 +13,12 @@
         slurp
         wf-recorder
         jq
-        inter
-        open-runde
         grimblast
-        (lib.lowPrio papirus-icon-theme)
       ];
 
       programs.rofi = {
         enable = true;
-        font = "Open Runde 13";
+        font = "${fonts.sans} 13";
         extraConfig = {
           modi = "drun,run,window";
           show-icons = true;
@@ -139,7 +121,7 @@
 
           background = [{
             monitor = "";
-            path = "${config.home.homeDirectory}/.local/share/backgrounds/default.jpg";
+            path = "${config.home.homeDirectory}/${config.peteyycz.wallpaperPath}";
             blur_passes = 3;
             blur_size = 8;
           }];
@@ -171,7 +153,7 @@
             text = "cmd[update:1000] date +'%H:%M'";
             color = "rgb(${c palette.fg})";
             font_size = 80;
-            font_family = "Open Runde";
+            font_family = fonts.sans;
             position = "0, 160";
             halign = "center";
             valign = "center";
@@ -207,7 +189,7 @@
         enable = true;
         settings = {
           main = {
-            font = "VictorMono Nerd Font Mono:style=Medium:size=14";
+            font = "${fonts.mono}:style=Medium:size=14";
             pad = "7x7";
             selection-target = "clipboard";
           };
