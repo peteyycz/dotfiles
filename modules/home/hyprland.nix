@@ -261,7 +261,6 @@
 
             "$mod, B, togglesplit"
             "$mod, V, togglesplit"
-            "$mod, C, exec, caldy toggle"
             "$mod, W, exec, tmux-rofi"
             "$mod SHIFT, W, exec, tmuxw-rofi"
             "$mod, E, togglesplit"

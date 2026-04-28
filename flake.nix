@@ -14,11 +14,6 @@
     };
 
     peon-ping.url = "github:PeonPing/peon-ping";
-
-    caldy = {
-      url = "github:peteyycz/caldy";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = inputs:
