@@ -1,6 +1,13 @@
 { ... }:
 {
-  flake.modules.homeManager.hyprland = { config, lib, theme, pkgs, ... }:
+  flake.modules.homeManager.hyprland =
+    {
+      config,
+      lib,
+      theme,
+      pkgs,
+      ...
+    }:
     let
       inherit (theme) palette c;
       inherit (config.peteyycz) isLaptop terminal scriptsDir;
@@ -9,7 +16,13 @@
 
       hyprAutoScale = pkgs.writeShellApplication {
         name = "hypr-auto-scale";
-        runtimeInputs = with pkgs; [ jq socat hyprland coreutils gawk ];
+        runtimeInputs = with pkgs; [
+          jq
+          socat
+          hyprland
+          coreutils
+          gawk
+        ];
         text = ''
           set -uo pipefail
 
@@ -75,11 +88,13 @@
         enable = true;
         settings = {
           preload = [ "${config.home.homeDirectory}/${config.peteyycz.wallpaperPath}" ];
-          wallpaper = [{
-            monitor = "";
-            path = "${config.home.homeDirectory}/${config.peteyycz.wallpaperPath}";
-            fit_mode = "cover";
-          }];
+          wallpaper = [
+            {
+              monitor = "";
+              path = "${config.home.homeDirectory}/${config.peteyycz.wallpaperPath}";
+              fit_mode = "cover";
+            }
+          ];
         };
       };
 
@@ -94,11 +109,9 @@
           "$term" = terminal;
           "$menu" = menu;
 
-          monitor = lib.optionals isLaptop [ "eDP-1,preferred,0x0,1" ]
-            ++ [ ",preferred,auto-up,1" ];
+          monitor = lib.optionals isLaptop [ "eDP-1,preferred,0x0,1" ] ++ [ ",preferred,auto-up,1" ];
 
-          workspace = lib.optionals isLaptop
-            (map (n: "${toString n}, monitor:eDP-1") (lib.range 1 10));
+          workspace = lib.optionals isLaptop (map (n: "${toString n}, monitor:eDP-1") (lib.range 1 10));
 
           exec-once = [
             "test -x ${scriptsDir}/@peteyycz:dev-start.sh && ${scriptsDir}/@peteyycz:dev-start.sh"
@@ -207,7 +220,8 @@
             # main Slack window keeps default tiling.
             "float on, match:class ^(Slack)$, match:title ^(Slack \\|.*)$"
             "float on, match:class ^(Slack)$, match:title ^(.*[Hh]uddle.*)$"
-          ] ++ config.peteyycz.hyprlandExtraWindowRules;
+          ]
+          ++ config.peteyycz.hyprlandExtraWindowRules;
 
           bind = [
             "$mod, Return, exec, $term"
@@ -279,7 +293,8 @@
             "CTRL, Print, exec, grimblast copy area"
             ''$mod, Print, exec, bash -c 'region=$(slurp) && wf-recorder -g "$region" -f ~/Videos/recording-$(date +%Y%m%d-%H%M%S).mp4' ''
             "$mod SHIFT, Print, exec, pkill -SIGINT -x wf-recorder"
-          ] ++ config.peteyycz.hyprlandExtraBinds;
+          ]
+          ++ config.peteyycz.hyprlandExtraBinds;
 
           bindl = [
             ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"

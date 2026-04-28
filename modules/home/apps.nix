@@ -3,7 +3,13 @@ let
   fonts = config.fontFamilies;
 in
 {
-  flake.modules.homeManager.apps = { config, theme, pkgs, ... }:
+  flake.modules.homeManager.apps =
+    {
+      config,
+      theme,
+      pkgs,
+      ...
+    }:
     let
       inherit (theme) palette c;
     in
@@ -34,80 +40,87 @@ in
           kb-page-next = "Control+d";
           kb-delete-entry = "";
         };
-        theme = let inherit (config.lib.formats.rasi) mkLiteral; in {
-          "*" = {
-            bg = mkLiteral palette.bg;
-            bg1 = mkLiteral palette.bg1;
-            bg2 = mkLiteral palette.bg2;
-            gray = mkLiteral palette.gray;
-            fg3 = mkLiteral palette.fg3;
-            fg = mkLiteral palette.fg;
-            red = mkLiteral palette.red;
-            yellow = mkLiteral palette.yellow;
-            blue = mkLiteral palette.blue;
-            purple = mkLiteral palette.purple;
-            aqua = mkLiteral palette.aqua;
-            background-color = mkLiteral "transparent";
-            text-color = mkLiteral "@fg";
-            highlight = mkLiteral "bold ${palette.purple}";
+        theme =
+          let
+            inherit (config.lib.formats.rasi) mkLiteral;
+          in
+          {
+            "*" = {
+              bg = mkLiteral palette.bg;
+              bg1 = mkLiteral palette.bg1;
+              bg2 = mkLiteral palette.bg2;
+              gray = mkLiteral palette.gray;
+              fg3 = mkLiteral palette.fg3;
+              fg = mkLiteral palette.fg;
+              red = mkLiteral palette.red;
+              yellow = mkLiteral palette.yellow;
+              blue = mkLiteral palette.blue;
+              purple = mkLiteral palette.purple;
+              aqua = mkLiteral palette.aqua;
+              background-color = mkLiteral "transparent";
+              text-color = mkLiteral "@fg";
+              highlight = mkLiteral "bold ${palette.purple}";
+            };
+            window = {
+              width = mkLiteral "720px";
+              location = mkLiteral "north";
+              anchor = mkLiteral "north";
+              y-offset = mkLiteral "20%";
+              background-color = mkLiteral (theme.rgba palette.bg 0.5);
+              border = mkLiteral "1px solid";
+              border-color = mkLiteral (theme.rgba palette.fg 0.1);
+              border-radius = mkLiteral "20px";
+            };
+            mainbox = {
+              padding = mkLiteral "16px";
+            };
+            inputbar = {
+              padding = mkLiteral "14px 18px";
+              margin = mkLiteral "0 0 14px 0";
+              background-color = mkLiteral (theme.rgba palette.bg1 0.35);
+              border-radius = mkLiteral "12px";
+              children = map mkLiteral [
+                "textbox-prompt-colon"
+                "entry"
+              ];
+            };
+            prompt = {
+              text-color = mkLiteral "@purple";
+            };
+            "textbox-prompt-colon" = {
+              expand = false;
+              str = " ";
+            };
+            entry = {
+              placeholder = "Search...";
+              placeholder-color = mkLiteral "@gray";
+              text-color = mkLiteral "@fg";
+            };
+            listview = {
+              lines = 5;
+              columns = 1;
+              fixed-height = false;
+              dynamic = true;
+              spacing = mkLiteral "4px";
+            };
+            element = {
+              padding = mkLiteral "9px 14px";
+              border-radius = mkLiteral "8px";
+              spacing = mkLiteral "10px";
+            };
+            "element selected" = {
+              background-color = mkLiteral (theme.rgba palette.purple 0.2);
+              text-color = mkLiteral "@purple";
+              border-radius = mkLiteral "8px";
+            };
+            element-icon = {
+              size = mkLiteral "24px";
+              margin = mkLiteral "0 10px 0 0";
+            };
+            element-text = {
+              vertical-align = mkLiteral "0.5";
+            };
           };
-          window = {
-            width = mkLiteral "720px";
-            location = mkLiteral "north";
-            anchor = mkLiteral "north";
-            y-offset = mkLiteral "20%";
-            background-color = mkLiteral (theme.rgba palette.bg 0.5);
-            border = mkLiteral "1px solid";
-            border-color = mkLiteral (theme.rgba palette.fg 0.1);
-            border-radius = mkLiteral "20px";
-          };
-          mainbox = {
-            padding = mkLiteral "16px";
-          };
-          inputbar = {
-            padding = mkLiteral "14px 18px";
-            margin = mkLiteral "0 0 14px 0";
-            background-color = mkLiteral (theme.rgba palette.bg1 0.35);
-            border-radius = mkLiteral "12px";
-            children = map mkLiteral [ "textbox-prompt-colon" "entry" ];
-          };
-          prompt = {
-            text-color = mkLiteral "@purple";
-          };
-          "textbox-prompt-colon" = {
-            expand = false;
-            str = " ";
-          };
-          entry = {
-            placeholder = "Search...";
-            placeholder-color = mkLiteral "@gray";
-            text-color = mkLiteral "@fg";
-          };
-          listview = {
-            lines = 5;
-            columns = 1;
-            fixed-height = false;
-            dynamic = true;
-            spacing = mkLiteral "4px";
-          };
-          element = {
-            padding = mkLiteral "9px 14px";
-            border-radius = mkLiteral "8px";
-            spacing = mkLiteral "10px";
-          };
-          "element selected" = {
-            background-color = mkLiteral (theme.rgba palette.purple 0.2);
-            text-color = mkLiteral "@purple";
-            border-radius = mkLiteral "8px";
-          };
-          element-icon = {
-            size = mkLiteral "24px";
-            margin = mkLiteral "0 10px 0 0";
-          };
-          element-text = {
-            vertical-align = mkLiteral "0.5";
-          };
-        };
       };
 
       programs.hyprlock = {
@@ -119,45 +132,51 @@ in
             grace = 0;
           };
 
-          background = [{
-            monitor = "";
-            path = "${config.home.homeDirectory}/${config.peteyycz.wallpaperPath}";
-            blur_passes = 3;
-            blur_size = 8;
-          }];
+          background = [
+            {
+              monitor = "";
+              path = "${config.home.homeDirectory}/${config.peteyycz.wallpaperPath}";
+              blur_passes = 3;
+              blur_size = 8;
+            }
+          ];
 
-          input-field = [{
-            monitor = "";
-            size = "300, 60";
-            position = "0, -80";
-            halign = "center";
-            valign = "center";
-            outline_thickness = 4;
-            dots_size = 0.25;
-            dots_spacing = 0.4;
-            dots_center = true;
-            rounding = 30;
-            outer_color = "rgb(${c palette.bg1})";
-            inner_color = "rgb(${c palette.bg})";
-            font_color = "rgb(${c palette.fg})";
-            check_color = "rgb(${c palette.blueDark})";
-            fail_color = "rgb(${c palette.red})";
-            capslock_color = "rgb(${c palette.yellow})";
-            placeholder_text = "<i>Password...</i>";
-            fail_text = "<i>$FAIL ($ATTEMPTS)</i>";
-            fade_on_empty = false;
-          }];
+          input-field = [
+            {
+              monitor = "";
+              size = "300, 60";
+              position = "0, -80";
+              halign = "center";
+              valign = "center";
+              outline_thickness = 4;
+              dots_size = 0.25;
+              dots_spacing = 0.4;
+              dots_center = true;
+              rounding = 30;
+              outer_color = "rgb(${c palette.bg1})";
+              inner_color = "rgb(${c palette.bg})";
+              font_color = "rgb(${c palette.fg})";
+              check_color = "rgb(${c palette.blueDark})";
+              fail_color = "rgb(${c palette.red})";
+              capslock_color = "rgb(${c palette.yellow})";
+              placeholder_text = "<i>Password...</i>";
+              fail_text = "<i>$FAIL ($ATTEMPTS)</i>";
+              fade_on_empty = false;
+            }
+          ];
 
-          label = [{
-            monitor = "";
-            text = "cmd[update:1000] date +'%H:%M'";
-            color = "rgb(${c palette.fg})";
-            font_size = 80;
-            font_family = fonts.sans;
-            position = "0, 160";
-            halign = "center";
-            valign = "center";
-          }];
+          label = [
+            {
+              monitor = "";
+              text = "cmd[update:1000] date +'%H:%M'";
+              color = "rgb(${c palette.fg})";
+              font_size = 80;
+              font_family = fonts.sans;
+              position = "0, 160";
+              halign = "center";
+              valign = "center";
+            }
+          ];
         };
       };
 

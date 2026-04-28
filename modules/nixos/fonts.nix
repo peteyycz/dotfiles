@@ -10,7 +10,8 @@
     description = "Font family names. Single source of truth shared by NixOS fontconfig and home-manager app configs.";
   };
 
-  config.flake.modules.nixos.fonts = { pkgs, ... }:
+  config.flake.modules.nixos.fonts =
+    { pkgs, ... }:
     let
       open-runde = pkgs.stdenvNoCC.mkDerivation {
         pname = "open-runde";
@@ -29,7 +30,8 @@
           license = lib.licenses.ofl;
         };
       };
-    in {
+    in
+    {
       fonts.packages = with pkgs; [
         open-runde
         inter
@@ -43,8 +45,14 @@
       fonts.fontconfig = {
         enable = true;
         defaultFonts = {
-          sansSerif = [ config.fontFamilies.sans "Symbols Nerd Font" ];
-          monospace = [ config.fontFamilies.mono "Symbols Nerd Font" ];
+          sansSerif = [
+            config.fontFamilies.sans
+            "Symbols Nerd Font"
+          ];
+          monospace = [
+            config.fontFamilies.mono
+            "Symbols Nerd Font"
+          ];
         };
       };
     };

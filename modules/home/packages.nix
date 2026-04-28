@@ -1,63 +1,64 @@
 { ... }:
 {
-  flake.modules.homeManager.packages = { pkgs, ... }: {
-    home.packages = with pkgs; [
-      networkmanagerapplet
+  flake.modules.homeManager.packages =
+    { pkgs, ... }:
+    {
+      home.packages = with pkgs; [
+        networkmanagerapplet
 
-      gcc
-      gnumake
+        gcc
+        gnumake
 
-      nodejs_24
-      go
+        nodejs_24
+        go
 
-      rustc
-      cargo
-      rustfmt
-      clippy
-      rust-analyzer
+        rustc
+        cargo
+        rustfmt
+        clippy
+        rust-analyzer
 
-      nixd
-      nixfmt
-      coturn
+        nixd
+        nixfmt
+        coturn
 
-      nerd-fonts.victor-mono
-      pandoc
+        pandoc
 
-      kubectl
-      kubernetes-helm
+        kubectl
+        kubernetes-helm
 
-      awscli2
-      opentofu
-      terraform
-      terragrunt
-      pomerium-cli
-      vault
-      mongosh
-      mongodb-tools
+        awscli2
+        opentofu
+        terraform
+        terragrunt
+        pomerium-cli
+        vault
+        mongosh
+        mongodb-tools
 
-      mediainfo
-      imv
-      mpv
-      spotify
+        mediainfo
+        imv
+        mpv
+        spotify
 
-      gh
-      ghq
-      piper-tts
+        gh
+        ghq
+        piper-tts
 
-      libwebp
-      btop
-      fd
-      eza
+        libwebp
+        btop
+        fd
+        eza
 
-      postgresql
+        postgresql
 
-      ruby
-      kamal
+        ruby
+        kamal
 
-      beam.packages.erlang_27.erlang
-      beam.packages.erlang_27.elixir_1_18
-      inotify-tools
-      watchman
-    ];
-  };
+        beam.packages.erlang_27.erlang
+        beam.packages.erlang_27.elixir_1_18
+        inotify-tools
+        watchman
+      ];
+    };
 }

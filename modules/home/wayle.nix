@@ -3,10 +3,22 @@ let
   fonts = config.fontFamilies;
 in
 {
-  flake.modules.homeManager.wayle = { config, lib, theme, pkgs, ... }:
+  flake.modules.homeManager.wayle =
+    {
+      config,
+      lib,
+      theme,
+      pkgs,
+      ...
+    }:
     let
       inherit (theme) palette;
-      inherit (config.peteyycz) isLaptop primaryMonitors terminal dotfilesDir;
+      inherit (config.peteyycz)
+        isLaptop
+        primaryMonitors
+        terminal
+        dotfilesDir
+        ;
 
       # Wayle registers its NetworkManager client once at startup and drops the
       # network module for the whole session if NM isn't on the system bus yet.
@@ -23,16 +35,23 @@ in
       '';
 
       sections = {
-        left = [ "dashboard" "hyprland-workspaces" "window-title" "media" ];
+        left = [
+          "dashboard"
+          "hyprland-workspaces"
+          "window-title"
+          "media"
+        ];
         center = [ "clock" ];
         right = [
           "custom-recording"
           "volume"
           "bluetooth"
           "network"
-        ] ++ lib.optionals isLaptop [
+        ]
+        ++ lib.optionals isLaptop [
           "battery"
-        ] ++ [
+        ]
+        ++ [
           "keyboard-input"
           "custom-dotfiles"
           "notifications"
@@ -42,11 +61,16 @@ in
       # If primaryMonitors is empty, one wildcard layout. Otherwise an explicit
       # layout per primary connector plus a wildcard hide entry for anything else.
       barLayouts =
-        if primaryMonitors == [ ]
-        then [ (sections // { monitor = "*"; }) ]
+        if primaryMonitors == [ ] then
+          [ (sections // { monitor = "*"; }) ]
         else
           (map (m: sections // { monitor = m; }) primaryMonitors)
-          ++ [ { monitor = "*"; show = false; } ];
+          ++ [
+            {
+              monitor = "*";
+              show = false;
+            }
+          ];
     in
     {
       services.wayle = {
@@ -135,14 +159,17 @@ in
               "icon-size" = 0.8;
             };
 
-            custom = lib.mapAttrsToList
-              (id: attrs: {
+            custom = lib.mapAttrsToList (
+              id: attrs:
+              {
                 inherit id;
                 "icon-color" = "red";
                 "label-color" = "red";
-              } // attrs)
-              config.peteyycz.wayleCustomModules;
-          } // lib.optionalAttrs isLaptop {
+              }
+              // attrs
+            ) config.peteyycz.wayleCustomModules;
+          }
+          // lib.optionalAttrs isLaptop {
             battery = {
               "label-show" = true;
               "icon-color" = "yellow";

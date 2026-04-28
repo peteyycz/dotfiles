@@ -1,11 +1,14 @@
 { ... }:
 {
   # Requires home/peon-ping.nix to be loaded (installs ~/.openpeon/peon.sh).
-  flake.modules.homeManager.claude-code = { config, ... }:
+  flake.modules.homeManager.claude-code =
+    { config, ... }:
     let
       inherit (config.peteyycz) terminal;
       peonDir = "${config.home.homeDirectory}/.openpeon";
-      notifyCommand = body: ''bash -c 'SESSION=$(tmux display-message -p "#S" 2>/dev/null || echo "claude"); (ACTION=$(notify-send --app-name="Claude Code" --icon="${peonDir}/docs/peon-icon.png" --action="open=Open" --wait "Claude Code — $SESSION" "${body}"); [ "$ACTION" = "open" ] && hyprctl dispatch focuswindow "class:${terminal}" && tmux switch-client -t "$SESSION") </dev/null >/dev/null 2>&1 &' '';
+      notifyCommand =
+        body:
+        ''bash -c 'SESSION=$(tmux display-message -p "#S" 2>/dev/null || echo "claude"); (ACTION=$(notify-send --app-name="Claude Code" --icon="${peonDir}/docs/peon-icon.png" --action="open=Open" --wait "Claude Code — $SESSION" "${body}"); [ "$ACTION" = "open" ] && hyprctl dispatch focuswindow "class:${terminal}" && tmux switch-client -t "$SESSION") </dev/null >/dev/null 2>&1 &' '';
 
       notifyHook = body: {
         matcher = "";
@@ -33,10 +36,22 @@
     {
       home.file.".claude/settings.json".text = builtins.toJSON {
         hooks = {
-          Stop = [ (notifyHook "Task complete") peonHook ];
-          Notification = [ (notifyHook "Needs your attention") peonHook ];
-          SessionEnd = [ (notifyHook "Session ended") peonHook ];
-          PermissionRequest = [ (notifyHook "Needs permission") peonHook ];
+          Stop = [
+            (notifyHook "Task complete")
+            peonHook
+          ];
+          Notification = [
+            (notifyHook "Needs your attention")
+            peonHook
+          ];
+          SessionEnd = [
+            (notifyHook "Session ended")
+            peonHook
+          ];
+          PermissionRequest = [
+            (notifyHook "Needs permission")
+            peonHook
+          ];
         };
         skipAutoPermissionPrompt = true;
         permissions.defaultMode = "auto";
