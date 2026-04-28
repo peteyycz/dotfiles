@@ -1,10 +1,13 @@
 { ... }:
 {
-  flake.modules.homeManager.notes = { pkgs, ... }: {
+  flake.modules.homeManager.notes = { config, pkgs, ... }:
+    let
+      inherit (config.peteyycz) terminal notesDir;
+    in {
     home.packages = with pkgs; [
       (writeShellScriptBin "notes-capture" ''
         set -eu
-        NOTES_DIR="$HOME/Code/src/github.com/peteyycz/notes"
+        NOTES_DIR="${notesDir}"
         INBOX="$NOTES_DIR/inbox.md"
 
         if [ ! -d "$NOTES_DIR" ]; then
@@ -22,12 +25,12 @@
         printf -- '- [ ] %s — %s\n' "$(date '+%Y-%m-%d %H:%M')" "$TEXT" >> "$INBOX"
       '')
       (writeShellScriptBin "notes-open" ''
-        NOTES_DIR="$HOME/Code/src/github.com/peteyycz/notes"
+        NOTES_DIR="${notesDir}"
         mkdir -p "$NOTES_DIR"
-        exec foot --app-id=notes-floating --working-directory="$NOTES_DIR" nvim inbox.md
+        exec ${terminal} --app-id=notes-floating --working-directory="$NOTES_DIR" nvim inbox.md
       '')
       (writeShellScriptBin "notes-stats" ''
-        NOTES_DIR="$HOME/Code/src/github.com/peteyycz/notes"
+        NOTES_DIR="${notesDir}"
         INBOX="$NOTES_DIR/inbox.md"
 
         [ ! -f "$INBOX" ] && exit 0

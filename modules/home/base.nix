@@ -1,9 +1,9 @@
 { ... }:
 {
-  flake.modules.homeManager.base = { pkgs, ... }: {
+  flake.modules.homeManager.base = { config, pkgs, ... }: {
     home.stateVersion = "25.05";
 
-    home.file.".local/share/backgrounds/default.jpg".source =
+    home.file.${config.peteyycz.wallpaperPath}.source =
       pkgs.fetchurl (import ../../wallpaper.nix);
 
     home.sessionVariables.EDITOR = "vim";
