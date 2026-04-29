@@ -1,6 +1,6 @@
-# NixOS Configuration — ThinkPad T440p
+# NixOS Configuration
 
-This repository contains a reproducible [NixOS](https://nixos.org/) configuration for a ThinkPad T440p using flakes.
+This repository contains a reproducible [NixOS](https://nixos.org/) configuration using flakes.
 
 ## Installation
 
@@ -100,7 +100,7 @@ On another machine with this repo checked out:
 HOST=<hostname>
 mkdir -p hosts/$HOST
 curl https://paste.rs/abc.nix > hosts/$HOST/hardware-configuration.nix
-cp hosts/t440p/configuration.nix hosts/$HOST/configuration.nix  # start from an existing host
+cp hosts/<HOST>/configuration.nix hosts/$HOST/configuration.nix  # start from an existing host
 ```
 
 Register the host in `flake.nix` under `nixosConfigurations`:
@@ -147,6 +147,6 @@ sudo passwd peteyycz
 After making changes to the configuration, rebuild with:
 
 ```bash
-sudo nixos-rebuild switch --flake /path/to/nixos-config#<hostname>
+sudo nixos-rebuild switch --flake /path/to/dotfiles#<hostname>
 ```
 

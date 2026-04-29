@@ -110,6 +110,7 @@ in
             window-title = {
               "icon-color" = "accent";
               "label-color" = "accent";
+              "label-max-length" = 20;
             };
 
             clock = {
