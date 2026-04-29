@@ -58,19 +58,64 @@ in
         ];
       };
 
-      # If primaryMonitors is empty, one wildcard layout. Otherwise an explicit
-      # layout per primary connector plus a wildcard hide entry for anything else.
-      barLayouts =
-        if primaryMonitors == [ ] then
-          [ (sections // { monitor = "*"; }) ]
-        else
-          (map (m: sections // { monitor = m; }) primaryMonitors)
-          ++ [
-            {
-              monitor = "*";
-              show = false;
-            }
-          ];
+      # Wayle's static layout can't pick one monitor when several primaries are
+      # connected at once (e.g. DP-1 + HDMI-A-1 docked). Render on every output;
+      # `wayle-primary-bar` below uses `wayle panel show/hide` at runtime to keep
+      # the bar on the highest-priority connected monitor.
+      barLayouts = [ (sections // { monitor = "*"; }) ];
+
+      waylePrimaryBar = pkgs.writeShellApplication {
+        name = "wayle-primary-bar";
+        runtimeInputs = with pkgs; [
+          jq
+          socat
+          hyprland
+          coreutils
+          wayle
+        ];
+        text = ''
+          set -uo pipefail
+
+          priority=("$@")
+          socket="$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock"
+
+          apply() {
+            local monitors primary="" name
+            monitors=$(hyprctl monitors -j 2>/dev/null) || return 0
+
+            for m in "''${priority[@]}"; do
+              if jq -e --arg n "$m" 'map(select(.name == $n)) | length > 0' <<<"$monitors" >/dev/null; then
+                primary="$m"
+                break
+              fi
+            done
+
+            while IFS= read -r name; do
+              if [[ "$name" == "$primary" ]]; then
+                wayle panel show "$name" >/dev/null 2>&1 || true
+              else
+                wayle panel hide "$name" >/dev/null 2>&1 || true
+              fi
+            done < <(jq -r '.[] | .name' <<<"$monitors")
+          }
+
+          for _ in $(seq 1 60); do
+            wayle panel status >/dev/null 2>&1 && break
+            sleep 0.5
+          done
+
+          apply
+
+          socat -U - UNIX-CONNECT:"$socket" | while IFS= read -r line; do
+            case "$line" in
+              monitoradded*|monitorremoved*|configreloaded*)
+                sleep 0.4
+                apply
+                ;;
+            esac
+          done
+        '';
+      };
     in
     {
       services.wayle = {
@@ -157,6 +202,7 @@ in
                 "title:*Microsoft Teams*" = "ld-message-circle-symbolic";
               };
               "workspace-padding" = 0.5;
+              "monitor-specific" = false;
               "icon-size" = 0.8;
             };
 
@@ -197,6 +243,24 @@ in
       };
 
       systemd.user.services.wayle.Service.ExecStartPre = [ "${waitForNM}" ];
+
+      systemd.user.services.wayle-primary-bar = lib.mkIf (primaryMonitors != [ ]) {
+        Unit = {
+          Description = "Pin wayle bar to the highest-priority connected monitor";
+          PartOf = [ "graphical-session.target" ];
+          After = [
+            "graphical-session.target"
+            "wayle.service"
+          ];
+          Requires = [ "wayle.service" ];
+        };
+        Install.WantedBy = [ "graphical-session.target" ];
+        Service = {
+          ExecStart = "${waylePrimaryBar}/bin/wayle-primary-bar ${lib.escapeShellArgs primaryMonitors}";
+          Restart = "on-failure";
+          RestartSec = 2;
+        };
+      };
 
       peteyycz.wayleCustomModules = {
         dotfiles = {

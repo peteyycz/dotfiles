@@ -14,6 +14,36 @@
 
       menu = "rofi -terminal '${terminal}' -show drun";
 
+      # When the lid closes with at least one non-eDP-1 monitor connected,
+      # disable eDP-1 — Hyprland then auto-migrates all workspaces onto the
+      # remaining (external) outputs. On lid open, re-enable eDP-1.
+      hyprLidHandler = pkgs.writeShellApplication {
+        name = "hypr-lid-handler";
+        runtimeInputs = with pkgs; [
+          jq
+          hyprland
+          coreutils
+        ];
+        text = ''
+          set -uo pipefail
+
+          action="''${1:-}"
+
+          case "$action" in
+            close)
+              monitors=$(hyprctl monitors -j 2>/dev/null) || exit 0
+              external=$(jq -r '.[] | select(.name != "eDP-1") | .name' <<<"$monitors" | head -n1)
+              if [[ -n "$external" ]]; then
+                hyprctl keyword monitor "eDP-1,disable" >/dev/null
+              fi
+              ;;
+            open)
+              hyprctl keyword monitor "eDP-1,preferred,0x0,1" >/dev/null
+              ;;
+          esac
+        '';
+      };
+
       hyprAutoScale = pkgs.writeShellApplication {
         name = "hypr-auto-scale";
         runtimeInputs = with pkgs; [
@@ -302,6 +332,10 @@
             ", XF86AudioPlay, exec, playerctl play-pause"
             ", XF86AudioNext, exec, playerctl next"
             ", XF86AudioPrev, exec, playerctl previous"
+          ]
+          ++ lib.optionals isLaptop [
+            ", switch:on:Lid Switch, exec, ${hyprLidHandler}/bin/hypr-lid-handler close"
+            ", switch:off:Lid Switch, exec, ${hyprLidHandler}/bin/hypr-lid-handler open"
           ];
 
           bindle = [
