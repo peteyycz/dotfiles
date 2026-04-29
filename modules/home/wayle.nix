@@ -87,9 +87,9 @@ in
             # Floating, transparent, pill-buttoned — approximates the HyprPanel theme.
             "inset-edge" = 0.5;
             "inset-ends" = 0.5;
-            "background-opacity" = 0;
-            rounding = "lg";
-            shadow = "none";
+            "background-opacity" = 55;
+            rounding = "full";
+            shadow = "drop";
             "button-rounding" = "full";
             "button-border-location" = "all";
             "button-border-width" = 1;
