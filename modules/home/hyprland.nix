@@ -17,17 +17,26 @@
       # When the lid closes with at least one non-eDP-1 monitor connected,
       # disable eDP-1 — Hyprland then auto-migrates all workspaces onto the
       # remaining (external) outputs. On lid open, re-enable eDP-1.
+      #
+      # Skip while hyprlock is running: hyprlock 0.9.4 asserts on a wl_output
+      # add/remove during its lifetime (hyprlock.cpp:380 "Disconnected from
+      # pollfd id 0"), which dumps core and drops the seat to a TTY.
       hyprLidHandler = pkgs.writeShellApplication {
         name = "hypr-lid-handler";
         runtimeInputs = with pkgs; [
           jq
           hyprland
+          procps
           coreutils
         ];
         text = ''
           set -uo pipefail
 
           action="''${1:-}"
+
+          if pgrep -x hyprlock >/dev/null; then
+            exit 0
+          fi
 
           case "$action" in
             close)
