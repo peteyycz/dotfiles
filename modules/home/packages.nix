@@ -30,7 +30,7 @@
         terraform
         terragrunt
         pomerium-cli
-        vault
+        vault-bin
         mongosh
         mongodb-tools
 
