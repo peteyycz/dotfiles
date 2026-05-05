@@ -56,7 +56,6 @@
         beam.packages.erlang_27.erlang
         beam.packages.erlang_27.elixir_1_18
         inotify-tools
-        watchman
 
         # nixpkgs ships 2025.9-b175 (404'd upstream, eval license refused) on jdk21.
         # YourKit 2026.3 launcher passes --sun-misc-unsafe-memory-access=allow which needs JDK 23+.
