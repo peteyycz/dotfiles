@@ -225,6 +225,8 @@
             preserve_split = true;
           };
 
+          gesture = [ "3, horizontal, workspace" ];
+
           misc = {
             disable_hyprland_logo = true;
             disable_splash_rendering = true;
