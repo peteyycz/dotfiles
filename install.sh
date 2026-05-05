@@ -27,6 +27,7 @@ fi
 
 sudo $NIX run github:nix-community/disko/latest -- \
     --mode destroy,format,mount \
+    --yes-wipe-all-disks \
     --flake "$FLAKE"
 
 sudo nixos-install --no-root-passwd --flake "$FLAKE"
