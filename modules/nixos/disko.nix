@@ -35,7 +35,8 @@
           default = "0077";
           description = ''
             Octal mask for fmask=/dmask= mount options on the FAT32 ESP.
-            "0077" matches t440p (root-only); "0022" matches homepc/t14g2.
+            "0077" is root-only and the safer default; "0022" makes /boot
+            world-readable.
           '';
         };
       };
