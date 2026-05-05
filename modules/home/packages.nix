@@ -16,6 +16,8 @@
         clippy
         rust-analyzer
 
+        claude-code
+
         nixd
         nixfmt
         coturn
