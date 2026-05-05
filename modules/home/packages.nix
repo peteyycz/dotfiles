@@ -4,8 +4,6 @@
     { pkgs, ... }:
     {
       home.packages = with pkgs; [
-        networkmanagerapplet
-
         gcc
         gnumake
 
@@ -38,7 +36,7 @@
 
         mediainfo
         imv
-        mpv
+        vlc
         spotify
 
         gh

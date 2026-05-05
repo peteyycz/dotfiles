@@ -9,6 +9,7 @@ in
       nixos.homepc-configuration
       nixos.common
       nixos.u2f
+      nixos.gaming
     ];
 
     home-manager.users.${config.username}.imports = builtins.attrValues (

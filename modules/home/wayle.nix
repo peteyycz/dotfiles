@@ -54,6 +54,7 @@ in
         ++ [
           "keyboard-input"
           "custom-dotfiles"
+          "systray"
           "notifications"
         ];
       };

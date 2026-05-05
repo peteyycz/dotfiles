@@ -154,7 +154,6 @@
 
           exec-once = [
             "test -x ${scriptsDir}/@peteyycz:dev-start.sh && ${scriptsDir}/@peteyycz:dev-start.sh"
-            "sleep 0.5 && hyprctl dispatch workspace 1 && ${terminal}"
             "1password --silent"
             "google-chrome-stable"
             "slack"
@@ -241,19 +240,19 @@
 
           windowrule = [
             "workspace 2 silent, match:class ^(google-chrome)$"
-            "workspace 3 silent, match:class ^(Steam)$"
+            "workspace 3 silent, match:class ^([Ss]team)$"
             "workspace 3 silent, match:class ^(Slack)$, match:initial_title ^(Slack)$"
             "workspace 4 silent, match:class ^(steam_app)"
             "workspace 4 silent, match:title ^(.*Microsoft Teams.*)$"
             "workspace 7 silent, match:class ^(spotify)$"
 
-            "float on, match:class ^(Steam)$"
-            "tile on, match:class ^(Steam)$, match:title ^(Steam)$"
+            "float on, match:class ^([Ss]team)$"
+            "tile on, match:class ^([Ss]team)$, match:title ^(Steam)$"
             "idle_inhibit focus, match:class ^(steam_app)"
             "idle_inhibit fullscreen, match:fullscreen 1"
             "float on, match:class ^(org\\.gnome\\.Nautilus)$"
             "float on, match:class ^(imv)$"
-            "float on, match:class ^(mpv)$"
+            "float on, match:class ^(vlc)$"
             "float on, match:class ^(org\\.gnome\\.NautilusPreviewer)$"
 
             # Slack subwindows (calls, huddles, screen-share controls) float;
