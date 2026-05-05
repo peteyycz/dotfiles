@@ -9,6 +9,7 @@ in
       nixos.t14g2-configuration
       nixos.common
       nixos.disko
+      nixos.secureboot
       nixos.luks-tpm2
       nixos.hibernation
       nixos.laptop

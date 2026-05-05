@@ -30,12 +30,20 @@ sudo $NIX run github:nix-community/disko/latest -- \
     --yes-wipe-all-disks \
     --flake "$FLAKE"
 
+sudo mkdir -p /mnt/var/lib/sbctl
+sudo mount --bind /mnt/var/lib/sbctl /var/lib/sbctl
+sudo $NIX run nixpkgs#sbctl -- create-keys
+sudo umount /var/lib/sbctl
+
 sudo nixos-install --no-root-passwd --flake "$FLAKE"
 
 cat <<EOF
 
 Done. After reboot:
   - log in as your user (initialHashedPassword applies on first boot)
-  - sudo systemd-cryptenroll --tpm2-device=auto --tpm2-pcrs=0,1,7 /dev/<luks-partition>
+  - put firmware in Setup Mode, then: sudo sbctl enroll-keys --microsoft
+  - reboot into firmware and ENABLE Secure Boot
+  - bootctl status   # confirm "Secure Boot: enabled (user)"
+  - sudo systemd-cryptenroll --tpm2-device=auto --tpm2-pcrs=7 /dev/<luks-partition>
   - sudo fprintd-enroll   # if the host has a reader
 EOF

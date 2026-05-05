@@ -54,6 +54,7 @@ imports = [
   nixos.${HOST}-configuration
   nixos.common
   nixos.disko
+  nixos.secureboot
   nixos.luks-tpm2
   nixos.hibernation
   # nixos.laptop / nixos.fingerprint / nixos.u2f / nixos.gaming as appropriate
@@ -80,18 +81,34 @@ Commit and push to master before installing.
 
 ### 3. Partition and install via disko
 
-Back on the NixOS USB, partition the disk and install in one go:
+Back on the NixOS USB, partition the disk:
 
 ```bash
 sudo nix --experimental-features 'nix-command flakes' run \
     github:nix-community/disko/latest -- \
     --mode destroy,format,mount \
     --flake github:peteyycz/dotfiles#<hostname>
+```
 
+`disko --mode destroy,format,mount` wipes the disk, creates the GPT layout, opens LUKS (you will set the passphrase here), creates the LVM volumes, formats btrfs, and mounts everything under `/mnt`.
+
+Before installing, generate Secure Boot keys into the new system so lanzaboote has something to sign with on first boot:
+
+```bash
+sudo mkdir -p /mnt/var/lib/sbctl
+sudo mount --bind /mnt/var/lib/sbctl /var/lib/sbctl
+sudo nix --experimental-features 'nix-command flakes' run \
+    nixpkgs#sbctl -- create-keys
+sudo umount /var/lib/sbctl
+```
+
+The bind mount redirects sbctl's hard-coded `/var/lib/sbctl` path into the target filesystem, so the keys land where the installed system will look for them. Now install:
+
+```bash
 sudo nixos-install --no-root-passwd --flake github:peteyycz/dotfiles#<hostname>
 ```
 
-`disko --mode destroy,format,mount` wipes the disk, creates the GPT layout, opens LUKS (you will set the passphrase here), creates the LVM volumes, formats btrfs, and mounts everything under `/mnt`. `nixos-install` then writes the system.
+`nixos-install` writes the system and lanzaboote signs the bootloader, kernel, and initrd with the keys you just generated.
 
 ### 4. Reboot and set passwords
 
@@ -105,15 +122,53 @@ Boot will prompt for the LUKS passphrase. After login:
 sudo passwd peteyycz
 ```
 
-### 5. Enroll TPM2 for unattended boot
+### 5. Enable Secure Boot and enroll TPM2 for unattended boot
 
-Run once on the new machine; the LUKS partition is the second partition created by disko (`/dev/<disk>p2`):
+The `secureboot` module replaces systemd-boot with [lanzaboote](https://github.com/nix-community/lanzaboote) so the bootloader, kernel, and initrd are all signed. Binding the LUKS TPM2 keyslot to PCR 7 (Secure Boot policy) then gives a stable measurement that survives firmware updates — but is only meaningful once Secure Boot is actually enforcing.
+
+First confirm the firmware is in **Setup Mode** (no Platform Key enrolled yet — required so `sbctl enroll-keys` can adopt your generated keys):
 
 ```bash
-sudo systemd-cryptenroll --tpm2-device=auto --tpm2-pcrs=0,1,7 /dev/nvme0n1p2
+bootctl status | grep -i 'secure boot'   # → "disabled (setup)"
 ```
 
-Reboot — LUKS now unlocks unattended via TPM2. If a firmware update changes a measured PCR, fall back to the install passphrase and re-run the enrollment command.
+If it instead reports `enabled` or `disabled` without `(setup)`, reboot into firmware and clear/reset the Secure Boot keys. On Lenovo: Security → Secure Boot → Reset to Setup Mode.
+
+Enroll the keys generated during step 3 and verify everything in `/boot` is signed:
+
+```bash
+sudo sbctl enroll-keys --microsoft   # keep MS keys so option ROMs still verify
+sudo sbctl verify                    # all listed files should report "signed"
+```
+
+Reboot into firmware setup, **enable Secure Boot**, and boot back in. Verify:
+
+```bash
+bootctl status | grep -i 'secure boot'   # → "enabled (user)"
+```
+
+Now enroll the TPM2 keyslot bound to PCR 7. The LUKS partition is the second partition created by disko (`/dev/<disk>p2`):
+
+```bash
+sudo systemd-cryptenroll --tpm2-device=auto --tpm2-pcrs=7 /dev/nvme0n1p2
+```
+
+Reboot — LUKS now unlocks unattended via TPM2. PCR 7 only changes when Secure Boot keys or policy change, so firmware updates and kernel upgrades won't break the unlock.
+
+**Re-enrolling later.** If PCR 7 changes (you toggled Secure Boot, re-enrolled keys, etc.), drop back to the passphrase at boot, then check the LUKS header before doing anything destructive:
+
+```bash
+sudo cryptsetup luksDump /dev/nvme0n1p2
+```
+
+Note the keyslot index of the existing TPM2 token (look for `systemd-tpm2` in the Tokens section), then wipe **that specific slot number** and re-enroll:
+
+```bash
+sudo cryptsetup luksKillSlot /dev/nvme0n1p2 <N>
+sudo systemd-cryptenroll --tpm2-device=auto --tpm2-pcrs=7 /dev/nvme0n1p2
+```
+
+Avoid `systemd-cryptenroll --wipe-slot=tpm2` — its targeting can drift if tokens are stale, and a mistake there will wipe your passphrase keyslot too. Always pass an explicit slot number.
 
 ### 6. Enroll fingerprint (laptops with a reader)
 
