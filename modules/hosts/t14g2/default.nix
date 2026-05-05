@@ -8,6 +8,9 @@ in
       nixos.t14g2-hardware
       nixos.t14g2-configuration
       nixos.common
+      nixos.disko
+      nixos.luks-tpm2
+      nixos.hibernation
       nixos.laptop
       nixos.fingerprint
       nixos.u2f
