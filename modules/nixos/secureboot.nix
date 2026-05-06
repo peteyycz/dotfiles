@@ -5,7 +5,10 @@
     {
       imports = [ inputs.lanzaboote.nixosModules.lanzaboote ];
 
-      environment.systemPackages = [ pkgs.sbctl ];
+      environment.systemPackages = [
+        pkgs.sbctl
+        pkgs.e2fsprogs
+      ];
 
       boot.loader.systemd-boot.enable = lib.mkForce false;
 

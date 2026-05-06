@@ -13,6 +13,7 @@ in
       nixos.luks-tpm2
       nixos.hibernation
       nixos.laptop
+      nixos.fingerprint
       nixos.u2f
     ];
 
