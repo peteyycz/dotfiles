@@ -34,7 +34,7 @@ On a machine with this repo checked out, copy an existing host as a starting poi
 
 ```bash
 HOST=<hostname>
-cp -r modules/hosts/t14g2 modules/hosts/$HOST
+cp -r modules/hosts/i145420 modules/hosts/$HOST
 ```
 
 Boot the live ISO on the target machine and dump its detected hardware so you can pick the right `boot.initrd.availableKernelModules` / `boot.kernelModules` / CPU-microcode lines for the new host. The simplest way is to push it to a paste service:

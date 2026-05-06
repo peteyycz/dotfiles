@@ -27,6 +27,8 @@
         maven
         python3
         psmisc
+        parted
+        lshw
       ];
     };
 }

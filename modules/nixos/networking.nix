@@ -6,6 +6,11 @@
       networking.networkmanager = {
         enable = true;
         plugins = with pkgs; [ networkmanager-openvpn ];
+        unmanaged = [
+          "interface-name:docker0"
+          "interface-name:br-*"
+          "interface-name:veth*"
+        ];
       };
 
       networking.extraHosts = ''
