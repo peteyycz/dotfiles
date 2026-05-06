@@ -30,7 +30,7 @@ sudo $NIX run github:nix-community/disko/latest -- \
     --yes-wipe-all-disks \
     --flake "$FLAKE" </dev/tty
 
-sudo mkdir -p /mnt/var/lib/sbctl
+sudo mkdir -p /mnt/var/lib/sbctl /var/lib/sbctl
 sudo mount --bind /mnt/var/lib/sbctl /var/lib/sbctl
 sudo $NIX run nixpkgs#sbctl -- create-keys
 sudo umount /var/lib/sbctl
