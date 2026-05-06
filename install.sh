@@ -28,7 +28,7 @@ fi
 sudo $NIX run github:nix-community/disko/latest -- \
     --mode destroy,format,mount \
     --yes-wipe-all-disks \
-    --flake "$FLAKE"
+    --flake "$FLAKE" </dev/tty
 
 sudo mkdir -p /mnt/var/lib/sbctl
 sudo mount --bind /mnt/var/lib/sbctl /var/lib/sbctl
