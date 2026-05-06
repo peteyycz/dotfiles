@@ -16,8 +16,6 @@ in
       inherit (config.peteyycz)
         isLaptop
         primaryMonitors
-        terminal
-        dotfilesDir
         ;
 
       # Wayle registers its NetworkManager client once at startup and drops the
@@ -53,7 +51,6 @@ in
         ]
         ++ [
           "keyboard-input"
-          "custom-dotfiles"
           "systray"
           "notifications"
         ];
@@ -193,7 +190,7 @@ in
             };
 
             media = {
-              "label-max-length" = 40;
+              "label-max-length" = 20;
               "icon-color" = "blue";
             };
 
@@ -264,14 +261,6 @@ in
       };
 
       peteyycz.wayleCustomModules = {
-        dotfiles = {
-          icon = "󰊢";
-          format = "󰊢";
-          command = "bash -c 'cd ${dotfilesDir} && if [ -n \"$(git status --porcelain)\" ]; then echo 1; fi'";
-          "interval-ms" = 30000;
-          "hide-if-empty" = true;
-          "left-click" = "${terminal} --working-directory=${dotfilesDir} $SHELL -c 'git status; exec $SHELL'";
-        };
         recording = {
           format = "󰻂 {{ output }}";
           command = "bash -c 'pgrep -x wf-recorder >/dev/null && echo REC || echo \"\"'";
