@@ -68,10 +68,10 @@
           socket="$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock"
 
           apply() {
-            local monitors name w h pw ph current scale pos
+            local monitors name w h pw ph cur_scale cur_rate modes scale pos rate mode
             monitors=$(hyprctl monitors -j 2>/dev/null) || return 0
 
-            while IFS=$'\t' read -r name w h pw ph current; do
+            while IFS=$'\t' read -r name w h pw ph cur_scale cur_rate modes; do
               case "$name" in
                 eDP-1)
                   scale="1.0"
@@ -96,12 +96,33 @@
                   ;;
               esac
 
-              if awk -v a="$current" -v b="$scale" 'BEGIN { exit !(sqrt((a-b)^2) < 0.01) }'; then
+              rate=$(awk -v w="$w" -v h="$h" -v modes="$modes" 'BEGIN {
+                n = split(modes, arr, ",");
+                best = 0;
+                target = w "x" h "@";
+                for (i = 1; i <= n; i++) {
+                  if (index(arr[i], target) == 1) {
+                    r = substr(arr[i], length(target) + 1);
+                    sub(/Hz$/, "", r);
+                    if (r + 0 > best) best = r + 0;
+                  }
+                }
+                if (best > 0) printf "%.2f", best;
+              }')
+
+              if [[ -n "$rate" ]]; then
+                mode="''${w}x''${h}@''${rate}"
+              else
+                mode="preferred"
+              fi
+
+              if awk -v a="$cur_scale" -v b="$scale" -v ra="$cur_rate" -v rb="$rate" \
+                'BEGIN { exit !(sqrt((a-b)^2) < 0.01 && (rb == "" || sqrt((ra-rb)^2) < 0.5)) }'; then
                 continue
               fi
 
-              hyprctl keyword monitor "$name,preferred,$pos,$scale" >/dev/null
-            done < <(jq -r '.[] | "\(.name)\t\(.width)\t\(.height)\t\(.physicalWidth)\t\(.physicalHeight)\t\(.scale)"' <<<"$monitors")
+              hyprctl keyword monitor "$name,$mode,$pos,$scale" >/dev/null
+            done < <(jq -r '.[] | "\(.name)\t\(.width)\t\(.height)\t\(.physicalWidth)\t\(.physicalHeight)\t\(.scale)\t\(.refreshRate)\t\(.availableModes | join(","))"' <<<"$monitors")
           }
 
           for _ in $(seq 1 60); do
