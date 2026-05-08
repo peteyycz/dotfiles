@@ -32,6 +32,21 @@ in
         exit 0  # give up quietly after 10s; wayle will start without network
       '';
 
+      # Same race as NM above: if wayle's pulse client connects before
+      # wireplumber has registered any ALSA sink, it latches onto the dummy
+      # fallback for the whole session — volume widget shows "Dummy Output",
+      # input is empty, and key presses adjust nothing visible. Block until
+      # a real default sink exists.
+      waitForAudio = pkgs.writeShellScript "wayle-wait-for-audio" ''
+        for _ in $(seq 1 50); do
+          if ${pkgs.wireplumber}/bin/wpctl get-volume @DEFAULT_AUDIO_SINK@ >/dev/null 2>&1; then
+            exit 0
+          fi
+          sleep 0.2
+        done
+        exit 0
+      '';
+
       sections = {
         left = [
           "dashboard"
@@ -104,9 +119,15 @@ in
 
           apply
 
+          # `openlayer>>wayle-bar-*` covers the cold-start case: when monitors
+          # are already attached at boot, no monitoradded fires, and wayle
+          # spawns its per-monitor panels just after `wayle panel status`
+          # starts returning "running" — so the eager apply above runs before
+          # the panels exist and its hide calls are no-ops. Re-applying when
+          # each layer surface is actually mapped fixes that.
           socat -U - UNIX-CONNECT:"$socket" | while IFS= read -r line; do
             case "$line" in
-              monitoradded*|monitorremoved*|configreloaded*)
+              monitoradded*|monitorremoved*|configreloaded*|openlayer*wayle-bar-*)
                 sleep 0.4
                 apply
                 ;;
@@ -240,7 +261,22 @@ in
         };
       };
 
-      systemd.user.services.wayle.Service.ExecStartPre = [ "${waitForNM}" ];
+      systemd.user.services.wayle = {
+        Unit = {
+          After = [
+            "pipewire-pulse.service"
+            "wireplumber.service"
+          ];
+          Wants = [
+            "pipewire-pulse.service"
+            "wireplumber.service"
+          ];
+        };
+        Service.ExecStartPre = [
+          "${waitForNM}"
+          "${waitForAudio}"
+        ];
+      };
 
       systemd.user.services.wayle-primary-bar = lib.mkIf (primaryMonitors != [ ]) {
         Unit = {

@@ -208,15 +208,19 @@ in
         enable = true;
         settings = {
           main = {
-            font = "${fonts.mono}:style=Medium:size=14";
+            font = "${fonts.mono}:style=Medium:size=14.5";
             pad = "7x7";
             selection-target = "clipboard";
+            dpi-aware = "yes";
           };
           url = {
             launch = "xdg-open \${url}";
           };
           key-bindings = {
             show-urls-launch = "Control+Shift+o";
+          };
+          mouse-bindings = {
+            primary-paste = "none";
           };
           colors-dark = {
             alpha = "0.95";
