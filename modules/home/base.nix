@@ -12,6 +12,8 @@
 
       home.file.".npmrc".text = ''
         prefix=~/.local
+        @oktogon-media:registry=https://npm.pkg.github.com
+        //npm.pkg.github.com/:_authToken=''${GITHUB_TOKEN}
       '';
     };
 }

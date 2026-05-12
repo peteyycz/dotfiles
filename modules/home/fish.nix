@@ -54,6 +54,10 @@
           set -gx GOPATH "$HOME/Code"
           set -gx GHQ_ROOT "$GOPATH/src"
 
+          if test -d $HOME/.kube/configs
+            set -gx KUBECONFIG (string join : $HOME/.kube/configs/*.yaml)
+          end
+
           if test -f ~/.config/fish/config.local.fish
             source ~/.config/fish/config.local.fish
           end

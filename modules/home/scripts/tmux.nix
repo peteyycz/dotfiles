@@ -99,6 +99,42 @@
           exec ${terminal} tmux attach -t "$SESSION"
         '')
         (writeShellScriptBin "tmuxn" ''tmux new-session -s "$(basename "$PWD")"'')
+        (writeShellScriptBin "tmuxw-close" ''
+          # Determine the tmux session attached to the focused terminal.
+          # Fallback: most recently attached session.
+          ACTIVE=$(hyprctl activewindow -j)
+          ADDR=$(echo "$ACTIVE" | jq -r '.address // empty')
+          CLASS=$(echo "$ACTIVE" | jq -r '.class // empty')
+
+          TTY=""
+          SESSION=""
+          if [ "$CLASS" = "${terminal}" ] && [ -n "$ADDR" ]; then
+            PID=$(echo "$ACTIVE" | jq -r .pid)
+            CHILD_PID=$(${pkgs.procps}/bin/pgrep -P "$PID" | head -1)
+            if [ -n "$CHILD_PID" ]; then
+              TTY="/dev/$(ps -o tty= -p "$CHILD_PID" | tr -d ' ')"
+              SESSION=$(tmux list-clients -F '#{client_tty} #{session_name}' 2>/dev/null \
+                | awk -v t="$TTY" '$1==t{print $2; exit}')
+            fi
+          fi
+
+          if [ -z "$SESSION" ]; then
+            SESSION=$(tmux list-sessions -F '#{session_last_attached} #{session_name}' 2>/dev/null \
+              | sort -nr | head -1 | awk '{print $2}')
+          fi
+
+          [ -z "$SESSION" ] && exit 0
+
+          NEXT=$(tmux list-sessions -F '#{session_name}' 2>/dev/null \
+            | grep -vx "$SESSION" | head -1)
+
+          if [ -n "$NEXT" ] && [ -n "$TTY" ] \
+            && tmux list-clients -F '#{client_tty}' 2>/dev/null | grep -qx "$TTY"; then
+            tmux switch-client -c "$TTY" -t "$NEXT"
+          fi
+
+          tmux kill-session -t "$SESSION"
+        '')
         (writeShellScriptBin "tmuxw" ''
           DETACH=false
           for arg in "$@"; do

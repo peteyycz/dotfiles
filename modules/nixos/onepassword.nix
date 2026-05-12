@@ -6,5 +6,6 @@
       enable = true;
       polkitPolicyOwners = [ config.username ];
     };
+    security.pam.services."1password" = { };
   };
 }

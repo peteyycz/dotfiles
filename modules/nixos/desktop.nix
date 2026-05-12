@@ -55,6 +55,12 @@
         xwayland.enable = true;
       };
 
+      qt = {
+        enable = true;
+        platformTheme = "gnome";
+        style = "adwaita-dark";
+      };
+
       environment.systemPackages = [ pixie-sddm-theme ];
 
       services.displayManager = {
