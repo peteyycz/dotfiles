@@ -51,6 +51,8 @@
 
           bind \cg edit_command_buffer
 
+          # NIXOS cert path for wrangler (cloudflare workers)
+          set -gx SSL_CERT_FILE /etc/ssl/certs/ca-bundle.crt
           set -gx GOPATH "$HOME/Code"
           set -gx GHQ_ROOT "$GOPATH/src"
 

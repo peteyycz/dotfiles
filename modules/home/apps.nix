@@ -214,7 +214,7 @@ in
         enable = true;
         settings = {
           main = {
-            font = "${fonts.mono}:style=Medium:size=9.5";
+            font = "${fonts.mono}:style=Medium:size=8.5";
             pad = "7x7";
             selection-target = "clipboard";
             dpi-aware = "yes";
