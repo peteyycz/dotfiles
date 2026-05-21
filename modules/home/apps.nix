@@ -26,8 +26,6 @@ in
         kubectx
       ];
 
-      services.hyprpolkitagent.enable = true;
-
       programs.rofi = {
         enable = true;
         font = "${fonts.sans} 13";

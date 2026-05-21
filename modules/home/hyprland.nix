@@ -291,7 +291,7 @@
             "$mod, D, exec, $menu"
             "$mod, Escape, exec, loginctl lock-session"
             "$mod SHIFT, C, exec, hyprctl reload"
-            "$mod SHIFT, E, exec, echo -e 'Lock\\nLogout\\nHibernate\\nShutdown\\nReboot' | rofi -dmenu -p 'Power' -i | xargs -I {} sh -c 'case {} in Lock) loginctl lock-session;; Logout) hyprctl dispatch exit;; Hibernate) systemctl suspend-then-hibernate;; Shutdown) systemctl poweroff;; Reboot) systemctl reboot;; esac'"
+            "$mod SHIFT, E, exec, echo -e 'Lock\\nLogout\\nSuspend\\nShutdown\\nReboot' | rofi -dmenu -p 'Power' -i | xargs -I {} sh -c 'case {} in Lock) loginctl lock-session;; Logout) hyprctl dispatch exit;; Suspend) systemctl suspend;; Shutdown) systemctl poweroff;; Reboot) systemctl reboot;; esac'"
 
             "$mod, H, movefocus, l"
             "$mod, J, movefocus, d"
