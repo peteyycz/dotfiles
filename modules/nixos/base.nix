@@ -27,7 +27,7 @@
 
       time.timeZone = "Europe/Budapest";
       i18n.defaultLocale = "en_US.UTF-8";
-      console.font = "Lat2-Terminus16";
+      console.earlySetup = false;
 
       services.gvfs.enable = true;
       services.udisks2.enable = true;
