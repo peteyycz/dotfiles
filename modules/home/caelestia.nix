@@ -28,6 +28,7 @@
           showMicrophone = true;
           showKbLayout = true;
         };
+        settings.paths.sessionGif = "";
         settings.bar.workspaces = {
           label = "";
           occupiedLabel = "";
