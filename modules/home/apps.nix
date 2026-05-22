@@ -48,9 +48,8 @@ in
             location: north;
             anchor: north;
             y-offset: 20%;
-            background-color: #$bg;
-            border: 1px solid;
-            border-color: #$outline;
+            background-color: #''${bg}cc;
+            border: 0;
             border-radius: 20px;
           }
 
