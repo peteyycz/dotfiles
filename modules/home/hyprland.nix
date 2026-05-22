@@ -4,15 +4,11 @@
     {
       config,
       lib,
-      theme,
       pkgs,
       ...
     }:
     let
-      inherit (theme) palette c;
       inherit (config.peteyycz) isLaptop terminal scriptsDir;
-
-      menu = "rofi -terminal '${terminal}' -show drun";
 
       # When the lid closes with at least one non-eDP-1 monitor connected,
       # disable eDP-1 — Hyprland then auto-migrates all workspaces onto the
@@ -116,6 +112,35 @@
                 mode="preferred"
               fi
 
+              # Caelestia (Quickshell) ignores compositor scale and renders at
+              # native pixels, so the bar looks tiny on HiDPI. Mirror the per-monitor
+              # scale into Caelestia's own appearance + token overlays so its bar,
+              # padding, fonts, and icons resize 1:1 with the hyprctl scale.
+              caelestia_dir="$HOME/.config/caelestia/monitors/$name"
+              mkdir -p "$caelestia_dir"
+
+              shell_json="$caelestia_dir/shell.json"
+              new_shell=$(jq -n --argjson s "$scale" '{
+                appearance: {
+                  rounding: { scale: $s },
+                  spacing:  { scale: $s },
+                  padding:  { scale: $s },
+                  font:     { size: { scale: $s } }
+                }
+              }')
+              if [[ ! -f "$shell_json" ]] || ! diff -q <(echo "$new_shell") "$shell_json" >/dev/null 2>&1; then
+                echo "$new_shell" > "$shell_json"
+              fi
+
+              tokens_json="$caelestia_dir/shell-tokens.json"
+              inner_width=$(awk -v s="$scale" 'BEGIN { printf "%d", 40 * s }')
+              new_tokens=$(jq -n --argjson w "$inner_width" '{
+                sizes: { bar: { innerWidth: $w } }
+              }')
+              if [[ ! -f "$tokens_json" ]] || ! diff -q <(echo "$new_tokens") "$tokens_json" >/dev/null 2>&1; then
+                echo "$new_tokens" > "$tokens_json"
+              fi
+
               if awk -v a="$cur_scale" -v b="$scale" -v ra="$cur_rate" -v rb="$rate" \
                 'BEGIN { exit !(sqrt((a-b)^2) < 0.01 && (rb == "" || sqrt((ra-rb)^2) < 0.5)) }'; then
                 continue
@@ -144,20 +169,6 @@
       };
     in
     {
-      services.hyprpaper = {
-        enable = true;
-        settings = {
-          preload = [ "${config.home.homeDirectory}/${config.peteyycz.wallpaperPath}" ];
-          wallpaper = [
-            {
-              monitor = "";
-              path = "${config.home.homeDirectory}/${config.peteyycz.wallpaperPath}";
-              fit_mode = "cover";
-            }
-          ];
-        };
-      };
-
       wayland.windowManager.hyprland = {
         enable = true;
         package = null;
@@ -167,7 +178,6 @@
         settings = {
           "$mod" = "SUPER";
           "$term" = terminal;
-          "$menu" = menu;
 
           monitor = lib.optionals isLaptop [ "eDP-1,preferred,0x0,1" ] ++ [ ",preferred,auto-up,1" ];
 
@@ -200,8 +210,6 @@
             gaps_in = 8;
             gaps_out = 12;
             border_size = 0;
-            "col.active_border" = "rgb(${c palette.bgHard})";
-            "col.inactive_border" = "rgb(${c palette.bg})";
             layout = "dwindle";
           };
 
@@ -257,8 +265,6 @@
           layerrule = [
             "blur on, match:namespace ^(rofi)$"
             "ignore_alpha 0.5, match:namespace ^(rofi)$"
-            "blur on, match:namespace ^(wayle.*)$"
-            "ignore_alpha 0.5, match:namespace ^(wayle.*)$"
           ];
 
           windowrule = [
@@ -288,7 +294,7 @@
           bind = [
             "$mod, Return, exec, $term"
             "$mod, Q, killactive"
-            "$mod, D, exec, $menu"
+            "$mod, D, global, caelestia:launcher"
             "$mod, Escape, exec, loginctl lock-session"
             "$mod SHIFT, C, exec, hyprctl reload"
             "$mod SHIFT, E, exec, echo -e 'Lock\\nLogout\\nSuspend\\nShutdown\\nReboot' | rofi -dmenu -p 'Power' -i | xargs -I {} sh -c 'case {} in Lock) loginctl lock-session;; Logout) hyprctl dispatch exit;; Suspend) systemctl suspend;; Shutdown) systemctl poweroff;; Reboot) systemctl reboot;; esac'"

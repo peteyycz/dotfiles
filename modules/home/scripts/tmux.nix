@@ -3,7 +3,6 @@
   flake.modules.homeManager.tmux-scripts =
     {
       config,
-      theme,
       pkgs,
       ...
     }:
@@ -19,7 +18,7 @@
               branch=$(${pkgs.git}/bin/git -C "$path" branch --show-current 2>/dev/null)
               dirty=$(${pkgs.git}/bin/git -C "$path" status --porcelain 2>/dev/null)
               if [ -n "$dirty" ]; then
-                echo "$name <span color='${theme.palette.red}'>(#$branch)</span>"
+                echo "$name <span color='#fb4934'>(#$branch)</span>"
               else
                 echo "$name (#$branch)"
               fi

@@ -1,7 +1,7 @@
 { ... }:
 {
   flake.modules.homeManager.tmux =
-    { theme, pkgs, ... }:
+    { pkgs, ... }:
     {
       programs.tmux = {
         enable = true;
@@ -23,7 +23,6 @@
           set -g status-right ""
           set -g status-left "[#S] "
           set -g status-left-length 50
-          set -g status-style bg=${theme.palette.bg}
           setw -g pane-base-index 1
           set -g status-keys vi
           setw -g clock-mode-style 12
@@ -63,13 +62,6 @@
 
           set -g display-panes-time 1000
           setw -g automatic-rename on
-
-          # Gruvbox Dark pane borders
-          set -g pane-border-style fg=${theme.palette.bg1}
-          set -g pane-active-border-style fg=${theme.palette.bg3}
-
-          # Gruvbox Dark selection highlight
-          set -g mode-style "fg=${theme.palette.fg},bg=${theme.palette.bg2}"
         '';
       };
     };

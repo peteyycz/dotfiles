@@ -63,6 +63,13 @@
           if test -f ~/.config/fish/config.local.fish
             source ~/.config/fish/config.local.fish
           end
+
+          # Apply Caelestia's terminal colors to new shells (OSC escape sequences
+          # written by `caelestia scheme set`). Without this, new terminals start
+          # with foot's compiled-in defaults until Caelestia re-themes them.
+          if status is-interactive; and test -f ~/.local/state/caelestia/sequences.txt
+            command cat ~/.local/state/caelestia/sequences.txt
+          end
         '';
       };
     };

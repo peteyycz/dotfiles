@@ -1,9 +1,9 @@
 { ... }:
 {
   flake.modules.homeManager.hyprpolkitagent =
-    { pkgs, theme, ... }:
+    { config, pkgs, ... }:
     let
-      inherit (theme) palette;
+      schemePath = "${config.home.homeDirectory}/.local/state/caelestia/scheme.json";
       themedQml = pkgs.writeText "main.qml" ''
         import QtQuick
         import QtQuick.Controls.Basic
@@ -11,6 +11,23 @@
 
         ApplicationWindow {
             id: window
+
+            property var scheme: ({})
+
+            function colour(role, fallback) {
+                return (scheme.colours && scheme.colours[role]) ? "#" + scheme.colours[role] : fallback;
+            }
+
+            Component.onCompleted: {
+                const xhr = new XMLHttpRequest();
+                xhr.open("GET", "file://${schemePath}");
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === XMLHttpRequest.DONE && xhr.responseText) {
+                        try { window.scheme = JSON.parse(xhr.responseText); } catch (e) {}
+                    }
+                };
+                xhr.send();
+            }
 
             property var windowWidth: Math.round(fontMetrics.height * 32.2856)
             property var windowHeight: Math.round(fontMetrics.height * 13.9528)
@@ -22,22 +39,22 @@
             maximumHeight: minimumHeight
             visible: true
 
-            color: "${palette.bgHard}"
-            palette.window: "${palette.bgHard}"
-            palette.windowText: "${palette.fg}"
-            palette.base: "${palette.bg}"
-            palette.alternateBase: "${palette.bg1}"
-            palette.text: "${palette.fg}"
-            palette.button: "${palette.bg1}"
-            palette.buttonText: "${palette.fg}"
-            palette.highlight: "${palette.orange}"
-            palette.highlightedText: "${palette.bgHard}"
-            palette.placeholderText: "${palette.gray}"
-            palette.mid: "${palette.bg2}"
-            palette.midlight: "${palette.bg2}"
-            palette.dark: "${palette.bgHard}"
-            palette.shadow: "${palette.bgHard}"
-            palette.light: "${palette.bg2}"
+            color: colour("surface", "#1d2021")
+            palette.window: colour("surface", "#1d2021")
+            palette.windowText: colour("onSurface", "#ebdbb2")
+            palette.base: colour("surfaceContainer", "#282828")
+            palette.alternateBase: colour("surfaceContainerHigh", "#3c3836")
+            palette.text: colour("onSurface", "#ebdbb2")
+            palette.button: colour("surfaceContainerHigh", "#3c3836")
+            palette.buttonText: colour("onSurface", "#ebdbb2")
+            palette.highlight: colour("primary", "#fe8019")
+            palette.highlightedText: colour("surface", "#1d2021")
+            palette.placeholderText: colour("outline", "#928374")
+            palette.mid: colour("surfaceContainerHighest", "#504945")
+            palette.midlight: colour("surfaceContainerHighest", "#504945")
+            palette.dark: colour("surface", "#1d2021")
+            palette.shadow: colour("surface", "#1d2021")
+            palette.light: colour("surfaceContainerHighest", "#504945")
 
             onClosing: {
                 hpa.setResult("fail");
@@ -67,7 +84,7 @@
                     spacing: 4
 
                     Label {
-                        color: "${palette.fg}"
+                        color: window.colour("onSurface", "#ebdbb2")
                         font.bold: true
                         font.pointSize: Math.round(fontMetrics.height * 1.05)
                         text: "Authenticating for " + hpa.getUser()
@@ -83,7 +100,7 @@
                     }
 
                     Label {
-                        color: "${palette.fg3}"
+                        color: window.colour("onSurfaceVariant", "#bdae93")
                         text: hpa.getMessage()
                         Layout.maximumWidth: parent.width
                         elide: Text.ElideRight
@@ -99,20 +116,20 @@
                         leftPadding: 12
                         rightPadding: 12
                         placeholderText: "Password"
-                        placeholderTextColor: "${palette.gray}"
-                        color: "${palette.fg}"
-                        selectionColor: "${palette.orange}"
-                        selectedTextColor: "${palette.bgHard}"
+                        placeholderTextColor: window.colour("outline", "#928374")
+                        color: window.colour("onSurface", "#ebdbb2")
+                        selectionColor: window.colour("primary", "#fe8019")
+                        selectedTextColor: window.colour("surface", "#1d2021")
                         hoverEnabled: true
                         persistentSelection: true
                         echoMode: TextInput.Password
                         focus: true
 
                         background: Rectangle {
-                            color: "${palette.bg}"
+                            color: window.colour("surfaceContainer", "#282828")
                             radius: 8
                             border.width: 1
-                            border.color: passwordField.activeFocus ? "${palette.orange}" : "${palette.bg2}"
+                            border.color: passwordField.activeFocus ? window.colour("primary", "#fe8019") : window.colour("surfaceContainerHighest", "#504945")
                         }
 
                         Connections {
@@ -133,7 +150,7 @@
                     Label {
                         id: errorLabel
 
-                        color: "${palette.red}"
+                        color: window.colour("error", "#fb4934")
                         font.italic: true
                         Layout.topMargin: 0
                         text: ""
@@ -178,7 +195,7 @@
             }
 
             component Separator: Rectangle {
-                color: "${palette.bg1}"
+                color: window.colour("surfaceContainerHigh", "#3c3836")
             }
 
             component HSeparator: Separator {
@@ -199,7 +216,7 @@
                 contentItem: Text {
                     text: btn.text
                     font: btn.font
-                    color: btn.accent ? "${palette.bgHard}" : "${palette.fg}"
+                    color: btn.accent ? window.colour("surface", "#1d2021") : window.colour("onSurface", "#ebdbb2")
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
                 }
@@ -207,10 +224,10 @@
                 background: Rectangle {
                     radius: 8
                     color: btn.accent
-                        ? (btn.down ? "${palette.yellow}" : (btn.hovered ? "${palette.yellow}" : "${palette.orange}"))
-                        : (btn.down ? "${palette.bg2}" : (btn.hovered ? "${palette.bg2}" : "${palette.bg1}"))
+                        ? (btn.down ? window.colour("primaryContainer", "#fabd2f") : (btn.hovered ? window.colour("primaryContainer", "#fabd2f") : window.colour("primary", "#fe8019")))
+                        : (btn.down ? window.colour("surfaceContainerHighest", "#504945") : (btn.hovered ? window.colour("surfaceContainerHighest", "#504945") : window.colour("surfaceContainerHigh", "#3c3836")))
                     border.width: btn.accent ? 0 : 1
-                    border.color: "${palette.bg2}"
+                    border.color: window.colour("surfaceContainerHighest", "#504945")
                 }
             }
         }

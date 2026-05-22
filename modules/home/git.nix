@@ -16,6 +16,7 @@
           tool = "difftastic";
           external = "difft";
         };
+        "diff \"lockfile\"".command = "true";
         "difftool \"difftastic\"".cmd = ''difft "$LOCAL" "$REMOTE"'';
         pager.difftool = true;
         pull.rebase = true;
@@ -60,8 +61,9 @@
       ];
 
       attributes = [
-        "package-lock.json binary"
-        "yarn.lock binary"
+        "package-lock.json binary diff=lockfile"
+        "flake.lock binary diff=lockfile"
+        "yarn.lock binary diff=lockfile"
       ];
     };
   };
