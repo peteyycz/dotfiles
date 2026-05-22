@@ -33,6 +33,17 @@
           occupiedLabel = "";
           activeLabel = "";
         };
+        settings.general.idle.timeouts = [
+          {
+            timeout = 300;
+            idleAction = "lock";
+          }
+          {
+            timeout = 330;
+            idleAction = "dpms off";
+            returnAction = "dpms on";
+          }
+        ];
         settings.bar.entries = [
           {
             id = "logo";

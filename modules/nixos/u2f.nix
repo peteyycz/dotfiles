@@ -6,7 +6,6 @@
       settings.cue = true;
     };
     security.pam.services.sudo.u2fAuth = true;
-    security.pam.services.hyprlock.u2fAuth = true;
     security.pam.services.sddm.u2fAuth = true;
   };
 }

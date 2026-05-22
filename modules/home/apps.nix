@@ -155,79 +155,7 @@ in
         };
       };
 
-      programs.hyprlock = {
-        enable = true;
-        settings = {
-          general = {
-            ignore_empty_input = true;
-            hide_cursor = true;
-            grace = 0;
-          };
-
-          background = [
-            {
-              monitor = "";
-              path = "${config.home.homeDirectory}/${config.peteyycz.wallpaperPath}";
-              blur_passes = 3;
-              blur_size = 8;
-            }
-          ];
-
-          input-field = [
-            {
-              monitor = "";
-              size = "300, 60";
-              position = "0, -80";
-              halign = "center";
-              valign = "center";
-              outline_thickness = 4;
-              dots_size = 0.25;
-              dots_spacing = 0.4;
-              dots_center = true;
-              rounding = 30;
-              placeholder_text = "<i>Password...</i>";
-              fail_text = "<i>$FAIL ($ATTEMPTS)</i>";
-              fade_on_empty = false;
-            }
-          ];
-
-          label = [
-            {
-              monitor = "";
-              text = "cmd[update:1000] date +'%H:%M'";
-              font_size = 80;
-              font_family = fonts.sans;
-              position = "0, 160";
-              halign = "center";
-              valign = "center";
-            }
-          ];
-        };
-      };
-
       services.playerctld.enable = true;
-
-      services.hypridle = {
-        enable = true;
-        settings = {
-          general = {
-            lock_cmd = "pidof hyprlock || hyprlock";
-            before_sleep_cmd = "loginctl lock-session";
-            after_sleep_cmd = "hyprctl dispatch dpms on";
-          };
-          listener = [
-            {
-              timeout = 300;
-              on-timeout = "loginctl lock-session";
-            }
-            {
-              timeout = 330;
-              on-timeout = "hyprctl dispatch dpms off";
-              on-resume = "hyprctl dispatch dpms on";
-            }
-          ];
-        };
-      };
 
       programs.foot = {
         enable = true;
