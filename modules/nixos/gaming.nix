@@ -10,6 +10,8 @@
 
       environment.systemPackages = with pkgs; [
         mangohud
+        lutris
+        protontricks
       ];
 
       programs.gamemode.enable = true;

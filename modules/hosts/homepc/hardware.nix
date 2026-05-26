@@ -22,6 +22,13 @@
       boot.kernelModules = [ "kvm-amd" ];
       boot.extraModulePackages = [ ];
 
+      # RTL8821CE WiFi: disable PCIe ASPM and deep link power-save, which cause
+      # periodic latency spikes / rubberbanding in latency-sensitive games.
+      boot.extraModprobeConfig = ''
+        options rtw88_pci disable_aspm=1
+        options rtw88_core disable_lps_deep=1
+      '';
+
       fileSystems."/" = {
         device = "/dev/disk/by-uuid/4717aa42-ef12-45ba-98ff-b0d24690a1a3";
         fsType = "ext4";

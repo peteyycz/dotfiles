@@ -29,10 +29,53 @@
           showKbLayout = true;
         };
         settings.paths.sessionGif = "";
+        settings.services = {
+          useFahrenheit = false;
+          useTwelveHourClock = false;
+        };
+        settings.bar.tray = {
+          background = true;
+          recolour = true;
+        };
         settings.bar.workspaces = {
+          shown = 10;
           label = "";
           occupiedLabel = "";
           activeLabel = "";
+          # Workspace window icons are Material Symbol glyphs, matched by window
+          # class. Apps whose .desktop categories don't map (notably Chrome PWAs,
+          # whose class is an opaque `chrome-<id>-Default`) fall back to the
+          # `terminal` glyph, so they all look identical. Override them by class.
+          windowIcons = [
+            {
+              regex = "chrome-kippjfofjhjlffjecoapiogbkgbpmgej"; # Messenger PWA
+              icon = "chat";
+            }
+            {
+              regex = "chrome-ompifgpmddkgmclendfeacglnodjjndh"; # Teams PWA
+              icon = "groups";
+            }
+            {
+              regex = "^Slack$";
+              icon = "forum";
+            }
+            {
+              regex = "^spotify$";
+              icon = "music_note";
+            }
+            {
+              regex = "^google-chrome$";
+              icon = "web";
+            }
+            {
+              regex = "^foot$";
+              icon = "terminal";
+            }
+            {
+              regex = "steam(_app_(default|[0-9]+))?"; # upstream default
+              icon = "sports_esports";
+            }
+          ];
         };
         settings.general.idle.timeouts = [
           {
@@ -52,14 +95,6 @@
           }
           {
             id = "workspaces";
-            enabled = true;
-          }
-          {
-            id = "spacer";
-            enabled = true;
-          }
-          {
-            id = "activeWindow";
             enabled = true;
           }
           {
