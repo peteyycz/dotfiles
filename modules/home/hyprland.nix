@@ -112,35 +112,8 @@
                 mode="preferred"
               fi
 
-              # Caelestia (Quickshell) ignores compositor scale and renders at
-              # native pixels, so the bar looks tiny on HiDPI. Mirror the per-monitor
-              # scale into Caelestia's own appearance + token overlays so its bar,
-              # padding, fonts, and icons resize 1:1 with the hyprctl scale.
-              caelestia_dir="$HOME/.config/caelestia/monitors/$name"
-              mkdir -p "$caelestia_dir"
-
-              shell_json="$caelestia_dir/shell.json"
-              new_shell=$(jq -n --argjson s "$scale" '{
-                appearance: {
-                  rounding: { scale: $s },
-                  spacing:  { scale: $s },
-                  padding:  { scale: $s },
-                  font:     { size: { scale: $s } }
-                }
-              }')
-              if [[ ! -f "$shell_json" ]] || ! diff -q <(echo "$new_shell") "$shell_json" >/dev/null 2>&1; then
-                echo "$new_shell" > "$shell_json"
-              fi
-
-              tokens_json="$caelestia_dir/shell-tokens.json"
-              inner_width=$(awk -v s="$scale" 'BEGIN { printf "%d", 40 * s }')
-              new_tokens=$(jq -n --argjson w "$inner_width" '{
-                sizes: { bar: { innerWidth: $w } }
-              }')
-              if [[ ! -f "$tokens_json" ]] || ! diff -q <(echo "$new_tokens") "$tokens_json" >/dev/null 2>&1; then
-                echo "$new_tokens" > "$tokens_json"
-              fi
-
+              # Quickshell (hare) honors the compositor scale, so no per-monitor
+              # overlay is needed — just set the hyprctl scale below.
               if awk -v a="$cur_scale" -v b="$scale" -v ra="$cur_rate" -v rb="$rate" \
                 'BEGIN { exit !(sqrt((a-b)^2) < 0.01 && (rb == "" || sqrt((ra-rb)^2) < 0.5)) }'; then
                 continue
@@ -265,6 +238,9 @@
           layerrule = [
             "blur on, match:namespace ^(rofi)$"
             "ignore_alpha 0.5, match:namespace ^(rofi)$"
+            "blur on, match:namespace ^(hare)$"
+            "ignore_alpha 0.5, match:namespace ^(hare)$"
+            "blur on, match:namespace ^(wlogout)$"
           ];
 
           windowrule = [
@@ -294,10 +270,10 @@
           bind = [
             "$mod, Return, exec, $term"
             "$mod, Q, killactive"
-            "$mod, D, global, caelestia:launcher"
+            "$mod, D, exec, rofi -show drun"
             "$mod, Escape, exec, loginctl lock-session"
             "$mod SHIFT, C, exec, hyprctl reload"
-            "$mod SHIFT, E, global, caelestia:session"
+            "$mod SHIFT, E, exec, wlogout"
 
             "$mod, H, movefocus, l"
             "$mod, J, movefocus, d"

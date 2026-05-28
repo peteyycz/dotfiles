@@ -1,9 +1,11 @@
-{ ... }:
+{ config, ... }:
+let
+  glass = config.glassTheme.dark;
+in
 {
   flake.modules.homeManager.hyprpolkitagent =
-    { config, pkgs, ... }:
+    { pkgs, ... }:
     let
-      schemePath = "${config.home.homeDirectory}/.local/state/caelestia/scheme.json";
       themedQml = pkgs.writeText "main.qml" ''
         import QtQuick
         import QtQuick.Controls.Basic
@@ -12,21 +14,21 @@
         ApplicationWindow {
             id: window
 
-            property var scheme: ({})
+            readonly property var colourMap: ({
+                "surface": "#${glass.bg}",
+                "onSurface": "#${glass.fg}",
+                "surfaceContainer": "#${glass.surface}",
+                "surfaceContainerHigh": "#3f3f46",
+                "surfaceContainerHighest": "#52525b",
+                "onSurfaceVariant": "#${glass.subtle}",
+                "primary": "#${glass.accent}",
+                "primaryContainer": "#d4d4d8",
+                "outline": "#${glass.subtle}",
+                "error": "#${glass.error}"
+            })
 
             function colour(role, fallback) {
-                return (scheme.colours && scheme.colours[role]) ? "#" + scheme.colours[role] : fallback;
-            }
-
-            Component.onCompleted: {
-                const xhr = new XMLHttpRequest();
-                xhr.open("GET", "file://${schemePath}");
-                xhr.onreadystatechange = function() {
-                    if (xhr.readyState === XMLHttpRequest.DONE && xhr.responseText) {
-                        try { window.scheme = JSON.parse(xhr.responseText); } catch (e) {}
-                    }
-                };
-                xhr.send();
+                return window.colourMap[role] ?? fallback;
             }
 
             property var windowWidth: Math.round(fontMetrics.height * 32.2856)
