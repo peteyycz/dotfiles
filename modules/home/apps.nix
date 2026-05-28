@@ -98,6 +98,7 @@ in
         kubectx
         papirus-icon-theme
         wlogout
+        hyprsunset
       ];
 
       services.playerctld.enable = true;

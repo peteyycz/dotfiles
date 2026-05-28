@@ -26,9 +26,7 @@
     peon-ping.url = "github:PeonPing/peon-ping";
 
     hare = {
-      # Local checkout during development; switch to "github:peteyycz/hare"
-      # once published.
-      url = "path:/home/peteyycz/Code/src/github.com/peteyycz/hare";
+      url = "github:peteyycz/hare";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

@@ -194,14 +194,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1780002019,
-        "narHash": "sha256-93stHb32F9updkPbUxVYaIdp0GCfRB9pyPee3Cl9NHs=",
-        "path": "/home/peteyycz/Code/src/github.com/peteyycz/hare",
-        "type": "path"
+        "lastModified": 1780007458,
+        "narHash": "sha256-cYm0NSzlNMKuygH0IyUIfQyKSYd8GNP4hUXVsu0aeUI=",
+        "owner": "peteyycz",
+        "repo": "hare",
+        "rev": "5d768e1717fcbbdd7616d352419cb7e4c6dcb47e",
+        "type": "github"
       },
       "original": {
-        "path": "/home/peteyycz/Code/src/github.com/peteyycz/hare",
-        "type": "path"
+        "owner": "peteyycz",
+        "repo": "hare",
+        "type": "github"
       }
     },
     "home-manager": {
