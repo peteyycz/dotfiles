@@ -1,89 +1,127 @@
 { config, ... }:
 let
   fonts = config.fontFamilies;
-  glass = config.glassTheme.dark;
+
+  # rofi theme matching hare's liquid glass: translucent tint (frosted by the
+  # Hyprland blur layerrule), 1px glass border, medium radii, lavender accent on
+  # the selected row. `bgA`/`bordA` are the window/border alpha as hex bytes.
+  mkRofiRasi =
+    {
+      p,
+      bgA,
+      bordA,
+    }:
+    ''
+      * {
+        background-color: transparent;
+        text-color:       #${p.fg};
+      }
+
+      window {
+        width: 640px;
+        location: north;
+        anchor: north;
+        y-offset: 12%;
+        background-color: #${p.bg}${bgA};
+        border: 1px;
+        border-color: #${p.border}${bordA};
+        border-radius: 16px;
+        padding: 8px;
+      }
+
+      mainbox {
+        padding: 8px;
+        spacing: 10px;
+      }
+
+      inputbar {
+        padding: 11px 14px;
+        margin: 0 0 8px 0;
+        background-color: #${p.surface};
+        border-radius: 12px;
+        spacing: 10px;
+        children: [ prompt, entry ];
+      }
+
+      prompt {
+        text-color: #${p.accent};
+        vertical-align: 0.5;
+      }
+
+      entry {
+        placeholder: "Search…";
+        placeholder-color: #${p.subtle};
+        text-color: #${p.fg};
+      }
+
+      listview {
+        lines: 8;
+        columns: 1;
+        fixed-height: false;
+        dynamic: true;
+        spacing: 4px;
+        scrollbar: false;
+      }
+
+      element {
+        padding: 8px 12px;
+        border-radius: 9px;
+        spacing: 10px;
+      }
+
+      element selected {
+        background-color: #${p.accent};
+        text-color: #${p.accentInk};
+      }
+
+      element-icon {
+        size: 18px;
+        vertical-align: 0.5;
+        text-color: inherit;
+      }
+
+      element-text {
+        vertical-align: 0.5;
+        text-color: inherit;
+      }
+    '';
+
+  # bgA matches the hare bar's translucency (programs.hare bgAlpha 0.30/0.40):
+  # 0x4d ≈ 0.30, 0x66 ≈ 0.40. Blur (Hyprland layerrule) does the frosting.
+  rofiDark = mkRofiRasi {
+    p = config.glassTheme.dark;
+    bgA = "4d";
+    bordA = "24";
+  };
+  rofiLight = mkRofiRasi {
+    p = config.glassTheme.light;
+    bgA = "66";
+    bordA = "a6";
+  };
 in
 {
   flake.modules.homeManager.apps =
     {
       pkgs,
+      lib,
       ...
     }:
     let
-      # Static dark-glass rofi theme. Translucent surfaces get frosted by the
-      # Hyprland `blur, namespace:rofi` layerrule.
-      rofiRasi = ''
-        * {
-          background-color: transparent;
-          text-color:       #${glass.fg};
-        }
-
-        window {
-          width: 720px;
-          location: north;
-          anchor: north;
-          y-offset: 18%;
-          background-color: #${glass.bg}cc;
-          border: 1px;
-          border-color: #${glass.border}1a;
-          border-radius: 18px;
-        }
-
-        mainbox {
-          padding: 16px;
-        }
-
-        inputbar {
-          padding: 14px 18px;
-          margin: 0 0 14px 0;
-          background-color: #${glass.surface}cc;
-          border-radius: 12px;
-          children: [ textbox-prompt-colon, entry ];
-        }
-
-        prompt {
-          text-color: #${glass.accent};
-        }
-
-        textbox-prompt-colon {
-          expand: false;
-          str: " ";
-        }
-
-        entry {
-          placeholder: "Search...";
-          placeholder-color: #${glass.subtle};
-          text-color: #${glass.fg};
-        }
-
-        listview {
-          lines: 6;
-          columns: 1;
-          fixed-height: false;
-          dynamic: true;
-          spacing: 4px;
-        }
-
-        element {
-          padding: 9px 14px;
-          border-radius: 10px;
-          spacing: 10px;
-        }
-
-        element selected {
-          background-color: #${glass.surface};
-          text-color: #${glass.fg};
-        }
-
-        element-icon {
-          size: 22px;
-          margin: 0 10px 0 0;
-        }
-
-        element-text {
-          vertical-align: 0.5;
-        }
-      '';
+      # Points rofi's "glass" theme at the dark or light variant to match hare's
+      # current tone (the file hare-tone writes).
+      rofiTone = pkgs.writeShellApplication {
+        name = "rofi-tone";
+        runtimeInputs = [ pkgs.coreutils ];
+        text = ''
+          state="''${XDG_STATE_HOME:-$HOME/.local/state}/hare/tone"
+          tone=dark
+          if [ -f "$state" ]; then tone="$(cat "$state")"; fi
+          [ "$tone" = light ] || tone=dark
+          themes="$HOME/.local/share/rofi/themes"
+          mkdir -p "$themes"
+          ln -sf "glass-$tone.rasi" "$themes/glass.rasi"
+        '';
+      };
     in
     {
       home.packages = with pkgs; [
@@ -103,12 +141,42 @@ in
 
       services.playerctld.enable = true;
 
-      # Written into rofi's theme search path; referenced by name below.
-      xdg.dataFile."rofi/themes/glass.rasi".text = rofiRasi;
+      # Both tone variants live in rofi's theme search path; rofi-tone symlinks
+      # the active one to "glass" (referenced by name below).
+      xdg.dataFile."rofi/themes/glass-dark.rasi".text = rofiDark;
+      xdg.dataFile."rofi/themes/glass-light.rasi".text = rofiLight;
+
+      systemd.user.services.rofi-tone = {
+        Unit = {
+          Description = "Match rofi theme to hare's glass tone";
+          PartOf = [ "graphical-session.target" ];
+          After = [ "graphical-session.target" ];
+        };
+        Install.WantedBy = [ "graphical-session.target" ];
+        Service = {
+          Type = "oneshot";
+          ExecStart = "${rofiTone}/bin/rofi-tone";
+        };
+      };
+
+      # Re-point rofi whenever hare flips the tone (e.g. on wallpaper change).
+      systemd.user.paths.rofi-tone = {
+        Unit.Description = "Watch hare tone for rofi";
+        Install.WantedBy = [ "graphical-session.target" ];
+        Path = {
+          PathModified = "%S/hare/tone";
+          Unit = "rofi-tone.service";
+        };
+      };
+
+      # Ensure the "glass" symlink exists right after a switch, not just on login.
+      home.activation.rofiTone = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+        run ${rofiTone}/bin/rofi-tone || true
+      '';
 
       programs.rofi = {
         enable = true;
-        font = "${fonts.sans} 13";
+        font = "${fonts.sans} 11";
         theme = "glass";
         extraConfig = {
           modi = "drun,run,window";
@@ -145,26 +213,29 @@ in
           mouse-bindings = {
             primary-paste = "none";
           };
+          # Gruvbox Material (dark, medium) — muted gruvbox that harmonises with
+          # hare's neutral glass. Translucent (alpha) and a neutral-dark hard bg
+          # so it reads cohesively under the bar.
           colors = {
-            alpha = "0.9";
-            background = glass.bg;
-            foreground = glass.fg;
-            regular0 = "27272a";
-            regular1 = "f87171";
-            regular2 = "a3be8c";
-            regular3 = "ebcb8b";
-            regular4 = "81a1c1";
-            regular5 = "b48ead";
-            regular6 = "88c0d0";
-            regular7 = "d4d4d8";
-            bright0 = "3f3f46";
-            bright1 = "fca5a5";
-            bright2 = "c0d6a6";
-            bright3 = "f5dea0";
-            bright4 = "a3c0e0";
-            bright5 = "cba0c4";
-            bright6 = "a8d8e0";
-            bright7 = "fafafa";
+            alpha = "0.75";
+            background = "1d2021";
+            foreground = "d4be98";
+            regular0 = "3c3836";
+            regular1 = "ea6962";
+            regular2 = "a9b665";
+            regular3 = "d8a657";
+            regular4 = "7daea3";
+            regular5 = "d3869b";
+            regular6 = "89b482";
+            regular7 = "d4be98";
+            bright0 = "665c54";
+            bright1 = "ea6962";
+            bright2 = "a9b665";
+            bright3 = "d8a657";
+            bright4 = "7daea3";
+            bright5 = "d3869b";
+            bright6 = "89b482";
+            bright7 = "ddc7a1";
           };
         };
       };

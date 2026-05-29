@@ -4,6 +4,7 @@
     { config, pkgs, ... }:
     let
       wallpaper = "${config.home.homeDirectory}/${config.peteyycz.wallpaperPath}";
+      wallpaperFile = ../../wallpapers/dusk.jpg;
       # awww is the renamed swww (Wayland wallpaper daemon).
       wallpaperInit = pkgs.writeShellApplication {
         name = "wallpaper-init";
@@ -20,7 +21,11 @@
             sleep 0.1
           done
 
-          awww img "${wallpaper}" || true
+          # Pass the resolved store path, not the symlink: awww caches by the
+          # path string, so a constant symlink path would keep serving the
+          # first-cached image even after the wallpaper changes.
+          wp="$(readlink -f "${wallpaper}" 2>/dev/null || echo "${wallpaper}")"
+          awww img "$wp" || true
           wait "$daemon_pid"
         '';
       };
@@ -33,6 +38,9 @@
           Description = "Wayland wallpaper daemon (awww)";
           PartOf = [ "graphical-session.target" ];
           After = [ "graphical-session.target" ];
+          # Restart the service on switch whenever the wallpaper image changes,
+          # so a new wallpaper actually gets applied.
+          X-Restart-Triggers = [ "${wallpaperFile}" ];
         };
         Install.WantedBy = [ "graphical-session.target" ];
         Service = {

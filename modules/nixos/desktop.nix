@@ -3,7 +3,7 @@
   flake.modules.nixos.desktop =
     { lib, pkgs, ... }:
     let
-      wallpaper = pkgs.fetchurl (import ../../wallpaper.nix);
+      wallpaper = ../../wallpapers/dusk.jpg;
       pixie-sddm-theme = pkgs.stdenvNoCC.mkDerivation {
         pname = "pixie-sddm";
         version = "3.0";

@@ -190,8 +190,10 @@
             rounding = 12;
             blur = {
               enabled = true;
-              size = 5;
-              passes = 3;
+              size = 8;
+              passes = 4;
+              vibrancy = 0.17;
+              new_optimizations = true;
             };
             shadow = {
               enabled = true;
@@ -237,9 +239,9 @@
 
           layerrule = [
             "blur on, match:namespace ^(rofi)$"
-            "ignore_alpha 0.5, match:namespace ^(rofi)$"
+            "ignore_alpha 0.2, match:namespace ^(rofi)$"
             "blur on, match:namespace ^(hare)$"
-            "ignore_alpha 0.5, match:namespace ^(hare)$"
+            "ignore_alpha 0.2, match:namespace ^(hare)$"
             "blur on, match:namespace ^(wlogout)$"
           ];
 

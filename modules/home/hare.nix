@@ -16,6 +16,12 @@ in
           fonts = {
             inherit (fonts) sans mono;
           };
+          # More see-through than the hare defaults (0.46/0.55) — leans on the
+          # heavier Hyprland blur for the frosted-glass read.
+          palette = {
+            dark.bgAlpha = 0.30;
+            light.bgAlpha = 0.40;
+          };
         };
         bar.style = "floating";
       };

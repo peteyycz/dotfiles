@@ -5,7 +5,7 @@
     {
       home.stateVersion = "25.05";
 
-      home.file.${config.peteyycz.wallpaperPath}.source = pkgs.fetchurl (import ../../wallpaper.nix);
+      home.file.${config.peteyycz.wallpaperPath}.source = ../../wallpapers/dusk.jpg;
 
       home.sessionVariables.EDITOR = "vim";
       home.sessionPath = [ "$HOME/.local/bin" ];
