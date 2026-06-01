@@ -274,6 +274,7 @@
             "$mod, Q, killactive"
             "$mod, D, exec, rofi -show drun"
             "$mod, Escape, exec, loginctl lock-session"
+            "$mod, C, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
             "$mod SHIFT, C, exec, hyprctl reload"
             "$mod SHIFT, E, exec, wlogout"
 

@@ -2,14 +2,13 @@
 let
   fonts = config.fontFamilies;
 
-  # rofi theme matching hare's liquid glass: translucent tint (frosted by the
-  # Hyprland blur layerrule), 1px glass border, medium radii, lavender accent on
-  # the selected row. `bgA`/`bordA` are the window/border alpha as hex bytes.
+  # rofi theme matching hare's notched dark glass: borderless translucent tint
+  # (frosted by the Hyprland blur layerrule), medium radii, lavender accent on
+  # the selected row. `bgA` is the window alpha as a hex byte.
   mkRofiRasi =
     {
       p,
       bgA,
-      bordA,
     }:
     ''
       * {
@@ -23,8 +22,7 @@ let
         anchor: north;
         y-offset: 12%;
         background-color: #${p.bg}${bgA};
-        border: 1px;
-        border-color: #${p.border}${bordA};
+        border: 0;
         border-radius: 16px;
         padding: 8px;
       }
@@ -91,12 +89,10 @@ let
   rofiDark = mkRofiRasi {
     p = config.glassTheme.dark;
     bgA = "4d";
-    bordA = "24";
   };
   rofiLight = mkRofiRasi {
     p = config.glassTheme.light;
     bgA = "66";
-    bordA = "a6";
   };
 in
 {
