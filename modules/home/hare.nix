@@ -12,7 +12,7 @@ in
         enable = true;
         wallpaper = "${config.home.homeDirectory}/${config.peteyycz.wallpaperPath}";
         theme = {
-          mode = "adaptive";
+          mode = "dark";
           fonts = {
             inherit (fonts) sans mono;
           };
@@ -23,7 +23,6 @@ in
             light.bgAlpha = 0.40;
           };
         };
-        bar.style = "floating";
       };
     };
 }

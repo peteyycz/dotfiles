@@ -23,6 +23,21 @@
           set -g status-right ""
           set -g status-left "[#S] "
           set -g status-left-length 50
+
+          # status styling — Gruvbox Material to match the foot palette.
+          # `bg=default` lets the status inherit foot's translucent background;
+          # the active window pops as a warm gruvbox-yellow pill.
+          set -g status-style "bg=default,fg=#a89984"
+          set -g window-status-format " #I:#W "
+          set -g window-status-current-format " #I:#W "
+          set -g window-status-style "bg=default,fg=#a89984"
+          set -g window-status-current-style "bg=#d8a657,fg=#282828,bold"
+          set -g window-status-activity-style "fg=#ea6962"
+          set -g window-status-separator ""
+          set -g message-style "bg=#3c3836,fg=#d4be98"
+          set -g pane-border-style "fg=#504945"
+          set -g pane-active-border-style "fg=#d8a657"
+          set -g mode-style "bg=#d8a657,fg=#282828"
           setw -g pane-base-index 1
           set -g status-keys vi
           setw -g clock-mode-style 12
