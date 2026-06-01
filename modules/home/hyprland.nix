@@ -68,28 +68,25 @@
             monitors=$(hyprctl monitors -j 2>/dev/null) || return 0
 
             while IFS=$'\t' read -r name w h pw ph cur_scale cur_rate modes; do
+              if [[ "$pw" -gt 0 && "$ph" -gt 0 ]]; then
+                # Reference 120 DPI (not the textbook 96) — at typical viewing
+                # distances 96 over-scales modern panels; 120 lands on the step
+                # we actually want (e.g. ~162 DPI → 1.25, not 1.5).
+                scale=$(awk -v w="$w" -v h="$h" -v pw="$pw" -v ph="$ph" 'BEGIN {
+                  diag_px = sqrt(w*w + h*h);
+                  diag_in = sqrt(pw*pw + ph*ph) / 25.4;
+                  raw = (diag_px / diag_in) / 120;
+                  snapped = int(raw * 4) / 4;
+                  if (snapped < 1.0) snapped = 1.0;
+                  printf "%.2f", snapped;
+                }')
+              else
+                scale="1.0"
+              fi
+
               case "$name" in
-                eDP-1)
-                  scale="1.0"
-                  pos="0x0"
-                  ;;
-                *)
-                  if [[ "$pw" -gt 0 && "$ph" -gt 0 ]]; then
-                    scale=$(awk -v w="$w" -v h="$h" -v pw="$pw" -v ph="$ph" 'BEGIN {
-                      diag_px = sqrt(w*w + h*h);
-                      diag_in = sqrt(pw*pw + ph*ph) / 25.4;
-                      dpi = diag_px / diag_in;
-                      if (dpi < 110) print "1.0";
-                      else if (dpi < 130) print "1.25";
-                      else if (dpi < 170) print "1.5";
-                      else if (dpi < 200) print "1.75";
-                      else print "2.0";
-                    }')
-                  else
-                    scale="1.0"
-                  fi
-                  pos="auto-up"
-                  ;;
+                eDP-1) pos="0x0" ;;
+                *) pos="auto-up" ;;
               esac
 
               rate=$(awk -v w="$w" -v h="$h" -v modes="$modes" 'BEGIN {
