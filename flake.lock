@@ -194,11 +194,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1780305031,
-        "narHash": "sha256-rdKjmbzRu+0fRTtPndcNl0YyWmYiBz5mY1vkh+HgBek=",
+        "lastModified": 1780558958,
+        "narHash": "sha256-FsT6Bujca3M2XyX6qhSNSS5erUmb//vmX6vU7E/LMJA=",
         "owner": "peteyycz",
         "repo": "hare",
-        "rev": "afa195065648e3a2ca8eecd71f65e72ca16648ac",
+        "rev": "f16be269dd6dd8a2fbd9e41bb36274c159b5ef6d",
         "type": "github"
       },
       "original": {

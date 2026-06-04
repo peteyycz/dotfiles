@@ -49,6 +49,24 @@
         '';
       };
 
+      screenshot = pkgs.writeShellApplication {
+        name = "screenshot";
+        runtimeInputs = with pkgs; [
+          grimblast
+          libnotify
+          coreutils
+          pipewire
+        ];
+        text = ''
+          set -uo pipefail
+          dir="$HOME/Screenshots"
+          mkdir -p "$dir"
+          file="$dir/$(date +%F.%H-%M-%S).png"
+          pw-play ${pkgs.sound-theme-freedesktop}/share/sounds/freedesktop/stereo/camera-shutter.oga >/dev/null 2>&1 &
+          grimblast --notify save output "$file"
+        '';
+      };
+
       hyprAutoScale = pkgs.writeShellApplication {
         name = "hypr-auto-scale";
         runtimeInputs = with pkgs; [
@@ -64,7 +82,7 @@
           socket="$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock"
 
           apply() {
-            local monitors name w h pw ph cur_scale cur_rate modes scale pos rate mode
+            local monitors name w h pw ph cur_scale cur_rate modes scale pos rate mode changed=0
             monitors=$(hyprctl monitors -j 2>/dev/null) || return 0
 
             while IFS=$'\t' read -r name w h pw ph cur_scale cur_rate modes; do
@@ -117,7 +135,15 @@
               fi
 
               hyprctl keyword monitor "$name,$mode,$pos,$scale" >/dev/null
+              changed=1
             done < <(jq -r '.[] | "\(.name)\t\(.width)\t\(.height)\t\(.physicalWidth)\t\(.physicalHeight)\t\(.scale)\t\(.refreshRate)\t\(.availableModes | join(","))"' <<<"$monitors")
+
+            # awww (swww) caches its buffer scale from wl_output at startup and
+            # gets stuck if hyprctl changes the monitor scale afterwards —
+            # bounce it so it re-allocates at the new scale.
+            if [[ "$changed" -eq 1 ]]; then
+              systemctl --user try-restart wallpaper.service 2>/dev/null || true
+            fi
           }
 
           for _ in $(seq 1 60); do
@@ -333,7 +359,7 @@
 
             "$mod, R, exec, find ${scriptsDir} -maxdepth 1 -name '*.sh' -printf '%f\\n' | sed 's/\\.sh$//' | rofi -dmenu -p 'Scripts' -i | xargs -I {} sh -c '${scriptsDir}/{}.sh'"
 
-            ", Print, exec, grimblast save output"
+            ", Print, exec, ${screenshot}/bin/screenshot"
             "ALT, Print, exec, grimblast save active"
             "CTRL, Print, exec, grimblast copy area"
             ''$mod, Print, exec, bash -c 'region=$(slurp) && wf-recorder -g "$region" -f ~/Videos/recording-$(date +%Y%m%d-%H%M%S).mp4' ''

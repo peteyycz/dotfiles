@@ -10,6 +10,12 @@
         "flakes"
       ];
 
+      nix.gc = {
+        automatic = true;
+        dates = "daily";
+        options = "--delete-older-than 7d";
+      };
+
       boot.loader.systemd-boot.enable = true;
       boot.loader.systemd-boot.consoleMode = "max";
       boot.loader.efi.canTouchEfiVariables = true;

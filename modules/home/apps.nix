@@ -133,6 +133,7 @@ in
         papirus-icon-theme
         wlogout
         hyprsunset
+        mongodb-compass
       ];
 
       services.playerctld.enable = true;
