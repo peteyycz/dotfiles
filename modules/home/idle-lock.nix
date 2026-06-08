@@ -1,6 +1,6 @@
-{ config, ... }:
+{ inputs, config, ... }:
 let
-  glass = config.glassTheme.dark;
+  glass = inputs.hare.lib.glass;
   fonts = config.fontFamilies;
 in
 {

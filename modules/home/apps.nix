@@ -1,124 +1,88 @@
-{ config, ... }:
+{ inputs, config, ... }:
 let
   fonts = config.fontFamilies;
+  p = inputs.hare.lib.glass;
 
   # rofi theme matching hare's notched dark glass: borderless translucent tint
   # (frosted by the Hyprland blur layerrule), medium radii, lavender accent on
-  # the selected row. `bgA` is the window alpha as a hex byte.
-  mkRofiRasi =
-    {
-      p,
-      bgA,
-    }:
-    ''
-      * {
-        background-color: transparent;
-        text-color:       #${p.fg};
-      }
+  # the selected row. 0x4d ≈ 0.30 matches the bar's translucency.
+  rofiRasi = ''
+    * {
+      background-color: transparent;
+      text-color:       #${p.fg};
+    }
 
-      window {
-        width: 640px;
-        location: north;
-        anchor: north;
-        y-offset: 12%;
-        background-color: #${p.bg}${bgA};
-        border: 0;
-        border-radius: 16px;
-        padding: 8px;
-      }
+    window {
+      width: 640px;
+      location: north;
+      anchor: north;
+      y-offset: 12%;
+      background-color: #${p.bg}4d;
+      border: 0;
+      border-radius: 16px;
+      padding: 8px;
+    }
 
-      mainbox {
-        padding: 8px;
-        spacing: 10px;
-      }
+    mainbox {
+      padding: 8px;
+      spacing: 10px;
+    }
 
-      inputbar {
-        padding: 11px 14px;
-        margin: 0 0 8px 0;
-        background-color: #${p.surface};
-        border-radius: 12px;
-        spacing: 10px;
-        children: [ prompt, entry ];
-      }
+    inputbar {
+      padding: 11px 14px;
+      margin: 0 0 8px 0;
+      background-color: #${p.surface};
+      border-radius: 12px;
+      spacing: 10px;
+      children: [ prompt, entry ];
+    }
 
-      prompt {
-        text-color: #${p.accent};
-        vertical-align: 0.5;
-      }
+    prompt {
+      text-color: #${p.accent};
+      vertical-align: 0.5;
+    }
 
-      entry {
-        placeholder: "Search…";
-        placeholder-color: #${p.subtle};
-        text-color: #${p.fg};
-      }
+    entry {
+      placeholder: "Search…";
+      placeholder-color: #${p.subtle};
+      text-color: #${p.fg};
+    }
 
-      listview {
-        lines: 8;
-        columns: 1;
-        fixed-height: false;
-        dynamic: true;
-        spacing: 4px;
-        scrollbar: false;
-      }
+    listview {
+      lines: 8;
+      columns: 1;
+      fixed-height: false;
+      dynamic: true;
+      spacing: 4px;
+      scrollbar: false;
+    }
 
-      element {
-        padding: 8px 12px;
-        border-radius: 9px;
-        spacing: 10px;
-      }
+    element {
+      padding: 8px 12px;
+      border-radius: 9px;
+      spacing: 10px;
+    }
 
-      element selected {
-        background-color: #${p.accent};
-        text-color: #${p.accentInk};
-      }
+    element selected {
+      background-color: #${p.accent};
+      text-color: #${p.accentInk};
+    }
 
-      element-icon {
-        size: 18px;
-        vertical-align: 0.5;
-        text-color: inherit;
-      }
+    element-icon {
+      size: 18px;
+      vertical-align: 0.5;
+      text-color: inherit;
+    }
 
-      element-text {
-        vertical-align: 0.5;
-        text-color: inherit;
-      }
-    '';
-
-  # bgA matches the hare bar's translucency (programs.hare bgAlpha 0.30/0.40):
-  # 0x4d ≈ 0.30, 0x66 ≈ 0.40. Blur (Hyprland layerrule) does the frosting.
-  rofiDark = mkRofiRasi {
-    p = config.glassTheme.dark;
-    bgA = "4d";
-  };
-  rofiLight = mkRofiRasi {
-    p = config.glassTheme.light;
-    bgA = "66";
-  };
+    element-text {
+      vertical-align: 0.5;
+      text-color: inherit;
+    }
+  '';
 in
 {
   flake.modules.homeManager.apps =
-    {
-      pkgs,
-      lib,
-      ...
-    }:
-    let
-      # Points rofi's "glass" theme at the dark or light variant to match hare's
-      # current tone (the file hare-tone writes).
-      rofiTone = pkgs.writeShellApplication {
-        name = "rofi-tone";
-        runtimeInputs = [ pkgs.coreutils ];
-        text = ''
-          state="''${XDG_STATE_HOME:-$HOME/.local/state}/hare/tone"
-          tone=dark
-          if [ -f "$state" ]; then tone="$(cat "$state")"; fi
-          [ "$tone" = light ] || tone=dark
-          themes="$HOME/.local/share/rofi/themes"
-          mkdir -p "$themes"
-          ln -sf "glass-$tone.rasi" "$themes/glass.rasi"
-        '';
-      };
-    in
+    { pkgs, ... }:
     {
       home.packages = with pkgs; [
         libnotify
@@ -138,38 +102,7 @@ in
 
       services.playerctld.enable = true;
 
-      # Both tone variants live in rofi's theme search path; rofi-tone symlinks
-      # the active one to "glass" (referenced by name below).
-      xdg.dataFile."rofi/themes/glass-dark.rasi".text = rofiDark;
-      xdg.dataFile."rofi/themes/glass-light.rasi".text = rofiLight;
-
-      systemd.user.services.rofi-tone = {
-        Unit = {
-          Description = "Match rofi theme to hare's glass tone";
-          PartOf = [ "graphical-session.target" ];
-          After = [ "graphical-session.target" ];
-        };
-        Install.WantedBy = [ "graphical-session.target" ];
-        Service = {
-          Type = "oneshot";
-          ExecStart = "${rofiTone}/bin/rofi-tone";
-        };
-      };
-
-      # Re-point rofi whenever hare flips the tone (e.g. on wallpaper change).
-      systemd.user.paths.rofi-tone = {
-        Unit.Description = "Watch hare tone for rofi";
-        Install.WantedBy = [ "graphical-session.target" ];
-        Path = {
-          PathModified = "%S/hare/tone";
-          Unit = "rofi-tone.service";
-        };
-      };
-
-      # Ensure the "glass" symlink exists right after a switch, not just on login.
-      home.activation.rofiTone = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-        run ${rofiTone}/bin/rofi-tone || true
-      '';
+      xdg.dataFile."rofi/themes/glass.rasi".text = rofiRasi;
 
       programs.rofi = {
         enable = true;

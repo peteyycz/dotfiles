@@ -1,6 +1,6 @@
-{ config, ... }:
+{ inputs, ... }:
 let
-  glass = config.glassTheme.dark;
+  glass = inputs.hare.lib.glass;
 in
 {
   flake.modules.homeManager.hyprpolkitagent =
