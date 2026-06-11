@@ -90,6 +90,7 @@ in
         wf-recorder
         jq
         grimblast
+        htop
         uv
         ffmpeg
         networkmanagerapplet

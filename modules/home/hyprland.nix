@@ -213,8 +213,8 @@
             rounding = 12;
             blur = {
               enabled = true;
-              size = 8;
-              passes = 4;
+              size = 6;
+              passes = 2;
               vibrancy = 0.17;
               new_optimizations = true;
             };
