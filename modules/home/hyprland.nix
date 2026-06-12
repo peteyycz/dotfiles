@@ -87,16 +87,24 @@
 
             while IFS=$'\t' read -r name w h pw ph cur_scale cur_rate modes; do
               if [[ "$pw" -gt 0 && "$ph" -gt 0 ]]; then
-                # Reference 120 DPI (not the textbook 96) — at typical viewing
-                # distances 96 over-scales modern panels; 120 lands on the step
-                # we actually want (e.g. ~162 DPI → 1.25, not 1.5).
+                # Tiered DPI buckets rather than linear DPI/ref + round: the
+                # 0.25 scale step is wide relative to common panel densities,
+                # so a 24" 1440p panel (~122 DPI) and a 14" 1200p panel
+                # (~162 DPI) live on opposite sides of any single rounding
+                # threshold even though both want 1.25. Buckets chosen so
+                # 24" 1080p (~92) stays at 1.0, the broad "comfortable
+                # hi-DPI" band (24" 1440p, 14"–27" 1440p+, 27" 4K, etc.)
+                # lands on 1.25, and true retina densities step up cleanly.
                 scale=$(awk -v w="$w" -v h="$h" -v pw="$pw" -v ph="$ph" 'BEGIN {
                   diag_px = sqrt(w*w + h*h);
                   diag_in = sqrt(pw*pw + ph*ph) / 25.4;
-                  raw = (diag_px / diag_in) / 120;
-                  snapped = int(raw * 4) / 4;
-                  if (snapped < 1.0) snapped = 1.0;
-                  printf "%.2f", snapped;
+                  dpi = diag_px / diag_in;
+                  if      (dpi < 100) s = 1.00;
+                  else if (dpi < 180) s = 1.25;
+                  else if (dpi < 240) s = 1.50;
+                  else if (dpi < 320) s = 1.75;
+                  else                s = 2.00;
+                  printf "%.2f", s;
                 }')
               else
                 scale="1.0"
