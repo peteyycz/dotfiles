@@ -11,8 +11,10 @@
       inherit (config.peteyycz) isLaptop terminal scriptsDir;
 
       # When the lid closes with at least one non-eDP-1 monitor connected,
-      # disable eDP-1 — Hyprland then auto-migrates all workspaces onto the
-      # remaining (external) outputs. On lid open, re-enable eDP-1.
+      # migrate any workspaces still on eDP-1 to the external monitor and then
+      # disable eDP-1. Workspaces 1..10 are pinned to eDP-1 via the `workspace`
+      # rule, so hyprland will not auto-migrate them when the panel drops —
+      # they must be moved explicitly. On lid open, re-enable eDP-1.
       #
       # Skip while hyprlock is running: hyprlock 0.9.4 asserts on a wl_output
       # add/remove during its lifetime (hyprlock.cpp:380 "Disconnected from
@@ -39,6 +41,10 @@
               monitors=$(hyprctl monitors -j 2>/dev/null) || exit 0
               external=$(jq -r '.[] | select(.name != "eDP-1") | .name' <<<"$monitors" | head -n1)
               if [[ -n "$external" ]]; then
+                while IFS= read -r ws; do
+                  [[ -n "$ws" ]] || continue
+                  hyprctl dispatch moveworkspacetomonitor "$ws $external" >/dev/null
+                done < <(hyprctl workspaces -j 2>/dev/null | jq -r '.[] | select(.monitor == "eDP-1") | .id')
                 hyprctl keyword monitor "eDP-1,disable" >/dev/null
               fi
               ;;
