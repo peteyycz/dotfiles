@@ -11,6 +11,7 @@ in
         nixos.networking
         nixos.audio
         nixos.bluetooth
+        nixos.logitech
         nixos.fonts
         nixos.desktop
         nixos.onepassword

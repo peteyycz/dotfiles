@@ -84,9 +84,9 @@
 
       # Docked (external monitor attached) stays "ignore" so hyprLidHandler can
       # blank eDP-1 without dropping the session.
-      services.logind = {
-        lidSwitch = "suspend";
-        lidSwitchExternalPower = "suspend";
+      services.logind.settings.Login = {
+        HandleLidSwitch = "suspend";
+        HandleLidSwitchExternalPower = "suspend";
       };
     };
 }

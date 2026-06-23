@@ -184,6 +184,7 @@
         package = null;
         portalPackage = null;
         systemd.enable = true;
+        configType = "hyprlang";
 
         settings = {
           "$mod" = "SUPER";
@@ -262,7 +263,6 @@
           };
 
           dwindle = {
-            pseudotile = true;
             preserve_split = true;
           };
 
@@ -357,12 +357,12 @@
 
             "$mod SHIFT, M, movecurrentworkspacetomonitor, +1"
 
-            "$mod, B, togglesplit"
-            "$mod, V, togglesplit"
+            "$mod, B, layoutmsg, togglesplit"
+            "$mod, V, layoutmsg, togglesplit"
             "$mod, W, exec, tmux-rofi"
             "$mod SHIFT, W, exec, tmuxw-rofi"
             "$mod CTRL, W, exec, tmuxw-close"
-            "$mod, E, togglesplit"
+            "$mod, E, layoutmsg, togglesplit"
             "$mod, F, fullscreen, 0"
             "$mod SHIFT, F, togglefloating"
             "$mod, space, togglefloating"

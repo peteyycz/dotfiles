@@ -49,6 +49,7 @@
         btop
         fd
         eza
+        xxd
 
         postgresql
 
