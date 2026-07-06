@@ -39,7 +39,6 @@
         mediainfo
         imv
         vlc
-        spotify
 
         gh
         ghq

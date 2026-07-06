@@ -55,6 +55,11 @@
         xwayland.enable = true;
       };
 
+      # Opt Electron/Chromium apps (Spotify, Slack, Chrome, VS Code) into the
+      # Ozone Wayland backend so fractional scaling stays crisp instead of
+      # being bitmap-upscaled through Xwayland.
+      environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
       qt = {
         enable = true;
         platformTheme = "gnome";

@@ -199,7 +199,6 @@
             "1password --silent"
             "google-chrome-stable"
             "slack"
-            "spotify"
           ];
 
           input = {
@@ -288,7 +287,6 @@
             "workspace 3 silent, match:class ^(Slack)$, match:initial_title ^(Slack)$"
             "workspace 4 silent, match:class ^(steam_app)"
             "workspace 4 silent, match:title ^(.*Microsoft Teams.*)$"
-            "workspace 7 silent, match:class ^(spotify)$"
 
             "float on, match:class ^([Ss]team)$"
             "tile on, match:class ^([Ss]team)$, match:title ^(Steam)$"
