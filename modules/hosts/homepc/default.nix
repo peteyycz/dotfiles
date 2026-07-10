@@ -12,8 +12,12 @@ in
       nixos.gaming
     ];
 
-    home-manager.users.${config.username}.imports = builtins.attrValues (
-      removeAttrs homeManager [ "laptop" ]
-    );
+    home-manager.users.${config.username} = {
+      imports = builtins.attrValues (removeAttrs homeManager [ "laptop" ]);
+      peteyycz.hyprlandExtraExecOnce = [
+        "steam -silent"
+        "discord --start-minimized"
+      ];
+    };
   };
 }

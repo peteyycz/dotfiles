@@ -16,6 +16,10 @@
           type = lib.types.listOf lib.types.str;
           default = [ ];
         };
+        hyprlandExtraExecOnce = lib.mkOption {
+          type = lib.types.listOf lib.types.str;
+          default = [ ];
+        };
         hyprlandExtraWindowRules = lib.mkOption {
           type = lib.types.listOf lib.types.str;
           default = [ ];

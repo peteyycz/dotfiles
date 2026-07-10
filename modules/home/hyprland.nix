@@ -215,7 +215,8 @@
             "1password --silent"
             "google-chrome-stable"
             "slack --startup"
-          ];
+          ]
+          ++ config.peteyycz.hyprlandExtraExecOnce;
 
           input = {
             kb_layout = "us,hu";
@@ -288,6 +289,11 @@
             disable_splash_rendering = true;
             focus_on_activate = true;
           };
+
+          # XWayland clients can't render at fractional scales — without this
+          # the compositor renders them at scale=1 and bilinearly upscales,
+          # which blurs Wine games (Battle.net, WoW) on a 1.25x monitor.
+          xwayland.force_zero_scaling = true;
 
           layerrule = [
             "blur on, match:namespace ^(rofi)$"
