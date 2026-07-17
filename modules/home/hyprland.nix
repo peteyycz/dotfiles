@@ -26,6 +26,7 @@
           hyprland
           procps
           coreutils
+          gawk
         ];
         text = ''
           set -uo pipefail
@@ -50,6 +51,20 @@
               ;;
             open)
               hyprctl keyword monitor "eDP-1,preferred,0x0,1" >/dev/null
+              ;;
+            sync)
+              # Reconcile with current lid position. Config reload
+              # (nixos-rebuild switch) re-applies the static monitor +
+              # workspace-pin rules, which resurrect eDP-1 and drag
+              # workspaces back onto it even when the lid is shut. Read
+              # the ACPI lid state and rerun the close branch if needed.
+              state=""
+              for f in /proc/acpi/button/lid/*/state; do
+                [[ -r "$f" ]] || continue
+                state=$(awk '{print $2}' "$f")
+                break
+              done
+              [[ "$state" == "closed" ]] && exec "$0" close
               ;;
           esac
         '';
@@ -172,6 +187,7 @@
               monitoradded*|monitorremoved*|configreloaded*)
                 sleep 0.4
                 apply
+                ${hyprLidHandler}/bin/hypr-lid-handler sync
                 ;;
             esac
           done
@@ -198,7 +214,7 @@
             "test -x ${scriptsDir}/@peteyycz:dev-start.sh && ${scriptsDir}/@peteyycz:dev-start.sh"
             "1password --silent"
             "google-chrome-stable"
-            "slack"
+            "slack --startup"
           ];
 
           input = {

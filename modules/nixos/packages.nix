@@ -37,6 +37,7 @@
         wl-clipboard
 
         google-chrome
+        obsidian
         rustdesk
         slack
         nautilus
@@ -54,6 +55,10 @@
         psmisc
         parted
         lshw
+
+        ansible # ansible-playbook site.yml
+        qemu # qemu-system-aarch64 + qemu-img + aarch64 UEFI firmware
+        mosquitto # mosquitto_pub/sub for poking the broker (optional)
       ];
     };
 }
