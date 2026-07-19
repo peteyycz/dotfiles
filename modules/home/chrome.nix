@@ -4,6 +4,7 @@
     home.file.".config/chrome-flags.conf".text = ''
       --force-dark-mode
       --enable-features=WebUIDarkMode
+      --password-store=gnome-libsecret
     '';
 
     xdg.mimeApps = {

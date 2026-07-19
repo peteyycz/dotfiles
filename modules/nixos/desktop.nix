@@ -1,58 +1,11 @@
 { ... }:
 {
   flake.modules.nixos.desktop =
-    { lib, pkgs, ... }:
-    let
-      wallpaper = ../../wallpapers/dusk.jpg;
-      pixie-sddm-theme = pkgs.stdenvNoCC.mkDerivation {
-        pname = "pixie-sddm";
-        version = "3.0";
-        src = pkgs.fetchFromGitHub {
-          owner = "xCaptaiN09";
-          repo = "pixie-sddm";
-          rev = "6f2e77c269c43a455bd81c3ecac1fff796c0253c";
-          hash = "sha256-NkjWP/y3kLRjYM0Wr3l7ndbMx3XYxQFXy07C28vrUSU=";
-        };
-        dontBuild = true;
-        installPhase = ''
-          runHook preInstall
-          mkdir -p $out/share/sddm/themes/pixie
-          cp -r assets components Main.qml metadata.desktop theme.conf LICENSE \
-            $out/share/sddm/themes/pixie/
-          cp ${wallpaper} $out/share/sddm/themes/pixie/assets/background.jpg
-          runHook postInstall
-        '';
-      };
-    in
+    { pkgs, ... }:
     {
       xdg.portal = {
         enable = true;
-        wlr.enable = true;
         extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-        config = {
-          common = {
-            default = "gtk";
-            "org.freedesktop.impl.portal.Screenshot" = "wlr";
-            "org.freedesktop.impl.portal.ScreenCast" = "wlr";
-          };
-          Hyprland = {
-            default = lib.mkForce [
-              "hyprland"
-              "gtk"
-            ];
-            "org.freedesktop.impl.portal.Settings" = [ "gtk" ];
-            # xdg-desktop-portal-hyprland's restore-token persistence is incomplete
-            # (logs "v3 todo with data"), so route screencast/screenshot to wlr
-            # which persists tokens via xdg-permission-store.
-            "org.freedesktop.impl.portal.ScreenCast" = [ "wlr" ];
-            "org.freedesktop.impl.portal.Screenshot" = [ "wlr" ];
-          };
-        };
-      };
-
-      programs.hyprland = {
-        enable = true;
-        xwayland.enable = true;
       };
 
       # Opt Electron/Chromium apps (Spotify, Slack, Chrome, VS Code) into the
@@ -60,25 +13,22 @@
       # being bitmap-upscaled through Xwayland.
       environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
-      qt = {
-        enable = true;
-        platformTheme = "gnome";
-        style = "adwaita-dark";
-      };
-
-      environment.systemPackages = [ pixie-sddm-theme ];
+      # Xorg is here only to host SDDM's X11 greeter; user sessions
+      # (Hyprland, Plasma) still start on Wayland.
+      services.xserver.enable = true;
 
       services.displayManager = {
-        defaultSession = "hyprland";
+        defaultSession = "plasma";
         sddm = {
           enable = true;
-          wayland.enable = true;
-          theme = "pixie";
-          extraPackages = with pkgs.kdePackages; [
-            qt5compat
-            qtdeclarative
-            qtsvg
-          ];
+          # X11 greeter, not Wayland. SDDM's Wayland greeter runs its own
+          # kwin_wayland; when the user picks a Plasma session the two KWin
+          # instances race for DRM master (see "Atomic modeset test failed!
+          # Permission denied" in the KWin logs), fbcon takes the console,
+          # and the display goes to a text-mode black screen. Launching
+          # Wayland user sessions (Hyprland, Plasma) from an X11 greeter
+          # cleanly releases the display.
+          wayland.enable = false;
         };
       };
     };

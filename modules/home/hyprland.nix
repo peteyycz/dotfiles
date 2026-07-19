@@ -195,6 +195,11 @@
       };
     in
     {
+      # Gate every home-manager wayland service (hypridle, hyprpolkitagent, …)
+      # on hyprland-session.target instead of graphical-session.target, so
+      # nothing Hyprland-only starts under a parallel session (KDE, …).
+      wayland.systemd.target = "hyprland-session.target";
+
       wayland.windowManager.hyprland = {
         enable = true;
         package = null;
@@ -273,7 +278,7 @@
               "windowsMove, 1, 2, default"
               "border, 1, 6, default"
               "fade, 1, 3, smoothIn"
-              "workspaces, 1, 3, smoothIn, slide"
+              "workspaces, 1, 2, default, fade"
               "layers, 1, 3, overshot, popin 80%"
             ];
           };
@@ -430,10 +435,10 @@
       systemd.user.services.hypr-auto-scale = {
         Unit = {
           Description = "Auto-scale Hyprland monitors based on DPI";
-          PartOf = [ "graphical-session.target" ];
-          After = [ "graphical-session.target" ];
+          PartOf = [ "hyprland-session.target" ];
+          After = [ "hyprland-session.target" ];
         };
-        Install.WantedBy = [ "graphical-session.target" ];
+        Install.WantedBy = [ "hyprland-session.target" ];
         Service = {
           ExecStart = "${hyprAutoScale}/bin/hypr-auto-scale";
           Restart = "on-failure";

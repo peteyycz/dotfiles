@@ -36,13 +36,13 @@
       systemd.user.services.wallpaper = {
         Unit = {
           Description = "Wayland wallpaper daemon (awww)";
-          PartOf = [ "graphical-session.target" ];
-          After = [ "graphical-session.target" ];
+          PartOf = [ "hyprland-session.target" ];
+          After = [ "hyprland-session.target" ];
           # Restart the service on switch whenever the wallpaper image changes,
           # so a new wallpaper actually gets applied.
           X-Restart-Triggers = [ "${wallpaperFile}" ];
         };
-        Install.WantedBy = [ "graphical-session.target" ];
+        Install.WantedBy = [ "hyprland-session.target" ];
         Service = {
           ExecStart = "${wallpaperInit}/bin/wallpaper-init";
           Restart = "on-failure";

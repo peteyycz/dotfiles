@@ -6,6 +6,7 @@
     # Lets `docker buildx build --platform linux/arm64` (and Nix arm64 builds) work by
     # registering qemu-user for aarch64 via binfmt_misc with the fix-binary flag.
     boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+    boot.binfmt.registrations.aarch64-linux.fixBinary = true;
 
     # Park every container under one slice so we can cap their *aggregate*
     # CPU use. Docker uses the systemd cgroup driver, so containers are

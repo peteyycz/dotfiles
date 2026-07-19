@@ -4,7 +4,7 @@ let
 in
 {
   flake.modules.homeManager.hare =
-    { ... }:
+    { lib, ... }:
     {
       imports = [ inputs.hare.homeManagerModules.default ];
 
@@ -20,6 +20,16 @@ in
             bgAlpha = 0.30;
           };
         };
+      };
+
+      # Upstream hare hardcodes graphical-session.target; force it onto
+      # hyprland-session.target so the bar doesn't launch under KDE.
+      systemd.user.services.hare = {
+        Unit = {
+          PartOf = lib.mkForce [ "hyprland-session.target" ];
+          After = lib.mkForce [ "hyprland-session.target" ];
+        };
+        Install.WantedBy = lib.mkForce [ "hyprland-session.target" ];
       };
     };
 }

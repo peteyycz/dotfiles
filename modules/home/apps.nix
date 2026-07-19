@@ -148,7 +148,7 @@ in
           # cooled slightly toward the bar's neutral dark, and magenta swapped
           # for hare's lavender accent so the terminal shares the shell's accent.
           colors = {
-            alpha = "0.75";
+            alpha = "1.0";
             background = "1a1b1e";
             foreground = "d4be98";
             regular0 = "3c3836";
