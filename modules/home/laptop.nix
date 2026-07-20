@@ -50,6 +50,18 @@
     {
       peteyycz.isLaptop = true;
 
+      # Natural (reverse) scrolling on the built-in touchpad.
+      # Device: /proc/bus/input/devices -> "VEN_04F3:00 04F3:31E2 Touchpad".
+      programs.plasma.input.touchpads = [
+        {
+          name = "VEN_04F3:00 04F3:31E2 Touchpad";
+          vendorId = "04f3";
+          productId = "31e2";
+          enable = true;
+          naturalScroll = true;
+        }
+      ];
+
       systemd.user.services.battery-warn = {
         Unit = {
           Description = "Low-battery desktop notifications";
