@@ -82,15 +82,57 @@
           "services/systemsettings.desktop"."_launch" = [ ];
         };
 
+        # Custom global shortcuts (parity with the Hyprland bindings).
+        hotkeys.commands = {
+          tmux-rofi = {
+            name = "tmux session picker";
+            key = "Meta+W";
+            # Opens KRunner in single-runner mode, showing only tmux sessions.
+            command = "dbus-send --session --dest=org.kde.krunner /App org.kde.krunner.App.displaySingleRunner string:tmuxrunner";
+          };
+          projects-krunner = {
+            name = "project picker (tmuxw)";
+            key = "Meta+Shift+W";
+            # Opens KRunner in single-runner mode, listing git repos under codeRoot.
+            command = "dbus-send --session --dest=org.kde.krunner /App org.kde.krunner.App.displaySingleRunner string:projectsrunner";
+          };
+          scripts-krunner = {
+            name = "scripts picker";
+            key = "Meta+R";
+            # Opens KRunner in single-runner mode, listing *.sh in scriptsDir.
+            command = "dbus-send --session --dest=org.kde.krunner /App org.kde.krunner.App.displaySingleRunner string:scriptsrunner";
+          };
+          tmuxw-close = {
+            name = "close current tmux session";
+            key = "Meta+Ctrl+W";
+            command = "tmuxw-close";
+          };
+        };
+
         workspace.cursor = {
           theme = "macOS";
           size = 24;
         };
 
-        # Empty desktop containment: no folder view, no icons — the wallpaper
-        # is all that renders on the desktop layer. Right-clicking still works.
+        # No folder view, no icons — wallpaper is all that renders on the
+        # desktop layer. Same underlying package as org.kde.plasma.folder,
+        # but this plugin name flips the internal isFolder flag off. Right-
+        # clicking still works.
         configFile."plasma-org.kde.plasma.desktop-appletsrc" = {
-          "Containments/1".plugin = "org.kde.plasma.emptyContainment";
+          "Containments/1".plugin = "org.kde.desktopcontainment";
+        };
+
+        # Trim KRunner (Alt+Space) to just Applications + workspace switcher.
+        # .so-based runners have no explicit "Id" in their metadata, so their
+        # pluginId falls back to the filename (`krunner_placesrunner` etc.),
+        # which is what `<pluginId>Enabled` must match.
+        configFile.krunnerrc.Plugins = {
+          baloosearchEnabled = false;
+          windowsEnabled = false;
+          krunner_bookmarksrunnerEnabled = false;
+          krunner_placesrunnerEnabled = false;
+          krunner_recentdocumentsEnabled = false;
+          krunner_systemsettingsEnabled = false;
         };
       };
     };

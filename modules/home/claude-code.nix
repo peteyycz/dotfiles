@@ -34,6 +34,29 @@
       };
     in
     {
+      home.file.".claude/CLAUDE.md".text = ''
+        # Global instructions
+
+        ## Creating pull requests
+
+        - **Never co-sign commits.** Do not add a `Co-Authored-By: Claude` trailer (or any
+          Claude/Anthropic attribution) to commit messages. Commits are authored by the user alone.
+        - **Never add the "Generated with Claude Code" footer** to PR bodies.
+        - **Keep PR descriptions very brief — about 2 lines.** State what changed and why it
+          matters. Detail belongs in the commit message, the ticket, or review comments, not
+          the PR body.
+        - **Branch before committing.** Never commit directly to the repo's default branch.
+        - **Name branches after the ticket:** `<TICKET-ID>-<short-kebab-summary>`, e.g.
+          `OKT-2102-antifraud-hmac-fix`. Match the repo's existing branch naming if it differs.
+        - **Commit messages are a single line.** Subject only — no body, no bullet lists,
+          no explanation of rationale. If it needs more than one line, it needs a smaller
+          commit. Context belongs in the ticket or in review.
+        - **Prefix commit subjects with the ticket ID** when working on one, matching the
+          repo's existing commit style.
+        - Open the PR against the repo's base branch (in Oktogon-Media repos this is
+          `development`, not `main`).
+      '';
+
       home.file.".claude/settings.json".text = builtins.toJSON {
         hooks = {
           Stop = [

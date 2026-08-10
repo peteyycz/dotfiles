@@ -88,11 +88,15 @@
                 trigger = q.startswith("tmux")
                 if trigger:
                     q = q[4:].strip()
+                # Empty query = list everything (single-runner-mode entry point).
+                show_all = not q
                 out = []
                 for name, path in sessions():
                     nl = name.lower()
-                    if trigger:
-                        if q and q not in nl:
+                    if show_all:
+                        exact = False
+                    elif trigger:
+                        if q not in nl:
                             continue
                         exact = q == nl
                     else:
@@ -100,9 +104,11 @@
                             continue
                         exact = nl.startswith(q)
                     props = {"subtext": subtext(path)}
+                    # Type 100 = ExactMatch; keeps tmux hits above documents
+                    # and other PossibleMatch (30) results in KRunner's list.
                     out.append((name, name, "utilities-terminal",
-                                100 if exact else 30,
-                                1.0 if exact else 0.7, props))
+                                100,
+                                1.0 if exact else 0.9, props))
                 return out
 
             @dbus.service.method(IFACE, in_signature="ss", out_signature="")
@@ -234,14 +240,25 @@
         (writeShellScriptBin "tmuxw-close" ''
           # Determine the tmux session attached to the focused terminal.
           # Fallback: most recently attached session.
-          ACTIVE=$(hyprctl activewindow -j)
-          ADDR=$(echo "$ACTIVE" | jq -r '.address // empty')
-          CLASS=$(echo "$ACTIVE" | jq -r '.class // empty')
-
+          # Compositor-agnostic (Hyprland via hyprctl, KDE Plasma via kdotool).
           TTY=""
           SESSION=""
-          if [ "$CLASS" = "${terminal}" ] && [ -n "$ADDR" ]; then
-            PID=$(echo "$ACTIVE" | jq -r .pid)
+          PID=""
+          if [ -n "$HYPRLAND_INSTANCE_SIGNATURE" ]; then
+            ACTIVE=$(hyprctl activewindow -j)
+            CLASS=$(echo "$ACTIVE" | jq -r '.class // empty')
+            if [ "$CLASS" = "${terminal}" ]; then
+              PID=$(echo "$ACTIVE" | jq -r '.pid // empty')
+            fi
+          else
+            kd=${pkgs.kdotool}/bin/kdotool
+            ACTIVE=$("$kd" getactivewindow 2>/dev/null)
+            if [ -n "$ACTIVE" ] \
+              && "$kd" search --class "${terminal}" 2>/dev/null | grep -qxF "$ACTIVE"; then
+              PID=$("$kd" getwindowpid "$ACTIVE" 2>/dev/null)
+            fi
+          fi
+          if [ -n "$PID" ]; then
             CHILD_PID=$(${pkgs.procps}/bin/pgrep -P "$PID" | head -1)
             if [ -n "$CHILD_PID" ]; then
               TTY="/dev/$(ps -o tty= -p "$CHILD_PID" | tr -d ' ')"
@@ -313,7 +330,9 @@
         Name=Tmux Sessions
         Comment=Switch between tmux sessions
         Icon=utilities-terminal
+        X-KDE-ServiceTypes=Plasma/Runner
         X-KDE-PluginInfo-Name=tmuxrunner
+        X-KDE-PluginInfo-Version=1.0
         X-KDE-PluginInfo-EnabledByDefault=true
         X-Plasma-API=DBus
         X-Plasma-DBusRunner-Service=org.peteyycz.tmuxrunner
