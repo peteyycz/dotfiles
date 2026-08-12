@@ -4,11 +4,14 @@
   flake.modules.homeManager.claude-code =
     { config, ... }:
     let
-      inherit (config.peteyycz) terminal;
       peonDir = "${config.home.homeDirectory}/.openpeon";
+      # `--wait` blocks until the notification is dismissed, and Plasma keeps
+      # actionable ones in history indefinitely — undismissed ones used to
+      # linger until systemd SIGKILLed them 90s into shutdown. `timeout` caps
+      # how long the Open button stays live, and with it the stray process.
       notifyCommand =
         body:
-        ''bash -c 'SESSION=$(tmux display-message -p "#S" 2>/dev/null || echo "claude"); (ACTION=$(notify-send --app-name="Claude Code" --icon="${peonDir}/docs/peon-icon.png" --action="open=Open" --wait "Claude Code — $SESSION" "${body}"); [ "$ACTION" = "open" ] && hyprctl dispatch focuswindow "class:${terminal}" && tmux switch-client -t "$SESSION") </dev/null >/dev/null 2>&1 &' '';
+        ''bash -c 'SESSION=$(tmux display-message -p "#S" 2>/dev/null || echo "claude"); (ACTION=$(timeout 30 notify-send --app-name="Claude Code" --icon="${peonDir}/docs/peon-icon.png" --action="open=Open" --wait "Claude Code — $SESSION" "${body}"); [ "$ACTION" = "open" ] && tmux-focus "$SESSION") </dev/null >/dev/null 2>&1 &' '';
 
       notifyHook = body: {
         matcher = "";

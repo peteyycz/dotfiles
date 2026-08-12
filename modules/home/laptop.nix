@@ -48,8 +48,6 @@
       };
     in
     {
-      peteyycz.isLaptop = true;
-
       # Natural (reverse) scrolling on the built-in touchpad.
       # Device: /proc/bus/input/devices -> "VEN_04F3:00 04F3:31E2 Touchpad".
       programs.plasma.input.touchpads = [

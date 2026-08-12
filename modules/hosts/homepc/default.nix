@@ -14,10 +14,10 @@ in
 
     home-manager.users.${config.username} = {
       imports = builtins.attrValues (removeAttrs homeManager [ "laptop" ]);
-      peteyycz.hyprlandExtraExecOnce = [
-        "steam -silent"
-        "discord --start-minimized"
-      ];
+      peteyycz.autostart = {
+        steam = "steam -silent";
+        discord = "discord --start-minimized";
+      };
     };
   };
 }

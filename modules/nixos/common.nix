@@ -14,7 +14,6 @@ in
         nixos.logitech
         nixos.fonts
         nixos.desktop
-        nixos.hyprland
         nixos.plasma
         nixos.onepassword
         nixos.docker

@@ -3,13 +3,23 @@
   flake.modules.homeManager.plasma =
     { ... }:
     {
-      imports = [ inputs.plasma-manager.homeManagerModules.plasma-manager ];
+      imports = [ inputs.plasma-manager.homeModules.plasma-manager ];
 
       programs.plasma = {
         enable = true;
 
-        # Remap Caps Lock to Ctrl (matches the old Hyprland ctrl:nocaps).
-        input.keyboard.options = [ "ctrl:nocaps" ];
+        # Caps Lock acts as Ctrl. Layouts cycle with Alt+Shift, bound under
+        # "KDE Keyboard Layout Switcher" below.
+        input.keyboard = {
+          options = [ "ctrl:nocaps" ];
+          layouts = [
+            { layout = "us"; }
+            {
+              layout = "hu";
+              variant = "qwerty";
+            }
+          ];
+        };
 
         # Global shortcuts, captured from the KDE UI (rc2nix-style).
         # [ ] = intentionally unbound. Managed here so both machines match.
@@ -82,25 +92,22 @@
           "services/systemsettings.desktop"."_launch" = [ ];
         };
 
-        # Custom global shortcuts (parity with the Hyprland bindings).
+        # Custom global shortcuts for the tmux/scripts launchers.
         hotkeys.commands = {
           tmux-rofi = {
             name = "tmux session picker";
             key = "Meta+W";
-            # Opens KRunner in single-runner mode, showing only tmux sessions.
-            command = "dbus-send --session --dest=org.kde.krunner /App org.kde.krunner.App.displaySingleRunner string:tmuxrunner";
+            command = "tmux-rofi";
           };
-          projects-krunner = {
+          tmuxw-rofi = {
             name = "project picker (tmuxw)";
             key = "Meta+Shift+W";
-            # Opens KRunner in single-runner mode, listing git repos under codeRoot.
-            command = "dbus-send --session --dest=org.kde.krunner /App org.kde.krunner.App.displaySingleRunner string:projectsrunner";
+            command = "tmuxw-rofi";
           };
-          scripts-krunner = {
+          scripts-rofi = {
             name = "scripts picker";
             key = "Meta+R";
-            # Opens KRunner in single-runner mode, listing *.sh in scriptsDir.
-            command = "dbus-send --session --dest=org.kde.krunner /App org.kde.krunner.App.displaySingleRunner string:scriptsrunner";
+            command = "scripts-rofi";
           };
           tmuxw-close = {
             name = "close current tmux session";

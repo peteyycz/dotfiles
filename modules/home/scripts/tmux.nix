@@ -8,164 +8,28 @@
     }:
     let
       inherit (config.peteyycz) terminal codeRoot;
-
-      # KRunner D-Bus runner: surfaces tmux sessions directly in the launcher
-      # (Meta / Alt+Space) and hands the chosen one to `tmux-focus`. Registered
-      # via the xdg.dataFile entries at the bottom of this module.
-      tmuxKrunner = pkgs.writeScriptBin "tmux-krunner" ''
-        #!${
-          pkgs.python3.withPackages (ps: [
-            ps.dbus-python
-            ps.pygobject3
-          ])
-        }/bin/python3
-        import os
-        import subprocess
-
-        import dbus
-        import dbus.service
-        from dbus.mainloop.glib import DBusGMainLoop
-        from gi.repository import GLib
-
-        # Make home-manager / system binaries resolvable under D-Bus activation,
-        # whose environment is more minimal than an interactive shell's.
-        os.environ["PATH"] = (
-            os.path.expanduser("~/.nix-profile/bin")
-            + ":/run/current-system/sw/bin:"
-            + os.environ.get("PATH", "")
-        )
-
-        SERVICE = "org.peteyycz.tmuxrunner"
-        OBJPATH = "/tmuxrunner"
-        IFACE = "org.kde.krunner1"
-        TERMINAL = "${terminal}"
-
-
-        def sessions():
-            try:
-                out = subprocess.run(
-                    ["tmux", "list-sessions", "-F",
-                     "#{session_name}\t#{pane_current_path}"],
-                    capture_output=True, text=True,
-                ).stdout
-            except FileNotFoundError:
-                return []
-            items = []
-            for line in out.splitlines():
-                if not line.strip():
-                    continue
-                parts = line.split("\t")
-                items.append((parts[0], parts[1] if len(parts) > 1 else ""))
-            return items
-
-
-        def subtext(path):
-            if not path or not os.path.isdir(os.path.join(path, ".git")):
-                return "tmux session"
-
-            def git(*a):
-                return subprocess.run(
-                    ["git", "-C", path, *a],
-                    capture_output=True, text=True,
-                ).stdout.strip()
-
-            branch = git("branch", "--show-current")
-            if not branch:
-                return "tmux session"
-            dirty = " *" if git("status", "--porcelain") else ""
-            return "#" + branch + dirty
-
-
-        class Runner(dbus.service.Object):
-            def __init__(self):
-                bus = dbus.service.BusName(SERVICE, dbus.SessionBus())
-                dbus.service.Object.__init__(self, bus, OBJPATH)
-
-            @dbus.service.method(IFACE, in_signature="s",
-                                 out_signature="a(sssida{sv})")
-            def Match(self, query):
-                q = query.strip().lower()
-                trigger = q.startswith("tmux")
-                if trigger:
-                    q = q[4:].strip()
-                # Empty query = list everything (single-runner-mode entry point).
-                show_all = not q
-                out = []
-                for name, path in sessions():
-                    nl = name.lower()
-                    if show_all:
-                        exact = False
-                    elif trigger:
-                        if q not in nl:
-                            continue
-                        exact = q == nl
-                    else:
-                        if len(q) < 2 or q not in nl:
-                            continue
-                        exact = nl.startswith(q)
-                    props = {"subtext": subtext(path)}
-                    # Type 100 = ExactMatch; keeps tmux hits above documents
-                    # and other PossibleMatch (30) results in KRunner's list.
-                    out.append((name, name, "utilities-terminal",
-                                100,
-                                1.0 if exact else 0.9, props))
-                return out
-
-            @dbus.service.method(IFACE, in_signature="ss", out_signature="")
-            def Run(self, match_id, action_id):
-                if subprocess.run(
-                        ["tmux", "has-session", "-t", match_id]).returncode != 0:
-                    subprocess.run(["tmux", "new-session", "-d", "-s", match_id])
-                if subprocess.run(["tmux-focus", match_id]).returncode != 0:
-                    subprocess.Popen([TERMINAL, "tmux", "attach", "-t", match_id])
-
-            @dbus.service.method(IFACE, out_signature="a(sss)")
-            def Actions(self):
-                return []
-
-
-        DBusGMainLoop(set_as_default=True)
-        Runner()
-        GLib.MainLoop().run()
-      '';
     in
     {
       home.packages = with pkgs; [
-        tmuxKrunner
         # Focus a terminal that is already a tmux client and switch it to the
-        # named session. Compositor-agnostic: Hyprland via hyprctl, KDE Plasma
-        # via kdotool. Exits 0 if an existing terminal was reused, 1 otherwise.
+        # named session. Exits 0 if an existing terminal was reused, 1 otherwise.
         (writeShellScriptBin "tmux-focus" ''
           SESSION="$1"
           [ -z "$SESSION" ] && exit 1
+          kd=${pkgs.kdotool}/bin/kdotool
 
-          # Emit "WINID PID" for terminal windows, most-recently-focused first.
+          # Emit "WINID PID" for terminal windows, active one first.
           list_terms() {
-            if [ -n "$HYPRLAND_INSTANCE_SIGNATURE" ]; then
-              hyprctl clients -j | jq -r \
-                'sort_by(.focusHistoryID) | .[] | select(.class=="${terminal}") | "\(.address) \(.pid)"'
-            else
-              kd=${pkgs.kdotool}/bin/kdotool
-              ids=$("$kd" search --class "${terminal}" 2>/dev/null)
-              [ -z "$ids" ] && return 0
-              active=$("$kd" getactivewindow 2>/dev/null)
-              # Active window first (if it is a terminal), then the rest.
-              { [ -n "$active" ] && printf '%s\n' "$active"; printf '%s\n' "$ids"; } \
-                | awk 'NF && !seen[$0]++' \
-                | while read -r id; do
-                    printf '%s\n' "$ids" | grep -qxF "$id" || continue
-                    pid=$("$kd" getwindowpid "$id" 2>/dev/null)
-                    [ -n "$pid" ] && printf '%s %s\n' "$id" "$pid"
-                  done
-            fi
-          }
-
-          focus_win() {
-            if [ -n "$HYPRLAND_INSTANCE_SIGNATURE" ]; then
-              hyprctl dispatch focuswindow "address:$1" >/dev/null
-            else
-              ${pkgs.kdotool}/bin/kdotool windowactivate "$1" >/dev/null
-            fi
+            ids=$("$kd" search --class "${terminal}" 2>/dev/null)
+            [ -z "$ids" ] && return 0
+            active=$("$kd" getactivewindow 2>/dev/null)
+            { [ -n "$active" ] && printf '%s\n' "$active"; printf '%s\n' "$ids"; } \
+              | awk 'NF && !seen[$0]++' \
+              | while read -r id; do
+                  printf '%s\n' "$ids" | grep -qxF "$id" || continue
+                  pid=$("$kd" getwindowpid "$id" 2>/dev/null)
+                  [ -n "$pid" ] && printf '%s %s\n' "$id" "$pid"
+                done
           }
 
           while read -r WINID PID; do
@@ -174,7 +38,7 @@
             [ -z "$CHILD_PID" ] && continue
             CAND_TTY="/dev/$(ps -o tty= -p "$CHILD_PID" | tr -d ' ')"
             if tmux list-clients -F '#{client_tty}' | grep -qx "$CAND_TTY"; then
-              focus_win "$WINID"
+              "$kd" windowactivate "$WINID" >/dev/null
               tmux switch-client -c "$CAND_TTY" -t "$SESSION"
               exit 0
             fi
@@ -183,27 +47,26 @@
           exit 1
         '')
         (writeShellScriptBin "tmux-rofi" ''
-          # Build a tag/label list of tmux sessions for kdialog --menu.
-          # Tag = session name (what kdialog prints on stdout); label = shown text.
-          # Dirty worktrees are marked with a trailing "*".
-          ARGS=()
-          while read -r name path; do
-            label="$name"
+          # Build the session list with git branch info; dirty worktrees are
+          # marked by colouring the branch (rofi renders pango markup rows).
+          ENTRIES=$(tmux list-sessions -F '#{session_name} #{pane_current_path}' 2>/dev/null | while read -r name path; do
             if [ -d "$path/.git" ]; then
               branch=$(${pkgs.git}/bin/git -C "$path" branch --show-current 2>/dev/null)
               dirty=$(${pkgs.git}/bin/git -C "$path" status --porcelain 2>/dev/null)
               if [ -n "$dirty" ]; then
-                label="$name (#$branch) *"
+                echo "$name <span color='#fb4934'>(#$branch)</span>"
               else
-                label="$name (#$branch)"
+                echo "$name (#$branch)"
               fi
+            else
+              echo "$name"
             fi
-            ARGS+=("$name" "$label")
-          done < <(tmux list-sessions -F '#{session_name} #{pane_current_path}' 2>/dev/null)
+          done)
 
-          [ ''${#ARGS[@]} -eq 0 ] && exit 0
-          SESSION=$(${pkgs.kdePackages.kdialog}/bin/kdialog --title "tmux" \
-            --menu "Select a session:" "''${ARGS[@]}")
+          [ -z "$ENTRIES" ] && exit 0
+          SELECTED=$(echo "$ENTRIES" | rofi -dmenu -markup-rows -p "tmux" -theme-str 'window {width: 30%;}')
+          [ -z "$SELECTED" ] && exit 0
+          SESSION=$(echo "$SELECTED" | awk '{print $1}')
           [ -z "$SESSION" ] && exit 0
 
           if ! tmux has-session -t "$SESSION" 2>/dev/null; then
@@ -216,14 +79,9 @@
         '')
         (writeShellScriptBin "tmuxw-rofi" ''
           SRC="${codeRoot}"
-          ARGS=()
-          while read -r p; do
-            [ -n "$p" ] && ARGS+=("$p" "$p")
-          done < <(find "$SRC" -mindepth 2 -type d -name .git -prune -printf '%h\n' 2>/dev/null | sed "s|^$SRC/||" | sort)
+          ENTRIES=$(find "$SRC" -mindepth 2 -type d -name .git -prune -printf '%h\n' 2>/dev/null | sed "s|^$SRC/||" | sort)
 
-          [ ''${#ARGS[@]} -eq 0 ] && exit 0
-          SELECTED=$(${pkgs.kdePackages.kdialog}/bin/kdialog --title "project" \
-            --menu "Open a project:" "''${ARGS[@]}")
+          SELECTED=$(echo "$ENTRIES" | rofi -dmenu -p "project" -theme-str 'window {width: 40%;}')
           [ -z "$SELECTED" ] && exit 0
 
           PROJECT_PATH="$SRC/$SELECTED"
@@ -240,23 +98,14 @@
         (writeShellScriptBin "tmuxw-close" ''
           # Determine the tmux session attached to the focused terminal.
           # Fallback: most recently attached session.
-          # Compositor-agnostic (Hyprland via hyprctl, KDE Plasma via kdotool).
           TTY=""
           SESSION=""
           PID=""
-          if [ -n "$HYPRLAND_INSTANCE_SIGNATURE" ]; then
-            ACTIVE=$(hyprctl activewindow -j)
-            CLASS=$(echo "$ACTIVE" | jq -r '.class // empty')
-            if [ "$CLASS" = "${terminal}" ]; then
-              PID=$(echo "$ACTIVE" | jq -r '.pid // empty')
-            fi
-          else
-            kd=${pkgs.kdotool}/bin/kdotool
-            ACTIVE=$("$kd" getactivewindow 2>/dev/null)
-            if [ -n "$ACTIVE" ] \
-              && "$kd" search --class "${terminal}" 2>/dev/null | grep -qxF "$ACTIVE"; then
-              PID=$("$kd" getwindowpid "$ACTIVE" 2>/dev/null)
-            fi
+          kd=${pkgs.kdotool}/bin/kdotool
+          ACTIVE=$("$kd" getactivewindow 2>/dev/null)
+          if [ -n "$ACTIVE" ] \
+            && "$kd" search --class "${terminal}" 2>/dev/null | grep -qxF "$ACTIVE"; then
+            PID=$("$kd" getwindowpid "$ACTIVE" 2>/dev/null)
           fi
           if [ -n "$PID" ]; then
             CHILD_PID=$(${pkgs.procps}/bin/pgrep -P "$PID" | head -1)
@@ -322,28 +171,5 @@
           fi
         '')
       ];
-
-      # Tell KRunner about the D-Bus runner...
-      xdg.dataFile."krunner/dbusplugins/tmuxrunner.desktop".text = ''
-        [Desktop Entry]
-        Type=Service
-        Name=Tmux Sessions
-        Comment=Switch between tmux sessions
-        Icon=utilities-terminal
-        X-KDE-ServiceTypes=Plasma/Runner
-        X-KDE-PluginInfo-Name=tmuxrunner
-        X-KDE-PluginInfo-Version=1.0
-        X-KDE-PluginInfo-EnabledByDefault=true
-        X-Plasma-API=DBus
-        X-Plasma-DBusRunner-Service=org.peteyycz.tmuxrunner
-        X-Plasma-DBusRunner-Path=/tmuxrunner
-      '';
-
-      # ...and let D-Bus start it on demand (Plasma 6 requires this .service).
-      xdg.dataFile."dbus-1/services/org.peteyycz.tmuxrunner.service".text = ''
-        [D-BUS Service]
-        Name=org.peteyycz.tmuxrunner
-        Exec=${tmuxKrunner}/bin/tmux-krunner
-      '';
     };
 }

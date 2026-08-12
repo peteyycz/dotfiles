@@ -10,13 +10,5 @@
       device = "/dev/nvme0n1";
       swapSizeMiB = 64245;
     };
-
-    home-manager.users.${config.username}.peteyycz.primaryMonitors = [
-      "DP-1"
-      "DP-2"
-      "DP-3"
-      "HDMI-A-1"
-      "eDP-1"
-    ];
   };
 }

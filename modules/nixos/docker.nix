@@ -17,7 +17,7 @@
     # Aggregate ceiling for ALL containers combined. CPUQuota is relative to
     # a single core (100% = 1 core). This box has 12 CPUs; 600% caps the whole
     # container stack at ~6 cores, leaving ~6 cores of thermal headroom for
-    # the desktop (Chrome/Slack/Hyprland). Tune lower if it still runs hot.
+    # the desktop (Chrome/Slack/Plasma). Tune lower if it still runs hot.
     systemd.slices.dockercap = {
       description = "Aggregate CPU cap for all Docker containers";
       sliceConfig.CPUQuota = "600%";

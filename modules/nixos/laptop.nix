@@ -82,8 +82,8 @@
         ];
       };
 
-      # Docked (external monitor attached) stays "ignore" so hyprLidHandler can
-      # blank eDP-1 without dropping the session.
+      # Baseline lid behaviour; Powerdevil layers its own policy on top and is
+      # what actually decides the docked case under Plasma.
       services.logind.settings.Login = {
         HandleLidSwitch = "suspend";
         HandleLidSwitchExternalPower = "suspend";

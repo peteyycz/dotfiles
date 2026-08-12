@@ -1,15 +1,27 @@
-{ inputs, config, ... }:
+{ config, ... }:
 let
   fonts = config.fontFamilies;
-  p = inputs.hare.lib.glass;
 
-  # rofi theme matching hare's notched dark glass: borderless translucent tint
-  # (frosted by the Hyprland blur layerrule), medium radii, lavender accent on
-  # the selected row. 0x4d ≈ 0.30 matches the bar's translucency.
-  rofiRasi = ''
+  # Breeze Dark, straight from breeze/share/color-schemes/BreezeDark.colors:
+  # Window 32,35,38 / Window alt 41,44,48 / View 20,22,24 / text 252,252,252 /
+  # inactive text 161,169,177 / selection 61,174,233.
+  breeze = {
+    window = "202326";
+    windowAlt = "292c30";
+    view = "141618";
+    fg = "fcfcfc";
+    fgInactive = "a1a9b1";
+    accent = "3daee9";
+    negative = "da4453";
+  };
+
+  # rofi theme matching Plasma's Breeze Dark: opaque (KWin does not blur rofi's
+  # layer surface, so translucency just muddies it), 1px separator borders and
+  # Breeze's small radii, accent-blue selected row.
+  breezeRasi = ''
     * {
       background-color: transparent;
-      text-color:       #${p.fg};
+      text-color:       #${breeze.fg};
     }
 
     window {
@@ -17,35 +29,38 @@ let
       location: north;
       anchor: north;
       y-offset: 12%;
-      background-color: #${p.bg}4d;
-      border: 0;
-      border-radius: 16px;
+      background-color: #${breeze.window};
+      border: 1px;
+      border-color: #${breeze.windowAlt};
+      border-radius: 8px;
       padding: 8px;
     }
 
     mainbox {
       padding: 8px;
-      spacing: 10px;
+      spacing: 8px;
     }
 
     inputbar {
-      padding: 11px 14px;
-      margin: 0 0 8px 0;
-      background-color: #${p.surface};
-      border-radius: 12px;
-      spacing: 10px;
+      padding: 8px 10px;
+      margin: 0 0 6px 0;
+      background-color: #${breeze.view};
+      border: 1px;
+      border-color: #${breeze.windowAlt};
+      border-radius: 4px;
+      spacing: 8px;
       children: [ prompt, entry ];
     }
 
     prompt {
-      text-color: #${p.accent};
+      text-color: #${breeze.accent};
       vertical-align: 0.5;
     }
 
     entry {
       placeholder: "Search…";
-      placeholder-color: #${p.subtle};
-      text-color: #${p.fg};
+      placeholder-color: #${breeze.fgInactive};
+      text-color: #${breeze.fg};
     }
 
     listview {
@@ -53,19 +68,23 @@ let
       columns: 1;
       fixed-height: false;
       dynamic: true;
-      spacing: 4px;
+      spacing: 2px;
       scrollbar: false;
     }
 
     element {
-      padding: 8px 12px;
-      border-radius: 9px;
-      spacing: 10px;
+      padding: 7px 10px;
+      border-radius: 4px;
+      spacing: 8px;
     }
 
     element selected {
-      background-color: #${p.accent};
-      text-color: #${p.accentInk};
+      background-color: #${breeze.accent};
+      text-color: #${breeze.fg};
+    }
+
+    element urgent {
+      text-color: #${breeze.negative};
     }
 
     element-icon {
@@ -78,6 +97,16 @@ let
       vertical-align: 0.5;
       text-color: inherit;
     }
+
+    message {
+      padding: 8px 10px;
+      background-color: #${breeze.view};
+      border-radius: 4px;
+    }
+
+    textbox {
+      text-color: #${breeze.fgInactive};
+    }
   '';
 in
 {
@@ -86,29 +115,21 @@ in
     {
       home.packages = with pkgs; [
         libnotify
-        slurp
-        wf-recorder
         jq
-        grimblast
         htop
         uv
         ffmpeg
-        networkmanagerapplet
         kubectx
         papirus-icon-theme
-        wlogout
-        hyprsunset
         mongodb-compass
       ];
 
-      services.playerctld.enable = true;
-
-      xdg.dataFile."rofi/themes/glass.rasi".text = rofiRasi;
+      xdg.dataFile."rofi/themes/breeze-dark.rasi".text = breezeRasi;
 
       programs.rofi = {
         enable = true;
         font = "${fonts.sans} 11";
-        theme = "glass";
+        theme = "breeze-dark";
         extraConfig = {
           modi = "drun,run,window";
           show-icons = true;
@@ -144,9 +165,8 @@ in
           mouse-bindings = {
             primary-paste = "none";
           };
-          # Gruvbox Material (dark, medium) nudged toward hare: background
-          # cooled slightly toward the bar's neutral dark, and magenta swapped
-          # for hare's lavender accent so the terminal shares the shell's accent.
+          # Gruvbox Material (dark, medium), background cooled toward a neutral
+          # dark and magenta swapped for a lavender accent.
           colors = {
             alpha = "1.0";
             background = "1a1b1e";
