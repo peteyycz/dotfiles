@@ -122,6 +122,10 @@ in
         kubectx
         papirus-icon-theme
         mongodb-compass
+        libreoffice
+        kdePackages.merkuro
+        kdePackages.kdepim-runtime
+        kdePackages.akonadi
       ];
 
       xdg.dataFile."rofi/themes/breeze-dark.rasi".text = breezeRasi;
@@ -154,7 +158,7 @@ in
             font = "${fonts.mono}:style=Medium:size=8.5";
             pad = "7x7";
             selection-target = "clipboard";
-            dpi-aware = "yes";
+            dpi-aware = "no";
           };
           url = {
             launch = "xdg-open \${url}";
