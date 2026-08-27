@@ -94,21 +94,6 @@
 
         # Custom global shortcuts for the tmux/scripts launchers.
         hotkeys.commands = {
-          tmux-rofi = {
-            name = "tmux session picker";
-            key = "Meta+W";
-            command = "tmux-rofi";
-          };
-          tmuxw-rofi = {
-            name = "project picker (tmuxw)";
-            key = "Meta+Shift+W";
-            command = "tmuxw-rofi";
-          };
-          scripts-rofi = {
-            name = "scripts picker";
-            key = "Meta+R";
-            command = "scripts-rofi";
-          };
           tmuxw-close = {
             name = "close current tmux session";
             key = "Meta+Ctrl+W";

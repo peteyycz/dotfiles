@@ -7,7 +7,7 @@
       ...
     }:
     let
-      inherit (config.peteyycz) terminal codeRoot;
+      inherit (config.peteyycz) terminal codeRoot scriptsDir;
     in
     {
       home.packages = with pkgs; [
@@ -46,55 +46,58 @@
 
           exit 1
         '')
-        (writeShellScriptBin "tmux-rofi" ''
-          # Build the session list with git branch info; dirty worktrees are
-          # marked by colouring the branch (rofi renders pango markup rows).
+        (writeShellScriptBin "tmuxn" ''tmux new-session -s "$(basename "$PWD")"'')
+        # In-tmux session switcher: fzf inside a display-popup, substring/fuzzy
+        # matching. Sessions are annotated with their git branch (red = dirty
+        # worktree) rendered via fzf --ansi. Bound to prefix+a in tmux.nix.
+        (writeShellScriptBin "tmux-switch" ''
           ENTRIES=$(tmux list-sessions -F '#{session_name} #{pane_current_path}' 2>/dev/null | while read -r name path; do
+            info=""
             if [ -d "$path/.git" ]; then
               branch=$(${pkgs.git}/bin/git -C "$path" branch --show-current 2>/dev/null)
-              dirty=$(${pkgs.git}/bin/git -C "$path" status --porcelain 2>/dev/null)
-              if [ -n "$dirty" ]; then
-                echo "$name <span color='#fb4934'>(#$branch)</span>"
-              else
-                echo "$name (#$branch)"
+              if [ -n "$branch" ]; then
+                if [ -n "$(${pkgs.git}/bin/git -C "$path" status --porcelain 2>/dev/null)" ]; then
+                  info=" $(printf '\033[31m(#%s)\033[0m' "$branch")"
+                else
+                  info=" $(printf '\033[90m(#%s)\033[0m' "$branch")"
+                fi
               fi
-            else
-              echo "$name"
             fi
+            printf '%s%s\n' "$name" "$info"
           done)
 
           [ -z "$ENTRIES" ] && exit 0
-          SELECTED=$(echo "$ENTRIES" | rofi -dmenu -markup-rows -p "tmux" -theme-str 'window {width: 30%;}')
-          [ -z "$SELECTED" ] && exit 0
-          SESSION=$(echo "$SELECTED" | awk '{print $1}')
+          SELECTED=$(printf '%s\n' "$ENTRIES" \
+            | ${pkgs.fzf}/bin/fzf --ansi --no-sort --reverse --prompt='session> ' --header='switch session') || exit 0
+          SESSION=$(printf '%s' "$SELECTED" | awk '{print $1}')
           [ -z "$SESSION" ] && exit 0
-
-          if ! tmux has-session -t "$SESSION" 2>/dev/null; then
-            tmux new-session -d -s "$SESSION"
-          fi
-
-          # Focus an existing terminal running tmux, or open a new one.
-          tmux-focus "$SESSION" && exit 0
-          exec ${terminal} tmux attach -t "$SESSION"
+          tmux switch-client -t "$SESSION"
         '')
-        (writeShellScriptBin "tmuxw-rofi" ''
+        # In-tmux project picker: fzf over git repos under codeRoot, build the
+        # session with tmuxw and switch to it. Bound to prefix+p in tmux.nix.
+        (writeShellScriptBin "tmux-project" ''
           SRC="${codeRoot}"
-          ENTRIES=$(find "$SRC" -mindepth 2 -type d -name .git -prune -printf '%h\n' 2>/dev/null | sed "s|^$SRC/||" | sort)
-
-          SELECTED=$(echo "$ENTRIES" | rofi -dmenu -p "project" -theme-str 'window {width: 40%;}')
+          SELECTED=$(find "$SRC" -mindepth 2 -type d -name .git -prune -printf '%h\n' 2>/dev/null \
+            | sed "s|^$SRC/||" | sort \
+            | ${pkgs.fzf}/bin/fzf --reverse --prompt='project> ' --header='open project') || exit 0
           [ -z "$SELECTED" ] && exit 0
 
           PROJECT_PATH="$SRC/$SELECTED"
           [ ! -d "$PROJECT_PATH/.git" ] && exit 0
-
           SESSION="$(basename "$PROJECT_PATH")"
           (cd "$PROJECT_PATH" && tmuxw --detach)
-
-          # Focus an existing terminal running tmux, or open a new one.
-          tmux-focus "$SESSION" && exit 0
-          exec ${terminal} tmux attach -t "$SESSION"
+          tmux switch-client -t "$SESSION"
         '')
-        (writeShellScriptBin "tmuxn" ''tmux new-session -s "$(basename "$PWD")"'')
+        # In-tmux scripts picker: fzf over *.sh in scriptsDir, run the choice in
+        # a new tmux window so its output stays visible. Bound to prefix+P.
+        (writeShellScriptBin "tmux-scripts" ''
+          SCRIPTS="${scriptsDir}"
+          SELECTED=$(find "$SCRIPTS" -maxdepth 1 -name '*.sh' -printf '%f\n' 2>/dev/null \
+            | sed 's/\.sh$//' | sort \
+            | ${pkgs.fzf}/bin/fzf --reverse --prompt='script> ' --header='run script') || exit 0
+          [ -z "$SELECTED" ] && exit 0
+          tmux new-window -n "$SELECTED" "sh '$SCRIPTS/$SELECTED.sh'"
+        '')
         (writeShellScriptBin "tmuxw-close" ''
           # Determine the tmux session attached to the focused terminal.
           # Fallback: most recently attached session.

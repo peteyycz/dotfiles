@@ -51,6 +51,11 @@
           bind w neww
           bind m choose-window
 
+          # fzf popups: session switcher, project picker, scripts runner.
+          bind a display-popup -E -w 50% -h 40% "tmux-switch"
+          bind p display-popup -E -w 50% -h 40% "tmux-project"
+          bind P display-popup -E -w 40% -h 40% "tmux-scripts"
+
           bind c kill-pane
           bind t set status
           bind h select-pane -L
