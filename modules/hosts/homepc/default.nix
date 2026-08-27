@@ -8,6 +8,7 @@ in
       nixos.homepc-hardware
       nixos.homepc-configuration
       nixos.common
+      nixos.ssh
       nixos.u2f
       nixos.gaming
     ];

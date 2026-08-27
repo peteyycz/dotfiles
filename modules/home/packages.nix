@@ -35,6 +35,7 @@
         vault-bin
         mongosh
         mongodb-tools
+        redis
 
         mediainfo
         imv

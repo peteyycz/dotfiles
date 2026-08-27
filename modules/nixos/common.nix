@@ -9,6 +9,7 @@ in
       imports = [
         nixos.base
         nixos.networking
+        nixos.tailscale
         nixos.audio
         nixos.bluetooth
         nixos.logitech
