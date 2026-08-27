@@ -52,9 +52,11 @@
           bind m choose-window
 
           # fzf popups: session switcher, project picker, scripts runner.
-          bind a display-popup -E -w 50% -h 40% "tmux-switch"
-          bind p display-popup -E -w 50% -h 40% "tmux-project"
-          bind P display-popup -E -w 40% -h 40% "tmux-scripts"
+          # -T sets the popup border title (top edge) to the hostname so it is
+          # always clear which host this tmux server is on.
+          bind a display-popup -E -T " #h " -w 50% -h 40% "tmux-switch"
+          bind p display-popup -E -T " #h " -w 50% -h 40% "tmux-project"
+          bind P display-popup -E -T " #h " -w 40% -h 40% "tmux-scripts"
 
           bind c kill-pane
           bind t set status
