@@ -17,7 +17,7 @@
         "local.dev.loveherboobs.com local-api.dev.loveherboobs.com local-admin.dev.loveherboobs.com"
         "local.dev.loveherbutt.com local-api.dev.loveherbutt.com local-admin.dev.loveherbutt.com"
         "local.dev.shelovesblack.com local-api.dev.shelovesblack.com local-admin.dev.shelovesblack.com"
-        "admin.local.oktogonmedia.com"
+        "admin.local.oktogonmedia.com api.local.oktogonmedia.com"
       ];
     in
     {
