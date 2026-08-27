@@ -5,21 +5,25 @@
     {
       services.openssh = {
         enable = true;
-        openFirewall = true;
+        # Interactive logins go through Tailscale SSH (tailscale.nix), which owns
+        # port 22 on the tailnet. This sshd listens on 2222 instead so it is NOT
+        # shadowed by Tailscale SSH — a genuine key-only break-glass path,
+        # reachable over the tailnet (trusted interface) if a bad ACL ever locks
+        # Tailscale SSH out. openFirewall = false keeps it off the public net.
+        ports = [ 2222 ];
+        openFirewall = false;
         settings = {
-          # "Both" key and password auth selected.
-          PasswordAuthentication = true;
+          # Key-only. No password brute-force surface.
+          PasswordAuthentication = false;
           KbdInteractiveAuthentication = false;
           PermitRootLogin = "no";
         };
       };
 
       users.users.${config.username}.openssh.authorizedKeys.keys = [
-        # Public keys allowed to log in as ${config.username}.
-        # Add the key of each machine you'll connect FROM. On that machine run:
-        #   cat ~/.ssh/id_ed25519.pub
-        # and paste the line below, e.g.:
-        #   "ssh-ed25519 AAAA... you@laptop"
+        # Break-glass key for the key-only sshd on port 2222. Kept so a
+        # misconfigured tailnet ACL can't lock us out entirely; Tailscale SSH
+        # handles normal logins. Reach it with: ssh -p 2222 homepc
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMgu1itELlCptDaMosOTnHbMW1NTRQNLErX10Bejpy2r peteyycz@homepc"
       ];
     };

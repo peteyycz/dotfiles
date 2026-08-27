@@ -9,6 +9,7 @@ in
       nixos.homepc-configuration
       nixos.common
       nixos.ssh
+      nixos.eternal-terminal
       nixos.u2f
       nixos.gaming
     ];

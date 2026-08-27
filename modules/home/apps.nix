@@ -7,6 +7,7 @@ in
     { pkgs, ... }:
     {
       home.packages = with pkgs; [
+        eternal-terminal # `et` client for reconnecting shells to homepc
         libnotify
         jq
         htop
