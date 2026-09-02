@@ -11,8 +11,8 @@
         };
         terminal = lib.mkOption {
           type = lib.types.str;
-          default = "foot";
-          description = "Terminal binary name. Also used as the window class match.";
+          default = "com.mitchellh.ghostty";
+          description = "Terminal window class match (kdotool). Ghostty's app-id.";
         };
         codeRoot = lib.mkOption {
           type = lib.types.str;

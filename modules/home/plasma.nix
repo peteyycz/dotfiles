@@ -8,6 +8,26 @@
       programs.plasma = {
         enable = true;
 
+        # Darkly colors + Darkly application (widget) style (pkgs.darkly, in the
+        # nixos plasma module), with the stock Breeze window decoration.
+        # Gruvbox is used in the terminal/editor stack (ghostty/nvim/tmux).
+        workspace = {
+          colorScheme = "Darkly";
+          iconTheme = "Nordzy";
+          windowDecorations = {
+            library = "org.kde.breeze";
+            theme = "Breeze";
+          };
+          cursor = {
+            theme = "macOS";
+            size = 24;
+          };
+        };
+
+        # Application (widget) style. widgetStyle name comes from Darkly's
+        # kstyle themerc ([KDE] WidgetStyle=Darkly).
+        configFile.kdeglobals.KDE.widgetStyle = "Darkly";
+
         # Caps Lock acts as Ctrl. Layouts cycle with Alt+Shift, bound under
         # "KDE Keyboard Layout Switcher" below.
         input.keyboard = {
@@ -99,11 +119,6 @@
             key = "Meta+Ctrl+W";
             command = "tmuxw-close";
           };
-        };
-
-        workspace.cursor = {
-          theme = "macOS";
-          size = 24;
         };
 
         # No folder view, no icons — wallpaper is all that renders on the
