@@ -5,8 +5,71 @@
     {
       imports = [ inputs.plasma-manager.homeModules.plasma-manager ];
 
+      # Minimal custom KWin script: insets maximized windows by a fixed gap on
+      # every side so a maximized window keeps a margin from the screen edges.
+      # Purpose-built for KWin 6.6 — the community scripts (tile-gaps and the
+      # maximized-window-gap forks) rely on in-place frameGeometry edits that
+      # KWin 6.6 ignores. Change the GAP constant in the script to resize it.
+      home.file.".local/share/kwin/scripts/maximized-window-gaps".source = ./kwin/maximized-window-gaps;
+
       programs.plasma = {
         enable = true;
+
+        # Enable the maximized-window-gaps KWin script (installed above).
+        configFile.kwinrc.Plugins."maximized-window-gapsEnabled" = true;
+
+        # Panel, captured from the live layout. Declaring panels makes
+        # plasma-manager remove all existing panels and recreate this one on
+        # activation, so the panel is now fully managed here (GUI edits to it
+        # will be overwritten on the next rebuild). A floating 32px top panel:
+        # launcher, task manager, spacer, centered clock, spacer, system tray.
+        panels = [
+          {
+            location = "top";
+            floating = true;
+            height = 32;
+            screen = 0;
+            widgets = [
+              { kickoff.icon = "nix-snowflake-white"; }
+              {
+                iconTasks.launchers = [
+                  "applications:systemsettings.desktop"
+                  "preferred://filemanager"
+                  "applications:google-chrome.desktop"
+                  "applications:org.kde.merkuro.calendar.desktop"
+                  # Normalised from a /nix/store .desktop path so it doesn't
+                  # drift between generations.
+                  "applications:com.mitchellh.ghostty.desktop"
+                ];
+              }
+              "org.kde.plasma.marginsseparator"
+              { panelSpacer.expanding = true; }
+              { digitalClock.date.enable = false; }
+              { panelSpacer.expanding = true; }
+              {
+                # extra = the tray items explicitly enabled. Clipboard and the
+                # Merkuro contact applet are intentionally omitted (disabled).
+                systemTray.items.extra = [
+                  "org.kde.plasma.notifications"
+                  "org.kde.plasma.mediacontroller"
+                  "org.kde.plasma.devicenotifier"
+                  "org.kde.plasma.manage-inputmethod"
+                  "org.kde.plasma.cameraindicator"
+                  "org.kde.plasma.volume"
+                  "org.kde.plasma.keyboardindicator"
+                  "org.kde.kscreen"
+                  "org.kde.plasma.networkmanagement"
+                  "org.kde.plasma.brightness"
+                  "org.kde.plasma.bluetooth"
+                  "org.kde.plasma.weather"
+                  "org.kde.plasma.keyboardlayout"
+                  "org.kde.plasma.battery"
+                  "org.kde.plasma.printmanager"
+                ];
+              }
+            ];
+          }
+        ];
 
         # Darkly colors + Darkly application (widget) style (pkgs.darkly, in the
         # nixos plasma module), with the stock Breeze window decoration.

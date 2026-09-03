@@ -1,0 +1,18 @@
+{
+    "KPlugin": {
+        "Id": "maximized-window-gaps",
+        "Name": "Maximized Window Gaps",
+        "Description": "Insets maximized windows by a fixed gap on every side",
+        "Version": "1.0",
+        "License": "MIT",
+        "EnabledByDefault": false,
+        "Authors": [
+            {
+                "Name": "Peter Czibik"
+            }
+        ]
+    },
+    "KPackageStructure": "KWin/Script",
+    "X-Plasma-API": "javascript",
+    "X-Plasma-MainScript": "code/main.js"
+}
