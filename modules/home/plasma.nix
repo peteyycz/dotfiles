@@ -76,7 +76,7 @@
         # Gruvbox is used in the terminal/editor stack (ghostty/nvim/tmux).
         workspace = {
           colorScheme = "Darkly";
-          iconTheme = "Nordzy";
+          iconTheme = "breeze-dark";
           windowDecorations = {
             library = "org.kde.breeze";
             theme = "Breeze";

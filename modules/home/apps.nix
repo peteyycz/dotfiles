@@ -8,6 +8,7 @@ in
     {
       home.packages = with pkgs; [
         eternal-terminal # `et` client for reconnecting shells to homepc
+        thunderbird
         libnotify
         jq
         htop
@@ -15,12 +16,8 @@ in
         ffmpeg
         kubectx
         papirus-icon-theme
-        nordzy-icon-theme
         mongodb-compass
         libreoffice
-        kdePackages.merkuro
-        kdePackages.kdepim-runtime
-        kdePackages.akonadi
       ];
 
       programs.ghostty = {
