@@ -4,11 +4,12 @@
     { pkgs, ... }:
     let
       # Deauthorize the fingerprint reader's USB device while the lid is
-      # closed so pam_fprintd sees no readers and PAM (sddm in particular)
-      # falls through to password immediately. Masking fprintd doesn't work
-      # on NixOS: unit files live in /etc/systemd/system, which outranks the
-      # /run/systemd/system symlink that `systemctl --runtime mask` creates,
-      # so the mask silently loads as a normal unit.
+      # closed so pam_fprintd sees no readers and PAM (the lockscreen in
+      # particular, when docked with the lid shut and the reader physically
+      # out of reach) falls through to password immediately. Masking fprintd
+      # doesn't work on NixOS: unit files live in /etc/systemd/system, which
+      # outranks the /run/systemd/system symlink that `systemctl --runtime
+      # mask` creates, so the mask silently loads as a normal unit.
       fingerprintVendor = "27c6"; # Goodix
       fingerprintProduct = "639c";
       lidToggle = pkgs.writeShellApplication {
@@ -40,7 +41,15 @@
     {
       services.fprintd.enable = true;
       security.pam.services.sudo.fprintAuth = true;
-      security.pam.services.sddm.fprintAuth = true;
+
+      # The SDDM greeter stays password-only. pam_kwallet can only unlock the
+      # wallet with the login password, so a fingerprint login leaves it locked
+      # and kwallet prompts for the password anyway — two auth steps instead of
+      # one. Must be an explicit false: fprintAuth defaults to
+      # services.fprintd.enable, so dropping the line would leave it on.
+      # The lockscreen is unaffected; it authenticates fingerprints through the
+      # separate kde-fingerprint stack that the plasma6 module enables itself.
+      security.pam.services.sddm.fprintAuth = false;
 
       services.acpid = {
         enable = true;

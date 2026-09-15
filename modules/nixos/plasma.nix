@@ -5,6 +5,12 @@
     {
       services.desktopManager.plasma6.enable = true;
 
+      # Hand the SDDM login password to pam_kwallet so the wallet is already
+      # open in the session. nixpkgs wires pam_kwallet into the `login` and
+      # `kde` stacks but not `sddm`, so without this a graphical login leaves
+      # the wallet locked and it prompts on first use.
+      security.pam.services.sddm.kwallet.enable = true;
+
       # Printing: CUPS plus the System Settings printer module. Without
       # print-manager, System Settings reports "Could not find plugin
       # kcm_printer_manager".

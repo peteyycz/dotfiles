@@ -141,11 +141,26 @@ sudo sbctl enroll-keys --microsoft   # keep MS keys so option ROMs still verify
 sudo sbctl verify                    # all listed files should report "signed"
 ```
 
+If `enroll-keys` aborts with `File is immutable: /sys/firmware/efi/efivars/...`, the kernel
+has set the immutable bit on those EFI variables. Clear it and re-run — sbctl stops at the
+first failures, so clear `KEK`, `db` *and* `dbx`, not just the ones it named:
+
+```bash
+sudo chattr -i /sys/firmware/efi/efivars/{KEK,db,dbx}-*
+```
+
+The bit is reapplied on every boot, so this is not a persistent change — expect to repeat it
+if you ever re-enroll.
+
 Reboot into firmware setup, **enable Secure Boot**, and boot back in. Verify:
 
 ```bash
-bootctl status | grep -i 'secure boot'   # → "enabled (user)"
+bootctl status | grep -i 'secure boot'   # → "enabled (user)" or "enabled (deployed)"
 ```
+
+Either mode is fine. Deployed Mode is User Mode plus a firmware lock against dropping back to
+Setup Mode without a signed update; PCR 7 measurement is identical. It only matters if you
+later need to re-enroll keys, which then requires clearing the Platform Key from firmware first.
 
 Now enroll the TPM2 keyslot bound to PCR 7. The LUKS partition is the second partition created by disko (`/dev/<disk>p2`):
 
@@ -176,7 +191,7 @@ Avoid `systemd-cryptenroll --wipe-slot=tpm2` — its targeting can drift if toke
 sudo fprintd-enroll
 ```
 
-Fingerprint is used for sudo, hyprlock, and sddm only — not for LUKS unlock at boot (fprintd-class readers aren't supported in the initrd).
+Fingerprint is used for sudo and the Plasma lockscreen. The SDDM greeter is deliberately password-only so pam_kwallet can unlock the wallet with the login password — a fingerprint login leaves it locked and kwallet prompts separately, costing two auth steps instead of one. Fingerprint is not used for LUKS unlock at boot either (fprintd-class readers aren't supported in the initrd).
 
 ## Rebuilding after changes
 
