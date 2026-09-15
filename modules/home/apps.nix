@@ -24,7 +24,7 @@ in
         enable = true;
         settings = {
           font-family = fonts.mono;
-          font-style = "Medium";
+          font-style = "SemiBold";
           font-size = 10.5;
 
           window-padding-x = 7;
