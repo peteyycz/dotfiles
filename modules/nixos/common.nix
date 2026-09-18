@@ -10,6 +10,7 @@ in
         nixos.base
         nixos.networking
         nixos.tailscale
+        nixos.nordvpn
         nixos.audio
         nixos.bluetooth
         nixos.logitech
