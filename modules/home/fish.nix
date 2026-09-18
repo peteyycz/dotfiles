@@ -56,6 +56,9 @@
           set -gx GOPATH "$HOME/Code"
           set -gx GHQ_ROOT "$GOPATH/src"
 
+          set -gx AWS_PROFILE "admin"
+          set -gx TG_TF_PATH "tofu"
+
           if test -d $HOME/.kube/configs
             set -gx KUBECONFIG (string join : $HOME/.kube/configs/*.yaml)
           end

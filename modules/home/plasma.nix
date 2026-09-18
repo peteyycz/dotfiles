@@ -18,6 +18,17 @@
         # Enable the maximized-window-gaps KWin script (installed above).
         configFile.kwinrc.Plugins."maximized-window-gapsEnabled" = true;
 
+        # Max out the blur behind translucent windows (ghostty). 1-15,
+        # default 5; at 15 background windows are unrecognisable smears
+        # rather than readable content. Applies to everything KWin blurs,
+        # the panel and krunner included.
+        configFile.kwinrc."Effect-blur".BlurStrength = 15;
+
+        # Alt+Tab cycles through windows on every virtual desktop, not just
+        # the current one. kwinrc [TabBox] DesktopMode is a UInt: 0 = all
+        # desktops, 1 (KWin's default) = current desktop only.
+        configFile.kwinrc.TabBox.DesktopMode = 0;
+
         # Panel, captured from the live layout. Declaring panels makes
         # plasma-manager remove all existing panels and recreate this one on
         # activation, so the panel is now fully managed here (GUI edits to it

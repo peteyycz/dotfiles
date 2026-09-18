@@ -7,7 +7,12 @@
       ...
     }:
     let
-      inherit (config.peteyycz) terminal codeRoot scriptsDir;
+      inherit (config.peteyycz)
+        terminal
+        codeRoot
+        scriptsDir
+        dotfilesDir
+        ;
     in
     {
       home.packages = with pkgs; [
@@ -47,6 +52,20 @@
           exit 1
         '')
         (writeShellScriptBin "tmuxn" ''tmux new-session -s "$(basename "$PWD")"'')
+        # What a bare terminal launch lands in: the session used most recently,
+        # or a fresh dotfiles session built by tmuxw when no server is running.
+        # Wired up as ghostty's `command` in apps.nix.
+        (writeShellScriptBin "tmux-attach-latest" ''
+          SESSION=$(tmux list-sessions -F '#{session_last_attached} #{session_name}' 2>/dev/null \
+            | sort -nr | head -1 | awk '{print $2}')
+
+          if [ -n "$SESSION" ]; then
+            exec tmux attach -t "$SESSION"
+          fi
+
+          cd "${dotfilesDir}" || exit 1
+          exec tmuxw
+        '')
         # In-tmux session switcher: fzf inside a display-popup, substring/fuzzy
         # matching. Sessions are annotated with their git branch (red = dirty
         # worktree) rendered via fzf --ansi. Bound to prefix+a in tmux.nix.
@@ -148,26 +167,24 @@
           if tmux has-session -t "$SESSION" 2>/dev/null; then
             exit 0
           fi
+          # Window 1: claude, full width — no splits competing for columns.
           tmux new-session -d -s "$SESSION" -c "$PWD"
-
-          # Split horizontally: new pane on right for claude
-          tmux split-window -h -l 150 -t "$SESSION:1" -c "$PWD"
-
-          # Split the left pane vertically: top (run-server) and bottom (start-accessories)
-          tmux split-window -v -t "$SESSION:1.1" -c "$PWD"
-          tmux send-keys -t "$SESSION:1.1" 'run-server' Enter
-          tmux send-keys -t "$SESSION:1.2" 'start-accessories' Enter
-
-          # Start claude in the right pane (now pane 3 after the split)
-          tmux send-keys -t "$SESSION:1.3" 'claude -c' Enter
+          tmux send-keys -t "$SESSION:1" 'claude -c' Enter
 
           # Window 2: nvim
           tmux new-window -t "$SESSION" -c "$PWD"
           tmux send-keys -t "$SESSION:2" 'nvim .' Enter
 
-          # Select window 1, pane 3 (claude)
+          # Window 3: the two long-running processes, stacked — top
+          # (run-server) and bottom (start-accessories). Both stay in the
+          # foreground so their logs are the pane contents.
+          tmux new-window -t "$SESSION" -c "$PWD"
+          tmux split-window -v -t "$SESSION:3.1" -c "$PWD"
+          tmux send-keys -t "$SESSION:3.1" 'run-server' Enter
+          tmux send-keys -t "$SESSION:3.2" 'start-accessories' Enter
+
+          # Land on claude.
           tmux select-window -t "$SESSION:1"
-          tmux select-pane -t "$SESSION:1.3"
 
           if [ "$DETACH" = false ]; then
             tmux attach -t "$SESSION"

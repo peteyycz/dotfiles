@@ -17,7 +17,9 @@
         '')
         (writeShellScriptBin "start-accessories" ''
           if [ -f docker-compose.yml ] || [ -f docker-compose.yaml ]; then
-            docker compose up -d
+            # Foreground: tmuxw gives this its own pane, so the compose logs
+            # are the point. Ctrl-C there stops the stack.
+            exec docker compose up
           fi
         '')
       ];
