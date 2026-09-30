@@ -3,6 +3,7 @@
   flake.modules.homeManager.tmux-scripts =
     {
       config,
+      lib,
       pkgs,
       ...
     }:
@@ -13,44 +14,9 @@
         scriptsDir
         dotfilesDir
         ;
-    in
-    {
-      home.packages = with pkgs; [
-        # Focus a terminal that is already a tmux client and switch it to the
-        # named session. Exits 0 if an existing terminal was reused, 1 otherwise.
-        (writeShellScriptBin "tmux-focus" ''
-          SESSION="$1"
-          [ -z "$SESSION" ] && exit 1
-          kd=${pkgs.kdotool}/bin/kdotool
 
-          # Emit "WINID PID" for terminal windows, active one first.
-          list_terms() {
-            ids=$("$kd" search --class "${terminal}" 2>/dev/null)
-            [ -z "$ids" ] && return 0
-            active=$("$kd" getactivewindow 2>/dev/null)
-            { [ -n "$active" ] && printf '%s\n' "$active"; printf '%s\n' "$ids"; } \
-              | awk 'NF && !seen[$0]++' \
-              | while read -r id; do
-                  printf '%s\n' "$ids" | grep -qxF "$id" || continue
-                  pid=$("$kd" getwindowpid "$id" 2>/dev/null)
-                  [ -n "$pid" ] && printf '%s %s\n' "$id" "$pid"
-                done
-          }
-
-          while read -r WINID PID; do
-            [ -z "$WINID" ] && continue
-            CHILD_PID=$(${pkgs.procps}/bin/pgrep -P "$PID" | head -1)
-            [ -z "$CHILD_PID" ] && continue
-            CAND_TTY="/dev/$(ps -o tty= -p "$CHILD_PID" | tr -d ' ')"
-            if tmux list-clients -F '#{client_tty}' | grep -qx "$CAND_TTY"; then
-              "$kd" windowactivate "$WINID" >/dev/null
-              tmux switch-client -c "$CAND_TTY" -t "$SESSION"
-              exit 0
-            fi
-          done < <(list_terms)
-
-          exit 1
-        '')
+      # Portable: plain tmux plus POSIX find/awk, so they work on macOS too.
+      portable = with pkgs; [
         (writeShellScriptBin "tmuxn" ''tmux new-session -s "$(basename "$PWD")"'')
         # What a bare terminal launch lands in: the session used most recently,
         # or a fresh dotfiles session built by tmuxw when no server is running.
@@ -94,10 +60,12 @@
         '')
         # In-tmux project picker: fzf over git repos under codeRoot, build the
         # session with tmuxw and switch to it. Bound to prefix+p in tmux.nix.
+        # `find ... -print | sed` rather than -printf: BSD find (macOS) has no
+        # -printf.
         (writeShellScriptBin "tmux-project" ''
           SRC="${codeRoot}"
-          SELECTED=$(find "$SRC" -mindepth 2 -type d -name .git -prune -printf '%h\n' 2>/dev/null \
-            | sed "s|^$SRC/||" | sort \
+          SELECTED=$(find "$SRC" -mindepth 2 -type d -name .git -prune -print 2>/dev/null \
+            | sed -e 's|/\.git$||' -e "s|^$SRC/||" | sort \
             | ${pkgs.fzf}/bin/fzf --reverse --prompt='project> ' --header='open project') || exit 0
           [ -z "$SELECTED" ] && exit 0
 
@@ -111,11 +79,87 @@
         # a new tmux window so its output stays visible. Bound to prefix+P.
         (writeShellScriptBin "tmux-scripts" ''
           SCRIPTS="${scriptsDir}"
-          SELECTED=$(find "$SCRIPTS" -maxdepth 1 -name '*.sh' -printf '%f\n' 2>/dev/null \
-            | sed 's/\.sh$//' | sort \
+          SELECTED=$(find "$SCRIPTS" -maxdepth 1 -name '*.sh' 2>/dev/null \
+            | sed -e 's|.*/||' -e 's|\.sh$||' | sort \
             | ${pkgs.fzf}/bin/fzf --reverse --prompt='script> ' --header='run script') || exit 0
           [ -z "$SELECTED" ] && exit 0
           tmux new-window -n "$SELECTED" "sh '$SCRIPTS/$SELECTED.sh'"
+        '')
+        (writeShellScriptBin "tmuxw" ''
+          DETACH=false
+          for arg in "$@"; do
+            case "$arg" in
+              --detach) DETACH=true ;;
+            esac
+          done
+
+          SESSION="$(basename "$PWD")"
+          if tmux has-session -t "$SESSION" 2>/dev/null; then
+            exit 0
+          fi
+          # Window 1: claude, full width — no splits competing for columns.
+          tmux new-session -d -s "$SESSION" -c "$PWD"
+          tmux send-keys -t "$SESSION:1" 'claude -c' Enter
+
+          # Window 2: nvim
+          tmux new-window -t "$SESSION" -c "$PWD"
+          tmux send-keys -t "$SESSION:2" 'nvim .' Enter
+
+          # Window 3: the two long-running processes, stacked — top
+          # (run-server) and bottom (start-accessories). Both stay in the
+          # foreground so their logs are the pane contents.
+          tmux new-window -t "$SESSION" -c "$PWD"
+          tmux split-window -v -t "$SESSION:3.1" -c "$PWD"
+          tmux send-keys -t "$SESSION:3.1" 'run-server' Enter
+          tmux send-keys -t "$SESSION:3.2" 'start-accessories' Enter
+
+          # Land on claude.
+          tmux select-window -t "$SESSION:1"
+
+          if [ "$DETACH" = false ]; then
+            tmux attach -t "$SESSION"
+          fi
+        '')
+      ];
+
+      # kdotool talks to KWin over its Wayland script API, so these two have no
+      # macOS counterpart: on a Mac the terminal is focused by the window
+      # manager, not by matching a window class to a tmux client tty.
+      kwin = with pkgs; [
+        # Focus a terminal that is already a tmux client and switch it to the
+        # named session. Exits 0 if an existing terminal was reused, 1 otherwise.
+        (writeShellScriptBin "tmux-focus" ''
+          SESSION="$1"
+          [ -z "$SESSION" ] && exit 1
+          kd=${pkgs.kdotool}/bin/kdotool
+
+          # Emit "WINID PID" for terminal windows, active one first.
+          list_terms() {
+            ids=$("$kd" search --class "${terminal}" 2>/dev/null)
+            [ -z "$ids" ] && return 0
+            active=$("$kd" getactivewindow 2>/dev/null)
+            { [ -n "$active" ] && printf '%s\n' "$active"; printf '%s\n' "$ids"; } \
+              | awk 'NF && !seen[$0]++' \
+              | while read -r id; do
+                  printf '%s\n' "$ids" | grep -qxF "$id" || continue
+                  pid=$("$kd" getwindowpid "$id" 2>/dev/null)
+                  [ -n "$pid" ] && printf '%s %s\n' "$id" "$pid"
+                done
+          }
+
+          while read -r WINID PID; do
+            [ -z "$WINID" ] && continue
+            CHILD_PID=$(${pkgs.procps}/bin/pgrep -P "$PID" | head -1)
+            [ -z "$CHILD_PID" ] && continue
+            CAND_TTY="/dev/$(ps -o tty= -p "$CHILD_PID" | tr -d ' ')"
+            if tmux list-clients -F '#{client_tty}' | grep -qx "$CAND_TTY"; then
+              "$kd" windowactivate "$WINID" >/dev/null
+              tmux switch-client -c "$CAND_TTY" -t "$SESSION"
+              exit 0
+            fi
+          done < <(list_terms)
+
+          exit 1
         '')
         (writeShellScriptBin "tmuxw-close" ''
           # Determine the tmux session attached to the focused terminal.
@@ -155,41 +199,9 @@
 
           tmux kill-session -t "$SESSION"
         '')
-        (writeShellScriptBin "tmuxw" ''
-          DETACH=false
-          for arg in "$@"; do
-            case "$arg" in
-              --detach) DETACH=true ;;
-            esac
-          done
-
-          SESSION="$(basename "$PWD")"
-          if tmux has-session -t "$SESSION" 2>/dev/null; then
-            exit 0
-          fi
-          # Window 1: claude, full width — no splits competing for columns.
-          tmux new-session -d -s "$SESSION" -c "$PWD"
-          tmux send-keys -t "$SESSION:1" 'claude -c' Enter
-
-          # Window 2: nvim
-          tmux new-window -t "$SESSION" -c "$PWD"
-          tmux send-keys -t "$SESSION:2" 'nvim .' Enter
-
-          # Window 3: the two long-running processes, stacked — top
-          # (run-server) and bottom (start-accessories). Both stay in the
-          # foreground so their logs are the pane contents.
-          tmux new-window -t "$SESSION" -c "$PWD"
-          tmux split-window -v -t "$SESSION:3.1" -c "$PWD"
-          tmux send-keys -t "$SESSION:3.1" 'run-server' Enter
-          tmux send-keys -t "$SESSION:3.2" 'start-accessories' Enter
-
-          # Land on claude.
-          tmux select-window -t "$SESSION:1"
-
-          if [ "$DETACH" = false ]; then
-            tmux attach -t "$SESSION"
-          fi
-        '')
       ];
+    in
+    {
+      home.packages = portable ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux kwin;
     };
 }

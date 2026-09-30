@@ -10,10 +10,12 @@ in
 {
   # Standalone home-manager for the macOS machine. Unlike the NixOS hosts —
   # which get home-manager as a NixOS module and pull in every homeManager
-  # module via attrValues — this lists modules explicitly, because roughly a
-  # third of them (plasma, dconf, cursor, autostart, laptop, tmux-scripts) are
+  # module via attrValues — this lists modules explicitly, because a good
+  # number of them (plasma, dconf, cursor, autostart, laptop, apps) are
   # Linux-only. Keeping the list explicit avoids having to split the
-  # flake.modules.homeManager namespace by platform.
+  # flake.modules.homeManager namespace by platform; modules that are mostly
+  # portable (packages, tmux-scripts) instead guard their Linux-only bits with
+  # pkgs.stdenv.hostPlatform.isLinux so they can be listed here.
   #
   #   home-manager switch -b hm-bak --flake .#'peter.czibik@bud-mbp-0021'
   #
@@ -35,9 +37,12 @@ in
         modules = [
           homeManager.options # base reads peteyycz.wallpaperPath
           homeManager.base
+          homeManager.nix
           homeManager.fish
           homeManager.git
           homeManager.tmux
+          homeManager.tmux-scripts
+          homeManager.neovim
           homeManager.starship
           homeManager.fzf
           homeManager.zoxide
@@ -45,20 +50,16 @@ in
           homeManager.direnv
           homeManager.difftastic
           homeManager.dev-scripts
+          homeManager.packages
           homeManager.peon-ping # installs ~/.openpeon/peon.sh, which claude-code hooks call
           homeManager.claude-code
 
-          ({ pkgs, ... }: {
+          ({ ... }: {
             home.username = macUser;
             home.homeDirectory = "/Users/${macUser}";
             # Without this the `home-manager` CLI only exists for as long as the
             # `nix run` that bootstrapped the first generation.
             programs.home-manager.enable = true;
-
-            # The claude-code module only writes ~/.claude config; the CLI itself
-            # lives in homeManager.packages, which is Linux-guarded and not
-            # imported here.
-            home.packages = [ pkgs.claude-code ];
           })
         ];
       };

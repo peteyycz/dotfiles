@@ -1,10 +1,13 @@
 { ... }:
 {
+  # Imported by every host, macOS included, so the split below is what keeps
+  # the Mac usable: `common` is everything that builds and makes sense on
+  # aarch64-darwin, `linuxOnly` is the rest (Linux-only packages, and GUI bits
+  # that come from elsewhere on a Mac).
   flake.modules.homeManager.packages =
-    { pkgs, ... }:
-    {
-      home.packages = with pkgs; [
-        gcc
+    { lib, pkgs, ... }:
+    let
+      common = with pkgs; [
         gnumake
 
         nodejs_24
@@ -16,15 +19,19 @@
         clippy
         rust-analyzer
 
+        ruby
+        beam.packages.erlang_27.erlang
+        beam.packages.erlang_27.elixir_1_18
+
         claude-code
 
         nixd
         nixfmt
-        coturn
 
         pandoc
 
         kubectl
+        kubectx
         kubernetes-helm
 
         awscli2
@@ -33,32 +40,42 @@
         terragrunt
         pomerium-cli
         vault-bin
+        kamal
+
         mongosh
         mongodb-tools
         redis
-
-        mediainfo
-        imv
-        vlc
+        postgresql
 
         gh
         ghq
-        piper-tts
+        eternal-terminal # `et` client for reconnecting shells to homepc
 
-        libwebp
+        jq
+        htop
         btop
         fd
         eza
         xxd
-
-        postgresql
-
-        ruby
-        kamal
-
-        beam.packages.erlang_27.erlang
-        beam.packages.erlang_27.elixir_1_18
-        inotify-tools
+        uv
+        ffmpeg
+        libwebp
       ];
+
+      linuxOnly = with pkgs; [
+        # A real GCC; on darwin the toolchain is clang and nixpkgs would build
+        # gcc from source for it.
+        gcc
+        coturn
+        inotify-tools
+
+        mediainfo
+        imv
+        vlc
+        piper-tts
+      ];
+    in
+    {
+      home.packages = common ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux linuxOnly;
     };
 }

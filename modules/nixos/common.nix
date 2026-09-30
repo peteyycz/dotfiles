@@ -20,7 +20,6 @@ in
         nixos.onepassword
         nixos.docker
         nixos.keyring
-        nixos.neovim
         nixos.fish
         nixos.user
         nixos.packages

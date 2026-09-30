@@ -55,9 +55,15 @@
           # fzf popups: session switcher, project picker, scripts runner.
           # -T sets the popup border title (top edge) to the hostname so it is
           # always clear which host this tmux server is on.
-          bind a display-popup -E -T " #h " -w 50% -h 40% "tmux-switch"
-          bind p display-popup -E -T " #h " -w 50% -h 40% "tmux-project"
-          bind P display-popup -E -T " #h " -w 40% -h 40% "tmux-scripts"
+          #
+          # `display-popup -C` first: a client can only have one popup, and
+          # while one is open tmux silently ignores every further display-popup
+          # (it still reports success). One popup left open — an fzf nobody
+          # answered — therefore wedges all three of these keys until it is
+          # closed. -C closes any stale popup, and is a no-op when there is none.
+          bind a display-popup -C \; display-popup -E -T " #h " -w 50% -h 40% "tmux-switch"
+          bind p display-popup -C \; display-popup -E -T " #h " -w 50% -h 40% "tmux-project"
+          bind P display-popup -C \; display-popup -E -T " #h " -w 40% -h 40% "tmux-scripts"
 
           bind c kill-pane
           bind t set status

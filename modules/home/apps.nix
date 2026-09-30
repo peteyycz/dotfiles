@@ -7,14 +7,8 @@ in
     { pkgs, config, ... }:
     {
       home.packages = with pkgs; [
-        eternal-terminal # `et` client for reconnecting shells to homepc
         thunderbird
         libnotify
-        jq
-        htop
-        uv
-        ffmpeg
-        kubectx
         papirus-icon-theme
         mongodb-compass
         libreoffice
