@@ -50,6 +50,31 @@
           }
         ];
       };
+
+      # Copilot only reviews seedboxtech PRs when someone asks it to, so every
+      # PR Claude opens there gets the standard reviewers plus Copilot as soon
+      # as `gh pr create` prints the new PR's URL. gh itself comes from PATH so
+      # it uses the user's existing auth.
+      seedboxReviewers = "zaszabo-arch,fkodm,dnagy-seedbox,@copilot";
+      seedboxReviewHook = {
+        matcher = "Bash";
+        hooks = [
+          {
+            type = "command";
+            command = toString (
+              pkgs.writeShellScript "seedbox-request-reviewers" ''
+                input=$(cat)
+                ${pkgs.jq}/bin/jq -e '.tool_input.command | test("gh pr create")' <<<"$input" >/dev/null || exit 0
+                url=$(${pkgs.jq}/bin/jq -r '.tool_response | tostring' <<<"$input" \
+                  | grep -oE 'https://github\.com/seedboxtech/[^/ "]+/pull/[0-9]+' | head -n1)
+                [ -n "$url" ] || exit 0
+                gh pr edit "$url" --add-reviewer "${seedboxReviewers}" >/dev/null 2>&1
+              ''
+            );
+            async = true;
+          }
+        ];
+      };
     in
     {
       home.file.".claude/CLAUDE.md".text = ''
@@ -73,6 +98,17 @@
           repo's existing commit style.
         - Open the PR against the repo's base branch (in Oktogon-Media repos this is
           `development`, not `main`).
+        - **On PRs in the `seedboxtech` GitHub organization, always request these reviewers:**
+          Zoltan (`zaszabo-arch`), Feri (`fkodm`), dnagy (`dnagy-seedbox`) and Copilot
+          (`@copilot`). A hook requests them automatically after `gh pr create`; check they
+          are on the PR, and re-request Copilot (`gh pr edit <n> --add-reviewer "@copilot"`)
+          after pushing fixes, since it does not re-review new pushes on its own.
+
+        ## Review comments
+
+        - **Resolve every review thread that has been addressed.** After pushing a fix and
+          replying on a GitHub review thread, resolve that thread. Also resolve threads that
+          already have a fix reply but are still open.
       '';
 
       home.file.".claude/settings.json".text = builtins.toJSON {
@@ -93,6 +129,7 @@
             (notifyHook "Needs permission")
             peonHook
           ];
+          PostToolUse = [ seedboxReviewHook ];
         };
         skipAutoPermissionPrompt = true;
         permissions.defaultMode = "auto";
