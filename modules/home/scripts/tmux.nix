@@ -101,17 +101,9 @@
           tmux new-session -d -s "$SESSION" -c "$PWD"
           tmux send-keys -t "$SESSION:1" 'claude -c' Enter
 
-          # Window 2: nvim
+          # Window 2: a plain shell. Nothing is sent to it, so it is just
+          # $SHELL (fish) sitting in the project directory.
           tmux new-window -t "$SESSION" -c "$PWD"
-          tmux send-keys -t "$SESSION:2" 'nvim .' Enter
-
-          # Window 3: the two long-running processes, stacked — top
-          # (run-server) and bottom (start-accessories). Both stay in the
-          # foreground so their logs are the pane contents.
-          tmux new-window -t "$SESSION" -c "$PWD"
-          tmux split-window -v -t "$SESSION:3.1" -c "$PWD"
-          tmux send-keys -t "$SESSION:3.1" 'run-server' Enter
-          tmux send-keys -t "$SESSION:3.2" 'start-accessories' Enter
 
           # Land on claude.
           tmux select-window -t "$SESSION:1"
