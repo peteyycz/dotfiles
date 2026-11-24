@@ -16,6 +16,7 @@
         obsidian
         rustdesk
         slack
+        spotify
         nautilus
         nautilus-open-any-terminal
         file-roller

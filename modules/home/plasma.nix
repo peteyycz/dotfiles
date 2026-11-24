@@ -5,18 +5,8 @@
     {
       imports = [ inputs.plasma-manager.homeModules.plasma-manager ];
 
-      # Minimal custom KWin script: insets maximized windows by a fixed gap on
-      # every side so a maximized window keeps a margin from the screen edges.
-      # Purpose-built for KWin 6.6 — the community scripts (tile-gaps and the
-      # maximized-window-gap forks) rely on in-place frameGeometry edits that
-      # KWin 6.6 ignores. Change the GAP constant in the script to resize it.
-      home.file.".local/share/kwin/scripts/maximized-window-gaps".source = ./kwin/maximized-window-gaps;
-
       programs.plasma = {
         enable = true;
-
-        # Enable the maximized-window-gaps KWin script (installed above).
-        configFile.kwinrc.Plugins."maximized-window-gapsEnabled" = true;
 
         # Max out the blur behind translucent windows (ghostty). 1-15,
         # default 5; at 15 background windows are unrecognisable smears
